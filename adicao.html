@@ -12,96 +12,136 @@
 </head>
 <body>
 	
-	<div id="adicao">
-
-		<div>
+	<div id="principal">
 
 		<h1>Adição com QVL</h1>
 
-		<table>
-		
-			<thead >
+		<div id="adicao">
 
-				<tr id="hd">
-					<th class="um"></th>
-					<th class="c"></th>
-					<th class="d"></th>
-					<th class="u"></th>
-				</tr>
+			<table>
+			
+				<thead >
 
-			</thead>
+					<tr id="hd">
+						<th class="um"></th>
+						<th class="c"></th>
+						<th class="d"></th>
+						<th class="u"></th>
+					</tr>
 
-			<tbody>
-				
-				<tr id="vai">
-					<td class="um" id="vm">0</td>
-					<td class="c" id="vc">0</td>
-					<td class="d" id="vd">0</td>
-					<td class="u"></td>
-				</tr>
+				</thead>
 
-				<tr id="qvl">
-					<td class="um" id="qvlum">UM</td>
-					<td class="c">C</td>
-					<td class="d">D</td>
-					<td class="u">U</td>
-				</tr>
+				<tbody>
 
-				<tr>
-					<td class="um"></td>
-					<td class="c">2</td>
-					<td class="d">5</td>
-					<td class="u">4</td>
-				</tr>
+					<tr id="vai">
+						<td class="um" id="vm">0</td>
+						<td class="c" id="vc">0</td>
+						<td class="d" id="vd">0</td>
+						<td class="u"></td>
+					</tr>
 
-				<tr>
-					<td class="um"></td>
-					<td class="c">5</td>
-					<td class="d">9</td>
-					<td class="u">1</td>
-				</tr>
+					<tr id="img">
+						<td><img src="adicao/1m.png" id="i1m" class="iudc"></td>
+						<td><img src="adicao/1c.png" id="i1c" class="iudc"></td>
+						<td><img src="adicao/1d.png" id="i1d" class="iudc"></td>
+						<td><img src="adicao/1u.png" id="i1u" class="iudc"></td>
+					</tr>
 
-				<tr id="sol">
-					<td class="um" id="rm">0</td>
-					<td class="c" id="rc">0</td>
-					<td class="d" id="rd">0</td>
-					<td class="u" id="ru">0</td>
-				</tr>
+					<tr id="qvl">
+						<td class="um" id="qvlum">UM</td>
+						<td class="c">C</td>
+						<td class="d">D</td>
+						<td class="u">U</td>
+					</tr>
 
-				<tr id="tbtn">
-					<td>
-						<div class="cbtn">
-							<button id="mmum" onclick="rmmais()">+</button>
-							<button id="mum" onclick="rmmenos()">-</button>
-						</div>
-					</td>
-					<td>
-						<div class="cbtn">
-							<button id="mmc" onclick="rcmais()">+</button>
-							<button id="mc" onclick="rcmenos()">-</button>
-						</div>
-					</td>
-					<td>
-						<div class="cbtn">
-							<button id="mmd" onclick="rdmais()">+</button>
-							<button id="md" onclick="rdmenos()">-</button>
-						</div>
-					</td>
-					<td>
-						<div class="cbtn">
-							<button id="mmu" onclick="rumais()">+</button>
-							<button id="mu" onclick="rumenos()">-</button>
-						</div>
-					</td>
-				</tr>
+					<tr>
+						<td class="um"></td>
+						<td class="c">2</td>
+						<td class="d">5</td>
+						<td class="u">4</td>
+					</tr>
 
-			</tbody>
+					<tr>
+						<td class="um"></td>
+						<td class="c">5</td>
+						<td class="d">9</td>
+						<td class="u">1</td>
+					</tr>
 
-		</table>
+					<tr id="sol">
+						<td class="um" id="rm">0</td>
+						<td class="c" id="rc">0</td>
+						<td class="d" id="rd">0</td>
+						<td class="u" id="ru">0</td>
+					</tr>
+
+					<tr id="tbtn">
+						<td>
+							<div class="cbtn">
+								<button id="mmum" onclick="rmmais()">+</button>
+								<button id="mum" onclick="rmmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmc" onclick="rcmais()">+</button>
+								<button id="mc" onclick="rcmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmd" onclick="rdmais()">+</button>
+								<button id="md" onclick="rdmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmu" onclick="rumais()">+</button>
+								<button id="mu" onclick="rumenos()">-</button>
+							</div>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
 		</div>
 		
 		<div id="resultado">
-			<button id="res">Resultado</button>
+
+			<button id="res">VERIFICAR</button>
+			<button id="lim">LIMPAR</button>
+			<button id="tro">NOVO</button>
+
+			<h1>254 + 591 = 745</h1>
+
+			<div id="animacao">
+				
+				<div class="anime">
+
+					Para saber se voce acertou clique no botão VERIFICAR.
+
+				</div>
+
+				<div class="anime" id="idfeliz">
+
+					<h2>Parabéns!!</h2>
+					<img src="adicao/feliz.gif">
+
+				</div>
+
+				<div class="anime" id="idtriste">
+
+					<h2>Que pena!!</h2>
+					<img src="adicao/triste.gif">
+
+				</div>
+
+			</div>
+
+			<h1>Pontuação: 0</h1>
+
 		</div>
 
 	</div>

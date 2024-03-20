@@ -1,24 +1,103 @@
 @charset "UTF-8";
 
-#adicao{
-	width: 800px;
-	display: block;
-	margin: auto; /*pra funcionar precisa de um display block*/
+#principal{
+	width: 900px;
+	margin: auto;
+	border:solid black;
+}
+
+#principal h1{
 	text-align: center;
 }
 
+#adicao{
+	width: 400px;
+	display: inline;
+	float: left;
+	margin:10px;
+	/*width: 400px;
+	display: block;
+	margin: auto; //pra funcionar precisa de um display block
+	text-align: center;*/
+}
+
+
 #resultado{
 	width: 400px;
+	display: inline;
+	float: right;
+	margin:10px;
+	text-align: center;
+	/*width: 400px;
+	display: block;
+	margin: auto; //pra funcionar precisa de um display block
+	text-align: center;*/
+
+	/*width: 400px;
 	display: block;
 	float: right;
 	margin-top: 0px;
 	margin-left: 0px;
-	margin: auto; /*pra funcionar precisa de um display block*/
-	text-align: center;
+	margin: auto; //pra funcionar precisa de um display block
+	text-align: center;*/
 }
 
 #resultado button{
 	width: auto;
+}
+
+#resultado h1{
+	font-size: 55px;
+	border:solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#animacao{
+	width: 400px;
+	/*height: 270px;*/
+	height: 342px;
+	font-size: 30px;
+	/*background-color: yellow;*/
+	margin-top: 0px;
+	padding-top: 0px;
+	border:solid black;
+	
+}
+
+.anime{
+	font-size: 50px;
+	/*background-color: white;*/
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+	display: block;
+	vertical-align: middle;
+}
+
+.anime h2{
+	font-size: 50px;
+	margin: 0px;
+	text-align: center;
+}
+
+.anime img{
+	width: 200px;
+	height: 200px;
+	text-align: center;
+}
+
+.iudc{
+	width: 70px;
+	padding: 0px;
+	margin: 0px;
+}
+
+table tr#img td{
+	background-color:rgba(0,0,0,.1);
+	padding: 0px;
+	margin: 0px;
+	font-size: 10px;
 }
 
 #adicao h1{
@@ -30,6 +109,7 @@ table tr, td{
 	border-collapse: collapse;*/
 	padding: 15px;
 	margin: 15px;
+	text-align: center;
 }
 
 .um{
