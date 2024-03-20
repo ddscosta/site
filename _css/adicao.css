@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+#adicao{
+	width: 800px;
+	display: block;
+	margin: auto; /*pra funcionar precisa de um display block*/
+	text-align: center;
+}
+
+#adicao h1{
+	color: blue;
+}
+
+table tr#vai{
+	color: green;
+	font-weight: bolder;
+	font-size: 40px;	
+	padding: 0px;
+}
+
+table tr#vai td{
+	padding: 0px;
+}
+
+table tr#tbtn td{
+	padding: 0px;
+}
+
+.cbtn{
+	margin: 0px;
+	padding: 0px;
+	font-size: 40px;
+}
+
+button{
+	margin: 0px;
+	padding: 0px;
+	font-size: 30px;
+	width: 40px;
+}
+
+table tr#qvl{
+	color: red;	
+}
+
+table tr td#qvlum{
+	font-size: 37px;	
+}
+
+table tr#sol{
+	height: 80px;	
+}
+
+table tr td{
+	height: 30px;
+	padding: 0px;	
+}
+
+table{
+	width: 400px;
+	margin: auto;
+	font-size: 80px;
+}
+
+tr, td{
+	border: solid black 1px;
+	padding: 15px;
+	margin: 15px;
+
+	/*opacity: 0;
+	position: absolute;
+	top: 0px;
+	background-color: rgba(0, 0, 0, .4);
+	color: white;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	transition: opacity 1s;*/
+}
+
+.um{
+	color: yellow;
+	background-color: rgba(0, 0, 0, .4);
+}
+.c{
+	color: blue;
+	background-color: rgba(0, 0, 0, .3);	
+}
+.d{
+	color: green;
+	background-color: rgba(0, 0, 0, .2);
+}
+.u{
+	color: red;
+	background-color: rgba(0, 0, 0, .1);
+}
+
+figure.foto-legenda:hover figcaption{
+	/*opacity: 1;*/
+}
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="_css/adicao.css">
+
+	<script src="_javascript/adicao.js"></script>
+
+	<title>Adição com QVL</title>
+</head>
+<body>
+	
+	<div id="adicao">
+		<h1>Adição com QVL</h1>
+		<table>
+		
+			<thead>
+				<th class="um"></th>
+				<th class="c"></th>
+				<th class="d"></th>
+				<th class="u"></th>
+			</thead>
+
+			<tbody>
+				
+				<tr id="vai">
+					<td class="um" id="vm">0</td>
+					<td class="c" id="vc">0</td>
+					<td class="d" id="vd">0</td>
+					<td class="u"></td>
+				</tr>
+
+				<tr id="qvl">
+					<td class="um" id="qvlum">UM</td>
+					<td class="c">C</td>
+					<td class="d">D</td>
+					<td class="u">U</td>
+				</tr>
+
+				<tr>
+					<td class="um"></td>
+					<td class="c">2</td>
+					<td class="d">5</td>
+					<td class="u">4</td>
+				</tr>
+
+				<tr>
+					<td class="um"></td>
+					<td class="c">5</td>
+					<td class="d">9</td>
+					<td class="u">1</td>
+				</tr>
+
+				<tr id="sol">
+					<td class="um" id="rm">0</td>
+					<td class="c" id="rc">0</td>
+					<td class="d" id="rd">0</td>
+					<td class="u" id="ru">0</td>
+				</tr>
+
+				<tr id="tbtn">
+					<td>
+						<div class="cbtn">
+							<button id="mmum">+</button>
+							<button id="mum">-</button>
+						</div>
+					</td>
+					<td>
+						<div class="cbtn">
+							<button id="mmc">+</button>
+							<button id="mc">-</button>
+						</div>
+					</td>
+					<td>
+						<div class="cbtn">
+							<button id="mmd" onclick="rdmais()">+</button>
+							<button id="md" onclick="rdmenos()">-</button>
+						</div>
+					</td>
+					<td>
+						<div class="cbtn">
+							<button id="mmu" onclick="rumais()">+</button>
+							<button id="mu" onclick="rumenos()">-</button>
+						</div>
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+</body>
+</html>
