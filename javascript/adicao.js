@@ -410,7 +410,6 @@ function rcmais() {
    
 }
 
-
 function rcmenos() {
 
    const rc = document.getElementById("rc");
@@ -496,6 +495,48 @@ function rcmenos() {
          
          }
          
+   }
+   
+}
+
+function rmmais() {
+
+   const rm = document.getElementById("rm");
+
+   var conts = rm.innerText;
+   
+   var conti = parseInt(conts, 10);
+
+   conti = conti + 1;
+
+   contis = conti+"";
+
+   if(conti>-1 && conti<10){
+   
+         rm.innerText = contis;
+
+   }
+   
+}
+
+function rmmenos() {
+
+   const rm = document.getElementById("rm");
+  
+   var conts = rm.innerText;
+   
+   var conti = parseInt(conts, 10);
+
+   conti = conti - 1;
+
+   contis = conti+"";
+
+   console.log('contis >> '+contis);
+
+   if(conti>-1 && conti<10){
+      
+      rm.innerText = contis;
+  
    }
    
 }
