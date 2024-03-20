@@ -344,3 +344,158 @@ function rdmenos() {
    }
    
 }
+
+function rcmais() {
+
+   const rc = document.getElementById("rc");
+   const vm = document.getElementById("vm");
+
+   var conts = vm.innerText+rc.innerText;
+   
+   var conti = parseInt(conts, 10);
+
+   conti = conti + 1;
+
+   contis = conti+"";
+
+   if(conti>-1 && conti<10){
+   
+         rc.innerText = contis;
+
+   }else
+
+   if(conti>9 && conti <100){
+
+         var contarr = contis.split('');
+         
+         var ruc = parseInt(contarr[1], 10);
+         
+         var rum = parseInt(contarr[0], 10);
+         console.log(rum +'>>'+ ruc);
+
+         //faz efeito no acrescimo das dezenas
+         if(ruc == 0){
+            
+            rc.innerText = contis+"";
+            
+            var corrc = rc.style.backgroundColor;
+            var corvm = vm.style.backgroundColor;
+            
+            rc.style.backgroundColor = "rgb(0, 255, 64)";
+            vm.style.backgroundColor = "rgb(0, 255, 64)";
+
+            setTimeout(function rcvm(){
+            
+            console.log(rum +'>>'+ ruc);
+
+            rc.innerText = ruc+"";
+
+               vm.innerText = rum+"";
+
+               rc.style.backgroundColor = corrc;
+               
+               vm.style.backgroundColor = corvm;
+
+         }, 2000, ruc, rum, corrc, corvm);
+
+         }else{
+
+            rc.innerText = ruc+"";
+
+            vm.innerText = rum+"";
+         
+         }
+         
+   }
+   
+}
+
+
+function rcmenos() {
+
+   const rc = document.getElementById("rc");
+   const vm = document.getElementById("vm");
+
+   var conts = vm.innerText+rc.innerText;
+   
+   var conti = parseInt(conts, 10);
+
+   conti = conti - 1;
+
+   contis = conti+"";
+
+   console.log('contis >> '+contis);
+
+   if(conti>-1 && conti<10){
+      
+         var contarr = contis.split('');
+
+         if(contarr.length > 1 ){
+
+            var ruc = parseInt(contarr[1], 10);
+         
+            var rum = parseInt(contarr[0], 10);
+
+            rc.innerText = ruc+"";
+
+         vm.innerText = rum+"";
+
+            console.log(rum +'>>'+ ruc);
+
+         }else{
+
+            rc.innerText = contis;
+
+            vm.innerText = "0";
+         
+         }
+         
+
+   }else
+
+   if(conti>9 && conti <100){
+
+         var contarr = contis.split('');
+         
+         var ruc = parseInt(contarr[1], 10);
+         
+         var rum = parseInt(contarr[0], 10);
+
+         console.log(rum +'>>'+ ruc);
+
+         //faz efeito no acrescimo das dezenas
+         if(ruc == 9){
+            
+            rc.innerText = contis+"";
+            
+            var corrc = rc.style.backgroundColor;
+            var corvm = vm.style.backgroundColor;
+            
+            rc.style.backgroundColor = "rgb(0, 255, 64)";
+            vm.style.backgroundColor = "rgb(0, 255, 64)";
+
+            setTimeout(function rcvm(){
+            
+            console.log(rum +'>>'+ ruc);
+
+            rc.innerText = ruc+"";
+
+               vm.innerText = rum+"";
+
+               rc.style.backgroundColor = corrc;
+               
+               vm.style.backgroundColor = corvm;
+
+         }, 2000, ruc, rum, corrc, corvm);
+
+         }else{
+
+            rc.innerText = ruc+"";
+
+            vm.innerText = rum+"";
+         
+         }
+         
+   }
+   
+}
