@@ -87,6 +87,18 @@
 	text-align: center;
 }
 
+#idan{
+	/*display: none;*/
+}
+
+#idfeliz{
+	display: none;
+}
+
+#idtriste{
+	display: none;
+}
+
 .iudc{
 	width: 70px;
 	padding: 0px;
