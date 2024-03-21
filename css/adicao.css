@@ -175,9 +175,10 @@ table tr#tbtn td{
 
 button{
 	margin: 0px;
-	padding: 0px;
+	padding: 3px;
 	font-size: 30px;
 	width: 40px;
+	background-color: rgba(74,79,247,.4);
 }
 
 table tr#qvl{

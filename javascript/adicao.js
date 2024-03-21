@@ -40,21 +40,84 @@ function verificar(){
 
    var soma = in1+in2;
 
-console.log(in1+"+"+in2+"="+ires+">>"+soma);
-   if( soma == res){
-      var idan = sdocument.getElementById("idan");
-      id="idan"
-      element.style.visibility = 'hidden';      // Hide
-      element.style.visibility = 'visible';     // Show
+   console.log(in1+"+"+in2+"="+ires+">>"+soma);
 
-      alert("acertou");
+   if( soma == res){
+      feliz();
    }else{
-      alert("errou");
+      triste();
    }
 
 }
 
+function triste(){
+
+   var idan = document.getElementById("idan");
+   idan.style.display = 'none';    
+
+   var feliz = document.getElementById("idfeliz");
+   feliz.style.display = 'none';    
+
+   var triste = document.getElementById("idtriste");
+   triste.style.display = 'block';
+
+}
+
+function feliz(){
+
+   var idan = document.getElementById("idan");
+   idan.style.display = 'none';    
+
+   var feliz = document.getElementById("idfeliz");
+   feliz.style.display = 'block';    
+
+   var triste = document.getElementById("idtriste");
+   triste.style.display = 'none';
+
+   pontuacao("mais");
+
+}
+
+function info(){
+   var idan = document.getElementById("idan");
+   idan.style.display = 'block';    
+
+   var feliz = document.getElementById("idfeliz");
+   feliz.style.display = 'none';    
+
+   var triste = document.getElementById("idtriste");
+   triste.style.display = 'none';
+}
+
+function pontuacao(tipo){
+   
+   //tipo:mais, menos, zera, null;
+
+   var pont = document.getElementById("pontu");
+
+   var pontarr = pont.innerText.split(' ');
+
+   var ponti = parseInt(pontarr[1], 10);
+
+   if(tipo == 'mais'){
+
+      ponti = ponti + 1;
+
+   }
+
+   if(tipo == 'zera'){
+
+      ponti = 0;
+
+   }
+
+   pont.innerText = "Pontuação: "+ponti;
+
+}
+
 function aoiniciar(){
+
+   novo()
 
    exibir();
 
@@ -62,6 +125,8 @@ function aoiniciar(){
 
 function exibir(){
 
+   info();
+   
    var exibe = document.getElementById("exibe");
 
    const u1 = document.getElementById("u1");
