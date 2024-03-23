@@ -313,7 +313,7 @@ function rumais() {
 
                exibir();
 
-			}, 2000, ruu, rud, corru, corvd);
+			}, 1000, ruu, rud, corru, corvd);
 
    		}else{
 
@@ -391,7 +391,7 @@ function rumenos() {
 
                   exibir();
 
-				}, 2000, ruu, rud, corru, corvd);
+				}, 1000, ruu, rud, corru, corvd);
 
    			}else{
 
@@ -441,7 +441,7 @@ function rumenos() {
 
                exibir();
 
-			}, 2000, ruu, rud, corru, corvd);
+			}, 1000, ruu, rud, corru, corvd);
 
    		}else{
 
@@ -512,7 +512,7 @@ function rdmais() {
 
                exibir();
 
-			}, 2000, rud, ruc, corrd, corvc);
+			}, 1000, rud, ruc, corrd, corvc);
 
    		}else{
 
@@ -608,7 +608,7 @@ function rdmenos() {
 
                exibir();
 
-			}, 2000, rud, ruc, corrd, corvc);
+			}, 1000, rud, ruc, corrd, corvc);
 
    		}else{
 
@@ -678,7 +678,7 @@ function rcmais() {
 
                exibir();
 
-         }, 2000, ruc, rum, corrc, corvm);
+         }, 1000, ruc, rum, corrc, corvm);
 
          }else{
 
@@ -772,7 +772,7 @@ function rcmenos() {
 
                exibir();
 
-         }, 2000, ruc, rum, corrc, corvm);
+         }, 1000, ruc, rum, corrc, corvm);
 
          }else{
 

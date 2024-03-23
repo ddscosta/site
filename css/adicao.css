@@ -170,7 +170,15 @@ table tr#tbtn td{
 .cbtn{
 	margin: 0px;
 	padding: 0px;
-	font-size: 40px;
+	font-size: 60px;
+}
+
+.cbtn button{
+	margin: 0px;
+	padding: 3px;
+	font-size: 50px;
+	width: 60px;
+	background-color: rgba(74,79,247,.4);
 }
 
 button{
@@ -201,9 +209,9 @@ table tr td{
 }
 
 table{
-	width: 400px;
+	width: 200px;
 	margin: auto;
-	font-size: 80px;
+	font-size: 50px;
 }
 
 
