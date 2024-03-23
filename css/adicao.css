@@ -44,10 +44,12 @@
 
 #resultado button{
 	width: auto;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 #resultado h1{
-	font-size: 55px;
+	font-size: 40px;
 	border:solid black;
 	margin-top: 10px;
 	margin-bottom: 10px;
