@@ -55,6 +55,41 @@
 	margin-bottom: 10px;
 }
 
+div#resultado div#pontuu{
+	font-size: 40px;
+	border:solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+div#resultado div#pontuu h1#pontu{
+	position: absolute;
+	margin: 0px;
+	margin-right: 10px;
+	border: none;
+}
+
+div#resultado div#pontuu button#btnreset{
+	margin-left: 350px;
+	margin-bottom: 2px;
+	width: 40px;
+}
+
+/*div#resultado div#pontuu h1#pontu, button#btnreset{
+	display: block;
+}
+
+div#resultado div#pontuu h1#pontu{
+
+	float: left;
+}
+
+div#resultado div#pontuu button#btnreset{
+	float: right;
+}*/
+
+
 #animacao{
 	width: 400px;
 	/*height: 270px;*/

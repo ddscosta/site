@@ -93,17 +93,28 @@ function info(){
 
 function pontuacao(tipo){
    
+   var pon = 0;
+   var pont = localStorage.getItem("pontos");
+   var ponti = parseInt(pont, 10);
+   
+
    //tipo:mais, menos, zera, null;
 
-   var pont = document.getElementById("pontu");
+   var pontt = document.getElementById("pontu");
 
-   var pontarr = pont.innerText.split(' ');
+   //var pontarr = pont.innerText.split(' ');
 
-   var ponti = parseInt(pontarr[1], 10);
+   //var ponti = parseInt(pontarr[1], 10);
+   
+   console.log('ponti1:' + ponti);
 
    if(tipo == 'mais'){
 
-      ponti = ponti + 1;
+      if(Number.isNaN(ponti)){
+         ponti = 1;
+      }else{
+         ponti = ponti + 1;
+      }
 
    }
 
@@ -113,7 +124,34 @@ function pontuacao(tipo){
 
    }
 
-   pont.innerText = "Pontuação: "+ponti;
+   pontt.innerText = "Pontuação: "+ponti;
+
+   localStorage.setItem("pontos", ponti);
+
+   console.log('ponti2:' + ponti);
+
+   //const cat = localStorage.getItem("myCat");
+
+   //localStorage.removeItem("myCat");
+
+
+}
+
+function verificaStorage(){
+   var pon = 0;
+   var pont = localStorage.getItem("pontos");
+   var ponti = parseInt(pont, 10);
+   
+   //tipo:mais, menos, zera, null;
+   var pontt = document.getElementById("pontu");
+   
+   console.log('storage ponti:' + ponti);
+
+   if(Number.isNaN(ponti)){
+      ponti = 0;
+   }
+
+   document.getElementById("pontu").innerText = "Pontos: " + ponti;
 
 }
 
@@ -121,7 +159,18 @@ function aoiniciar(){
 
    novo()
 
+   verificaStorage();
+
    exibir();
+
+}
+
+function reset(){
+
+   if (confirm('Apagar Pontos?')) {
+      localStorage.setItem("pontos", 0);
+      verificaStorage();
+   }
 
 }
 
