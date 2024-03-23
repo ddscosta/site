@@ -142,6 +142,9 @@ function exibir(){
    const rc = document.getElementById("rc");
    const rm = document.getElementById("rm");
 
+   const vd = document.getElementById("vd");
+   const vc = document.getElementById("vc");
+   const vm = document.getElementById("vm");
 
    //console.log(exibe.innerText);
 
@@ -149,6 +152,28 @@ function exibir(){
       c1.innerText+d1.innerText+u1.innerText + " + " + 
       c2.innerText+d2.innerText+u2.innerText + " = " + 
       rm.innerText+rc.innerText+rd.innerText+ru.innerText;
+
+   if(vd.innerText != '0'){
+      vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      if(ru.innerText == '9'){
+         vd.style.backgroundColor = "rgba(0, 0, 0, 0)";
+      }     
+   }
+   if(vc.innerText != '0'){
+      vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      if(rd.innerText == '9'){
+         vc.style.backgroundColor = "rgba(0, 0, 0, 0)";
+      }     
+   }
+   if(vm.innerText != '0'){
+      vm.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      if(rc.innerText == '9'){
+         vm.style.backgroundColor = "rgba(0, 0, 0, 0)";
+      }     
+   }
 
 }
 // const ru = document.getElementById("ru");
