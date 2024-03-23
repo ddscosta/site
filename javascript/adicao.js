@@ -1,3 +1,5 @@
+var cor_normal = "rgba(0, 0, 0, 0)";
+
 function getn1(){
 
    const u1 = document.getElementById("u1");
@@ -157,21 +159,21 @@ function exibir(){
       vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       if(ru.innerText == '9'){
-         vd.style.backgroundColor = "rgba(0, 0, 0, 0)";
+         vd.style.backgroundColor = cor_normal;
       }     
    }
    if(vc.innerText != '0'){
       vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       if(rd.innerText == '9'){
-         vc.style.backgroundColor = "rgba(0, 0, 0, 0)";
+         vc.style.backgroundColor = cor_normal;
       }     
    }
    if(vm.innerText != '0'){
       vm.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       if(rc.innerText == '9'){
-         vm.style.backgroundColor = "rgba(0, 0, 0, 0)";
+         vm.style.backgroundColor = cor_normal;
       }     
    }
 
@@ -318,9 +320,12 @@ function rumais() {
    			
    			ru.innerText = contis+"";
    			
-   			var corru = ru.style.backgroundColor;
-   			var corvd = vd.style.backgroundColor;
-   			
+   			// var corru = ru.style.backgroundColor;
+   			// var corvd = vd.style.backgroundColor;
+
+            var corru = cor_normal;
+            var corvd = cor_normal;
+
    			ru.style.backgroundColor = "rgb(0, 255, 64)";
    			vd.style.backgroundColor = "rgb(0, 255, 64)";
 
@@ -396,9 +401,12 @@ function rumenos() {
 
    			if(ruu == 9){
 
-   				var corru = ru.style.backgroundColor;
-	   			var corvd = vd.style.backgroundColor;
+   				// var corru = ru.style.backgroundColor;
+	   			// var corvd = vd.style.backgroundColor;
 	   			
+               var corru = cor_normal;
+               var corvd = cor_normal;
+
 	   			ru.style.backgroundColor = "rgb(0, 255, 64)";
 	   			vd.style.backgroundColor = "rgb(0, 255, 64)";
 
@@ -446,8 +454,11 @@ function rumenos() {
    			
    			ru.innerText = contis+"";
    			
-   			var corru = ru.style.backgroundColor;
-   			var corvd = vd.style.backgroundColor;
+   			// var corru = ru.style.backgroundColor;
+   			// var corvd = vd.style.backgroundColor;
+
+            var corru = cor_normal;
+            var corvd = cor_normal;
    			
    			ru.style.backgroundColor = "rgb(0, 255, 64)";
    			vd.style.backgroundColor = "rgb(0, 255, 64)";
@@ -517,8 +528,11 @@ function rdmais() {
    			
    			rd.innerText = contis+"";
    			
-   			var corrd = rd.style.backgroundColor;
-   			var corvc = vc.style.backgroundColor;
+   			// var corrd = rd.style.backgroundColor;
+   			// var corvc = vc.style.backgroundColor;
+
+            var corrd = cor_normal;
+            var corvc = cor_normal;
    			
    			rd.style.backgroundColor = "rgb(0, 255, 64)";
    			vc.style.backgroundColor = "rgb(0, 255, 64)";
@@ -613,8 +627,11 @@ function rdmenos() {
    			
    			rd.innerText = contis+"";
    			
-   			var corrd = rd.style.backgroundColor;
-   			var corvc = vc.style.backgroundColor;
+   			// var corrd = rd.style.backgroundColor;
+   			// var corvc = vc.style.backgroundColor;
+
+            var corrd = cor_normal;
+            var corvc = cor_normal;
    			
    			rd.style.backgroundColor = "rgb(0, 255, 64)";
    			vc.style.backgroundColor = "rgb(0, 255, 64)";
@@ -683,9 +700,12 @@ function rcmais() {
             
             rc.innerText = contis+"";
             
-            var corrc = rc.style.backgroundColor;
-            var corvm = vm.style.backgroundColor;
+            // var corrc = rc.style.backgroundColor;
+            // var corvm = vm.style.backgroundColor;
             
+            var corrc = cor_normal;
+            var corvm = cor_normal;
+
             rc.style.backgroundColor = "rgb(0, 255, 64)";
             vm.style.backgroundColor = "rgb(0, 255, 64)";
 
@@ -777,8 +797,11 @@ function rcmenos() {
             
             rc.innerText = contis+"";
             
-            var corrc = rc.style.backgroundColor;
-            var corvm = vm.style.backgroundColor;
+            // var corrc = rc.style.backgroundColor;
+            // var corvm = vm.style.backgroundColor;
+
+            var corrc = cor_normal;
+            var corvm = cor_normal;
             
             rc.style.backgroundColor = "rgb(0, 255, 64)";
             vm.style.backgroundColor = "rgb(0, 255, 64)";
