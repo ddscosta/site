@@ -1,4 +1,5 @@
 var cor_normal = "rgba(0, 0, 0, 0)";
+var verifica = false;
 
 function getn1(){
 
@@ -32,6 +33,9 @@ function getresult(){
 }
 
 function verificar(){
+
+   if(verifica){return false;}
+
    var n1 = getn1();
    var n2 = getn2();
    var res = getresult();
@@ -49,6 +53,8 @@ function verificar(){
    }else{
       triste();
    }
+
+   verifica = true;
 
 }
 
@@ -124,7 +130,7 @@ function pontuacao(tipo){
 
    }
 
-   pontt.innerText = "Pontuação: "+ponti;
+   pontt.innerText = "Pontos: "+ponti;
 
    localStorage.setItem("pontos", ponti);
 
@@ -245,6 +251,8 @@ function exibir(){
 
 function novo(){
 
+   verifica = false;
+
    var num1 = getRandomInt(1, 999);
 
    var num1s = num1+"";
@@ -314,6 +322,8 @@ function novo(){
 }
 
 function limpar(){
+
+   verifica = false;
 
    document.getElementById("ru").innerText = 0;
    document.getElementById("rd").innerText = 0;
