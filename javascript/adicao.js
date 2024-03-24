@@ -1,5 +1,5 @@
 var cor_normal = "rgba(0, 0, 0, 0)";
-var verifica = false;
+var verifica = true;
 
 function getn1(){
 
@@ -34,7 +34,7 @@ function getresult(){
 
 function verificar(){
 
-   if(verifica){return false;}
+   if(!verifica){return false;}
 
    var n1 = getn1();
    var n2 = getn2();
@@ -50,11 +50,10 @@ function verificar(){
 
    if( soma == res){
       feliz();
+      verifica = false;
    }else{
       triste();
    }
-
-   verifica = true;
 
 }
 
@@ -120,6 +119,7 @@ function pontuacao(tipo){
          ponti = 1;
       }else{
          ponti = ponti + 1;
+
       }
 
    }
@@ -251,7 +251,7 @@ function exibir(){
 
 function novo(){
 
-   verifica = false;
+   verifica = true;
 
    var num1 = getRandomInt(1, 999);
 
@@ -323,18 +323,21 @@ function novo(){
 
 function limpar(){
 
-   verifica = false;
+   //se ainda não acertou então deixa limpar
+   if(verifica){
+      
+      document.getElementById("ru").innerText = 0;
+      document.getElementById("rd").innerText = 0;
+      document.getElementById("rc").innerText = 0;
+      document.getElementById("rm").innerText = 0;
 
-   document.getElementById("ru").innerText = 0;
-   document.getElementById("rd").innerText = 0;
-   document.getElementById("rc").innerText = 0;
-   document.getElementById("rm").innerText = 0;
+      document.getElementById("vd").innerText = 0;
+      document.getElementById("vc").innerText = 0;
+      document.getElementById("vm").innerText = 0;
 
-   document.getElementById("vd").innerText = 0;
-   document.getElementById("vc").innerText = 0;
-   document.getElementById("vm").innerText = 0;
-
-   exibir();
+      exibir();
+      
+   }
 
 }
 
