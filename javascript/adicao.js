@@ -6,8 +6,9 @@ function getn1(){
    const u1 = document.getElementById("u1");
    const d1 = document.getElementById("d1");
    const c1 = document.getElementById("c1");
+   const m1 = document.getElementById("m1");
 
-   return c1.innerText+d1.innerText+u1.innerText+"";
+   return m1.innerText+c1.innerText+d1.innerText+u1.innerText+"";
 
 }
 
@@ -16,8 +17,9 @@ function getn2(){
    const u2 = document.getElementById("u2");
    const d2 = document.getElementById("d2");
    const c2 = document.getElementById("c2");
+   const m2 = document.getElementById("m2");
 
-   return c2.innerText+d2.innerText+u2.innerText+"";
+   return m2.innerText+c2.innerText+d2.innerText+u2.innerText+"";
 
 }
 
@@ -180,6 +182,19 @@ function reset(){
 
 }
 
+function limpa_cor_vai_res() {
+   
+   document.getElementById("vd").style.backgroundColor = cor_normal;
+   document.getElementById("vc").style.backgroundColor = cor_normal;
+   document.getElementById("vm").style.backgroundColor = cor_normal;
+
+   document.getElementById("ru").style.backgroundColor = cor_normal;
+   document.getElementById("rd").style.backgroundColor = cor_normal;
+   document.getElementById("rc").style.backgroundColor = cor_normal;
+   document.getElementById("rm").style.backgroundColor = cor_normal;
+
+}
+
 function exibir(){
 
    info();
@@ -189,10 +204,12 @@ function exibir(){
    const u1 = document.getElementById("u1");
    const d1 = document.getElementById("d1");
    const c1 = document.getElementById("c1");
+   const m1 = document.getElementById("m1");
 
    const u2 = document.getElementById("u2");
    const d2 = document.getElementById("d2");
    const c2 = document.getElementById("c2");
+   const m2 = document.getElementById("m2");
 
    const ru = document.getElementById("ru");
    const rd = document.getElementById("rd");
@@ -206,8 +223,8 @@ function exibir(){
    //console.log(exibe.innerText);
 
    exibe.innerText = 
-      c1.innerText+d1.innerText+u1.innerText + " + " + 
-      c2.innerText+d2.innerText+u2.innerText + " = " + 
+      m1.innerText+c1.innerText+d1.innerText+u1.innerText + " + " + 
+      m2.innerText+c2.innerText+d2.innerText+u2.innerText + " = " + 
       rm.innerText+rc.innerText+rd.innerText+ru.innerText;
 
    if(vd.innerText != '0'){
@@ -233,21 +250,6 @@ function exibir(){
    }
 
 }
-// const ru = document.getElementById("ru");
-// const rd = document.getElementById("rd");
-// const rc = document.getElementById("rc");
-
-// const vd = document.getElementById("vd");
-// const vc = document.getElementById("vc");
-// const vm = document.getElementById("vm");
-
-// const u1 = document.getElementById("u1");
-// const d1 = document.getElementById("d1");
-// const c1 = document.getElementById("c1");
-
-// const u2 = document.getElementById("u2");
-// const d2 = document.getElementById("d2");
-// const c2 = document.getElementById("c2");
 
 function novo(){
 
@@ -255,23 +257,30 @@ function novo(){
 
    var num1 = getRandomInt(1, 999);
 
-   var num1s = num1+"";
+   var num_m1 = getRandomInt(0, 8);
+
+   console.log('num_m1:'+num_m1);
+
+   var num1s = num1+""+num_m1;
 
    var num1arr = num1s.split('');
 
    const u1 = document.getElementById("u1");
    const d1 = document.getElementById("d1");
    const c1 = document.getElementById("c1");
+   const m1 = document.getElementById("m1");
 
    const u2 = document.getElementById("u2");
    const d2 = document.getElementById("d2");
    const c2 = document.getElementById("c2");
+   const m2 = document.getElementById("m2");
 
    if(num1arr.length == 1){
 
       u1.innerText = num1arr[0];
       d1.innerText = 0;
       c1.innerText = 0;
+      m1.innerText = 0;
 
    }else
    if(num1arr.length == 2){
@@ -279,6 +288,7 @@ function novo(){
       u1.innerText = num1arr[0];
       d1.innerText = num1arr[1];
       c1.innerText = 0;
+      m1.innerText = 0;
 
    }else
    if(num1arr.length == 3){
@@ -286,12 +296,25 @@ function novo(){
       u1.innerText = num1arr[0];
       d1.innerText = num1arr[1];
       c1.innerText = num1arr[2];
+      m1.innerText = 0;
+
+   }else
+   if(num1arr.length == 4){
+
+      u1.innerText = num1arr[0];
+      d1.innerText = num1arr[1];
+      c1.innerText = num1arr[2];
+      m1.innerText = num1arr[3];
 
    }  
 
    var num2 = getRandomInt(1, 999);
+   
+   var num_m2 = 8-num_m1;
 
-   var num2s = num2+"";
+   console.log('num_m2:'+num_m2);
+
+   var num2s = num2+""+num_m2;
 
    var num2arr = num2s.split('');
 
@@ -300,6 +323,7 @@ function novo(){
       u2.innerText = num2arr[0];
       d2.innerText = 0;
       c2.innerText = 0;
+      m2.innerText = 0;
 
    }else
    if(num2arr.length == 2){
@@ -307,6 +331,7 @@ function novo(){
       u2.innerText = num2arr[0];
       d2.innerText = num2arr[1];
       c2.innerText = 0;
+      m2.innerText = 0;
 
    }else
    if(num2arr.length == 3){
@@ -314,6 +339,15 @@ function novo(){
       u2.innerText = num2arr[0];
       d2.innerText = num2arr[1];
       c2.innerText = num2arr[2];
+      m2.innerText = 0;
+
+   }else
+   if(num2arr.length == 4){
+
+      u2.innerText = num2arr[0];
+      d2.innerText = num2arr[1];
+      c2.innerText = num2arr[2];
+      m2.innerText = num2arr[3];
 
    }
 
@@ -334,6 +368,8 @@ function limpar(){
       document.getElementById("vd").innerText = 0;
       document.getElementById("vc").innerText = 0;
       document.getElementById("vm").innerText = 0;
+
+      limpa_cor_vai_res();
 
       exibir();
       
