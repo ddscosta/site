@@ -1,5 +1,22 @@
 var cor_normal = "rgba(0, 0, 0, 0)";
 var verifica = true;
+var verifica_err = true;
+var ajuda = false;
+
+
+function ajudaa(){
+
+   var marcado = document.getElementById('ajuda').checked;
+
+   if(marcado){
+      ajuda = true;
+      repetirn1();
+   }else{
+      ajuda = false;
+      zera_result();
+   }
+   
+}
 
 function getn1(){
 
@@ -38,6 +55,8 @@ function verificar(){
 
    if(!verifica){return false;}
 
+   if(!verifica_err){return false;}
+
    var n1 = getn1();
    var n2 = getn2();
    var res = getresult();
@@ -46,15 +65,16 @@ function verificar(){
    var in2 = parseInt(n2, 10);
    var ires = parseInt(res, 10);
 
-   var soma = in1+in2;
+   var soma = in1-in2;
 
-   console.log(in1+"+"+in2+"="+ires+">>"+soma);
+   console.log(in1+"-"+in2+"="+ires+">>"+soma);
 
    if( soma == res){
       feliz();
       verifica = false;
    }else{
       triste();
+      verifica_err = false;
    }
 
 }
@@ -69,6 +89,8 @@ function triste(){
 
    var triste = document.getElementById("idtriste");
    triste.style.display = 'block';
+
+   pontuacao("menos");
 
 }
 
@@ -103,16 +125,25 @@ function pontuacao(tipo){
    var pon = 0;
    var pont = localStorage.getItem("pontos");
    var ponti = parseInt(pont, 10);
+
+   var num_err = 0;
+   var loc_err = localStorage.getItem("erros");
+   var loc_erri = parseInt(loc_err, 10);
    
 
    //tipo:mais, menos, zera, null;
 
    var pontt = document.getElementById("pontu");
 
+   var input_err = document.getElementById("erros");
+
    //var pontarr = pont.innerText.split(' ');
 
    //var ponti = parseInt(pontarr[1], 10);
-   
+   //alert('é igual? ' + (ponti == 'NaN') );
+
+   //alert('é igual? ' + (Number.isNaN(ponti)) );
+
    console.log('ponti1:' + ponti);
 
    if(tipo == 'mais'){
@@ -122,6 +153,20 @@ function pontuacao(tipo){
       }else{
          ponti = ponti + 1;
 
+      }
+
+   }
+
+   if(tipo == 'menos'){
+      
+      if(Number.isNaN(ponti)){
+         ponti = 0;
+      }
+
+      if(Number.isNaN(loc_erri)){
+         loc_erri = 1;
+      }else{
+         loc_erri = loc_erri + 1;
       }
 
    }
@@ -142,6 +187,12 @@ function pontuacao(tipo){
 
    //localStorage.removeItem("myCat");
 
+   input_err.innerText = loc_erri;
+
+   localStorage.setItem("erros", loc_erri);
+
+   console.log('loc_erri:' + loc_erri);
+
 
 }
 
@@ -149,9 +200,15 @@ function verificaStorage(){
    var pon = 0;
    var pont = localStorage.getItem("pontos");
    var ponti = parseInt(pont, 10);
+
+   var pon_err = 0;
+   var pont_err = localStorage.getItem("erros");
+   var ponti_err = parseInt(pont_err, 10);
    
    //tipo:mais, menos, zera, null;
    var pontt = document.getElementById("pontu");
+
+   var pontt_err = document.getElementById("erros");
    
    console.log('storage ponti:' + ponti);
 
@@ -159,7 +216,13 @@ function verificaStorage(){
       ponti = 0;
    }
 
+   if(Number.isNaN(ponti_err)){
+      ponti_err = 0;
+   }
+
    document.getElementById("pontu").innerText = "Pontos: " + ponti;
+
+   document.getElementById("erros").innerText = ponti_err;
 
 }
 
@@ -193,8 +256,12 @@ function aoiniciar(){
 
    exibir();
 
-   repetirn1();
-
+   if(ajuda){
+      repetirn1();
+   }else{
+      zera_result();
+   }
+  
 }
 
 function repetirn1(){
@@ -214,6 +281,13 @@ function repetirn1(){
    rc.innerText = c1.innerText;
    rm.innerText = m1.innerText;
 
+}
+
+function zera_result(){
+   document.getElementById("ru").innerText = 0;
+   document.getElementById("rd").innerText = 0;
+   document.getElementById("rc").innerText = 0;
+   document.getElementById("rm").innerText = 0;
 }
 
 function rgrp_d(){
@@ -264,8 +338,10 @@ function rgrp_d(){
       vu.innerText = u1m+"";
       vd.innerText = d1m+"";
 
-      ru.innerText = u1m+"";
-      rd.innerText = d1m+"";
+      if(ajuda){
+         ru.innerText = u1m+"";
+         rd.innerText = d1m+"";
+      }
 
       imgu.style.display = 'flex';
       imgd.style.display = 'flex';
@@ -275,14 +351,28 @@ function rgrp_d(){
       //a dezena é maior que zero e não está bloqueada
       if(d1i > 0 && prop_id != 'flex'){
 
-         var u1m = u1i + 10;
-         var d1m = d1i - 1;
+         if(u1i > 0 && prop_iu != 'flex'){
+            var u1m = u1i + 10;
+         }else{
+            var u1m = vu1i + 10;
+         }
+
+         if(d1i > 0 && prop_id != 'flex'){
+            var d1m = d1i - 1;
+         }else{
+            var d1m = vd1i - 1;
+         }
+
+         //var u1m = u1i + 10;
+         //var d1m = d1i - 1;
          
          vu.innerText = u1m+"";
          vd.innerText = d1m+"";
 
-         ru.innerText = u1m+"";
-         rd.innerText = d1m+"";
+         if(ajuda){
+            ru.innerText = u1m+"";
+            rd.innerText = d1m+"";
+         }
 
          imgu.style.display = 'flex';
          imgd.style.display = 'flex';
@@ -293,6 +383,18 @@ function rgrp_d(){
       
       }
    
+   }
+
+   if(imgu.style.display == 'flex'){
+      vu.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vu.style.backgroundColor = cor_normal;
+   }
+
+   if(imgd.style.display == 'flex'){
+      vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vd.style.backgroundColor = cor_normal;
    }
 
 }
@@ -346,8 +448,10 @@ function rgrp_c(){
       vd.innerText = d1m+"";
       vc.innerText = c1m+"";
 
-      rd.innerText = d1m+"";
-      rc.innerText = c1m+"";
+      if(ajuda){
+         rd.innerText = d1m+"";
+         rc.innerText = c1m+"";
+      }
 
       imgd.style.display = 'flex';
       imgc.style.display = 'flex';
@@ -357,14 +461,28 @@ function rgrp_c(){
       //a centena é maior que zero e não está bloqueada
       if(c1i > 0 && prop_ic != 'flex'){
 
-         var d1m = d1i + 10;
-         var c1m = c1i - 1;
+         if(c1i > 0 && prop_ic != 'flex'){
+            var c1m = c1i - 1;
+         }else{
+            var c1m = vc1i - 1;
+         }
+
+         if(d1i > 0 && prop_id != 'flex'){
+            var d1m = d1i + 10;
+         }else{
+            var d1m = vd1i + 10;
+         }
+
+         //var d1m = d1i + 10;
+         //var c1m = c1i - 1;
 
          vd.innerText = d1m+"";
          vc.innerText = c1m+"";
 
-         rd.innerText = d1m+"";
-         rc.innerText = c1m+"";
+         if(ajuda){
+            rd.innerText = d1m+"";
+            rc.innerText = c1m+"";
+         }
 
          imgd.style.display = 'flex';
          imgc.style.display = 'flex';
@@ -375,6 +493,18 @@ function rgrp_c(){
 
       }
 
+   }
+
+   if(imgc.style.display == 'flex'){
+      vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vc.style.backgroundColor = cor_normal;
+   }
+   
+   if(imgd.style.display == 'flex'){
+      vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vd.style.backgroundColor = cor_normal;
    }
 
 }
@@ -427,25 +557,43 @@ function rgrp_um(){
       vc.innerText = c1m+"";
       vm.innerText = m1m+"";
 
-      rc.innerText = c1m+"";
-      rm.innerText = m1m+"";
+      if(ajuda){
+         rc.innerText = c1m+"";
+         rm.innerText = m1m+"";
+      }
 
       imgc.style.display = 'flex';
       imgm.style.display = 'flex';
 
    }else{
-      
+
+
+
       //a milhar é maior que zero e não está bloqueada
       if(m1i > 0 && prop_im != 'flex'){
-      
-         var c1m = c1i + 10;
-         var m1m = m1i - 1;
+         
+         if(m1i > 0 && prop_im != 'flex'){
+            var m1m = m1i - 1;
+         }else{
+            var m1m = vm1i - 1;
+         }
+
+         if(c1i > 0 && prop_ic != 'flex'){
+            var c1m = c1i + 10;
+         }else{
+            var c1m = vc1i + 10;
+         }
+
+         //var c1m = c1i + 10;
+         //var m1m = m1i - 1;
 
          vc.innerText = c1m+"";
          vm.innerText = m1m+"";
 
-         rc.innerText = c1m+"";
-         rm.innerText = m1m+"";
+         if(ajuda){
+            rc.innerText = c1m+"";
+            rm.innerText = m1m+"";
+         }
 
          imgc.style.display = 'flex';
          imgm.style.display = 'flex';
@@ -458,15 +606,35 @@ function rgrp_um(){
 
    }
 
+   if(imgm.style.display == 'flex'){
+      vm.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vm.style.backgroundColor = cor_normal;
+   }
+   
+   if(imgc.style.display == 'flex'){
+      vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vc.style.backgroundColor = cor_normal;
+   }
+
 }
 
 function reset(){
 
    if (confirm('Apagar Pontos?')) {
       localStorage.setItem("pontos", 0);
+      localStorage.setItem("erros", 0);
       verificaStorage();
    }
 
+}
+
+function limpa_cores(){
+   document.getElementById("vu").style.backgroundColor = cor_normal;
+   document.getElementById("vd").style.backgroundColor = cor_normal;
+   document.getElementById("vc").style.backgroundColor = cor_normal;
+   document.getElementById("vm").style.backgroundColor = cor_normal;
 }
 
 function limpa_cor_vai_res() {
@@ -517,61 +685,29 @@ function exibir(){
    if(vd.innerText != '0'){
       vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
-      if(ru.innerText == '9'){
-         vd.style.backgroundColor = cor_normal;
-      }     
+      vd.style.backgroundColor = cor_normal;     
    }
+
    if(vc.innerText != '0'){
       vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
-      if(rd.innerText == '9'){
-         vc.style.backgroundColor = cor_normal;
-      }     
+      vc.style.backgroundColor = cor_normal;  
    }
+
    if(vm.innerText != '0'){
       vm.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
-      if(rc.innerText == '9'){
-         vm.style.backgroundColor = cor_normal;
-      }     
+      vm.style.backgroundColor = cor_normal;
    }
 
 }
 
-function exibir_menos(){
-
-   info();
-   
-   var exibe = document.getElementById("exibe");
-
-   var num1 = localStorage.getItem("mem_1");
-
-   const u2 = document.getElementById("u2");
-   const d2 = document.getElementById("d2");
-   const c2 = document.getElementById("c2");
-   const m2 = document.getElementById("m2");
-
-   const ru = document.getElementById("ru");
-   const rd = document.getElementById("rd");
-   const rc = document.getElementById("rc");
-   const rm = document.getElementById("rm");
-
-   const vd = document.getElementById("vd");
-   const vc = document.getElementById("vc");
-   const vm = document.getElementById("vm");
-
-   //console.log(exibe.innerText);
-
-   exibe.innerText = 
-      num1 + " - " + 
-      m2.innerText+c2.innerText+d2.innerText+u2.innerText + " = " + 
-      rm.innerText+rc.innerText+rd.innerText+ru.innerText;
-
-}
 
 function novo(){
 
    verifica = true;
+
+   verifica_err = true;
 
    var num1 = getRandomInt(1, 999);
 
@@ -629,8 +765,8 @@ function novo(){
 
    var num2 = getRandomInt(1, 999);
    
-   /número a ser contatenado, de modo que a soma sempre sera menor ou igual a 8, pois caso a reserva seja 1 centena, o resultado sera no maximo 9 milhar/
-   //var num_m2 = 8-num_m1;
+   /*/número a ser contatenado, de modo que a soma sempre sera menor ou igual a 8, pois caso a reserva seja 1 centena, o resultado sera no maximo 9 milhar/
+   //var num_m2 = 8-num_m1;*/
 
    var num_m2 = getRandomInt(0, num_m1);
 
@@ -680,25 +816,95 @@ function novo(){
 
    }
 
-   limpar();
+   //limpar();
 
-   memoriza_sub();
+   //memoriza_sub();
+
+   //remove o traço de bloqueios
+   remove_block();
+
+   //limpa reagrupamentos
+   limpa_regrup();
+
+   //repete maior numero no resultado
+   if(ajuda){
+      repetirn1();
+   }else{
+      zera_result();
+   }
+
+   //limpa as cores do reagrupamento
+   limpa_cores();
+
+   //exibe a operação e sua resposta dentro do retangulo
+   exibir();
+
+   //limpa_result();
+
+
+}
+
+function remove_block(){
+   const imgu = document.getElementById("imgu");
+   const imgd = document.getElementById("imgd");
+   const imgc = document.getElementById("imgc");
+   const imgm = document.getElementById("imgm");
+
+   imgu.style.display = 'none';
+   imgd.style.display = 'none'; 
+   imgc.style.display = 'none'; 
+   imgm.style.display = 'none';    
+
+}
+
+function limpa_regrup(){
+   
+   document.getElementById("vu").innerText = 0;
+   document.getElementById("vd").innerText = 0;
+   document.getElementById("vc").innerText = 0;
+   document.getElementById("vm").innerText = 0;
+
+   document.getElementById("ru").innerText = document.getElementById("u1").innerText;
+   document.getElementById("rd").innerText = document.getElementById("d1").innerText;
+   document.getElementById("rc").innerText = document.getElementById("c1").innerText;
+   document.getElementById("rm").innerText = document.getElementById("m1").innerText;
+}
+
+function limpa_result(){
+
+   document.getElementById("ru").innerText = 0;
+   document.getElementById("rd").innerText = 0;
+   document.getElementById("rc").innerText = 0;
+   document.getElementById("rm").innerText = 0;
 
 }
 
 function limpar(){
-
+   
+   /*
    var num1 = localStorage.getItem("mem_1");
 
    var num1arr = num1.split('');
    var u1 = num1arr[3];
    var d1 = num1arr[2];
    var c1 = num1arr[1];
-   var m1 = num1arr[0];
+   var m1 = num1arr[0];*/
 
    //se ainda não acertou então deixa limpar
    if(verifica){
       
+      //zera o resultado da subtração
+      limpa_result();
+
+      //zera o reagrupamento
+      limpa_regrup();
+
+      //remove os bloqueior (traço inclinado que corta os números reagrupados)
+      remove_block();
+
+      //limpa as cores do reagrupamento
+      limpa_cores();
+
       /*document.getElementById("u1").innerText = u1+"";
       document.getElementById("d1").innerText = d1+"";
       document.getElementById("c1").innerText = c1+"";
@@ -718,10 +924,8 @@ function limpar(){
       document.getElementById("vc").innerText = 0;
       document.getElementById("vm").innerText = 0;*/
 
-      limpa_cor_vai_res();
+      //limpa_cor_vai_res();
 
-      exibir_menos();
-      
    }
 
 }
@@ -740,7 +944,7 @@ function rumais() {
 
    ru.innerText = (rui+1)+"";
 
-   exibir_menos();
+   exibir();
    
 }
 
@@ -753,7 +957,7 @@ function rumenos() {
 
    ru.innerText = (rui-1)+"";
    
-   exibir_menos();
+   exibir();
 
 }
 
@@ -765,7 +969,7 @@ function rdmais() {
 
    rd.innerText = (rdi+1)+"";
    
-   exibir_menos();
+   exibir();
 
 }
 
@@ -778,7 +982,7 @@ function rdmenos() {
 
    rd.innerText = (rdi-1)+"";
    
-   exibir_menos();
+   exibir();
 
 }
 
@@ -790,7 +994,7 @@ function rcmais() {
 
    rc.innerText = (rci+1)+"";
    
-   exibir_menos();
+   exibir();
 
 }
 
@@ -802,7 +1006,7 @@ function rcmenos() {
 
    rc.innerText = (rci-1)+"";
    
-   exibir_menos();
+   exibir();
 
 }
 
@@ -814,7 +1018,7 @@ function rmmais() {
 
    rm.innerText = (rmi+1)+"";
    
-   exibir_menos();
+   exibir();
 
 }
 
@@ -826,6 +1030,6 @@ function rmmenos() {
 
    rm.innerText = (rmi-1)+"";
    
-   exibir_menos();
+   exibir();
 
 }

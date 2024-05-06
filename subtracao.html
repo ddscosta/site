@@ -34,6 +34,7 @@
 				<tbody>
 
 					<tr id="vai">
+						<td class="inf" style="font-size: 25px;">Reagrupamento</td>
 						<td class="um" id="vm">0</td>
 						<td class="c" id="vc">0</td>
 						<td class="d" id="vd">0</td>
@@ -41,6 +42,7 @@
 					</tr>
 
 					<tr id="img">
+						<td class="inf">Botões</td>
 						<td><img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()"></td>
 						<td><img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()"></td>
 						<td><img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()"></td>
@@ -48,6 +50,7 @@
 					</tr>
 
 					<tr id="qvl">
+						<td class="inf" style="font-size: 35; color: black;">QVL</td>
 						<td class="um" id="qvlum">UM</td>
 						<td class="c" id="qvlc">C</td>
 						<td class="d" id="qvld">D</td>
@@ -55,11 +58,14 @@
 					</tr>
 
 					<tr>
+
+						<td class="inf">Minuendo =></td>
+
 						<td class="um">
 						
 							<span><img id="imgm"src="subtracao/block.png"></span>
 						
-							<span id="m1">1</span>
+							<span id="m1">6</span>
 						
 						</td>
 						
@@ -67,13 +73,13 @@
 
 							<span><img id="imgc" src="subtracao/block.png"></span>
 
-							<span id="c1">0</span></td>
+							<span id="c1">8</span></td>
 						
 						<td class="d">
 
 							<span><img id="imgd" src="subtracao/block.png"></span>
 
-							<span id="d1">0</span>
+							<span id="d1">2</span>
 
 						</td>
 						
@@ -87,14 +93,16 @@
 
 					</tr>
 
-					<tr>
+					<tr>	
+						<td class="inf">Subtraendo =></td>
 						<td class="um" id="m2">0</td>
-						<td class="c" id="c2">2</td>
-						<td class="d" id="d2">5</td>
-						<td class="u" id="u2">8</td>
+						<td class="c" id="c2">0</td>
+						<td class="d" id="d2">4</td>
+						<td class="u" id="u2">5</td>
 					</tr>
 
 					<tr id="sol">
+						<td class="inf">Diferença =></td>
 						<td class="um" id="rm">0</td>
 						<td class="c" id="rc">0</td>
 						<td class="d" id="rd">0</td>
@@ -102,6 +110,23 @@
 					</tr>
 
 					<tr id="tbtn">
+						<td class="inf" id="msg">
+
+							<p>Meus Erros:<span id="erros">0</span></p>
+
+							<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();"> Modo Fácil
+							<!-- 
+							Iniciante
+							Modo Fácil
+							Aprendiz
+							Ajuda
+							Principiante
+							Novato
+							Facilitar
+							Modo Retirar
+							 -->
+
+						</td>
 						<td>
 							<div class="cbtn">
 								<button id="mum" onclick="rmmenos()">-</button>
@@ -125,6 +150,7 @@
 								<button id="mu" onclick="rumenos()">-</button>
 								<button id="mmu" onclick="rumais()">+</button>
 							</div>
+
 						</td>
 					</tr>
 

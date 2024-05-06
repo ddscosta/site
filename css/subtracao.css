@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 #principal{
 	width: 900px;
 	margin: auto;
@@ -146,7 +147,7 @@ table tr#img td{
 	background-color:rgba(0,0,0,.1);
 	padding: 0px;
 	margin: 0px;
-	font-size: 10px;
+	/*font-size: 35px;*/
 }
 
 #subtracao h1{
@@ -266,4 +267,25 @@ table{
 figure.foto-legenda:hover figcaption{
 	/*opacity: 1;*/
 }
+
+td.inf{
+	font-size: 30px;
+	text-align: left;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+
+td.inf{
+	background-color: #f0f0c6 !important;
+}
+
+td#msg{
+	color: blue;
+	border: solid blue 1px;
+}
+
+td.inf p{
+	color: red;
+}
+
 
