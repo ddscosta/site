@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/subtracao.css">
+
+	<script src="javascript/subtracao.js"></script>
+
+	<title>Subtracao com QVL</title>
+</head>
+<body onload="aoiniciar()">
+	
+	<div id="principal">
+
+		<h1>Algorítmo da Subtracao com QVL</h1>
+
+		<div id="subtracao">
+
+			<table>
+			
+				<thead >
+
+					<tr id="hd">
+						<th class="um"></th>
+						<th class="c"></th>
+						<th class="d"></th>
+						<th class="u"></th>
+					</tr>
+
+				</thead>
+
+				<tbody>
+
+					<tr id="vai">
+						<td class="um" id="vm">0</td>
+						<td class="c" id="vc">0</td>
+						<td class="d" id="vd">0</td>
+						<td class="u" id="vu">0</td>
+					</tr>
+
+					<tr id="img">
+						<td><img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()"></td>
+						<td><img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()"></td>
+						<td><img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()"></td>
+						<td><img src="subtracao/1u.png" id="i1u" class="iudc"></td>
+					</tr>
+
+					<tr id="qvl">
+						<td class="um" id="qvlum">UM</td>
+						<td class="c" id="qvlc">C</td>
+						<td class="d" id="qvld">D</td>
+						<td class="u" id="qvlu">U</td>
+					</tr>
+
+					<tr>
+						<td class="um">
+						
+							<span><img id="imgm"src="subtracao/block.png"></span>
+						
+							<span id="m1">1</span>
+						
+						</td>
+						
+						<td class="c">
+
+							<span><img id="imgc" src="subtracao/block.png"></span>
+
+							<span id="c1">0</span></td>
+						
+						<td class="d">
+
+							<span><img id="imgd" src="subtracao/block.png"></span>
+
+							<span id="d1">0</span>
+
+						</td>
+						
+						<td class="u">
+
+							<span><img id="imgu" src="subtracao/block.png"></span>
+
+							<span id="u1">1</span>
+
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="um" id="m2">0</td>
+						<td class="c" id="c2">2</td>
+						<td class="d" id="d2">5</td>
+						<td class="u" id="u2">8</td>
+					</tr>
+
+					<tr id="sol">
+						<td class="um" id="rm">0</td>
+						<td class="c" id="rc">0</td>
+						<td class="d" id="rd">0</td>
+						<td class="u" id="ru">0</td>
+					</tr>
+
+					<tr id="tbtn">
+						<td>
+							<div class="cbtn">
+								<button id="mum" onclick="rmmenos()">-</button>
+								<button id="mmum" onclick="rmmais()">+</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mc" onclick="rcmenos()">-</button>
+								<button id="mmc" onclick="rcmais()">+</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="md" onclick="rdmenos()">-</button>
+								<button id="mmd" onclick="rdmais()">+</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mu" onclick="rumenos()">-</button>
+								<button id="mmu" onclick="rumais()">+</button>
+							</div>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		
+		<div id="resultado">
+
+			<button id="lim" onclick="limpar()">LIMPAR</button>
+			<button id="tro" onclick="novo()">NOVO</button>
+			<button id="res" onclick="verificar()">VERIFICAR</button>
+
+			<h1 id="exibe">254 + 591 = 745</h1>
+
+			<div id="animacao">
+				
+				<div class="anime" id="idan">
+
+					Para saber se voce acertou clique no botão VERIFICAR.
+
+				</div>
+
+				<div class="anime" id="idfeliz">
+
+					<h2>Parabéns!!</h2>
+					<img src="adicao/feliz2.gif">
+
+				</div>
+
+				<div class="anime" id="idtriste">
+
+					<h2>Que pena!!</h2>
+					<img src="adicao/triste.gif">
+
+				</div>
+
+			</div>
+
+			<div id="pontuu">
+				<h1 id="pontu">Pontos: 0</h1>
+				<button id="btnreset" onclick="reset()">X</button>
+			</div>
+
+		</div>
+
+	</div>
+
+	
+
+</body>
+</html>
