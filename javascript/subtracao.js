@@ -250,6 +250,8 @@ function memoriza_sub(){
 
 function aoiniciar(){
 
+   document.getElementById('ajuda').checked = false;
+
    novo();
 
    verificaStorage();
@@ -301,14 +303,26 @@ function rgrp_d(){
    const vu = document.getElementById("vu");
    const vd = document.getElementById("vd");
    
+   if(vu.innerText == ''){
+      var vuu = 0;   
+   }else{
+      var vuu = vu.innerText;   
+   }
+
+   if(vd.innerText == ''){
+      var vdd = 0;   
+   }else{
+      var vdd = vd.innerText;   
+   }
+   
    const ru = document.getElementById("ru");
    const rd = document.getElementById("rd");
 
    var u1i = parseInt(u1.innerText, 10);
    var d1i = parseInt(d1.innerText, 10);
 
-   var vu1i = parseInt(vu.innerText, 10);
-   var vd1i = parseInt(vd.innerText, 10);
+   var vu1i = parseInt(vuu, 10);
+   var vd1i = parseInt(vdd, 10);
 
    var prop_iu = imgu.style.display;
    console.log('prop_iu: '+prop_iu);
@@ -410,14 +424,26 @@ function rgrp_c(){
    const vd = document.getElementById("vd");
    const vc = document.getElementById("vc");
 
+   if(vd.innerText == ''){
+      var vdd = 0;   
+   }else{
+      var vdd = vd.innerText;   
+   }
+
+   if(vc.innerText == ''){
+      var vcc = 0;   
+   }else{
+      var vcc = vc.innerText;   
+   }
+
    const rd = document.getElementById("rd");
    const rc = document.getElementById("rc");
    
    var d1i = parseInt(d1.innerText, 10);
    var c1i = parseInt(c1.innerText, 10);
    
-   var vd1i = parseInt(vd.innerText, 10);
-   var vc1i = parseInt(vc.innerText, 10);
+   var vd1i = parseInt(vdd, 10);
+   var vc1i = parseInt(vcc, 10);
 
    var prop_ic = imgc.style.display;
    console.log('prop_ic: '+prop_ic);
@@ -520,14 +546,26 @@ function rgrp_um(){
    const vc = document.getElementById("vc");
    const vm = document.getElementById("vm");
 
+   if(vc.innerText == ''){
+      var vcc = 0;   
+   }else{
+      var vcc = vc.innerText;   
+   }
+
+   if(vm.innerText == ''){
+      var vmm = 0;   
+   }else{
+      var vmm = vm.innerText;   
+   }
+
    const rc = document.getElementById("rc");
    const rm = document.getElementById("rm");
    
    var c1i = parseInt(c1.innerText, 10);
    var m1i = parseInt(m1.innerText, 10);
 
-   var vc1i = parseInt(vc.innerText, 10);
-   var vm1i = parseInt(vm.innerText, 10);
+   var vc1i = parseInt(vcc, 10);
+   var vm1i = parseInt(vmm, 10);
 
    var prop_ic = imgc.style.display;
    console.log('prop_ic: '+prop_ic);
@@ -637,6 +675,7 @@ function limpa_cores(){
    document.getElementById("vm").style.backgroundColor = cor_normal;
 }
 
+/*
 function limpa_cor_vai_res() {
    
    document.getElementById("vd").style.backgroundColor = cor_normal;
@@ -648,7 +687,7 @@ function limpa_cor_vai_res() {
    document.getElementById("rc").style.backgroundColor = cor_normal;
    document.getElementById("rm").style.backgroundColor = cor_normal;
 
-}
+}*/
 
 function exibir(){
 
@@ -682,19 +721,19 @@ function exibir(){
       m2.innerText+c2.innerText+d2.innerText+u2.innerText + " = " + 
       rm.innerText+rc.innerText+rd.innerText+ru.innerText;
 
-   if(vd.innerText != '0'){
+   if(vd.innerText != ''){
       vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       vd.style.backgroundColor = cor_normal;     
    }
 
-   if(vc.innerText != '0'){
+   if(vc.innerText != ''){
       vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       vc.style.backgroundColor = cor_normal;  
    }
 
-   if(vm.innerText != '0'){
+   if(vm.innerText != ''){
       vm.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       vm.style.backgroundColor = cor_normal;
@@ -709,14 +748,18 @@ function novo(){
 
    verifica_err = true;
 
-   var num1 = getRandomInt(1, 999);
+   var num1 = getRandomInt(1, 9999);
+   
+   console.log('numero 1 gerado: '+num1);
 
    /*milhar para ser concatenado*/
-   var num_m1 = getRandomInt(0, 8);
+   //var num_m1 = getRandomInt(0, 8);
 
-   console.log('num_m1:'+num_m1);
+   //console.log('num_m1:'+num_m1);
 
-   var num1s = num1+""+num_m1;
+   //var num1s = num1+""+num_m1;
+
+   var num1s = num1+"";
 
    var num1arr = num1s.split('');
 
@@ -740,46 +783,52 @@ function novo(){
    }else
    if(num1arr.length == 2){
 
-      u1.innerText = num1arr[0];
-      d1.innerText = num1arr[1];
+      u1.innerText = num1arr[1];
+      d1.innerText = num1arr[0];
       c1.innerText = 0;
       m1.innerText = 0;
 
    }else
    if(num1arr.length == 3){
 
-      u1.innerText = num1arr[0];
+      u1.innerText = num1arr[2];
       d1.innerText = num1arr[1];
-      c1.innerText = num1arr[2];
+      c1.innerText = num1arr[0];
       m1.innerText = 0;
 
    }else
    if(num1arr.length == 4){
 
-      u1.innerText = num1arr[0];
-      d1.innerText = num1arr[1];
-      c1.innerText = num1arr[2];
-      m1.innerText = num1arr[3];
+      u1.innerText = num1arr[3];
+      d1.innerText = num1arr[2];
+      c1.innerText = num1arr[1];
+      m1.innerText = num1arr[0];
 
    }  
 
-   var num2 = getRandomInt(1, 999);
+   //var num2 = getRandomInt(1, 999);
    
+   var num2 = getRandomInt(1, num1);
+
+   console.log('numero 2 gerado: '+num2);
+
    /*/número a ser contatenado, de modo que a soma sempre sera menor ou igual a 8, pois caso a reserva seja 1 centena, o resultado sera no maximo 9 milhar/
    //var num_m2 = 8-num_m1;*/
 
-   var num_m2 = getRandomInt(0, num_m1);
+   //var num_m2 = getRandomInt(0, num_m1);
 
    /*na subtração o número dois sempre vai ser menor que numero um*/
-   while(num_m2 <= num_m1 && num2 > num1){
+   /*while(num_m2 <= num_m1 && num2 > num1){
       console.log('-----num1:'+num1 + ' >> num2:'+num2);
       num2 = getRandomInt(1, 999);
       num_m2 = getRandomInt(0, num_m1);
-   }
+   }*/
 
-   console.log('num_m2:'+num_m2);
+   //console.log('num_m2:'+num_m2);
 
-   var num2s = num2+""+num_m2;
+   //var num2s = num2+""+num_m2;
+
+   var num2s = num2+"";
 
    var num2arr = num2s.split('');
 
@@ -793,26 +842,26 @@ function novo(){
    }else
    if(num2arr.length == 2){
 
-      u2.innerText = num2arr[0];
-      d2.innerText = num2arr[1];
+      u2.innerText = num2arr[1];
+      d2.innerText = num2arr[0];
       c2.innerText = 0;
       m2.innerText = 0;
 
    }else
    if(num2arr.length == 3){
 
-      u2.innerText = num2arr[0];
+      u2.innerText = num2arr[2];
       d2.innerText = num2arr[1];
-      c2.innerText = num2arr[2];
+      c2.innerText = num2arr[0];
       m2.innerText = 0;
 
    }else
    if(num2arr.length == 4){
 
-      u2.innerText = num2arr[0];
-      d2.innerText = num2arr[1];
-      c2.innerText = num2arr[2];
-      m2.innerText = num2arr[3];
+      u2.innerText = num2arr[3];
+      d2.innerText = num2arr[2];
+      c2.innerText = num2arr[1];
+      m2.innerText = num2arr[0];
 
    }
 
@@ -859,15 +908,17 @@ function remove_block(){
 
 function limpa_regrup(){
    
-   document.getElementById("vu").innerText = 0;
-   document.getElementById("vd").innerText = 0;
-   document.getElementById("vc").innerText = 0;
-   document.getElementById("vm").innerText = 0;
+   document.getElementById("vu").innerText = '';
+   document.getElementById("vd").innerText = '';
+   document.getElementById("vc").innerText = '';
+   document.getElementById("vm").innerText = '';
 
-   document.getElementById("ru").innerText = document.getElementById("u1").innerText;
-   document.getElementById("rd").innerText = document.getElementById("d1").innerText;
-   document.getElementById("rc").innerText = document.getElementById("c1").innerText;
-   document.getElementById("rm").innerText = document.getElementById("m1").innerText;
+   if(ajuda){
+      document.getElementById("ru").innerText = document.getElementById("u1").innerText;
+      document.getElementById("rd").innerText = document.getElementById("d1").innerText;
+      document.getElementById("rc").innerText = document.getElementById("c1").innerText;
+      document.getElementById("rm").innerText = document.getElementById("m1").innerText;
+   }
 }
 
 function limpa_result(){

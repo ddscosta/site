@@ -282,10 +282,12 @@ td.inf{
 td#msg{
 	color: blue;
 	border: solid blue 1px;
+	
 }
 
 td.inf p{
 	color: red;
+	text-align: center;
 }
 
 
