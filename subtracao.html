@@ -8,7 +8,7 @@
 
 	<script src="javascript/subtracao.js"></script>
 
-	<title>Subtracao com QVL</title>
+	<title>Subtração com QVL</title>
 </head>
 <body onload="aoiniciar()">
 	
@@ -43,10 +43,49 @@
 
 					<tr id="img">
 						<td class="inf">Botões</td>
-						<td><img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()"></td>
-						<td><img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()"></td>
-						<td><img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()"></td>
-						<td><img src="subtracao/1u.png" id="i1u" class="iudc"></td>
+						
+						<td>
+
+							<div class="tooltip">
+
+								<img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()">
+
+								<span class="tooltiptext">Reagrupar para Centena.</span>
+
+							</div>
+
+						</td>
+
+						<td>
+
+							<div class="tooltip">
+
+								<img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()">
+
+								<span class="tooltiptext">Reagrupar para Dezena.</span>
+
+							</div>
+
+						</td>
+
+						<td>
+
+							<div class="tooltip">
+
+								<img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()">
+
+								<span class="tooltiptext">Reagrupar para Unidade.</span>
+
+							</div>
+
+						</td>
+
+						<td>
+
+							<img src="subtracao/1u.png" id="i1u" class="iudc">
+
+						</td>
+
 					</tr>
 
 					<tr id="qvl">
@@ -110,11 +149,17 @@
 					</tr>
 
 					<tr id="tbtn">
+
 						<td class="inf" id="msg">
 
 							<p>Meus Erros:<br><b>[<span id="erros">0</span>]</b></p>
 
-							<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();"> Modo Fácil
+							<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();"> 
+							
+							<div class="tooltip"> Modo Fácil
+								<span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span>
+							</div>
+							
 							<!-- 
 							Iniciante
 							Modo Fácil
@@ -194,7 +239,15 @@
 
 			<div id="pontuu">
 				<h1 id="pontu">Pontos: 0</h1>
-				<button id="btnreset" onclick="reset()">X</button>
+
+				<button id="btnreset" onclick="reset()">
+				
+					<div class="tooltip">X
+						<span class="tooltiptext">Apagar pontos e Erros.</span>
+					</div>
+
+				</button>
+
 			</div>
 
 		</div>

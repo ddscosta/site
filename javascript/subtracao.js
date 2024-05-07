@@ -393,7 +393,8 @@ function rgrp_d(){
 
       }else{
 
-         alert('A Dezena deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
+         // alert('A Dezena deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
+         alert('ESTÁ VAZIO!!');
       
       }
    
@@ -515,7 +516,8 @@ function rgrp_c(){
 
       }else{
          
-         alert('A Centena deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
+         // alert('A Centena deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
+         alert('ESTÁ VAZIO!!');
 
       }
 
@@ -638,7 +640,8 @@ function rgrp_um(){
          
       }else{
           
-         alert('A Milhar deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
+         // alert('A Milhar deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
+         alert('ESTÁ VAZIO!!');
 
       }
 
