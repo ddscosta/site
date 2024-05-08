@@ -302,6 +302,12 @@ td#msg{
 	
 }
 
+#msg p{
+	margin: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 td.inf p{
 	color: red;
 	text-align: center;
@@ -344,5 +350,23 @@ input:hover{
 	cursor: pointer;
 }
 
+#de{
+	width: 45px;
+}
+
+#ate{
+	width: 45px;
+}
+
+.ate{
+	font-size: 22px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+input[type="text"]{
+    font-size:19px;
+}
 
 

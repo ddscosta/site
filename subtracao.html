@@ -154,10 +154,24 @@
 
 							<p>Meus Erros:<br><b>[<span id="erros">0</span>]</b></p>
 
-							<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();"> 
 							
-							<div class="tooltip"> Modo Fácil
-								<span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span>
+							<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
+
+							<label for="ajuda">
+								<div class="tooltip"> Modo Fácil
+									<span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span>
+								</div>	
+							</label>
+							<br>
+
+							<div class="ate">
+								
+								<label for="de">De</label>
+								<input type="text" name="de" id="de" value="1" maxlength="4"> 
+								
+								<label for="ate">Até</label>
+								<input type="text" name="ate" id="ate" value="9999"maxlength="4"> 
+
 							</div>
 							
 							<!-- 

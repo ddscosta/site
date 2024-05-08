@@ -747,11 +747,44 @@ function exibir(){
 
 function novo(){
 
+   var de = document.getElementById('de');
+   var dei = parseInt(de.value, 10);
+
+   console.log('de:'+de.value);
+
+   var ate = document.getElementById('ate');
+   var atei = parseInt(ate.value, 10);
+
+   console.log('ate:'+ate.value);
+
+   //ordenando os numeros corretamente
+   if(dei > atei){
+      var temp = dei;
+      dei = atei;
+      atei = temp;
+   }
+
+   if(dei>0 && dei<=9999){
+      var des = dei;
+   }else{
+      var des = 9999;
+   }
+
+   if(atei>0 && atei<=9999){
+      var ates = atei;
+   }else{
+      var ates = 9999;
+   }
+
+   console.log('des:'+des);
+   console.log('ates:'+ates);
+
    verifica = true;
 
    verifica_err = true;
 
-   var num1 = getRandomInt(1, 9999);
+   //var num1 = getRandomInt(1, 9999);
+   var num1 = getRandomInt(des, ates);
    
    console.log('numero 1 gerado: '+num1);
 
@@ -811,7 +844,7 @@ function novo(){
 
    //var num2 = getRandomInt(1, 999);
    
-   var num2 = getRandomInt(1, num1);
+   var num2 = getRandomInt(des, num1);
 
    console.log('numero 2 gerado: '+num2);
 
