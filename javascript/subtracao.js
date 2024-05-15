@@ -2,7 +2,7 @@ var cor_normal = "rgba(0, 0, 0, 0)";
 var verifica = true;
 var verifica_err = true;
 var ajuda = false;
-
+var reagru = false;
 
 function ajudaa(){
 
@@ -14,6 +14,20 @@ function ajudaa(){
    }else{
       ajuda = false;
       zera_result();
+   }
+   
+}
+
+function reagrup(){
+
+   var marcado = document.getElementById('reagr').checked;
+
+   if(marcado){
+      reagru = true;
+      //repetirn1();
+   }else{
+      reagru = false;
+      //zera_result();
    }
    
 }
@@ -252,8 +266,8 @@ function aoiniciar(){
 
    document.getElementById('ajuda').checked = false;
 
-   novo();
-
+   novo(); 
+  
    verificaStorage();
 
    exibir();
@@ -744,8 +758,47 @@ function exibir(){
 
 }
 
+/*completa numeros com zeros a esquerda até completar o tatal de 4 digitos*/
+function completa(num){
+   
+   var nums = num+"";
+
+   var numarr = nums.split('');
+
+   var novonum = '';
+
+   if(numarr.length == 1){
+
+      novonum = '000'+numarr[0];
+
+   }else
+   if(numarr.length == 2){
+
+      novonum = '00'+numarr[0]+numarr[1];
+
+   }else
+   if(numarr.length == 3){
+
+      novonum = '0'+numarr[0]+numarr[1]+numarr[2];
+
+   }else
+   if(numarr.length == 4){
+      
+      novonum = numarr[0]+numarr[1]+numarr[2]+numarr[3];
+
+   }
+   
+   return novonum;
+
+}
 
 function novo(){
+   
+   if(reagru){
+      document.getElementById('reagr').checked = true;
+   }else{
+      document.getElementById('reagr').checked = false;
+   }
 
    var de = document.getElementById('de');
    var dei = parseInt(de.value, 10);
@@ -783,10 +836,79 @@ function novo(){
 
    verifica_err = true;
 
+   var reagrupavel = true;
+   var num1 = 0;
+   var num2 = 0;
+   var num1s = '';
+   var num1arr = '';
+   var num2s = '';
+   var num2arr = '';
+
+   if(reagru){
+
+      while(reagrupavel){
+         
+         console.log("procurando numeros que permitam reagrupamentos");
+
+         num1 = getRandomInt(des, ates);
+
+         num1s = completa(num1);
+
+         num1arr = num1s.split('');
+         
+         num2 = getRandomInt(des, num1);
+
+         num2s = completa(num2);
+
+         num2arr = num2s.split('');
+
+         if(num1arr[1] < num2arr[1] || num1arr[2] < num2arr[2] || num1arr[3] < num2arr[3]){
+            
+            console.log(num1arr[1] +"<"+ num2arr[1] +" || "+ num1arr[2] +"<"+ num2arr[2] +" || "+ num1arr[3] +"<"+ num2arr[3]);
+
+            reagrupavel = false;
+
+         }else{
+            console.log(num1s + " e " + num2s + " não obedeceu o pardrao para reagrupar");
+         }
+         
+
+      }
+
+   }else{
+
+      console.log("sem forçar reagrupamento");
+
+      num1 = getRandomInt(des, ates);
+
+      num1s = completa(num1);
+
+      num1arr = num1s.split('');
+      
+      num2 = getRandomInt(des, num1);
+
+      num2s = completa(num2);
+
+      num2arr = num2s.split('');
+
+   }
+
    //var num1 = getRandomInt(1, 9999);
-   var num1 = getRandomInt(des, ates);
+   // var num1 = getRandomInt(des, ates);
+
+   // var num1s = num1+"";
+
+   // var num1arr = num1s.split('');
    
-   console.log('numero 1 gerado: '+num1);
+   // var num2 = getRandomInt(des, num1);
+
+   // var num2s = num2+"";
+
+   // var num2arr = num2s.split('');
+
+   console.log('numero 1 gerado: '+num1s);
+
+   console.log('numero 2 gerado: '+num2s);
 
    /*milhar para ser concatenado*/
    //var num_m1 = getRandomInt(0, 8);
@@ -795,9 +917,7 @@ function novo(){
 
    //var num1s = num1+""+num_m1;
 
-   var num1s = num1+"";
-
-   var num1arr = num1s.split('');
+   
 
    const u1 = document.getElementById("u1");
    const d1 = document.getElementById("d1");
@@ -844,10 +964,6 @@ function novo(){
 
    //var num2 = getRandomInt(1, 999);
    
-   var num2 = getRandomInt(des, num1);
-
-   console.log('numero 2 gerado: '+num2);
-
    /*/número a ser contatenado, de modo que a soma sempre sera menor ou igual a 8, pois caso a reserva seja 1 centena, o resultado sera no maximo 9 milhar/
    //var num_m2 = 8-num_m1;*/
 
@@ -864,9 +980,7 @@ function novo(){
 
    //var num2s = num2+""+num_m2;
 
-   var num2s = num2+"";
-
-   var num2arr = num2s.split('');
+   
 
    if(num2arr.length == 1){
 

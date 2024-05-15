@@ -46,37 +46,43 @@
 						
 						<td>
 
-							<div class="tooltip">
+							<img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()">
+							
+							<!-- <div class="tooltip">
 
 								<img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()">
 
 								<span class="tooltiptext">Reagrupar para Centena.</span>
 
-							</div>
+							</div> -->
 
 						</td>
 
 						<td>
 
-							<div class="tooltip">
+							<img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()">
+
+							<!-- <div class="tooltip">
 
 								<img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()">
 
 								<span class="tooltiptext">Reagrupar para Dezena.</span>
 
-							</div>
+							</div> -->
 
 						</td>
 
 						<td>
 
-							<div class="tooltip">
+							<img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()">
+
+							<!-- <div class="tooltip">
 
 								<img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()">
 
 								<span class="tooltiptext">Reagrupar para Unidade.</span>
 
-							</div>
+							</div> -->
 
 						</td>
 
@@ -154,16 +160,6 @@
 
 							<p>Meus Erros:<br><b>[<span id="erros">0</span>]</b></p>
 
-							
-							<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
-
-							<label for="ajuda">
-								<div class="tooltip"> Modo Fácil
-									<span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span>
-								</div>	
-							</label>
-							<br>
-
 							<div class="ate">
 								
 								<label for="de">De</label>
@@ -173,6 +169,23 @@
 								<input type="text" name="ate" id="ate" value="9999"maxlength="4"> 
 
 							</div>
+
+							<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
+
+							<label for="ajuda">
+								<div class="tooltip"> Modo Fácil
+									<span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span>
+								</div>	
+							</label>
+							<br>
+
+							<input type="checkbox" name="reagr" id="reagr" onclick="reagrup();">
+
+							<label for="reagr">
+								<div class="tooltip"> C/Reagrup
+									<span class="tooltiptext">Os números exibidos induzem à utilização do reagrupamento.</span>
+								</div>	
+							</label>
 							
 							<!-- 
 							Iniciante
