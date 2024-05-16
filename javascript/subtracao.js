@@ -1,8 +1,10 @@
 var cor_normal = "rgba(0, 0, 0, 0)";
 var verifica = true;
 var verifica_err = true;
+var verifica_pul = true;
 var ajuda = false;
 var reagru = false;
+var puloss = true;
 
 function ajudaa(){
 
@@ -71,6 +73,8 @@ function verificar(){
 
    if(!verifica_err){return false;}
 
+   if(!verifica_pul){return false;}
+
    var n1 = getn1();
    var n2 = getn2();
    var res = getresult();
@@ -90,6 +94,12 @@ function verificar(){
       triste();
       verifica_err = false;
    }
+
+   /*
+   Apos uma verificação false, não contabiliza 'novo' como pulo.
+   Será falso apenas ao clicar no botao 'verificar' o que imprede o aumento dos pulos
+   */
+   puloss = true;
 
 }
 
@@ -143,6 +153,10 @@ function pontuacao(tipo){
    var num_err = 0;
    var loc_err = localStorage.getItem("erros");
    var loc_erri = parseInt(loc_err, 10);
+
+   var num_pul = 0;
+   var loc_pul = localStorage.getItem("pulos");
+   var loc_puli = parseInt(loc_pul, 10);
    
 
    //tipo:mais, menos, zera, null;
@@ -150,6 +164,8 @@ function pontuacao(tipo){
    var pontt = document.getElementById("pontu");
 
    var input_err = document.getElementById("erros");
+
+   var input_pul = document.getElementById("pulos");
 
    //var pontarr = pont.innerText.split(' ');
 
@@ -160,6 +176,7 @@ function pontuacao(tipo){
 
    console.log('ponti1:' + ponti);
 
+   /*TIPO QUE GANHA PONTOS*/
    if(tipo == 'mais'){
 
       if(Number.isNaN(ponti)){
@@ -171,16 +188,36 @@ function pontuacao(tipo){
 
    }
 
+   /*TIPO QUE PERDE PONTOS*/
    if(tipo == 'menos'){
       
+      /*INICIALIZA PONTOS COM ZERO*/
       if(Number.isNaN(ponti)){
          ponti = 0;
       }
 
+      /*acrescenta erros*/
       if(Number.isNaN(loc_erri)){
          loc_erri = 1;
       }else{
          loc_erri = loc_erri + 1;
+      }
+
+      if(Number.isNaN(loc_puli)){
+         loc_puli = 1;
+      }else{
+         loc_puli = loc_puli + 1;
+      }
+
+   }
+
+   /*registra os pulos*/
+   if(tipo == 'menos_pulo'){
+      
+      if(Number.isNaN(loc_puli)){
+         loc_puli = 1;
+      }else{
+         loc_puli = loc_puli + 1;
       }
 
    }
@@ -208,6 +245,13 @@ function pontuacao(tipo){
    console.log('loc_erri:' + loc_erri);
 
 
+   input_pul.innerText = loc_puli;
+
+   localStorage.setItem("pulos", loc_puli);
+
+   console.log('loc_puli:' + loc_puli);
+
+
 }
 
 function verificaStorage(){
@@ -218,11 +262,17 @@ function verificaStorage(){
    var pon_err = 0;
    var pont_err = localStorage.getItem("erros");
    var ponti_err = parseInt(pont_err, 10);
+
+   var pon_pul = 0;
+   var pont_pul = localStorage.getItem("pulos");
+   var ponti_pul = parseInt(pont_pul, 10);
    
    //tipo:mais, menos, zera, null;
    var pontt = document.getElementById("pontu");
 
    var pontt_err = document.getElementById("erros");
+
+   var pontt_pul = document.getElementById("pulos");
    
    console.log('storage ponti:' + ponti);
 
@@ -234,9 +284,15 @@ function verificaStorage(){
       ponti_err = 0;
    }
 
+   if(Number.isNaN(ponti_pul)){
+      ponti_pul = 0;
+   }
+
    document.getElementById("pontu").innerText = "Pontos: " + ponti;
 
    document.getElementById("erros").innerText = ponti_err;
+
+   document.getElementById("pulos").innerText = ponti_pul;
 
 }
 
@@ -263,6 +319,8 @@ function memoriza_sub(){
 }
 
 function aoiniciar(){
+
+   puloss = true;
 
    document.getElementById('ajuda').checked = false;
 
@@ -677,9 +735,10 @@ function rgrp_um(){
 
 function reset(){
 
-   if (confirm('Apagar Pontos?')) {
+   if (confirm('Apagar Pontos Erros e Pulos?')) {
       localStorage.setItem("pontos", 0);
       localStorage.setItem("erros", 0);
+      localStorage.setItem("pulos", 0);
       verificaStorage();
    }
 
@@ -794,12 +853,35 @@ function completa(num){
 
 function novo(){
    
+   var str_pulos = document.getElementById('pulos').innerText;
+   var int_pulos = parseInt(str_pulos, 10);
+
+   /*
+   apos carregamento da página: puloss = true;
+   novo() é chamada, não aumenta pulo: puloss = false
+   após verificar resultado: puloss = true, não deixa aumentar pulos
+   após clicar em novo: puloss = false;
+   registrando o número de pulos(operação não realizada)*/
+   if(!puloss){
+
+      pontuacao('menos_pulo');
+
+      int_pulos = int_pulos + 1;
+
+      document.getElementById('pulos').innerText = int_pulos;
+
+   }else{
+      puloss = false;
+   }
+
+   /*controlando a exibição de números que precisam de reagrupamento*/
    if(reagru){
       document.getElementById('reagr').checked = true;
    }else{
       document.getElementById('reagr').checked = false;
    }
 
+   /*controlando o número de digitos que os números devem ter*/
    var de = document.getElementById('de');
    var dei = parseInt(de.value, 10);
 

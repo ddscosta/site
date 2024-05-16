@@ -302,10 +302,12 @@ td#msg{
 	
 }
 
-#msg p{
+td#msg p{
 	margin: 0px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	display: inline-block;
+	
 }
 
 td.inf p{
