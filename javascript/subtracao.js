@@ -5,6 +5,7 @@ var verifica_pul = true;
 var ajuda = false;
 var reagru = false;
 var puloss = true;
+var acertou = false;
 
 function ajudaa(){
 
@@ -90,14 +91,16 @@ function verificar(){
    if( soma == res){
       feliz();
       verifica = false;
+      acertou = true;
    }else{
       triste();
       verifica_err = false;
+      acertou = false;
    }
 
    /*
    Apos uma verificação false, não contabiliza 'novo' como pulo.
-   Será falso apenas ao clicar no botao 'verificar' o que imprede o aumento dos pulos
+   Será falso apenas ao clicar no botao 'verificar' o que impede o aumento dos pulos
    */
    puloss = true;
 
@@ -201,12 +204,6 @@ function pontuacao(tipo){
          loc_erri = 1;
       }else{
          loc_erri = loc_erri + 1;
-      }
-
-      if(Number.isNaN(loc_puli)){
-         loc_puli = 1;
-      }else{
-         loc_puli = loc_puli + 1;
       }
 
    }
@@ -375,6 +372,21 @@ function rgrp_d(){
    const vu = document.getElementById("vu");
    const vd = document.getElementById("vd");
    
+   /*só faz sentido reagrupar milhar se a centena estiver precisando*/
+   const u2 = document.getElementById("u2");
+   if(parseInt(u1.innerText, 10) >= parseInt(u2.innerText, 10)){
+      console.log('Unidade Não precisa reagrupar');
+      // alert("AQUI NÃO!!");
+      alert("UNIDADE NÃO PRECISA!!");
+      return false;
+   }else{
+      if(parseInt(vu.innerText, 10) >= parseInt(u2.innerText, 10)){
+         console.log('reagrupar unidade só uma vez basta!');
+         alert("UNIDADE NÃO PRECISA!!");
+         return false;
+      }
+   }
+
    if(vu.innerText == ''){
       var vuu = 0;   
    }else{
@@ -496,6 +508,21 @@ function rgrp_c(){
 
    const vd = document.getElementById("vd");
    const vc = document.getElementById("vc");
+
+   /*só faz sentido reagrupar milhar se a centena estiver precisando*/
+   const d2 = document.getElementById("d2");
+   if(parseInt(d1.innerText, 10) >= parseInt(d2.innerText, 10)){
+      console.log('Dezena Não precisa reagrupar');
+      // alert("AQUI NÃO!!");
+      alert("DEZENA NÃO PRECISA!!");
+      return false;
+   }else{
+      if(parseInt(vd.innerText, 10) >= parseInt(d2.innerText, 10)){
+         console.log('reagrupar dezena só uma vez basta!');
+         alert("DEZENA NÃO PRECISA!!");
+         return false;
+      }
+   }
 
    if(vd.innerText == ''){
       var vdd = 0;   
@@ -619,6 +646,21 @@ function rgrp_um(){
 
    const vc = document.getElementById("vc");
    const vm = document.getElementById("vm");
+
+   /*só faz sentido reagrupar milhar se a centena estiver precisando*/
+   const c2 = document.getElementById("c2");
+   if(parseInt(c1.innerText, 10) >= parseInt(c2.innerText, 10)){
+      console.log('Centena Não precisa reagrupar');
+      // alert("AQUI NÃO!!");
+      alert("CENTENA NÃO PRECISA!!");
+      return false;
+   }else{
+      if(parseInt(vc.innerText, 10) >= parseInt(c2.innerText, 10)){
+         console.log('reagrupar centena só uma vez basta!');
+         alert("CENTENA NÃO PRECISA!!");
+         return false;
+      }
+   }
 
    if(vc.innerText == ''){
       var vcc = 0;   
@@ -1208,6 +1250,16 @@ function limpar(){
       document.getElementById("vm").innerText = 0;*/
 
       //limpa_cor_vai_res();
+
+   }
+
+   if(!acertou){
+
+      verifica = true;
+
+      verifica_err = true;
+
+      verifica_pul = true;
 
    }
 

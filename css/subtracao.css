@@ -2,7 +2,7 @@
 
 
 #principal{
-	width: 900px;
+	width: 950px;
 	margin: auto;
 	border:solid black;
 }
@@ -310,6 +310,11 @@ td#msg p{
 	
 }
 
+#msgs{
+	width: auto;
+	text-align: center;
+}
+
 td.inf p{
 	color: red;
 	text-align: center;
@@ -360,15 +365,26 @@ input:hover{
 	width: 45px;
 }
 
+input[type="text"]{
+    font-size:19px;
+}
+
 .ate{
 	font-size: 22px;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	display: none;
 }
 
-input[type="text"]{
-    font-size:19px;
+.ajud{
+	display: none;
 }
+
+.reag{
+	display: none;
+}
+
+
 
 
