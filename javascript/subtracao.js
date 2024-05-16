@@ -147,15 +147,15 @@ function info(){
 function pontuacao(tipo){
    
    var pon = 0;
-   var pont = localStorage.getItem("pontos");
+   var pont = localStorage.getItem("pontos_sub");
    var ponti = parseInt(pont, 10);
 
    var num_err = 0;
-   var loc_err = localStorage.getItem("erros");
+   var loc_err = localStorage.getItem("erros_sub");
    var loc_erri = parseInt(loc_err, 10);
 
    var num_pul = 0;
-   var loc_pul = localStorage.getItem("pulos");
+   var loc_pul = localStorage.getItem("pulos_sub");
    var loc_puli = parseInt(loc_pul, 10);
    
 
@@ -230,7 +230,7 @@ function pontuacao(tipo){
 
    pontt.innerText = "Pontos: "+ponti;
 
-   localStorage.setItem("pontos", ponti);
+   localStorage.setItem("pontos_sub", ponti);
 
    console.log('ponti2:' + ponti);
 
@@ -240,14 +240,14 @@ function pontuacao(tipo){
 
    input_err.innerText = loc_erri;
 
-   localStorage.setItem("erros", loc_erri);
+   localStorage.setItem("erros_sub", loc_erri);
 
    console.log('loc_erri:' + loc_erri);
 
 
    input_pul.innerText = loc_puli;
 
-   localStorage.setItem("pulos", loc_puli);
+   localStorage.setItem("pulos_sub", loc_puli);
 
    console.log('loc_puli:' + loc_puli);
 
@@ -256,15 +256,15 @@ function pontuacao(tipo){
 
 function verificaStorage(){
    var pon = 0;
-   var pont = localStorage.getItem("pontos");
+   var pont = localStorage.getItem("pontos_sub");
    var ponti = parseInt(pont, 10);
 
    var pon_err = 0;
-   var pont_err = localStorage.getItem("erros");
+   var pont_err = localStorage.getItem("erros_sub");
    var ponti_err = parseInt(pont_err, 10);
 
    var pon_pul = 0;
-   var pont_pul = localStorage.getItem("pulos");
+   var pont_pul = localStorage.getItem("pulos_sub");
    var ponti_pul = parseInt(pont_pul, 10);
    
    //tipo:mais, menos, zera, null;
@@ -736,9 +736,9 @@ function rgrp_um(){
 function reset(){
 
    if (confirm('Apagar Pontos Erros e Pulos?')) {
-      localStorage.setItem("pontos", 0);
-      localStorage.setItem("erros", 0);
-      localStorage.setItem("pulos", 0);
+      localStorage.setItem("pontos_sub", 0);
+      localStorage.setItem("erros_sub", 0);
+      localStorage.setItem("pulos_sub", 0);
       verificaStorage();
    }
 
