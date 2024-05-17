@@ -321,7 +321,7 @@ function aoiniciar(){
 
    document.getElementById('ajuda').checked = false;
 
-   novo(); 
+   //novo(); 
   
    verificaStorage();
 
@@ -364,27 +364,35 @@ function zera_result(){
 function rgrp_d(){
    
    const u1 = document.getElementById("u1");
+   var u1i = parseInt(u1.innerText, 10);
    const d1 = document.getElementById("d1");
 
    const imgu = document.getElementById("imgu");
    const imgd = document.getElementById("imgd");
 
    const vu = document.getElementById("vu");
+   var vui = parseInt(vu.innerText, 10);
    const vd = document.getElementById("vd");
    
    /*só faz sentido reagrupar milhar se a centena estiver precisando*/
    const u2 = document.getElementById("u2");
-   if(parseInt(u1.innerText, 10) >= parseInt(u2.innerText, 10)){
+   var u2i = parseInt(u2.innerText, 10);
+
+   if( u1i >= u2i ){
+     
       console.log('Unidade Não precisa reagrupar');
       // alert("AQUI NÃO!!");
       alert("UNIDADE NÃO PRECISA!!");
       return false;
+
    }else{
-      if(parseInt(vu.innerText, 10) >= parseInt(u2.innerText, 10)){
+
+      if( vui >= u2i ){
          console.log('reagrupar unidade só uma vez basta!');
          alert("UNIDADE NÃO PRECISA!!");
          return false;
       }
+
    }
 
    if(vu.innerText == ''){
@@ -498,9 +506,58 @@ function rgrp_d(){
 
 }
 
+function uni_precisa(){
+   const vu = document.getElementById("vu");
+   console.log("uni----------------------?"+vu.innerText);
+   const u1 = document.getElementById("u1");
+   const u2 = document.getElementById("u2");
+
+   var vui = parseInt(vu.innerText, 10);
+   var u1i = parseInt(u1.innerText, 10);
+   var u2i = parseInt(u2.innerText, 10);
+
+   if(u1i < u2i && (vu.innerText == '' || vui < u2i)){
+      return true;
+   }else{ return false; }
+
+}
+
+function dez_precisa(){
+   const vd = document.getElementById("vd");
+   console.log("dez----------------------?"+vd.innerText);
+   const d1 = document.getElementById("d1");
+   const d2 = document.getElementById("d2");
+
+   var vdi = parseInt(vd.innerText, 10);
+   var d1i = parseInt(d1.innerText, 10);
+   var d2i = parseInt(d2.innerText, 10);
+
+   if(d1i < d2i && (vd.innerText == '' || vdi < d2i) ){
+      return true;
+   }else{ return false; }
+
+}
+
+function cen_precisa(){
+   const vc = document.getElementById("vc");
+   console.log("cen----------------------?"+vc.innerText);
+   const c1 = document.getElementById("c1");
+   const c2 = document.getElementById("c2");
+
+   var vci = parseInt(vc.innerText, 10);
+   var c1i = parseInt(c1.innerText, 10);
+   var c2i = parseInt(c2.innerText, 10);
+
+   if( c1i < c2i && (vc.innerText == '' || vci < c2i) ){
+      return true;
+   }else{ return false; }
+
+}
+
 function rgrp_c(){
    
    const d1 = document.getElementById("d1");
+   var d1i = parseInt(d1.innerText, 10);
    const c1 = document.getElementById("c1");
 
    const imgd = document.getElementById("imgd");
@@ -511,11 +568,20 @@ function rgrp_c(){
 
    /*só faz sentido reagrupar milhar se a centena estiver precisando*/
    const d2 = document.getElementById("d2");
-   if(parseInt(d1.innerText, 10) >= parseInt(d2.innerText, 10)){
-      console.log('Dezena Não precisa reagrupar');
-      // alert("AQUI NÃO!!");
-      alert("DEZENA NÃO PRECISA!!");
-      return false;
+   var d2i = parseInt(d2.innerText, 10);
+
+   if(d1i >= d2i){
+      
+      /*exceção: as dezenas são iguais e nulas e a unidade precisa reagrupar: parmite reagrupamento da dezena nula*/
+      if( d1i == 0 && d2i == 0 && uni_precisa() ){
+         console.log('Exceção: Dezena Não precisa reagrupar mas é nula e a unidade precisa reagrupar');
+      }else{
+         console.log('Dezena Não precisa reagrupar');
+         // alert("AQUI NÃO!!");
+         alert("DEZENA NÃO PRECISA!!");
+         return false;
+      }
+
    }else{
       if(parseInt(vd.innerText, 10) >= parseInt(d2.innerText, 10)){
          console.log('reagrupar dezena só uma vez basta!');
@@ -639,6 +705,7 @@ function rgrp_c(){
 function rgrp_um(){
    
    const c1 = document.getElementById("c1");
+   var c1i = parseInt(c1.innerText, 10);
    const m1 = document.getElementById("m1");
 
    const imgc = document.getElementById("imgc");
@@ -649,11 +716,20 @@ function rgrp_um(){
 
    /*só faz sentido reagrupar milhar se a centena estiver precisando*/
    const c2 = document.getElementById("c2");
-   if(parseInt(c1.innerText, 10) >= parseInt(c2.innerText, 10)){
-      console.log('Centena Não precisa reagrupar');
-      // alert("AQUI NÃO!!");
-      alert("CENTENA NÃO PRECISA!!");
-      return false;
+   var c2i = parseInt(c2.innerText, 10);
+
+   if( c1i >= c2i ){
+      
+      /*exceção: as centenas são iguais e nulas e a dezena precisa reagrupar: parmite reagrupamento da centena nula*/
+      if( c1i == 0 && c2i == 0 && dez_precisa() ){
+         console.log('Exceção: Centena Não precisa reagrupar mas é nula e a dezena precisa reagrupar');
+      }else{
+         console.log('Centena Não precisa reagrupar');
+         // alert("AQUI NÃO!!");
+         alert("CENTENA NÃO PRECISA!!");
+         return false;
+      }
+      
    }else{
       if(parseInt(vc.innerText, 10) >= parseInt(c2.innerText, 10)){
          console.log('reagrupar centena só uma vez basta!');

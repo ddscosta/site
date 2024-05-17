@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+body{
+	transform: scale(0.7);
+}
 
 #principal{
 	width: 950px;
