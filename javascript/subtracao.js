@@ -225,6 +225,10 @@ function pontuacao(tipo){
 
    }
 
+   if(Number.isNaN(ponti) ){
+      ponti = 0;
+   }
+   
    pontt.innerText = "Pontos: "+ponti;
 
    localStorage.setItem("pontos_sub", ponti);
@@ -235,12 +239,20 @@ function pontuacao(tipo){
 
    //localStorage.removeItem("myCat");
 
+   if(Number.isNaN(loc_erri) ){
+      loc_erri = 0;
+   }
+
    input_err.innerText = loc_erri;
 
    localStorage.setItem("erros_sub", loc_erri);
 
    console.log('loc_erri:' + loc_erri);
 
+
+   if(Number.isNaN(loc_puli) ){
+      loc_puli = 0;
+   }
 
    input_pul.innerText = loc_puli;
 
@@ -273,17 +285,19 @@ function verificaStorage(){
    
    console.log('storage ponti:' + ponti);
 
-   if(Number.isNaN(ponti)){
+   if(Number.isNaN(ponti) || ponti_pul == "NaN"){
       ponti = 0;
    }
 
-   if(Number.isNaN(ponti_err)){
+   if(Number.isNaN(ponti_err) ){
       ponti_err = 0;
    }
 
-   if(Number.isNaN(ponti_pul)){
+   if(Number.isNaN(ponti_pul) ){
       ponti_pul = 0;
    }
+   
+   console.log(ponti_pul + " >>>>>>> "+ Number.isNaN(ponti_pul) );
 
    document.getElementById("pontu").innerText = "Pontos: " + ponti;
 
