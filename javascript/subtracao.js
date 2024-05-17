@@ -518,7 +518,13 @@ function uni_precisa(){
 
    if(u1i < u2i && (vu.innerText == '' || vui < u2i)){
       return true;
-   }else{ return false; }
+   }
+
+   if(u1i == u2i && vui < u2i ){
+      return true;
+   }
+
+   return false;
 
 }
 
@@ -534,8 +540,14 @@ function dez_precisa(){
 
    if(d1i < d2i && (vd.innerText == '' || vdi < d2i) ){
       return true;
-   }else{ return false; }
+   }
 
+   if( d1i == d2i &&  vdi < d2i ){
+      return true;
+   }
+
+   return false; 
+   
 }
 
 function cen_precisa(){
@@ -550,7 +562,13 @@ function cen_precisa(){
 
    if( c1i < c2i && (vc.innerText == '' || vci < c2i) ){
       return true;
-   }else{ return false; }
+   }
+
+   if( c1i == c2i && vci < c2i ){
+      return true;
+   }
+
+   return false;
 
 }
 
@@ -575,6 +593,8 @@ function rgrp_c(){
       /*exceção: as dezenas são iguais e nulas e a unidade precisa reagrupar: parmite reagrupamento da dezena nula*/
       if( d1i == 0 && d2i == 0 && uni_precisa() ){
          console.log('Exceção: Dezena Não precisa reagrupar mas é nula e a unidade precisa reagrupar');
+      }else if(dez_precisa()){
+         console.log('Exceção: Dezena Não precisava reagrupar mas depois de ceder 1 precisa reagrupar');
       }else{
          console.log('Dezena Não precisa reagrupar');
          // alert("AQUI NÃO!!");
@@ -723,6 +743,8 @@ function rgrp_um(){
       /*exceção: as centenas são iguais e nulas e a dezena precisa reagrupar: parmite reagrupamento da centena nula*/
       if( c1i == 0 && c2i == 0 && dez_precisa() ){
          console.log('Exceção: Centena Não precisa reagrupar mas é nula e a dezena precisa reagrupar');
+      }else if(cen_precisa()){
+         console.log('Exceção: Centena Não precisava reagrupar mas depois de ceder 1 precisa reagrupar');
       }else{
          console.log('Centena Não precisa reagrupar');
          // alert("AQUI NÃO!!");
