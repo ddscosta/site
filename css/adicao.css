@@ -48,8 +48,13 @@ body{
 
 #resultado button{
 	width: auto;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#resultado button:hover{
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 #resultado h1{
@@ -225,7 +230,7 @@ table tr#tbtn td{
 button{
 	margin: 0px;
 	padding: 3px;
-	font-size: 30px;
+	font-size: 25px;
 	width: 40px;
 	background-color: rgba(74,79,247,.4);
 }
