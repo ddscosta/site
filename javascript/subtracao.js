@@ -376,7 +376,9 @@ function zera_result(){
 }
 
 function rgrp_d(){
-   
+  
+   /*https://pt.stackoverflow.com/questions/286001/repetir-uma-anima%C3%A7%C3%A3o-css-toda-vez-que-clico-no-bot%C3%A3o-com-javascript*/
+
    const u1 = document.getElementById("u1");
    var u1i = parseInt(u1.innerText, 10);
    const d1 = document.getElementById("d1");

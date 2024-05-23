@@ -4,6 +4,140 @@ body{
 	transform: scale(0.7);
 }
 
+@keyframes sobe{
+	0%{
+		transform: translate(0px, -60px);
+	}
+	100%{
+		transform: translate(10px, -260px);
+		display: none;
+	}
+}
+
+@keyframes direita{
+	0%{
+		transform: translate(0px, 0px);
+	}
+	100%{
+		transform: translate(60px, 0);
+		position: relative;
+		display: block;
+		color: red;
+	}
+}
+
+td.u span#u1a, td.d span#d1a{
+	display: block;	
+	position: fixed;
+	padding-left: 20px;
+	transform: translate(0px, -60px);
+}
+
+/*está funcionando em algumas partes*/
+/*
+td.u span#u1a, td.d span#d1a{
+	//transform: translate(10px, 5px);
+	display: block;
+	animation-name: sobe;
+	animation-duration: 5s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+td#vd span#vda{
+	display: block;
+	animation-name: direita;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 3.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}*/
+
+
+
+
+
+
+
+/*testando o acionamento por botao*/
+td.d span#d1a:active{
+	//transform: translate(10px, 5px);
+	display: block;
+	animation-name: sobe;
+	animation-duration: 5s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*@keyframes sobedireita{
+	0%{
+		transform: translate(0px, 0px);
+	}
+	50%{
+		transform: translate(10px, -200px);
+	}
+	100%{
+		transform: translate(50px, -200px);
+		color: red;
+	}
+}*/
+
+/*button#mbtn:hover{
+	display: block;
+	animation-name: sobe;
+	animation-duration: 5s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}*/
+
+/*td.u span#u1a:active{
+
+}
+*/
+
+
+
+/*td.d span#d1{
+	display: block;
+	animation-name: sobedireita;
+	animation-duration: 4s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0.5s;
+	animation-iteration-count: 2;
+}*/
+
+
+
+/*tr td.u span#u1{
+	display: block;
+	transform: translate(10px, -200px);
+}*/
+
+/*tr td.d span#d1{
+	display: block;
+	transform: translate(0, -200px);
+}*/
+
 #principal{
 	width: 950px;
 	margin: auto;
