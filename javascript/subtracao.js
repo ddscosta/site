@@ -331,6 +331,8 @@ function memoriza_sub(){
 
 function aoiniciar(){
 
+   limpa_anime();
+
    puloss = true;
 
    document.getElementById('ajuda').checked = false;
@@ -347,6 +349,24 @@ function aoiniciar(){
       zera_result();
    }
   
+}
+
+function limpa_anime(){
+
+   const d1a = document.getElementById("d1a");
+   const u1a = document.getElementById("u1a");
+   const vda = document.getElementById("vda");
+   const vd = document.getElementById("vd");
+   const _vd = document.getElementById("_vd");
+   const _vu = document.getElementById("_vu");
+
+   d1a.style.animation = "none";
+   u1a.style.animation = "none";
+   vda.style.animation = "none";
+   vd.style.animation = "none";
+   _vd.style.animation = "none";
+   _vu.style.animation = "none";
+
 }
 
 function repetirn1(){
@@ -375,9 +395,70 @@ function zera_result(){
    document.getElementById("rm").innerText = 0;
 }
 
+setTimeout(rgrp_d(), 5000);
+
 function rgrp_d(){
-  
+
    /*https://pt.stackoverflow.com/questions/286001/repetir-uma-anima%C3%A7%C3%A3o-css-toda-vez-que-clico-no-bot%C3%A3o-com-javascript*/
+   
+   //algarismo da dezena e unidade
+   const d1a = document.getElementById("d1a");
+   const u1a = document.getElementById("u1a");
+   const vda = document.getElementById("vda");
+   const vd = document.getElementById("vd");
+   const _vd = document.getElementById("_vd");
+   const _vu = document.getElementById("_vu");
+
+   //imagem botao dezena
+   const btn_i1d = document.getElementById("i1d");
+   const btn_i1u = document.getElementById("i1u");
+   
+   if(uni_precisa()){
+
+     d1a.style.animation = "none";
+     u1a.style.animation = "none";
+     vda.style.animation = "none";
+     vd.style.animation = "none";
+     _vd.style.animation = "none";
+     _vu.style.animation = "none";
+     setTimeout(() => d1a.style.animation = 
+      "sobe 5s linear, pisca 2s linear"
+      , 5);
+     setTimeout(() => u1a.style.animation = 
+      "sobe 3s linear, pisca 2s linear"
+      , 5);
+     setTimeout(() => vda.style.animation = 
+      "direita 3s ease-in-out 2"
+      , 5);
+     setTimeout(() => _vd.style.animation = 
+      "ultimo 3s linear"
+      , 5);
+     setTimeout(() => _vu.style.animation = 
+      "ultimo 3s linear"
+      , 5);
+     setTimeout(() => vd.style.animation = 
+      "pisca 5s linear"
+      , 5);
+
+   }
+     
+
+
+   // btn_i1d.addEventListener("click", ()=> {
+   //   d1a.style.animation = "none";
+   //   u1a.style.animation = "none";
+   //   vda.style.animation = "none";
+   //   setTimeout(() => d1a.style.animation = 
+   //    "sobe 5s ease-in-out"
+   //    , 500);
+   //   setTimeout(() => u1a.style.animation = 
+   //    "sobe 5s ease-in-out"
+   //    , 500);
+   //   setTimeout(() => vda.style.animation = 
+   //    "direita 5s ease-in-out"
+   //    , 500);
+     
+   // });
 
    const u1 = document.getElementById("u1");
    var u1i = parseInt(u1.innerText, 10);
@@ -387,8 +468,8 @@ function rgrp_d(){
    const imgd = document.getElementById("imgd");
 
    const vu = document.getElementById("vu");
-   var vui = parseInt(vu.innerText, 10);
-   const vd = document.getElementById("vd");
+   var vui = parseInt(_vu.innerText, 10);
+   
    
    /*só faz sentido reagrupar milhar se a centena estiver precisando*/
    const u2 = document.getElementById("u2");
@@ -411,16 +492,16 @@ function rgrp_d(){
 
    }
 
-   if(vu.innerText == ''){
+   if(_vu.innerText == ''){
       var vuu = 0;   
    }else{
-      var vuu = vu.innerText;   
+      var vuu = _vu.innerText;   
    }
 
-   if(vd.innerText == ''){
+   if(_vd.innerText == ''){
       var vdd = 0;   
    }else{
-      var vdd = vd.innerText;   
+      var vdd = _vd.innerText;   
    }
    
    const ru = document.getElementById("ru");
@@ -457,8 +538,8 @@ function rgrp_d(){
       //var u1m = vu1i + 10;
       var d1m = vd1i - 1;
 
-      vu.innerText = u1m+"";
-      vd.innerText = d1m+"";
+      _vu.innerText = u1m+"";
+      _vd.innerText = d1m+"";
 
       if(ajuda){
          ru.innerText = u1m+"";
@@ -488,8 +569,8 @@ function rgrp_d(){
          //var u1m = u1i + 10;
          //var d1m = d1i - 1;
          
-         vu.innerText = u1m+"";
-         vd.innerText = d1m+"";
+         _vu.innerText = u1m+"";
+         _vd.innerText = d1m+"";
 
          if(ajuda){
             ru.innerText = u1m+"";
@@ -524,15 +605,16 @@ function rgrp_d(){
 
 function uni_precisa(){
    const vu = document.getElementById("vu");
-   console.log("uni----------------------?"+vu.innerText);
+   const _vu = document.getElementById("_vu");
+   console.log("uni----------------------?"+_vu.innerText);
    const u1 = document.getElementById("u1");
    const u2 = document.getElementById("u2");
 
-   var vui = parseInt(vu.innerText, 10);
+   var vui = parseInt(_vu.innerText, 10);
    var u1i = parseInt(u1.innerText, 10);
    var u2i = parseInt(u2.innerText, 10);
 
-   if(u1i < u2i && (vu.innerText == '' || vui < u2i)){
+   if(u1i < u2i && (_vu.innerText == '' || vui < u2i)){
       return true;
    }
 
@@ -546,15 +628,17 @@ function uni_precisa(){
 
 function dez_precisa(){
    const vd = document.getElementById("vd");
-   console.log("dez----------------------?"+vd.innerText);
+   const _vd = document.getElementById("_vd");
+   const vda = document.getElementById("vda");
+   console.log("dez----------------------?"+_vd.innerText);
    const d1 = document.getElementById("d1");
    const d2 = document.getElementById("d2");
 
-   var vdi = parseInt(vd.innerText, 10);
+   var vdi = parseInt(_vd.innerText, 10);
    var d1i = parseInt(d1.innerText, 10);
    var d2i = parseInt(d2.innerText, 10);
 
-   if(d1i < d2i && (vd.innerText == '' || vdi < d2i) ){
+   if(d1i < d2i && (_vd.innerText == '' || vdi < d2i) ){
       return true;
    }
 
@@ -598,6 +682,8 @@ function rgrp_c(){
    const imgc = document.getElementById("imgc");
 
    const vd = document.getElementById("vd");
+   const _vd = document.getElementById("_vd");
+   const vda = document.getElementById("vda");
    const vc = document.getElementById("vc");
 
    /*só faz sentido reagrupar milhar se a centena estiver precisando*/
@@ -619,17 +705,17 @@ function rgrp_c(){
       }
 
    }else{
-      if(parseInt(vd.innerText, 10) >= parseInt(d2.innerText, 10)){
+      if(parseInt(_vd.innerText, 10) >= parseInt(d2.innerText, 10)){
          console.log('reagrupar dezena só uma vez basta!');
          alert("DEZENA NÃO PRECISA!!");
          return false;
       }
    }
 
-   if(vd.innerText == ''){
+   if(_vd.innerText == ''){
       var vdd = 0;   
    }else{
-      var vdd = vd.innerText;   
+      var vdd = _vd.innerText;   
    }
 
    if(vc.innerText == ''){
@@ -673,7 +759,7 @@ function rgrp_c(){
       //var d1m = vd1i + 10;
       var c1m = vc1i - 1;
 
-      vd.innerText = d1m+"";
+      _vd.innerText = d1m+"";
       vc.innerText = c1m+"";
 
       if(ajuda){
@@ -704,7 +790,7 @@ function rgrp_c(){
          //var d1m = d1i + 10;
          //var c1m = c1i - 1;
 
-         vd.innerText = d1m+"";
+         _vd.innerText = d1m+"";
          vc.innerText = c1m+"";
 
          if(ajuda){
@@ -943,6 +1029,8 @@ function exibir(){
    const rm = document.getElementById("rm");
 
    const vd = document.getElementById("vd");
+   const _vd = document.getElementById("_vd");
+   const vda = document.getElementById("vda");
    const vc = document.getElementById("vc");
    const vm = document.getElementById("vm");
 
@@ -953,7 +1041,7 @@ function exibir(){
       m2.innerText+c2.innerText+d2.innerText+u2.innerText + " = " + 
       rm.innerText+rc.innerText+rd.innerText+ru.innerText;
 
-   if(vd.innerText != ''){
+   if(_vd.innerText != ''){
       vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       vd.style.backgroundColor = cor_normal;     
@@ -1158,7 +1246,9 @@ function novo(){
    
 
    const u1 = document.getElementById("u1");
+   const u1a = document.getElementById("u1a");
    const d1 = document.getElementById("d1");
+   const d1a = document.getElementById("d1a");
    const c1 = document.getElementById("c1");
    const m1 = document.getElementById("m1");
 
@@ -1174,6 +1264,9 @@ function novo(){
       c1.innerText = 0;
       m1.innerText = 0;
 
+      u1a.innerText = num1arr[0];
+      d1a.innerText = 0;
+
    }else
    if(num1arr.length == 2){
 
@@ -1181,6 +1274,9 @@ function novo(){
       d1.innerText = num1arr[0];
       c1.innerText = 0;
       m1.innerText = 0;
+
+      u1a.innerText = num1arr[1];
+      d1a.innerText = num1arr[0];
 
    }else
    if(num1arr.length == 3){
@@ -1190,6 +1286,9 @@ function novo(){
       c1.innerText = num1arr[0];
       m1.innerText = 0;
 
+      u1a.innerText = num1arr[2];
+      d1a.innerText = num1arr[1];
+
    }else
    if(num1arr.length == 4){
 
@@ -1197,6 +1296,9 @@ function novo(){
       d1.innerText = num1arr[2];
       c1.innerText = num1arr[1];
       m1.innerText = num1arr[0];
+
+      u1a.innerText = num1arr[3];
+      d1a.innerText = num1arr[2];
 
    }  
 
@@ -1296,8 +1398,8 @@ function remove_block(){
 
 function limpa_regrup(){
    
-   document.getElementById("vu").innerText = '';
-   document.getElementById("vd").innerText = '';
+   document.getElementById("_vu").innerText = '';
+   document.getElementById("_vd").innerText = '';
    document.getElementById("vc").innerText = '';
    document.getElementById("vm").innerText = '';
 

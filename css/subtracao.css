@@ -7,22 +7,79 @@ body{
 @keyframes sobe{
 	0%{
 		transform: translate(0px, -60px);
+		opacity: 100%;
+	}
+	99%{
+		opacity: 100%;
 	}
 	100%{
 		transform: translate(10px, -260px);
-		display: none;
+		opacity: 0%;
 	}
 }
 
 @keyframes direita{
 	0%{
-		transform: translate(0px, 0px);
+		/*transform: translate(0px, 0px);*/
+		opacity: 0%;
+	}
+	99%{
+		opacity: 100%;
 	}
 	100%{
-		transform: translate(60px, 0);
+		transform: translate(70px, 0);
 		position: relative;
 		display: block;
 		color: red;
+		opacity: 0%;
+	}
+}
+
+@keyframes pisca{
+	0%{
+		background-color: white;
+	}
+	10%{
+		background-color: rgb(0, 255, 64);
+	}
+	20%{
+		background-color: white;
+	}
+	30%{
+		background-color: rgb(0, 255, 64);
+	}
+	40%{
+		background-color: white;
+	}
+	50%{
+		background-color: rgb(0, 255, 64);
+	}
+	60%{
+		background-color: white;
+	}
+	70%{
+		background-color: rgb(0, 255, 64);
+	}
+	80%{
+		background-color: white;
+	}
+	90%{
+		background-color: rgb(0, 255, 64);
+	}
+	100%{
+		background-color: white;
+	}
+}
+
+@keyframes ultimo{
+	0%{
+		opacity: 0%;
+	}
+	90%{
+		opacity: 0%;
+	}
+	100%{
+		opacity: 100%;
 	}
 }
 
@@ -32,6 +89,58 @@ td.u span#u1a, td.d span#d1a{
 	padding-left: 20px;
 	transform: translate(0px, -60px);
 }
+
+td#vd span#vda{
+	/*display: block;	
+	position: fixed;
+	padding-left: 20px;*/
+	/*transform: translate(0px, -30px);*/
+}
+
+td#vd span#_vd{
+	display: block;	
+	position: fixed;
+	padding-left: 20px;
+}
+
+td.u span#u1a, td.d span#d1a{
+	padding-right: 20px;
+	/*transform: translate(10px, 5px);*/
+	display: block;
+	animation-name: sobe;
+	animation-duration: 5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	//animation-fill-mode: forwards;
+}
+
+td#vd span#vda{
+	padding-right: 20px;
+	opacity: 0%;
+	display: block;
+	animation-name: direita;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 3s;
+	animation-iteration-count: 1;
+	//animation-fill-mode: forwards;
+}
+
+td#vd{
+	animation-name: pisca;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+}
+
+td#vd{
+	animation-name: ultimo;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+}
+
+
+
+
 
 /*está funcionando em algumas partes*/
 /*
@@ -63,7 +172,7 @@ td#vd span#vda{
 
 
 /*testando o acionamento por botao*/
-td.d span#d1a:active{
+/*td.d span#d1a:active{
 	//transform: translate(10px, 5px);
 	display: block;
 	animation-name: sobe;
@@ -72,7 +181,7 @@ td.d span#d1a:active{
 	animation-delay: 0.5s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
-}
+}*/
 
 
 
