@@ -7,11 +7,70 @@
 
 	<script src="javascript/subtracao.js"></script>
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 	<title>Subtração com QVL</title>
 </head>
 <body onload="aoiniciar()">
 	
 	<div id="principal">
+		
+		<button class="nav-button" onclick="openNav()">
+			<i class="fa-solid fa-bars fa-2x"></i>
+		</button>
+
+		<div id="flutua">
+			
+			<div class="ate">
+				Escolher tamanho dos números. <br>&emsp;
+
+				<label for="de">De</label>
+				<input type="text" name="de" id="de" value="1" maxlength="4"> 
+				
+				<label for="ate">Até</label>
+				<input type="text" name="ate" id="ate" value="9999"maxlength="4"> 
+
+			</div>
+			
+			<hr>
+
+			<div class="ajud">
+
+				<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
+
+				<label for="ajuda">
+					<div class="tooltip"> Repetir Subtraendo na Resposta.
+						<!-- <span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span> -->
+					</div>	
+				</label>
+
+			</div>
+			
+			<div class="reag">
+
+				<input type="checkbox" name="reagr" id="reagr" onclick="reagrup();">
+
+				<label for="reagr">
+					<div class="tooltip"> Números que Força Reagrupamento.
+						<!-- <span class="tooltiptext">Os números exibidos induzem à utilização do reagrupamento.</span> -->
+					</div>	
+				</label>
+
+			</div>
+
+			<div class="animacao">
+
+				<input type="checkbox" name="anim" id="anim" onclick="animm();" checked>
+
+				<label for="anim">
+					<div class="tooltip"> Animação que Ensina Reagrupar.
+						<!-- <span class="tooltiptext">Mostra uma animação que ajuda o estudante a aprender o reagrupamento.</span> -->
+					</div>	
+				</label>
+
+			</div>
+
+		</div>
 
 		<h1>Algorítmo da Subtracao com QVL</h1>
 
@@ -199,39 +258,7 @@
 								<p>Pulos:<br><b>[<span id="pulos">0</span>]</b></p>
 							</div>
 
-							<div class="ate">
-								
-								<label for="de">De</label>
-								<input type="text" name="de" id="de" value="1" maxlength="4"> 
-								
-								<label for="ate">Até</label>
-								<input type="text" name="ate" id="ate" value="9999"maxlength="4"> 
-
-							</div>
-
-							<div class="ajud">
-
-								<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
-
-								<label for="ajuda">
-									<div class="tooltip"> Modo Fácil
-										<span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span>
-									</div>	
-								</label>
-
-							</div>
 							
-							<div class="reag">
-
-								<input type="checkbox" name="reagr" id="reagr" onclick="reagrup();">
-
-								<label for="reagr">
-									<div class="tooltip"> C/Reagrup
-										<span class="tooltiptext">Os números exibidos induzem à utilização do reagrupamento.</span>
-									</div>	
-								</label>
-
-							</div>
 							
 							<!-- 
 							Iniciante

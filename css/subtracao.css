@@ -478,6 +478,9 @@ td#vd span#vda{
 	transform: translate(0, -200px);
 }*/
 
+
+
+
 #principal{
 	width: 950px;
 	margin: auto;
@@ -486,6 +489,46 @@ td#vd span#vda{
 
 #principal h1{
 	text-align: center;
+}
+
+/**{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+}*/
+
+.nav-button{
+	display: block;
+	position: absolute;
+	box-sizing: content-box;
+	border: 0;
+	border-radius: 4px;
+	padding: 8px;
+	background-color: blue;
+	margin: 8px;
+	cursor: pointer;
+}
+.nav-button i{
+	color: white;
+}
+
+#flutua{
+    width: 600px;
+    height: 250px;
+    margin-top: 80px; /* altura que está do topo */
+    margin-left: 70px;
+    position: fixed;
+    z-index: 1000;
+    background-color: #83aca0;
+    font-size: 35px;
+    padding: 10px;
+}
+
+input[type=checkbox] {
+	width: 20px;
+	height: 20px;
+  cursor: pointer;
 }
 
 #subtracao{
@@ -835,31 +878,30 @@ input:hover{
 }
 
 #de{
-	width: 45px;
+	width: 50px;
 }
 
 #ate{
-	width: 45px;
+	width: 50px;
 }
 
 input[type="text"]{
-    font-size:19px;
+    font-size:22px;
 }
-
+/*
 .ate{
 	font-size: 22px;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	display: none;
-}
+}*/
 
 .ajud{
-	display: none;
+	/*display: none;*/
 }
 
 .reag{
-	display: none;
+	/*display: none;*/
 }
 
 

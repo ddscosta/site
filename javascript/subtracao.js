@@ -2,10 +2,29 @@ var cor_normal = "rgba(0, 0, 0, 0)";
 var verifica = true;
 var verifica_err = true;
 var verifica_pul = true;
+
 var ajuda = false;
 var reagru = false;
+
 var puloss = true;
 var acertou = false;
+
+var animar = true;
+
+function openNav(){
+
+   const flutua = document.getElementById("flutua");
+   
+   console.log('flt:'+flutua.style.display);
+
+   if(flutua.style.display == 'none'){
+      flutua.style.display = 'block';
+   }else{
+      flutua.style.display = 'none';
+   }
+    
+}
+
 
 function ajudaa(){
 
@@ -33,6 +52,19 @@ function reagrup(){
       //zera_result();
    }
    
+}
+
+function animm(){
+
+   var marcado = document.getElementById('anim').checked;
+
+   if(marcado){
+      animar = true;
+   }else{
+      animar = false;
+   }
+   console.log('animar:'+animar);
+
 }
 
 function getn1(){
@@ -331,6 +363,9 @@ function memoriza_sub(){
 
 function aoiniciar(){
 
+   const flutua = document.getElementById("flutua");
+   flutua.style.display = 'none';
+
    limpa_anime();
 
    puloss = true;
@@ -422,7 +457,7 @@ function rgrp_d(){
    var prop_iu = imgu.style.display;
    var prop_id = imgd.style.display;
 
-   if( uni_precisa()  && (d1i > 0 && prop_id != 'flex') && (prop_iu != 'flex') ){
+   if( animar && uni_precisa()  && (d1i > 0 && prop_id != 'flex') && (prop_iu != 'flex') ){
 
      d1a.style.animation = "none";
      u1a.style.animation = "none";
@@ -629,7 +664,7 @@ function rgrp_c(){
    var prop_id = imgd.style.display;
    var prop_ic = imgc.style.display;
 
-   if(dez_precisa() && (c1i > 0 && prop_ic != 'flex') && (prop_id != 'flex') ){
+   if(animar && dez_precisa() && (c1i > 0 && prop_ic != 'flex') && (prop_id != 'flex') ){
 
      c1a.style.animation = "none";
      d1a.style.animation = "none";
@@ -824,7 +859,7 @@ function rgrp_um(){
    var prop_ic = imgc.style.display;
    var prop_im = imgm.style.display;
 
-   if(cen_precisa() && (m1i > 0 && prop_im != 'flex') && (prop_ic != 'flex')){
+   if(animar && cen_precisa() && (m1i > 0 && prop_im != 'flex') && (prop_ic != 'flex')){
 
      m1a.style.animation = "none";
      c1a.style.animation = "none";
