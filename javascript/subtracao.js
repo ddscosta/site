@@ -353,19 +353,23 @@ function aoiniciar(){
 
 function limpa_anime(){
 
-   const d1a = document.getElementById("d1a");
    const u1a = document.getElementById("u1a");
-   const vda = document.getElementById("vda");
-   const vd = document.getElementById("vd");
-   const _vd = document.getElementById("_vd");
-   const _vu = document.getElementById("_vu");
+   const d1a = document.getElementById("d1a");
+   const c1a = document.getElementById("c1a");
+   const m1a = document.getElementById("m1a");
 
-   d1a.style.animation = "none";
+   const vda = document.getElementById("vda");
+   const vca = document.getElementById("vca");
+   const vma = document.getElementById("vma");
+
    u1a.style.animation = "none";
+   d1a.style.animation = "none";
+   c1a.style.animation = "none";
+   m1a.style.animation = "none";
+
    vda.style.animation = "none";
-   vd.style.animation = "none";
-   _vd.style.animation = "none";
-   _vu.style.animation = "none";
+   vca.style.animation = "none";
+   vma.style.animation = "none";
 
 }
 
@@ -396,6 +400,8 @@ function zera_result(){
 }
 
 setTimeout(rgrp_d(), 5000);
+setTimeout(rgrp_c(), 5000);
+setTimeout(rgrp_um(), 5000);
 
 function rgrp_d(){
 
@@ -409,11 +415,14 @@ function rgrp_d(){
    const _vd = document.getElementById("_vd");
    const _vu = document.getElementById("_vu");
 
-   //imagem botao dezena
-   const btn_i1d = document.getElementById("i1d");
-   const btn_i1u = document.getElementById("i1u");
-   
-   if(uni_precisa()){
+   const d1 = document.getElementById("d1");
+   var d1i = parseInt(d1.innerText, 10);
+   const imgu = document.getElementById("imgu");
+   const imgd = document.getElementById("imgd");
+   var prop_iu = imgu.style.display;
+   var prop_id = imgd.style.display;
+
+   if( uni_precisa()  && (d1i > 0 && prop_id != 'flex') && (prop_iu != 'flex') ){
 
      d1a.style.animation = "none";
      u1a.style.animation = "none";
@@ -422,16 +431,16 @@ function rgrp_d(){
      _vd.style.animation = "none";
      _vu.style.animation = "none";
      setTimeout(() => d1a.style.animation = 
-      "sobe 5s linear, pisca 2s linear"
+      "sobe 5s linear, pisca 4s linear"
       , 5);
      setTimeout(() => u1a.style.animation = 
       "sobe 3s linear, pisca 2s linear"
       , 5);
      setTimeout(() => vda.style.animation = 
-      "direita 3s ease-in-out 2"
+      "direita 1s ease-in-out 6"
       , 5);
      setTimeout(() => _vd.style.animation = 
-      "ultimo 3s linear"
+      "ultimo 5s linear"
       , 5);
      setTimeout(() => _vu.style.animation = 
       "ultimo 3s linear"
@@ -462,10 +471,10 @@ function rgrp_d(){
 
    const u1 = document.getElementById("u1");
    var u1i = parseInt(u1.innerText, 10);
-   const d1 = document.getElementById("d1");
+   //const d1 = document.getElementById("d1");
 
-   const imgu = document.getElementById("imgu");
-   const imgd = document.getElementById("imgd");
+   //const imgu = document.getElementById("imgu");
+   //const imgd = document.getElementById("imgd");
 
    const vu = document.getElementById("vu");
    var vui = parseInt(_vu.innerText, 10);
@@ -508,7 +517,7 @@ function rgrp_d(){
    const rd = document.getElementById("rd");
 
    var u1i = parseInt(u1.innerText, 10);
-   var d1i = parseInt(d1.innerText, 10);
+   //var d1i = parseInt(d1.innerText, 10);
 
    var vu1i = parseInt(vuu, 10);
    var vd1i = parseInt(vdd, 10);
@@ -516,7 +525,7 @@ function rgrp_d(){
    var prop_iu = imgu.style.display;
    console.log('prop_iu: '+prop_iu);
 
-   var prop_id = imgd.style.display;
+   //var prop_id = imgd.style.display;
    console.log('prop_id: '+prop_id);
 
    //o reagrupamento da dezena é maior que zero
@@ -603,6 +612,396 @@ function rgrp_d(){
 
 }
 
+function rgrp_c(){
+
+   //algarismo da centena e dezena
+   const c1a = document.getElementById("c1a");
+   const d1a = document.getElementById("d1a");
+   const vca = document.getElementById("vca");
+   const vc = document.getElementById("vc");
+   const _vc = document.getElementById("_vc");
+   const _vd = document.getElementById("_vd");
+   
+   const c1 = document.getElementById("c1");
+   var c1i = parseInt(c1.innerText, 10);
+   const imgd = document.getElementById("imgd");
+   const imgc = document.getElementById("imgc");
+   var prop_id = imgd.style.display;
+   var prop_ic = imgc.style.display;
+
+   if(dez_precisa() && (c1i > 0 && prop_ic != 'flex') && (prop_id != 'flex') ){
+
+     c1a.style.animation = "none";
+     d1a.style.animation = "none";
+     vca.style.animation = "none";
+     vc.style.animation = "none";
+     _vc.style.animation = "none";
+     _vd.style.animation = "none";
+     setTimeout(() => c1a.style.animation = 
+      "sobe_c 5s linear, pisca_c 4s linear"
+      , 5);
+     setTimeout(() => d1a.style.animation = 
+      "sobe_c 3s linear, pisca_c 2s linear"
+      , 5);
+     setTimeout(() => vca.style.animation = 
+      "direita_c 1s ease-in-out 6"
+      , 5);
+     setTimeout(() => _vc.style.animation = 
+      "ultimo_c 5s linear"
+      , 5);
+     setTimeout(() => _vd.style.animation = 
+      "ultimo_c 3s linear"
+      , 5);
+     setTimeout(() => vc.style.animation = 
+      "pisca_c 5s linear"
+      , 5);
+
+   }
+
+
+   const d1 = document.getElementById("d1");
+   var d1i = parseInt(d1.innerText, 10);
+   //const c1 = document.getElementById("c1");
+
+   //const imgd = document.getElementById("imgd");
+   //const imgc = document.getElementById("imgc");
+
+   const vd = document.getElementById("vd");
+   const vda = document.getElementById("vda");
+
+   /*só faz sentido reagrupar milhar se a centena estiver precisando*/
+   const d2 = document.getElementById("d2");
+   var d2i = parseInt(d2.innerText, 10);
+
+   if(d1i >= d2i){
+      
+      /*exceção: as dezenas são iguais e nulas e a unidade precisa reagrupar: parmite reagrupamento da dezena nula*/
+      if( d1i == 0 && d2i == 0 && uni_precisa() ){
+         console.log('Exceção: Dezena Não precisa reagrupar mas é nula e a unidade precisa reagrupar');
+      }else if(dez_precisa()){
+         console.log('Exceção: Dezena Não precisava reagrupar mas depois de ceder 1 precisa reagrupar');
+      }else{
+         console.log('Dezena Não precisa reagrupar');
+         // alert("AQUI NÃO!!");
+         alert("DEZENA NÃO PRECISA!!");
+         return false;
+      }
+
+   }else{
+      if(parseInt(_vd.innerText, 10) >= parseInt(d2.innerText, 10)){
+         console.log('reagrupar dezena só uma vez basta!');
+         alert("DEZENA NÃO PRECISA!!");
+         return false;
+      }
+   }
+
+   if(_vd.innerText == ''){
+      var vdd = 0;   
+   }else{
+      var vdd = _vd.innerText;   
+   }
+
+   if(_vc.innerText == ''){
+      var vcc = 0;   
+   }else{
+      var vcc = _vc.innerText;   
+   }
+
+   const rd = document.getElementById("rd");
+   const rc = document.getElementById("rc");
+   
+   var d1i = parseInt(d1.innerText, 10);
+   //var c1i = parseInt(c1.innerText, 10);
+   
+   var vd1i = parseInt(vdd, 10);
+   var vc1i = parseInt(vcc, 10);
+
+   //var prop_ic = imgc.style.display;
+   console.log('prop_ic: '+prop_ic);
+
+   //var prop_id = imgd.style.display;
+   console.log('prop_id: '+prop_id);
+
+   //o reagrupamento da centena é maior que zero
+   if(vc1i > 0){
+
+      //a dezena já foi reagrupada e está bloqueada
+      if(prop_id == 'flex'){
+          var d1m = vd1i + 10;
+      }else{
+         var d1m = d1i + 10;
+      }
+
+      /*
+      if(vd1i > 0){
+         var d1m = vd1i + 10;
+      }else{
+         var d1m = d1i + 10;
+      }*/
+      
+      //var d1m = vd1i + 10;
+      var c1m = vc1i - 1;
+
+      _vd.innerText = d1m+"";
+      _vc.innerText = c1m+"";
+
+      if(ajuda){
+         rd.innerText = d1m+"";
+         rc.innerText = c1m+"";
+      }
+
+      imgd.style.display = 'flex';
+      imgc.style.display = 'flex';
+
+   }else{
+
+      //a centena é maior que zero e não está bloqueada
+      if(c1i > 0 && prop_ic != 'flex'){
+
+         if(c1i > 0 && prop_ic != 'flex'){
+            var c1m = c1i - 1;
+         }else{
+            var c1m = vc1i - 1;
+         }
+
+         if(d1i > 0 && prop_id != 'flex'){
+            var d1m = d1i + 10;
+         }else{
+            var d1m = vd1i + 10;
+         }
+
+         //var d1m = d1i + 10;
+         //var c1m = c1i - 1;
+
+         _vd.innerText = d1m+"";
+         _vc.innerText = c1m+"";
+
+         if(ajuda){
+            rd.innerText = d1m+"";
+            rc.innerText = c1m+"";
+         }
+
+         imgd.style.display = 'flex';
+         imgc.style.display = 'flex';
+
+      }else{
+         
+         // alert('A Centena deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
+         alert('ESTÁ VAZIO!!');
+
+      }
+
+   }
+
+   if(imgc.style.display == 'flex'){
+      vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vc.style.backgroundColor = cor_normal;
+   }
+   
+   if(imgd.style.display == 'flex'){
+      vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vd.style.backgroundColor = cor_normal;
+   }
+
+}
+
+function rgrp_um(){
+   
+   //algarismo da milhar e centena
+   const m1a = document.getElementById("m1a");
+   const c1a = document.getElementById("c1a");
+   const vm = document.getElementById("vm");
+   const _vm = document.getElementById("_vm");
+   const vma = document.getElementById("vma");
+   const _vc = document.getElementById("_vc");
+   
+   const m1 = document.getElementById("m1");
+   var m1i = parseInt(m1.innerText, 10);
+   const imgc = document.getElementById("imgc");
+   const imgm = document.getElementById("imgm");
+   var prop_ic = imgc.style.display;
+   var prop_im = imgm.style.display;
+
+   if(cen_precisa() && (m1i > 0 && prop_im != 'flex') && (prop_ic != 'flex')){
+
+     m1a.style.animation = "none";
+     c1a.style.animation = "none";
+     vm.style.animation = "none";
+     _vm.style.animation = "none";
+     vma.style.animation = "none";
+     _vc.style.animation = "none";
+     setTimeout(() => m1a.style.animation = 
+      "sobe_m 5s linear, pisca_m 4s linear"
+      , 5);
+     setTimeout(() => c1a.style.animation = 
+      "sobe_m 3s linear, pisca_m 2s linear"
+      , 5);
+     setTimeout(() => vma.style.animation = 
+      "direita_m 1s ease-in-out 6"
+      , 5);
+     setTimeout(() => _vm.style.animation = 
+      "ultimo_m 5s linear"
+      , 5);
+     setTimeout(() => _vc.style.animation = 
+      "ultimo_m 3s linear"
+      , 5);
+     setTimeout(() => vm.style.animation = 
+      "pisca_m 5s linear"
+      , 5);
+
+   }
+
+   const c1 = document.getElementById("c1");
+   var c1i = parseInt(c1.innerText, 10);
+   //const m1 = document.getElementById("m1");
+
+   //const imgc = document.getElementById("imgc");
+   //const imgm = document.getElementById("imgm");
+
+   const vc = document.getElementById("vc");
+  
+   /*só faz sentido reagrupar milhar se a centena estiver precisando*/
+   const c2 = document.getElementById("c2");
+   var c2i = parseInt(c2.innerText, 10);
+
+   if( c1i >= c2i ){
+      
+      /*exceção: as centenas são iguais e nulas e a dezena precisa reagrupar: parmite reagrupamento da centena nula*/
+      if( c1i == 0 && c2i == 0 && dez_precisa() ){
+         console.log('Exceção: Centena Não precisa reagrupar mas é nula e a dezena precisa reagrupar');
+      }else if(cen_precisa()){
+         console.log('Exceção: Centena Não precisava reagrupar mas depois de ceder 1 precisa reagrupar');
+      }else{
+         console.log('Centena Não precisa reagrupar');
+         // alert("AQUI NÃO!!");
+         alert("CENTENA NÃO PRECISA!!");
+         return false;
+      }
+      
+   }else{
+      if(parseInt(_vc.innerText, 10) >= parseInt(c2.innerText, 10)){
+         console.log('reagrupar centena só uma vez basta!');
+         alert("CENTENA NÃO PRECISA!!");
+         return false;
+      }
+   }
+
+   if(_vc.innerText == ''){
+      var vcc = 0;   
+   }else{
+      var vcc = _vc.innerText;   
+   }
+
+   if(_vm.innerText == ''){
+      var vmm = 0;   
+   }else{
+      var vmm = _vm.innerText;   
+   }
+
+   const rc = document.getElementById("rc");
+   const rm = document.getElementById("rm");
+   
+   var c1i = parseInt(c1.innerText, 10);
+   //var m1i = parseInt(m1.innerText, 10);
+
+   var vc1i = parseInt(vcc, 10);
+   var vm1i = parseInt(vmm, 10);
+
+   //var prop_ic = imgc.style.display;
+   console.log('prop_ic: '+prop_ic);
+
+   //var prop_im = imgm.style.display;
+   console.log('prop_im: '+prop_im);
+
+   //o reagrupamento da milhar é maior que zero
+   if(vm1i > 0){
+
+      //a centena já foi reagrupada e está bloqueada
+      if(prop_ic == 'flex'){
+          var c1m = vc1i + 10;
+      }else{
+         var c1m = c1i + 10;
+      }
+
+      /*if(vc1i > 0){
+         var c1m = vc1i + 10;
+      }else{
+         var c1m = c1i + 10;
+      }*/
+      
+      //var c1m = vc1i + 10;
+      var m1m = vm1i - 1;
+
+      _vc.innerText = c1m+"";
+      _vm.innerText = m1m+"";
+
+      if(ajuda){
+         rc.innerText = c1m+"";
+         rm.innerText = m1m+"";
+      }
+
+      imgc.style.display = 'flex';
+      imgm.style.display = 'flex';
+
+   }else{
+
+
+
+      //a milhar é maior que zero e não está bloqueada
+      if(m1i > 0 && prop_im != 'flex'){
+         
+         if(m1i > 0 && prop_im != 'flex'){
+            var m1m = m1i - 1;
+         }else{
+            var m1m = vm1i - 1;
+         }
+
+         if(c1i > 0 && prop_ic != 'flex'){
+            var c1m = c1i + 10;
+         }else{
+            var c1m = vc1i + 10;
+         }
+
+         //var c1m = c1i + 10;
+         //var m1m = m1i - 1;
+
+         _vc.innerText = c1m+"";
+         _vm.innerText = m1m+"";
+
+         if(ajuda){
+            rc.innerText = c1m+"";
+            rm.innerText = m1m+"";
+         }
+
+         imgc.style.display = 'flex';
+         imgm.style.display = 'flex';
+         
+      }else{
+          
+         // alert('A Milhar deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
+         alert('ESTÁ VAZIO!!');
+
+      }
+
+   }
+
+   if(imgm.style.display == 'flex'){
+      vm.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vm.style.backgroundColor = cor_normal;
+   }
+   
+   if(imgc.style.display == 'flex'){
+      vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }else{
+      vc.style.backgroundColor = cor_normal;
+   }
+
+}
+
+
 function uni_precisa(){
    const vu = document.getElementById("vu");
    const _vu = document.getElementById("_vu");
@@ -652,15 +1051,16 @@ function dez_precisa(){
 
 function cen_precisa(){
    const vc = document.getElementById("vc");
-   console.log("cen----------------------?"+vc.innerText);
+   const _vc = document.getElementById("_vc");
+   console.log("cen----------------------?"+_vc.innerText);
    const c1 = document.getElementById("c1");
    const c2 = document.getElementById("c2");
 
-   var vci = parseInt(vc.innerText, 10);
+   var vci = parseInt(_vc.innerText, 10);
    var c1i = parseInt(c1.innerText, 10);
    var c2i = parseInt(c2.innerText, 10);
 
-   if( c1i < c2i && (vc.innerText == '' || vci < c2i) ){
+   if( c1i < c2i && (_vc.innerText == '' || vci < c2i) ){
       return true;
    }
 
@@ -672,308 +1072,6 @@ function cen_precisa(){
 
 }
 
-function rgrp_c(){
-   
-   const d1 = document.getElementById("d1");
-   var d1i = parseInt(d1.innerText, 10);
-   const c1 = document.getElementById("c1");
-
-   const imgd = document.getElementById("imgd");
-   const imgc = document.getElementById("imgc");
-
-   const vd = document.getElementById("vd");
-   const _vd = document.getElementById("_vd");
-   const vda = document.getElementById("vda");
-   const vc = document.getElementById("vc");
-
-   /*só faz sentido reagrupar milhar se a centena estiver precisando*/
-   const d2 = document.getElementById("d2");
-   var d2i = parseInt(d2.innerText, 10);
-
-   if(d1i >= d2i){
-      
-      /*exceção: as dezenas são iguais e nulas e a unidade precisa reagrupar: parmite reagrupamento da dezena nula*/
-      if( d1i == 0 && d2i == 0 && uni_precisa() ){
-         console.log('Exceção: Dezena Não precisa reagrupar mas é nula e a unidade precisa reagrupar');
-      }else if(dez_precisa()){
-         console.log('Exceção: Dezena Não precisava reagrupar mas depois de ceder 1 precisa reagrupar');
-      }else{
-         console.log('Dezena Não precisa reagrupar');
-         // alert("AQUI NÃO!!");
-         alert("DEZENA NÃO PRECISA!!");
-         return false;
-      }
-
-   }else{
-      if(parseInt(_vd.innerText, 10) >= parseInt(d2.innerText, 10)){
-         console.log('reagrupar dezena só uma vez basta!');
-         alert("DEZENA NÃO PRECISA!!");
-         return false;
-      }
-   }
-
-   if(_vd.innerText == ''){
-      var vdd = 0;   
-   }else{
-      var vdd = _vd.innerText;   
-   }
-
-   if(vc.innerText == ''){
-      var vcc = 0;   
-   }else{
-      var vcc = vc.innerText;   
-   }
-
-   const rd = document.getElementById("rd");
-   const rc = document.getElementById("rc");
-   
-   var d1i = parseInt(d1.innerText, 10);
-   var c1i = parseInt(c1.innerText, 10);
-   
-   var vd1i = parseInt(vdd, 10);
-   var vc1i = parseInt(vcc, 10);
-
-   var prop_ic = imgc.style.display;
-   console.log('prop_ic: '+prop_ic);
-
-   var prop_id = imgd.style.display;
-   console.log('prop_id: '+prop_id);
-
-   //o reagrupamento da centena é maior que zero
-   if(vc1i > 0){
-
-      //a dezena já foi reagrupada e está bloqueada
-      if(prop_id == 'flex'){
-          var d1m = vd1i + 10;
-      }else{
-         var d1m = d1i + 10;
-      }
-
-      /*
-      if(vd1i > 0){
-         var d1m = vd1i + 10;
-      }else{
-         var d1m = d1i + 10;
-      }*/
-      
-      //var d1m = vd1i + 10;
-      var c1m = vc1i - 1;
-
-      _vd.innerText = d1m+"";
-      vc.innerText = c1m+"";
-
-      if(ajuda){
-         rd.innerText = d1m+"";
-         rc.innerText = c1m+"";
-      }
-
-      imgd.style.display = 'flex';
-      imgc.style.display = 'flex';
-
-   }else{
-
-      //a centena é maior que zero e não está bloqueada
-      if(c1i > 0 && prop_ic != 'flex'){
-
-         if(c1i > 0 && prop_ic != 'flex'){
-            var c1m = c1i - 1;
-         }else{
-            var c1m = vc1i - 1;
-         }
-
-         if(d1i > 0 && prop_id != 'flex'){
-            var d1m = d1i + 10;
-         }else{
-            var d1m = vd1i + 10;
-         }
-
-         //var d1m = d1i + 10;
-         //var c1m = c1i - 1;
-
-         _vd.innerText = d1m+"";
-         vc.innerText = c1m+"";
-
-         if(ajuda){
-            rd.innerText = d1m+"";
-            rc.innerText = c1m+"";
-         }
-
-         imgd.style.display = 'flex';
-         imgc.style.display = 'flex';
-
-      }else{
-         
-         // alert('A Centena deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
-         alert('ESTÁ VAZIO!!');
-
-      }
-
-   }
-
-   if(imgc.style.display == 'flex'){
-      vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
-   }else{
-      vc.style.backgroundColor = cor_normal;
-   }
-   
-   if(imgd.style.display == 'flex'){
-      vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
-   }else{
-      vd.style.backgroundColor = cor_normal;
-   }
-
-}
-
-function rgrp_um(){
-   
-   const c1 = document.getElementById("c1");
-   var c1i = parseInt(c1.innerText, 10);
-   const m1 = document.getElementById("m1");
-
-   const imgc = document.getElementById("imgc");
-   const imgm = document.getElementById("imgm");
-
-   const vc = document.getElementById("vc");
-   const vm = document.getElementById("vm");
-
-   /*só faz sentido reagrupar milhar se a centena estiver precisando*/
-   const c2 = document.getElementById("c2");
-   var c2i = parseInt(c2.innerText, 10);
-
-   if( c1i >= c2i ){
-      
-      /*exceção: as centenas são iguais e nulas e a dezena precisa reagrupar: parmite reagrupamento da centena nula*/
-      if( c1i == 0 && c2i == 0 && dez_precisa() ){
-         console.log('Exceção: Centena Não precisa reagrupar mas é nula e a dezena precisa reagrupar');
-      }else if(cen_precisa()){
-         console.log('Exceção: Centena Não precisava reagrupar mas depois de ceder 1 precisa reagrupar');
-      }else{
-         console.log('Centena Não precisa reagrupar');
-         // alert("AQUI NÃO!!");
-         alert("CENTENA NÃO PRECISA!!");
-         return false;
-      }
-      
-   }else{
-      if(parseInt(vc.innerText, 10) >= parseInt(c2.innerText, 10)){
-         console.log('reagrupar centena só uma vez basta!');
-         alert("CENTENA NÃO PRECISA!!");
-         return false;
-      }
-   }
-
-   if(vc.innerText == ''){
-      var vcc = 0;   
-   }else{
-      var vcc = vc.innerText;   
-   }
-
-   if(vm.innerText == ''){
-      var vmm = 0;   
-   }else{
-      var vmm = vm.innerText;   
-   }
-
-   const rc = document.getElementById("rc");
-   const rm = document.getElementById("rm");
-   
-   var c1i = parseInt(c1.innerText, 10);
-   var m1i = parseInt(m1.innerText, 10);
-
-   var vc1i = parseInt(vcc, 10);
-   var vm1i = parseInt(vmm, 10);
-
-   var prop_ic = imgc.style.display;
-   console.log('prop_ic: '+prop_ic);
-
-   var prop_im = imgm.style.display;
-   console.log('prop_im: '+prop_im);
-
-   //o reagrupamento da milhar é maior que zero
-   if(vm1i > 0){
-
-      //a centena já foi reagrupada e está bloqueada
-      if(prop_ic == 'flex'){
-          var c1m = vc1i + 10;
-      }else{
-         var c1m = c1i + 10;
-      }
-
-      /*if(vc1i > 0){
-         var c1m = vc1i + 10;
-      }else{
-         var c1m = c1i + 10;
-      }*/
-      
-      //var c1m = vc1i + 10;
-      var m1m = vm1i - 1;
-
-      vc.innerText = c1m+"";
-      vm.innerText = m1m+"";
-
-      if(ajuda){
-         rc.innerText = c1m+"";
-         rm.innerText = m1m+"";
-      }
-
-      imgc.style.display = 'flex';
-      imgm.style.display = 'flex';
-
-   }else{
-
-
-
-      //a milhar é maior que zero e não está bloqueada
-      if(m1i > 0 && prop_im != 'flex'){
-         
-         if(m1i > 0 && prop_im != 'flex'){
-            var m1m = m1i - 1;
-         }else{
-            var m1m = vm1i - 1;
-         }
-
-         if(c1i > 0 && prop_ic != 'flex'){
-            var c1m = c1i + 10;
-         }else{
-            var c1m = vc1i + 10;
-         }
-
-         //var c1m = c1i + 10;
-         //var m1m = m1i - 1;
-
-         vc.innerText = c1m+"";
-         vm.innerText = m1m+"";
-
-         if(ajuda){
-            rc.innerText = c1m+"";
-            rm.innerText = m1m+"";
-         }
-
-         imgc.style.display = 'flex';
-         imgm.style.display = 'flex';
-         
-      }else{
-          
-         // alert('A Milhar deve não ser bloqueada e maior que 0 OU o reagrupamento maior que 0.');
-         alert('ESTÁ VAZIO!!');
-
-      }
-
-   }
-
-   if(imgm.style.display == 'flex'){
-      vm.style.backgroundColor = "rgba(0, 255, 64, 1)";
-   }else{
-      vm.style.backgroundColor = cor_normal;
-   }
-   
-   if(imgc.style.display == 'flex'){
-      vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
-   }else{
-      vc.style.backgroundColor = cor_normal;
-   }
-
-}
 
 function reset(){
 
@@ -1032,7 +1130,11 @@ function exibir(){
    const _vd = document.getElementById("_vd");
    const vda = document.getElementById("vda");
    const vc = document.getElementById("vc");
+   const _vc = document.getElementById("_vc");
+   const vca = document.getElementById("vca");
    const vm = document.getElementById("vm");
+   const _vm = document.getElementById("_vm");
+   const vma = document.getElementById("vma");
 
    //console.log(exibe.innerText);
 
@@ -1047,13 +1149,13 @@ function exibir(){
       vd.style.backgroundColor = cor_normal;     
    }
 
-   if(vc.innerText != ''){
+   if(_vc.innerText != ''){
       vc.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       vc.style.backgroundColor = cor_normal;  
    }
 
-   if(vm.innerText != ''){
+   if(_vm.innerText != ''){
       vm.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }else{
       vm.style.backgroundColor = cor_normal;
@@ -1250,7 +1352,9 @@ function novo(){
    const d1 = document.getElementById("d1");
    const d1a = document.getElementById("d1a");
    const c1 = document.getElementById("c1");
+   const c1a = document.getElementById("c1a");
    const m1 = document.getElementById("m1");
+   const m1a = document.getElementById("m1a");
 
    const u2 = document.getElementById("u2");
    const d2 = document.getElementById("d2");
@@ -1266,6 +1370,8 @@ function novo(){
 
       u1a.innerText = num1arr[0];
       d1a.innerText = 0;
+      c1a.innerText = 0;
+      m1a.innerText = 0;
 
    }else
    if(num1arr.length == 2){
@@ -1277,6 +1383,8 @@ function novo(){
 
       u1a.innerText = num1arr[1];
       d1a.innerText = num1arr[0];
+      c1a.innerText = 0;
+      m1a.innerText = 0;
 
    }else
    if(num1arr.length == 3){
@@ -1288,6 +1396,8 @@ function novo(){
 
       u1a.innerText = num1arr[2];
       d1a.innerText = num1arr[1];
+      c1a.innerText = num1arr[0];
+      m1a.innerText = 0;
 
    }else
    if(num1arr.length == 4){
@@ -1299,6 +1409,8 @@ function novo(){
 
       u1a.innerText = num1arr[3];
       d1a.innerText = num1arr[2];
+      c1a.innerText = num1arr[1];
+      m1a.innerText = num1arr[0];
 
    }  
 
@@ -1400,8 +1512,8 @@ function limpa_regrup(){
    
    document.getElementById("_vu").innerText = '';
    document.getElementById("_vd").innerText = '';
-   document.getElementById("vc").innerText = '';
-   document.getElementById("vm").innerText = '';
+   document.getElementById("_vc").innerText = '';
+   document.getElementById("_vm").innerText = '';
 
    if(ajuda){
       document.getElementById("ru").innerText = document.getElementById("u1").innerText;

@@ -27,7 +27,7 @@ body{
 		opacity: 100%;
 	}
 	100%{
-		transform: translate(70px, 0);
+		transform: translate(80px, 0);
 		position: relative;
 		display: block;
 		color: red;
@@ -83,60 +83,291 @@ body{
 	}
 }
 
-td.u span#u1a, td.d span#d1a{
-	display: block;	
-	position: fixed;
-	padding-left: 20px;
-	transform: translate(0px, -60px);
+@keyframes sobe_c{
+	0%{
+		transform: translate(0px, -60px);
+		opacity: 100%;
+	}
+	99%{
+		opacity: 100%;
+	}
+	100%{
+		transform: translate(10px, -260px);
+		opacity: 0%;
+	}
 }
 
-td#vd span#vda{
-	/*display: block;	
-	position: fixed;
-	padding-left: 20px;*/
-	/*transform: translate(0px, -30px);*/
+@keyframes direita_c{
+	0%{
+		/*transform: translate(0px, 0px);*/
+		opacity: 0%;
+	}
+	99%{
+		opacity: 100%;
+	}
+	100%{
+		transform: translate(90px, 0);
+		position: relative;
+		display: block;
+		color: red;
+		opacity: 0%;
+	}
 }
 
-td#vd span#_vd{
-	display: block;	
-	position: fixed;
-	padding-left: 20px;
+@keyframes pisca_c{
+	0%{
+		background-color: white;
+	}
+	10%{
+		background-color: rgb(0, 255, 64);
+	}
+	20%{
+		background-color: white;
+	}
+	30%{
+		background-color: rgb(0, 255, 64);
+	}
+	40%{
+		background-color: white;
+	}
+	50%{
+		background-color: rgb(0, 255, 64);
+	}
+	60%{
+		background-color: white;
+	}
+	70%{
+		background-color: rgb(0, 255, 64);
+	}
+	80%{
+		background-color: white;
+	}
+	90%{
+		background-color: rgb(0, 255, 64);
+	}
+	100%{
+		background-color: white;
+	}
 }
 
-td.u span#u1a, td.d span#d1a{
-	padding-right: 20px;
-	/*transform: translate(10px, 5px);*/
-	display: block;
-	animation-name: sobe;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	//animation-fill-mode: forwards;
+@keyframes ultimo_c{
+	0%{
+		opacity: 0%;
+	}
+	90%{
+		opacity: 0%;
+	}
+	100%{
+		opacity: 100%;
+	}
 }
 
-td#vd span#vda{
-	padding-right: 20px;
-	opacity: 0%;
-	display: block;
-	animation-name: direita;
-	animation-duration: 2s;
-	animation-timing-function: ease-in-out;
-	animation-delay: 3s;
-	animation-iteration-count: 1;
-	//animation-fill-mode: forwards;
+@keyframes sobe_m{
+	0%{
+		transform: translate(0px, -60px);
+		opacity: 100%;
+	}
+	99%{
+		opacity: 100%;
+	}
+	100%{
+		transform: translate(10px, -260px);
+		opacity: 0%;
+	}
 }
 
-td#vd{
-	animation-name: pisca;
-	animation-duration: 5s;
-	animation-timing-function: linear;
+@keyframes direita_m{
+	0%{
+		/*transform: translate(0px, 0px);*/
+		opacity: 0%;
+	}
+	99%{
+		opacity: 100%;
+	}
+	100%{
+		transform: translate(90px, 0);
+		position: relative;
+		display: block;
+		color: red;
+		opacity: 0%;
+	}
 }
 
-td#vd{
-	animation-name: ultimo;
-	animation-duration: 5s;
-	animation-timing-function: linear;
+@keyframes pisca_m{
+	0%{
+		background-color: white;
+	}
+	10%{
+		background-color: rgb(0, 255, 64);
+	}
+	20%{
+		background-color: white;
+	}
+	30%{
+		background-color: rgb(0, 255, 64);
+	}
+	40%{
+		background-color: white;
+	}
+	50%{
+		background-color: rgb(0, 255, 64);
+	}
+	60%{
+		background-color: white;
+	}
+	70%{
+		background-color: rgb(0, 255, 64);
+	}
+	80%{
+		background-color: white;
+	}
+	90%{
+		background-color: rgb(0, 255, 64);
+	}
+	100%{
+		background-color: white;
+	}
 }
+
+@keyframes ultimo_m{
+	0%{
+		opacity: 0%;
+	}
+	90%{
+		opacity: 0%;
+	}
+	100%{
+		opacity: 100%;
+	}
+}
+
+/*ANIMAÇÃO PARA DEZENA E UNIDADE*/
+	td.u span#u1a, td.d span#d1a{
+		display: flex;	
+		position: fixed;
+		padding-left: 20px;
+		transform: translate(0px, -60px);
+	}
+
+	td#vd{
+		animation-name: pisca;
+		animation-name: ultimo;
+		animation-duration: 5s;
+		animation-timing-function: linear;
+	}
+
+	td#vd span#_vd{
+		display: flex;	
+		position: fixed;
+		padding-left: 20px;
+	}
+
+	td#vd span#vda{
+		padding-right: 20px;
+		opacity: 0%;
+		display: flex;
+		animation-name: direita;
+		animation-duration: 2s;
+		animation-timing-function: ease-in-out;
+		animation-delay: 3s;
+		animation-iteration-count: 1;
+		//animation-fill-mode: forwards;
+	}
+
+	td.u span#u1a, td.d span#d1a{
+		padding-right: 20px;
+		/*transform: translate(10px, 5px);*/
+		display: flex;
+		animation-name: sobe;
+		animation-duration: 5s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: 1;
+		//animation-fill-mode: forwards;
+	}
+
+/*ANIMAÇÃO DA CENTENTA E DEZENA*/
+	td.d span#d1a, td.c span#c1a{
+		display: flex;	
+		position: fixed;
+		padding-left: 20px;
+		transform: translate(0px, -60px);
+	}
+
+	td#vc{
+		animation-name: pisca_c;
+		animation-name: ultimo_c;
+		animation-duration: 5s;
+		animation-timing-function: linear;
+	}
+
+	td#vc span#_vc{
+		display: flex;	
+		position: fixed;
+		padding-left: 20px;
+	}
+
+	td#vc span#vca{
+		padding-right: 20px;
+		opacity: 0%;
+		display: flex;
+		animation-name: direita_c;
+		animation-duration: 2s;
+		animation-timing-function: ease-in-out;
+		animation-delay: 3s;
+		animation-iteration-count: 1;
+	}
+
+	td.d span#d1a, td.c span#c1a{
+		padding-right: 20px;
+		display: flex;
+		animation-name: sobe_c;
+		animation-duration: 5s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: 1;
+	}
+
+/*ANIMAÇÃO PARA CENTENA E MILHAR*/
+	td.c span#c1a, td.um span#m1a{
+		display: flex;	
+		position: fixed;
+		padding-left: 20px;
+		transform: translate(0px, -60px);
+	}
+
+	td#vm{
+		animation-name: pisca_m;
+		animation-name: ultimo_m;
+		animation-duration: 5s;
+		animation-timing-function: linear;
+	}
+
+	td#vm span#_vm{
+		display: flex;	
+		position: fixed;
+		padding-left: 20px;
+	}
+
+	td#vm span#vma{
+		padding-right: 20px;
+		opacity: 0%;
+		display: flex;
+		animation-name: direita_m;
+		animation-duration: 2s;
+		animation-timing-function: ease-in-out;
+		animation-delay: 3s;
+		animation-iteration-count: 1;
+	}
+
+	td.c span#c1a, td.um span#m1a{
+		padding-right: 20px;
+		display: flex;
+		animation-name: sobe_m;
+		animation-duration: 5s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: 1;
+	}
+
+
 
 
 
