@@ -535,6 +535,14 @@ td#vd span#vda{
 	color: blue;
 }
 
+#relg{
+	display: block;
+	float: right;
+	font-size: 35px;
+	color: blue;
+	padding: 5px;
+}
+
 #flutua{
     width: 600px;
     height: 250px;
