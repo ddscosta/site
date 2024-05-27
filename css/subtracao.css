@@ -241,6 +241,21 @@ body{
 	}
 }
 
+@keyframes ultimo_rev{
+	0%{
+		opacity: 100%;
+	}
+	90%{
+		opacity: 100%;
+	}
+	95%{
+		opacity: 0%;
+	}
+	100%{
+		opacity: 0%;
+	}
+}
+
 /*ANIMAÇÃO PARA DEZENA E UNIDADE*/
 	td.u span#u1a, td.d span#d1a{
 		display: flex;	
@@ -257,6 +272,12 @@ body{
 	}
 
 	td#vd span#_vd{
+		display: flex;	
+		position: fixed;
+		padding-left: 20px;
+	}
+
+	td#vd span#_vd_ant{
 		display: flex;	
 		position: fixed;
 		padding-left: 20px;
@@ -505,12 +526,13 @@ td#vd span#vda{
 	border: 0;
 	border-radius: 4px;
 	padding: 8px;
-	background-color: blue;
+	background-color: rgba(74,79,247,.4);
 	margin: 8px;
 	cursor: pointer;
+	width: 44px;
 }
 .nav-button i{
-	color: white;
+	color: blue;
 }
 
 #flutua{

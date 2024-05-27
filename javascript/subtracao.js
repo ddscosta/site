@@ -449,6 +449,7 @@ function rgrp_d(){
    const vd = document.getElementById("vd");
    const _vd = document.getElementById("_vd");
    const _vu = document.getElementById("_vu");
+   const _vd_ant = document.getElementById("_vd_ant");
 
    const d1 = document.getElementById("d1");
    var d1i = parseInt(d1.innerText, 10);
@@ -483,6 +484,40 @@ function rgrp_d(){
      setTimeout(() => vd.style.animation = 
       "pisca 5s linear"
       , 5);
+
+   }else{
+      
+      //unidade precisa e dezena reagrupou e unidade não
+      if(uni_precisa() && prop_id == 'flex' & prop_iu != 'flex'){
+         
+         /*dezena reag pisca, unidade sobe, 1 dezena vai pra direita*/
+           d1a.style.animation = "none";
+           u1a.style.animation = "none";
+           vda.style.animation = "none";
+           vd.style.animation = "none";
+           _vd.style.animation = "none";
+           _vd_ant.style.animation = "none";
+           _vu.style.animation = "none";
+           setTimeout(() => u1a.style.animation = 
+            "sobe 3s linear, pisca 2s linear"
+            , 5);
+           setTimeout(() => vda.style.animation = 
+            "direita 1s ease-in-out 6"
+            , 5);
+           setTimeout(() => _vd.style.animation = 
+            "ultimo 5s linear"
+            , 5);
+           setTimeout(() => _vd_ant.style.animation = 
+            "ultimo_rev 5s linear forwards"
+            , 5);
+           setTimeout(() => _vu.style.animation = 
+            "ultimo 3s linear"
+            , 5);
+           setTimeout(() => vd.style.animation = 
+            "pisca 5s linear"
+            , 5);
+
+      }
 
    }
      
@@ -583,6 +618,7 @@ function rgrp_d(){
       var d1m = vd1i - 1;
 
       _vu.innerText = u1m+"";
+      _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
       _vd.innerText = d1m+"";
 
       if(ajuda){
@@ -614,6 +650,7 @@ function rgrp_d(){
          //var d1m = d1i - 1;
          
          _vu.innerText = u1m+"";
+         _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
          _vd.innerText = d1m+"";
 
          if(ajuda){
