@@ -521,24 +521,6 @@ function rgrp_d(){
 
    }
      
-
-
-   // btn_i1d.addEventListener("click", ()=> {
-   //   d1a.style.animation = "none";
-   //   u1a.style.animation = "none";
-   //   vda.style.animation = "none";
-   //   setTimeout(() => d1a.style.animation = 
-   //    "sobe 5s ease-in-out"
-   //    , 500);
-   //   setTimeout(() => u1a.style.animation = 
-   //    "sobe 5s ease-in-out"
-   //    , 500);
-   //   setTimeout(() => vda.style.animation = 
-   //    "direita 5s ease-in-out"
-   //    , 500);
-     
-   // });
-
    const u1 = document.getElementById("u1");
    var u1i = parseInt(u1.innerText, 10);
    //const d1 = document.getElementById("d1");
@@ -620,7 +602,7 @@ function rgrp_d(){
       _vu.innerText = u1m+"";
       _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
       _vd.innerText = d1m+"";
-
+      
       if(ajuda){
          ru.innerText = u1m+"";
          rd.innerText = d1m+"";
@@ -652,7 +634,7 @@ function rgrp_d(){
          _vu.innerText = u1m+"";
          _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
          _vd.innerText = d1m+"";
-
+         
          if(ajuda){
             ru.innerText = u1m+"";
             rd.innerText = d1m+"";
@@ -691,8 +673,10 @@ function rgrp_c(){
    const d1a = document.getElementById("d1a");
    const vca = document.getElementById("vca");
    const vc = document.getElementById("vc");
+   const vd = document.getElementById("vd");
    const _vc = document.getElementById("_vc");
    const _vd = document.getElementById("_vd");
+   const _vc_ant = document.getElementById("_vc_ant");
    
    const c1 = document.getElementById("c1");
    var c1i = parseInt(c1.innerText, 10);
@@ -728,6 +712,81 @@ function rgrp_c(){
       "pisca_c 5s linear"
       , 5);
 
+   }else{
+      
+      //dezena precisa e centena reagrupou e dezena não
+      if(dez_precisa() && prop_ic == 'flex' & prop_id != 'flex'){
+         
+         /*centena(vc) reag pisca, dezena(d1a) sobe, 
+         1 centena(vca) vai pra direita, 
+         a dezena que vai(_vc) aparece por ultimo, 
+         a centena que vai anterior(_vc_ant) aparece primeiro e some por ultimo*/
+           d1a.style.animation = "none";
+           vca.style.animation = "none";
+           vc.style.animation = "none";
+           _vc.style.animation = "none";
+           _vc_ant.style.animation = "none";
+           _vd.style.animation = "none";
+           setTimeout(() => d1a.style.animation = 
+            "sobe 3s linear, pisca 2s linear"
+            , 5);
+           setTimeout(() => vca.style.animation = 
+            "direita 1s ease-in-out 6"
+            , 5);
+           setTimeout(() => _vc.style.animation = 
+            "ultimo 5s linear"
+            , 5);
+           setTimeout(() => _vc_ant.style.animation = 
+            "ultimo_rev_c 5s linear forwards"
+            , 5);
+           setTimeout(() => _vd.style.animation = 
+            "ultimo 3s linear"
+            , 5);
+           setTimeout(() => vc.style.animation = 
+            "pisca 5s linear"
+            , 5);
+
+      }else{ 
+
+         //dezena precisa: dezena reagrupou(cortado) p/ unidade e centena não
+         if(dez_precisa() && prop_ic != 'flex' & prop_id == 'flex'){
+         
+            /*
+            fundo da dezena(vd) já reagrupada(cortada) pisca, 
+            a centena(c1a) sobe e pisca 
+            a centena que vai(_vc) aparece por ultimo,
+            1 centena(vca) vai pra direita, 
+            a dezena que vai anterior(_vd_ant) aparece primeiro e some por ultimo
+            a dezena que vai(_vd) aparece por ultimo
+            */
+           vd.style.animation = "none";
+           c1a.style.animation = "none";
+           _vc.style.animation = "none";
+           vca.style.animation = "none";
+           _vd_ant.style.animation = "none";
+           _vd.style.animation = "none";
+           setTimeout(() => vd.style.animation = 
+            "pisca 5s linear"
+            , 5);
+           setTimeout(() => c1a.style.animation = 
+            "sobe 3s linear, pisca 2s linear"
+            , 5);
+           setTimeout(() => _vc.style.animation = 
+            "ultimo 5s linear"
+            , 5);
+           setTimeout(() => vca.style.animation = 
+            "direita 1s ease-in-out 6"
+            , 5);
+           setTimeout(() => _vd_ant.style.animation = 
+            "ultimo_rev 5s linear forwards"
+            , 5);
+           setTimeout(() => _vd.style.animation = 
+            "ultimo 3s linear"
+            , 5);
+         }
+
+      }
+
    }
 
 
@@ -738,7 +797,7 @@ function rgrp_c(){
    //const imgd = document.getElementById("imgd");
    //const imgc = document.getElementById("imgc");
 
-   const vd = document.getElementById("vd");
+   //const vd = document.getElementById("vd");
    const vda = document.getElementById("vda");
 
    /*só faz sentido reagrupar milhar se a centena estiver precisando*/
@@ -814,9 +873,11 @@ function rgrp_c(){
       //var d1m = vd1i + 10;
       var c1m = vc1i - 1;
 
+      _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
       _vd.innerText = d1m+"";
+      _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
       _vc.innerText = c1m+"";
-
+      
       if(ajuda){
          rd.innerText = d1m+"";
          rc.innerText = c1m+"";
@@ -845,9 +906,11 @@ function rgrp_c(){
          //var d1m = d1i + 10;
          //var c1m = c1i - 1;
 
+         _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
          _vd.innerText = d1m+"";
+         _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
          _vc.innerText = c1m+"";
-
+         
          if(ajuda){
             rd.innerText = d1m+"";
             rc.innerText = c1m+"";
@@ -887,6 +950,7 @@ function rgrp_um(){
    const vm = document.getElementById("vm");
    const _vm = document.getElementById("_vm");
    const vma = document.getElementById("vma");
+   const vc = document.getElementById("vc");
    const _vc = document.getElementById("_vc");
    
    const m1 = document.getElementById("m1");
@@ -923,6 +987,45 @@ function rgrp_um(){
       "pisca_m 5s linear"
       , 5);
 
+   }else{
+
+      //centena precisa: centena reagrupou(cortado) p/ dezena e milhar não
+      if(cen_precisa() && prop_ic == 'flex' & prop_im != 'flex'){
+      
+         /*
+         fundo da centena(vc) já reagrupada(cortada) pisca, 
+         a milhar(m1a) sobe e pisca 
+         a milhar que vai(_vm) aparece por ultimo,
+         1 minhar(vma) vai pra direita, 
+         a centena que vai anterior(_vc_ant) aparece primeiro e some por ultimo
+         a centena que vai(_vc) aparece por ultimo
+         */
+        vc.style.animation = "none";
+        m1a.style.animation = "none";
+        _vm.style.animation = "none";
+        vma.style.animation = "none";
+        _vc_ant.style.animation = "none";
+        _vc.style.animation = "none";
+        setTimeout(() => vc.style.animation = 
+         "pisca 5s linear"
+         , 5);
+        setTimeout(() => m1a.style.animation = 
+         "sobe 3s linear, pisca 2s linear"
+         , 5);
+        setTimeout(() => _vm.style.animation = 
+         "ultimo 5s linear"
+         , 5);
+        setTimeout(() => vma.style.animation = 
+         "direita 1s ease-in-out 6"
+         , 5);
+        setTimeout(() => _vc_ant.style.animation = 
+         "ultimo_rev 5s linear forwards"
+         , 5);
+        setTimeout(() => _vc.style.animation = 
+         "ultimo 3s linear"
+         , 5);
+      }
+
    }
 
    const c1 = document.getElementById("c1");
@@ -932,7 +1035,7 @@ function rgrp_um(){
    //const imgc = document.getElementById("imgc");
    //const imgm = document.getElementById("imgm");
 
-   const vc = document.getElementById("vc");
+   //const vc = document.getElementById("vc");
   
    /*só faz sentido reagrupar milhar se a centena estiver precisando*/
    const c2 = document.getElementById("c2");
@@ -1006,9 +1109,10 @@ function rgrp_um(){
       //var c1m = vc1i + 10;
       var m1m = vm1i - 1;
 
+      _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
       _vc.innerText = c1m+"";
       _vm.innerText = m1m+"";
-
+      
       if(ajuda){
          rc.innerText = c1m+"";
          rm.innerText = m1m+"";
@@ -1039,9 +1143,10 @@ function rgrp_um(){
          //var c1m = c1i + 10;
          //var m1m = m1i - 1;
 
+         _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
          _vc.innerText = c1m+"";
          _vm.innerText = m1m+"";
-
+         
          if(ajuda){
             rc.innerText = c1m+"";
             rm.innerText = m1m+"";
