@@ -279,18 +279,19 @@ body{
 		transform: translate(0px, -60px);
 	}
 
-	td#vd{
+	/*desativando animação*/
+	/*td#vd{
 		animation-name: pisca;
 		animation-name: ultimo;
 		animation-duration: 5s;
 		animation-timing-function: linear;
-	}
+	}*/
 
-	td#vd span#_vd{
+	/*td#vd span#_vd{
 		display: flex;	
 		position: fixed;
 		padding-left: 20px;
-	}
+	}*/
 
 	td#vd span#_vd_ant{
 		display: flex;	
@@ -329,18 +330,19 @@ body{
 		transform: translate(0px, -60px);
 	}
 
-	td#vc{
+	/*desativando animação*/
+	/*td#vc{
 		animation-name: pisca_c;
 		animation-name: ultimo_c;
 		animation-duration: 5s;
 		animation-timing-function: linear;
-	}
+	}*/
 
-	td#vc span#_vc{
+	/*td#vc span#_vc{
 		display: flex;	
 		position: fixed;
 		padding-left: 20px;
-	}
+	}*/
 
 	td#vc span#_vc_ant{
 		display: flex;	
@@ -376,18 +378,19 @@ body{
 		transform: translate(0px, -60px);
 	}
 
-	td#vm{
+	/*desativando animação*/
+	/*td#vm{
 		animation-name: pisca_m;
 		animation-name: ultimo_m;
 		animation-duration: 5s;
 		animation-timing-function: linear;
-	}
+	}*/
 
-	td#vm span#_vm{
+	/*td#vm span#_vm{
 		display: flex;	
 		position: fixed;
 		padding-left: 20px;
-	}
+	}*/
 
 	td#vm span#_vm_ant{
 		display: flex;	
@@ -414,118 +417,6 @@ body{
 		animation-timing-function: ease-in-out;
 		animation-iteration-count: 1;
 	}
-
-
-
-
-
-
-
-/*está funcionando em algumas partes*/
-/*
-td.u span#u1a, td.d span#d1a{
-	//transform: translate(10px, 5px);
-	display: block;
-	animation-name: sobe;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-delay: 0.5s;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-}
-
-td#vd span#vda{
-	display: block;
-	animation-name: direita;
-	animation-duration: 2s;
-	animation-timing-function: ease-in-out;
-	animation-delay: 3.5s;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-}*/
-
-
-
-
-
-
-
-/*testando o acionamento por botao*/
-/*td.d span#d1a:active{
-	//transform: translate(10px, 5px);
-	display: block;
-	animation-name: sobe;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-delay: 0.5s;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*@keyframes sobedireita{
-	0%{
-		transform: translate(0px, 0px);
-	}
-	50%{
-		transform: translate(10px, -200px);
-	}
-	100%{
-		transform: translate(50px, -200px);
-		color: red;
-	}
-}*/
-
-/*button#mbtn:hover{
-	display: block;
-	animation-name: sobe;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-delay: 0.5s;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-}*/
-
-/*td.u span#u1a:active{
-
-}
-*/
-
-
-
-/*td.d span#d1{
-	display: block;
-	animation-name: sobedireita;
-	animation-duration: 4s;
-	animation-timing-function: ease-in-out;
-	animation-delay: 0.5s;
-	animation-iteration-count: 2;
-}*/
-
-
-
-/*tr td.u span#u1{
-	display: block;
-	transform: translate(10px, -200px);
-}*/
-
-/*tr td.d span#d1{
-	display: block;
-	transform: translate(0, -200px);
-}*/
-
 
 
 

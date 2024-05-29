@@ -9,7 +9,7 @@ var reagru = false;
 var puloss = true;
 var acertou = false;
 
-var animar = true;
+var animar = false; /*desativando animação*/
 
 function openNav(){
 
@@ -54,18 +54,19 @@ function reagrup(){
    
 }
 
-function animm(){
+/*desativando a animação*/
+// function animm(){
 
-   var marcado = document.getElementById('anim').checked;
+//    var marcado = document.getElementById('anim').checked;
 
-   if(marcado){
-      animar = true;
-   }else{
-      animar = false;
-   }
-   console.log('animar:'+animar);
+//    if(marcado){
+//       animar = true;
+//    }else{
+//       animar = false;
+//    }
+//    console.log('animar:'+animar);
 
-}
+// }
 
 function getn1(){
 
@@ -402,10 +403,12 @@ function limpa_anime(){
    c1a.style.animation = "none";
    m1a.style.animation = "none";
 
-   vda.style.animation = "none";
-   vca.style.animation = "none";
-   vma.style.animation = "none";
-
+   if(vda != null && vca != null && vma != null){
+      vda.style.animation = "none";
+      vca.style.animation = "none";
+      vma.style.animation = "none";
+   }
+   
 }
 
 function repetirn1(){
@@ -434,9 +437,10 @@ function zera_result(){
    document.getElementById("rm").innerText = 0;
 }
 
-setTimeout(rgrp_d(), 5000);
-setTimeout(rgrp_c(), 5000);
-setTimeout(rgrp_um(), 5000);
+/*provocou erro null do ParseInt*/
+// setTimeout(rgrp_d(), 5000);
+// setTimeout(rgrp_c(), 5000);
+// setTimeout(rgrp_um(), 5000);
 
 function rgrp_d(){
 
@@ -488,7 +492,7 @@ function rgrp_d(){
    }else{
       
       //unidade precisa e dezena reagrupou e unidade não
-      if(uni_precisa() && prop_id == 'flex' & prop_iu != 'flex'){
+      if(animar && uni_precisa() && prop_id == 'flex' & prop_iu != 'flex'){
          
          /*dezena reag pisca, unidade sobe, 1 dezena vai pra direita*/
            d1a.style.animation = "none";
@@ -599,8 +603,10 @@ function rgrp_d(){
       //var u1m = vu1i + 10;
       var d1m = vd1i - 1;
 
+      if(animar){
+         _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
+      }
       _vu.innerText = u1m+"";
-      _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
       _vd.innerText = d1m+"";
       
       if(ajuda){
@@ -631,8 +637,10 @@ function rgrp_d(){
          //var u1m = u1i + 10;
          //var d1m = d1i - 1;
          
+         if(animar){
+            _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
+         }
          _vu.innerText = u1m+"";
-         _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
          _vd.innerText = d1m+"";
          
          if(ajuda){
@@ -715,7 +723,7 @@ function rgrp_c(){
    }else{
       
       //dezena precisa e centena reagrupou e dezena não
-      if(dez_precisa() && prop_ic == 'flex' & prop_id != 'flex'){
+      if(animar && dez_precisa() && prop_ic == 'flex' & prop_id != 'flex'){
          
          /*centena(vc) reag pisca, dezena(d1a) sobe, 
          1 centena(vca) vai pra direita, 
@@ -749,7 +757,7 @@ function rgrp_c(){
       }else{ 
 
          //dezena precisa: dezena reagrupou(cortado) p/ unidade e centena não
-         if(dez_precisa() && prop_ic != 'flex' & prop_id == 'flex'){
+         if(animar && dez_precisa() && prop_ic != 'flex' & prop_id == 'flex'){
          
             /*
             fundo da dezena(vd) já reagrupada(cortada) pisca, 
@@ -873,9 +881,11 @@ function rgrp_c(){
       //var d1m = vd1i + 10;
       var c1m = vc1i - 1;
 
-      _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
+      if(animar){
+         _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
+         _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
+      }
       _vd.innerText = d1m+"";
-      _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
       _vc.innerText = c1m+"";
       
       if(ajuda){
@@ -905,10 +915,11 @@ function rgrp_c(){
 
          //var d1m = d1i + 10;
          //var c1m = c1i - 1;
-
-         _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
+         if(animar){
+            _vd_ant.innerText = _vd.innerText;/*salva uma copia para a animação*/
+            _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
+         }
          _vd.innerText = d1m+"";
-         _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
          _vc.innerText = c1m+"";
          
          if(ajuda){
@@ -960,7 +971,7 @@ function rgrp_um(){
    var prop_ic = imgc.style.display;
    var prop_im = imgm.style.display;
 
-   if(animar && cen_precisa() && (m1i > 0 && prop_im != 'flex') && (prop_ic != 'flex')){
+   if(animar && animar && cen_precisa() && (m1i > 0 && prop_im != 'flex') && (prop_ic != 'flex')){
 
      m1a.style.animation = "none";
      c1a.style.animation = "none";
@@ -990,7 +1001,7 @@ function rgrp_um(){
    }else{
 
       //centena precisa: centena reagrupou(cortado) p/ dezena e milhar não
-      if(cen_precisa() && prop_ic == 'flex' & prop_im != 'flex'){
+      if(animar && cen_precisa() && prop_ic == 'flex' & prop_im != 'flex'){
       
          /*
          fundo da centena(vc) já reagrupada(cortada) pisca, 
@@ -1109,7 +1120,9 @@ function rgrp_um(){
       //var c1m = vc1i + 10;
       var m1m = vm1i - 1;
 
-      _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
+      if(animar){
+         _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
+      }
       _vc.innerText = c1m+"";
       _vm.innerText = m1m+"";
       
@@ -1142,8 +1155,9 @@ function rgrp_um(){
 
          //var c1m = c1i + 10;
          //var m1m = m1i - 1;
-
-         _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
+         if(animar){
+            _vc_ant.innerText = _vc.innerText;/*salva uma copia para a animação*/
+         }
          _vc.innerText = c1m+"";
          _vm.innerText = m1m+"";
          
