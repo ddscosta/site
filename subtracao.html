@@ -64,13 +64,25 @@
 
 			<div class="animacao">
 
-				<input type="checkbox" name="anim" id="anim" onclick="animm();" checked>
+				<input type="checkbox" name="anim" id="anim" onclick="animm();">
 
 				<label for="anim">
 					<div class="tooltip"> Animação que Ensina Reagrupar.
 						<!-- <span class="tooltiptext">Mostra uma animação que ajuda o estudante a aprender o reagrupamento.</span> -->
 					</div>	
 				</label>
+
+			</div>
+
+			<hr>
+
+			<div class="nome">
+
+				<label for="nome">
+					Aluno	
+				</label>
+
+				<input type="text" name="nome" id="nome">
 
 			</div>
 
@@ -103,9 +115,9 @@
 							<span id="_vm"></span>
 
 							<!-- desativando a animação -->
-							<!-- <span id="_vm_ant"></span>
+							<span id="_vm_ant"></span>
 
-							<span id="vma">1</span> -->
+							<span id="vma">1</span>
 
 						</td>
 
@@ -114,9 +126,9 @@
 							<span id="_vc"></span>
 
 							<!-- desativando a animação -->
-							<!-- <span id="_vc_ant"></span>
+							<span id="_vc_ant"></span>
 
-							<span id="vca">1</span> -->
+							<span id="vca">1</span>
 
 						</td>
 
@@ -125,9 +137,9 @@
 							<span id="_vd"></span>
 
 							<!-- desativando a animação -->
-							<!-- <span id="_vd_ant"></span>
+							<span id="_vd_ant"></span>
 
-							<span id="vda">1</span> -->
+							<span id="vda">1</span>
 
 						</td>
 
@@ -351,15 +363,18 @@
 			</div>
 
 			<div id="pontuu">
-				<h1 id="pontu">Pontos: 0</h1>
 
-				<button id="btnreset" onclick="reset()">
+				<h1 id="pontu">Pontos: 0</h1>
+				
+				<button id="btnreset" onclick="resetar()">X</button>
+				
+				<!-- <button id="btnreset" onclick="reset()">
 				
 					<div class="tooltip">X
 						<span class="tooltiptext">Apagar pontos e Erros.</span>
 					</div>
 
-				</button>
+				</button> -->
 
 			</div>
 

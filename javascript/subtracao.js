@@ -55,18 +55,18 @@ function reagrup(){
 }
 
 /*desativando a animação*/
-// function animm(){
+function animm(){
 
-//    var marcado = document.getElementById('anim').checked;
+   var marcado = document.getElementById('anim').checked;
 
-//    if(marcado){
-//       animar = true;
-//    }else{
-//       animar = false;
-//    }
-//    console.log('animar:'+animar);
+   if(marcado){
+      animar = true;
+   }else{
+      animar = false;
+   }
+   console.log('animar:'+animar);
 
-// }
+}
 
 function getn1(){
 
@@ -437,10 +437,10 @@ function zera_result(){
    document.getElementById("rm").innerText = 0;
 }
 
-/*provocou erro null do ParseInt*/
+/*provocou erro null do ParseInt
 // setTimeout(rgrp_d(), 5000);
 // setTimeout(rgrp_c(), 5000);
-// setTimeout(rgrp_um(), 5000);
+// setTimeout(rgrp_um(), 5000);*/
 
 function rgrp_d(){
 
@@ -464,6 +464,7 @@ function rgrp_d(){
 
    if( animar && uni_precisa()  && (d1i > 0 && prop_id != 'flex') && (prop_iu != 'flex') ){
 
+     /*NÃO ALTERAR*/
      d1a.style.animation = "none";
      u1a.style.animation = "none";
      vda.style.animation = "none";
@@ -471,22 +472,22 @@ function rgrp_d(){
      _vd.style.animation = "none";
      _vu.style.animation = "none";
      setTimeout(() => d1a.style.animation = 
-      "sobe 5s linear, pisca 4s linear"
+      "sobe_d 5s linear, pisca_d 4s linear"
       , 5);
      setTimeout(() => u1a.style.animation = 
-      "sobe 3s linear, pisca 2s linear"
+      "sobe_u 3s linear, pisca_u 2s linear"
       , 5);
      setTimeout(() => vda.style.animation = 
-      "direita 1s ease-in-out 6"
+      "direita_d 1s ease-in-out 6"
       , 5);
      setTimeout(() => _vd.style.animation = 
-      "ultimo 5s linear"
+      "ultimo_desl_d 1s ease-in-out forwards, ultimo_d 5s linear"
       , 5);
      setTimeout(() => _vu.style.animation = 
-      "ultimo 3s linear"
+      "ultimo_u 3s linear"
       , 5);
      setTimeout(() => vd.style.animation = 
-      "pisca 5s linear"
+      "pisca_d 5s linear"
       , 5);
 
    }else{
@@ -503,22 +504,22 @@ function rgrp_d(){
            _vd_ant.style.animation = "none";
            _vu.style.animation = "none";
            setTimeout(() => u1a.style.animation = 
-            "sobe 3s linear, pisca 2s linear"
+            "sobe_u 3s linear, pisca_u 2s linear"
             , 5);
            setTimeout(() => vda.style.animation = 
-            "direita 1s ease-in-out 6"
+            "direita_d 1s ease-in-out 3"
             , 5);
            setTimeout(() => _vd.style.animation = 
-            "ultimo 5s linear"
+            "ultimo_d 3s linear"
             , 5);
            setTimeout(() => _vd_ant.style.animation = 
-            "ultimo_rev 5s linear forwards"
+            "ultimo_desl_d1 1s ease-in-out forwards, ultimo_rev_d 3s linear forwards"
             , 5);
            setTimeout(() => _vu.style.animation = 
-            "ultimo 3s linear"
+            "ultimo_u 3s linear"
             , 5);
            setTimeout(() => vd.style.animation = 
-            "pisca 5s linear"
+            "pisca_d 3s linear"
             , 5);
 
       }
@@ -695,6 +696,7 @@ function rgrp_c(){
 
    if(animar && dez_precisa() && (c1i > 0 && prop_ic != 'flex') && (prop_id != 'flex') ){
 
+     /*NÃO ALTERAR*/
      c1a.style.animation = "none";
      d1a.style.animation = "none";
      vca.style.animation = "none";
@@ -705,16 +707,16 @@ function rgrp_c(){
       "sobe_c 5s linear, pisca_c 4s linear"
       , 5);
      setTimeout(() => d1a.style.animation = 
-      "sobe_c 3s linear, pisca_c 2s linear"
+      "sobe_d 3s linear, pisca_c 2s linear"
       , 5);
      setTimeout(() => vca.style.animation = 
       "direita_c 1s ease-in-out 6"
       , 5);
      setTimeout(() => _vc.style.animation = 
-      "ultimo_c 5s linear"
-      , 5);
+      "ultimo_desl_c 1s ease-in-out forwards, ultimo_c 5s linear forwards"
+         , 5);
      setTimeout(() => _vd.style.animation = 
-      "ultimo_c 3s linear"
+      "ultimo_d 3s linear"
       , 5);
      setTimeout(() => vc.style.animation = 
       "pisca_c 5s linear"
@@ -729,6 +731,7 @@ function rgrp_c(){
          1 centena(vca) vai pra direita, 
          a dezena que vai(_vc) aparece por ultimo, 
          a centena que vai anterior(_vc_ant) aparece primeiro e some por ultimo*/
+           /*NÃO ALTERAR*/
            d1a.style.animation = "none";
            vca.style.animation = "none";
            vc.style.animation = "none";
@@ -736,22 +739,22 @@ function rgrp_c(){
            _vc_ant.style.animation = "none";
            _vd.style.animation = "none";
            setTimeout(() => d1a.style.animation = 
-            "sobe 3s linear, pisca 2s linear"
+            "sobe_d 3s linear, pisca_d 2s linear"
             , 5);
            setTimeout(() => vca.style.animation = 
-            "direita 1s ease-in-out 6"
+            "direita_c 1s ease-in-out 3"
             , 5);
            setTimeout(() => _vc.style.animation = 
-            "ultimo 5s linear"
+            "ultimo_c 3s linear"
             , 5);
            setTimeout(() => _vc_ant.style.animation = 
-            "ultimo_rev_c 5s linear forwards"
+            "ultimo_rev_c 3s linear forwards"
             , 5);
            setTimeout(() => _vd.style.animation = 
-            "ultimo 3s linear"
+            "ultimo_d 3s linear"
             , 5);
            setTimeout(() => vc.style.animation = 
-            "pisca 5s linear"
+            "pisca_c 3s linear"
             , 5);
 
       }else{ 
@@ -767,29 +770,31 @@ function rgrp_c(){
             a dezena que vai anterior(_vd_ant) aparece primeiro e some por ultimo
             a dezena que vai(_vd) aparece por ultimo
             */
+           /*NÃO ALTERAR*/
+           vc.style.animation = "none";
            vd.style.animation = "none";
            c1a.style.animation = "none";
            _vc.style.animation = "none";
            vca.style.animation = "none";
            _vd_ant.style.animation = "none";
            _vd.style.animation = "none";
-           setTimeout(() => vd.style.animation = 
-            "pisca 5s linear"
-            , 5);
            setTimeout(() => c1a.style.animation = 
-            "sobe 3s linear, pisca 2s linear"
+            "sobe_c 3s linear, pisca_c 2s linear"
+            , 5);
+           setTimeout(() => vc.style.animation = 
+            "pisca_c 3s linear"
             , 5);
            setTimeout(() => _vc.style.animation = 
-            "ultimo 5s linear"
+            "ultimo_desl_c2 1s ease-in-out forwards, ultimo_c 3s linear"
             , 5);
            setTimeout(() => vca.style.animation = 
-            "direita 1s ease-in-out 6"
+            "direita_c2 1s ease-in-out 3"
             , 5);
            setTimeout(() => _vd_ant.style.animation = 
-            "ultimo_rev 5s linear forwards"
+            "ultimo_desl_d 1s ease-in-out forwards, ultimo_rev_d 3s linear forwards"
             , 5);
            setTimeout(() => _vd.style.animation = 
-            "ultimo 3s linear"
+            "ultimo_d 3s linear"
             , 5);
          }
 
@@ -973,6 +978,7 @@ function rgrp_um(){
 
    if(animar && animar && cen_precisa() && (m1i > 0 && prop_im != 'flex') && (prop_ic != 'flex')){
 
+     /*NÃO ALTERAR*/
      m1a.style.animation = "none";
      c1a.style.animation = "none";
      vm.style.animation = "none";
@@ -983,7 +989,7 @@ function rgrp_um(){
       "sobe_m 5s linear, pisca_m 4s linear"
       , 5);
      setTimeout(() => c1a.style.animation = 
-      "sobe_m 3s linear, pisca_m 2s linear"
+      "sobe_c 3s linear, pisca_m 2s linear"
       , 5);
      setTimeout(() => vma.style.animation = 
       "direita_m 1s ease-in-out 6"
@@ -992,7 +998,7 @@ function rgrp_um(){
       "ultimo_m 5s linear"
       , 5);
      setTimeout(() => _vc.style.animation = 
-      "ultimo_m 3s linear"
+      "ultimo_c 3s linear"
       , 5);
      setTimeout(() => vm.style.animation = 
       "pisca_m 5s linear"
@@ -1011,29 +1017,30 @@ function rgrp_um(){
          a centena que vai anterior(_vc_ant) aparece primeiro e some por ultimo
          a centena que vai(_vc) aparece por ultimo
          */
+        /*NÃO ALTERAR*/
         vc.style.animation = "none";
         m1a.style.animation = "none";
         _vm.style.animation = "none";
         vma.style.animation = "none";
         _vc_ant.style.animation = "none";
         _vc.style.animation = "none";
-        setTimeout(() => vc.style.animation = 
-         "pisca 5s linear"
-         , 5);
         setTimeout(() => m1a.style.animation = 
-         "sobe 3s linear, pisca 2s linear"
+         "sobe_m 3s linear, pisca_m 2s linear"
+         , 5);
+        setTimeout(() => vc.style.animation = 
+         "pisca_c 2s linear"
          , 5);
         setTimeout(() => _vm.style.animation = 
-         "ultimo 5s linear"
+         "ultimo_m 3s linear"
          , 5);
         setTimeout(() => vma.style.animation = 
-         "direita 1s ease-in-out 6"
+         "direita_m 1s ease-in-out 3"
          , 5);
         setTimeout(() => _vc_ant.style.animation = 
-         "ultimo_rev 5s linear forwards"
+         "ultimo_desl_c 1s ease-in-out forwards, ultimo_rev_c 3s linear forwards"
          , 5);
         setTimeout(() => _vc.style.animation = 
-         "ultimo 3s linear"
+         "ultimo_c 3s linear"
          , 5);
       }
 
@@ -1263,17 +1270,34 @@ function cen_precisa(){
 
 }
 
+function resetar(){
+   console.log('Apagando os dados');
 
-function reset(){
+   if ( confirm('Apagar Pontos Erros e Pulos?') ) {
 
-   if (confirm('Apagar Pontos Erros e Pulos?')) {
       localStorage.setItem("pontos_sub", 0);
       localStorage.setItem("erros_sub", 0);
       localStorage.setItem("pulos_sub", 0);
       verificaStorage();
+
    }
 
 }
+
+// function reset(){
+   
+//    console.log('Apagar todos os dados');
+
+//    if (confirm('Apagar Pontos Erros e Pulos?')) {
+
+//       localStorage.setItem("pontos_sub", 0);
+//       localStorage.setItem("erros_sub", 0);
+//       localStorage.setItem("pulos_sub", 0);
+//       verificaStorage();
+
+//    }
+
+// }
 
 function limpa_cores(){
    document.getElementById("vu").style.backgroundColor = cor_normal;
@@ -1282,19 +1306,6 @@ function limpa_cores(){
    document.getElementById("vm").style.backgroundColor = cor_normal;
 }
 
-/*
-function limpa_cor_vai_res() {
-   
-   document.getElementById("vd").style.backgroundColor = cor_normal;
-   document.getElementById("vc").style.backgroundColor = cor_normal;
-   document.getElementById("vm").style.backgroundColor = cor_normal;
-
-   document.getElementById("ru").style.backgroundColor = cor_normal;
-   document.getElementById("rd").style.backgroundColor = cor_normal;
-   document.getElementById("rc").style.backgroundColor = cor_normal;
-   document.getElementById("rm").style.backgroundColor = cor_normal;
-
-}*/
 
 function exibir(){
 
