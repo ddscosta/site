@@ -2054,6 +2054,12 @@ function prepara_impr(){
 
    console.log("chave: " + chave + " >> valor: " + valor); 
 
+   if(chave == 'del'){
+      if(confirm('Apagar histórico de impressão?')){
+         limpar_hist();
+      }
+   }
+
    var erros = document.getElementById('erros');
    var pulos = document.getElementById('pulos');
    var acertos = document.getElementById('acertos');
