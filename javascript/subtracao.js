@@ -25,7 +25,6 @@ function openNav(){
     
 }
 
-
 function ajudaa(){
 
    var marcado = document.getElementById('ajuda').checked;
@@ -99,6 +98,48 @@ function getresult(){
 
    return rm.innerText+rc.innerText+rd.innerText+ru.innerText+"";
 
+}
+
+function get_num1_int(){
+
+   var num1i = 0;
+
+   var num1 = getn1();
+   
+   if(num1 != ''){
+      num1i = parseInt(num1, 10);
+   }
+
+   return num1i;
+ 
+}
+
+function get_num2_int(){
+
+   var num2i = 0;
+
+   var num2 = getn2();
+
+   if(num2 != ''){
+      num2i = parseInt(num2, 10);
+   }
+
+   return num2i;
+ 
+}
+
+function get_numr_int(){
+
+   var numri = 0;
+
+   var numr = getresult();
+   
+   if(numr != ''){
+      numri = parseInt(numr, 10);
+   }
+
+   return numri;
+ 
 }
 
 function verificar(){
@@ -180,40 +221,73 @@ function info(){
    triste.style.display = 'none';
 }
 
+function get_obj_conta_sub(){
+
+   var num1 = get_num1_int();
+   var num2 = get_num2_int();
+   var numr = get_numr_int();
+
+   var obj_conta = { num1: num1, num2: num2, numr: numr };
+
+   return obj_conta;
+
+}
+
+var arr_obj_err = [];
+var arr_obj_acer = [];
+var arr_obj_pul = [];
+
 function pontuacao(tipo){
    
-   var pon = 0;
-   var pont = localStorage.getItem("pontos_sub");
-   var ponti = parseInt(pont, 10);
-
-   var num_err = 0;
-   var loc_err = localStorage.getItem("erros_sub");
-   var loc_erri = parseInt(loc_err, 10);
-
-   var num_pul = 0;
-   var loc_pul = localStorage.getItem("pulos_sub");
-   var loc_puli = parseInt(loc_pul, 10);
-   
+   /*resgatando os dados da sessão*/
 
    //tipo:mais, menos, zera, null;
 
+   var pon = 0;
+   var num_err = 0;
+   var num_pul = 0;
+   var txt_acertos = '';
+   var txt_erros = '';
+   var txt_pulos = '';
+
+   var pont = localStorage.getItem("pontos_sub");
+   var loc_err = localStorage.getItem("erros_sub");
+   var loc_pul = localStorage.getItem("pulos_sub");
+
+   var ponti = parseInt(pont, 10);
+   var loc_erri = parseInt(loc_err, 10);
+   var loc_puli = parseInt(loc_pul, 10);
+
    var pontt = document.getElementById("pontu");
-
    var input_err = document.getElementById("erros");
-
    var input_pul = document.getElementById("pulos");
-
-   //var pontarr = pont.innerText.split(' ');
-
-   //var ponti = parseInt(pontarr[1], 10);
-   //alert('é igual? ' + (ponti == 'NaN') );
-
-   //alert('é igual? ' + (Number.isNaN(ponti)) );
-
+   
    console.log('ponti1:' + ponti);
+
+
+   if(JSON.parse(localStorage.getItem("arr_obj_err_sub")) != null){
+       arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_sub"));
+   }
+   if(JSON.parse(localStorage.getItem("arr_obj_acer_sub")) != null){
+       arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_sub"));
+   }
+   if(JSON.parse(localStorage.getItem("arr_obj_pul_sub")) != null){
+       arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_sub"));
+   }
+
+   // console.log('arr_txt_err secao: ' + arr_obj_err);
+   // console.log('arr_txt_acer secao: ' + arr_obj_acer);
+   // console.log('arr_txt_pul secao: ' + arr_obj_pul);
+
+   var obj_conta = get_obj_conta_sub();
+
+   console.log('obj_conta: ' + obj_conta);
 
    /*TIPO QUE GANHA PONTOS*/
    if(tipo == 'mais'){
+      
+      arr_obj_acer.push(obj_conta);
+      //arr_txt_acer.push(txt_exibe+'');
 
       if(Number.isNaN(ponti)){
          ponti = 1;
@@ -227,6 +301,9 @@ function pontuacao(tipo){
    /*TIPO QUE PERDE PONTOS*/
    if(tipo == 'menos'){
       
+      arr_obj_err.push(obj_conta);
+      //arr_txt_err.push(txt_exibe+'');
+
       /*INICIALIZA PONTOS COM ZERO*/
       if(Number.isNaN(ponti)){
          ponti = 0;
@@ -244,6 +321,9 @@ function pontuacao(tipo){
    /*registra os pulos*/
    if(tipo == 'menos_pulo'){
       
+      arr_obj_pul.push(obj_conta);
+      //arr_txt_pul.push(txt_exibe+'');
+
       if(Number.isNaN(loc_puli)){
          loc_puli = 1;
       }else{
@@ -264,24 +344,11 @@ function pontuacao(tipo){
    
    pontt.innerText = "Pontos: "+ponti;
 
-   localStorage.setItem("pontos_sub", ponti);
-
-   console.log('ponti2:' + ponti);
-
-   //const cat = localStorage.getItem("myCat");
-
-   //localStorage.removeItem("myCat");
-
    if(Number.isNaN(loc_erri) ){
       loc_erri = 0;
    }
 
    input_err.innerText = loc_erri;
-
-   localStorage.setItem("erros_sub", loc_erri);
-
-   console.log('loc_erri:' + loc_erri);
-
 
    if(Number.isNaN(loc_puli) ){
       loc_puli = 0;
@@ -289,10 +356,36 @@ function pontuacao(tipo){
 
    input_pul.innerText = loc_puli;
 
-   localStorage.setItem("pulos_sub", loc_puli);
-
+   console.log('ponti2:' + ponti);
+   console.log('loc_erri:' + loc_erri);
    console.log('loc_puli:' + loc_puli);
 
+   localStorage.setItem("pontos_sub", ponti);
+   localStorage.setItem("erros_sub", loc_erri);
+   localStorage.setItem("pulos_sub", loc_puli);
+
+   localStorage.setItem("arr_obj_err_sub", JSON.stringify(arr_obj_err));
+   localStorage.setItem("arr_obj_acer_sub", JSON.stringify(arr_obj_acer));
+   localStorage.setItem("arr_obj_pul_sub", JSON.stringify(arr_obj_pul));
+
+   imprimir_hist();
+
+   // console.log('arr_txt_err salvo: ' + arr_obj_err);
+   // console.log('arr_txt_acer salvo: ' + arr_obj_acer);
+   // console.log('arr_txt_pul salvo: ' + arr_obj_pul);
+
+   // if (localStorage.hasOwnProperty("arr_obj_err_sub")) {
+      
+   //    JSON.parse( localStorage.getItem("arr_obj_err_sub") ).forEach(objconta => {
+      
+   //       console.log('conta: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+   //    }); 
+
+   // }
+
+   //console.log(arr_txt_acer);
+   //console.log(arr_txt_pul);
 
 }
 
@@ -1199,7 +1292,6 @@ function rgrp_um(){
 
 }
 
-
 function uni_precisa(){
    const vu = document.getElementById("vu");
    const _vu = document.getElementById("_vu");
@@ -1284,6 +1376,58 @@ function resetar(){
 
 }
 
+function limpar_hist(){
+
+   localStorage.setItem("arr_obj_err_sub", null);
+   localStorage.setItem("arr_obj_acer_sub", null);
+   localStorage.setItem("arr_obj_pul_sub", null);
+
+}
+
+function imprimir_hist(){
+
+   // if(JSON.parse(localStorage.getItem("arr_obj_err_sub")) != null){
+   //     arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_sub"));
+   // }
+   // if(JSON.parse(localStorage.getItem("arr_obj_acer_sub")) != null){
+   //     arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_sub"));
+   // }
+   // if(JSON.parse(localStorage.getItem("arr_obj_pul_sub")) != null){
+   //     arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_sub"));
+   // }
+
+   if (localStorage.hasOwnProperty("arr_obj_err_sub")) {
+      
+      JSON.parse( localStorage.getItem("arr_obj_err_sub") ).forEach(objconta => {
+      
+         console.log('Erro: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+      }); 
+
+   }
+
+   if (localStorage.hasOwnProperty("arr_obj_acer_sub")) {
+      
+      JSON.parse( localStorage.getItem("arr_obj_acer_sub") ).forEach(objconta => {
+      
+         console.log('Acerto: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+      }); 
+
+   }
+
+   if (localStorage.hasOwnProperty("arr_obj_pul_sub")) {
+      
+      JSON.parse( localStorage.getItem("arr_obj_pul_sub") ).forEach(objconta => {
+      
+         console.log('Pulo: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+      }); 
+
+   }
+
+}
+
 // function reset(){
    
 //    console.log('Apagar todos os dados');
@@ -1305,7 +1449,6 @@ function limpa_cores(){
    document.getElementById("vc").style.backgroundColor = cor_normal;
    document.getElementById("vm").style.backgroundColor = cor_normal;
 }
-
 
 function exibir(){
 
@@ -1813,7 +1956,6 @@ function rumais() {
    
 }
 
-
 function rumenos() {
 
    const ru = document.getElementById("ru");
@@ -1837,7 +1979,6 @@ function rdmais() {
    exibir();
 
 }
-
 
 function rdmenos() {
 
@@ -1897,4 +2038,93 @@ function rmmenos() {
    
    exibir();
 
+}
+
+function prepara_impr(){
+
+   var query = location.search.slice(1);
+   var partes = query.split('&');
+   var chave = '';
+   var valor = '';
+   partes.forEach(function (parte) {
+       var chaveValor = parte.split('=');
+       chave = chaveValor[0];
+       valor = chaveValor[1];
+   });
+
+   console.log("chave: " + chave + " >> valor: " + valor); 
+
+   var erros = document.getElementById('erros');
+   var pulos = document.getElementById('pulos');
+   var acertos = document.getElementById('acertos');
+
+   var html_err = '';
+   var html_ace = '';
+   var html_pul = '';
+
+   if (localStorage.hasOwnProperty("arr_obj_err_sub")) {
+      
+      JSON.parse( localStorage.getItem("arr_obj_err_sub") ).forEach(objconta => {
+         
+         /*não será impresso os valores*/
+         if(chave=='his' && valor=='1'){
+
+            html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+         
+         }else{
+
+            html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
+         
+         }
+         console.log('Erro: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+      }); 
+
+      erros.innerHTML = html_err;
+
+   }
+
+   if (localStorage.hasOwnProperty("arr_obj_acer_sub")) {
+      
+      JSON.parse( localStorage.getItem("arr_obj_acer_sub") ).forEach(objconta => {
+         
+         /*não será impresso os valores*/
+         if(chave=='his' && valor=='1'){
+
+            html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+         
+         }else{
+
+            html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
+            
+         }
+         console.log('Acerto: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+      }); 
+
+      acertos.innerHTML = html_ace;
+
+   }
+
+   if (localStorage.hasOwnProperty("arr_obj_pul_sub")) {
+      
+      JSON.parse( localStorage.getItem("arr_obj_pul_sub") ).forEach(objconta => {
+      
+         /*não será impresso os valores*/
+         if(chave=='his' && valor=='1'){
+
+            html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+         
+         }else{
+         
+            html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
+
+         }
+         console.log('Pulo: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+      }); 
+
+      pulos.innerHTML = html_pul;
+
+   }
 }

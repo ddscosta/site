@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/subtracao.css">
+
+	<script src="javascript/subtracao.js"></script>
+
+	<script src="javascript/relogio.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<title>Histórico das Subtrações</title>
+
+	<style type="text/css">
+		body{
+			transform: scale(1.0);
+		}
+		.menu{
+			display: block;
+			position: absolute;
+			top: 0px;
+		}
+		.menu h1{
+			display: block;
+			position: relative;
+			left: 90px;
+		}
+		.principal_impr{
+			display: block;
+			position: relative;
+			top: 80px;
+		}
+
+		#flutua{
+			width: 600px;
+		    height: 100px;
+		    margin-top: 0px; /* altura que está do topo */
+		    margin-left: 70px;
+		    position: fixed;
+		    z-index: 1000;
+		    background-color: #83aca0;
+		    font-size: 35px;
+		    padding: 10px;
+		    display: none;
+		}
+		.bloco{
+			position: relative;
+			display: block;
+		}
+
+		.bloco .titulo{
+			background-color: #bbbbbb;
+			padding: 5px;
+			margin: 0px;
+		}
+
+		.bloco .contas{
+			position: relative;
+		}
+
+		.bloco .contas .conta{
+			margin: 10px;
+			padding: 10px;
+			width: 70px;
+			height: 100px;
+			background-color: #cccccc;
+			font-size: 20pt;
+			display: inline-block;
+			text-align: right;
+			position: relative;
+			margin: 3px;
+		}
+
+		.bloco .contas .conta span{
+			padding: 5px;
+			padding-right: 0px;
+		}
+
+		.bloco .contas .conta hr{
+			margin: 0px;
+		}
+
+		.sinal{
+			position: absolute;
+			right: 70px;
+		}
+
+	</style>
+
+</head>
+<body onload="prepara_impr()">
+
+	<div class="menu">
+
+		<button class="nav-button" onclick="openNav()">
+			<i class="fa-solid fa-bars fa-2x"></i>
+		</button>
+		
+		<h1>HISTÓRICO DAS SUBTRAÇÕES</h1>
+
+		<div id="flutua">
+				
+				<a href="subtracao.html">HOME</a>
+
+		</div>
+	
+	</div>
+
+	<div class="principal_impr">
+
+		<div class="bloco">
+		
+			<h2 class="titulo">ERROS</h2>
+
+			<div class="contas" id="erros">
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">-</span>
+					<hr>
+					<span>4567</span>
+				</div>
+
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span></span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">-</span>
+					<hr>
+					<span>4567</span>
+				</div>
+
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>14567</span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+
+			</div>
+		
+		</div>
+
+		<div class="bloco">
+		
+			<h2 class="titulo">PULOS</h2>
+
+			<div class="contas" id="pulos">
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+			</div>
+		
+		</div>
+
+		<div class="bloco">
+		
+			<h2 class="titulo">ACERTOS</h2>
+
+			<div class="contas" id="acertos">
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">+</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+				<div class="conta">
+					<span>1234</span>
+					<span>456</span>
+					<span class="sinal">-</span>
+					<hr>
+					<span>4567</span>
+				</div>
+				
+			</div>
+		
+		</div>
+
+		<!-- <h2>ERROS</h2>
+
+		<div id="pulos">
+			
+		</div>
+		
+		<h2>PULOS</h2>
+
+		<div id="acertos">
+			
+		</div> -->
+
+	</div>
+
+
+</body>
+</html>
