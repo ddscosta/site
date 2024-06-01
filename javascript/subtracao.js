@@ -14,13 +14,96 @@ var animar = false; /*desativando animação*/
 function openNav(){
 
    const flutua = document.getElementById("flutua");
-   
-   console.log('flt:'+flutua.style.display);
 
-   if(flutua.style.display == 'none'){
-      flutua.style.display = 'block';
+   var nome_aln = document.getElementById("nome_aln");
+
+   var nome_aluno_sub = '';
+   var nome_aluno_sec_sub = '';
+   
+   /*pega o nome do input*/
+   if(nome_aln != null){
+      
+      nome_aluno_sub = nome_aln.value;     
+      
+      console.log('nome no input: ' + nome_aluno_sub);
    }else{
+   
+      console.log('nome null no input');
+   
+   }
+
+   console.log('prop. flutua:'+flutua.style.display);
+
+   /*mostra o menu*/
+   if(flutua.style.display == 'none' || flutua.style.display == ''){
+
+      flutua.style.display = 'block';
+      
+      /*recupera nome da sessao*/
+      if(localStorage.getItem("nome_aluno_sub") != null){
+      
+         nome_aluno_sec_sub = localStorage.getItem("nome_aluno_sub");
+         
+         document.getElementById("nome_aln").value = nome_aluno_sec_sub;
+
+         /*antes de inserir o nome da secao no input verifica se sao iguais*/
+         // if( nome_aluno_sec_sub == nome_aluno_sub ){
+         
+         //    document.getElementById("nome_aln").value = nome_aluno_sec_sub;
+         
+         // }else{
+            
+         //    if ( confirm('Apagar Histórico de ' + nome_aluno_sec_sub + '?') ) {
+         //       limpar_hist();
+         //       document.getElementById("nome_aln").value = nome_aluno_sec_sub;
+         //    }
+
+         // }
+         
+         console.log('nome recuperado da secao: ' + nome_aluno_sec_sub);
+      
+      }else{
+         
+         console.log('nome vazio na secao');
+      
+      }
+
+   /*esconde o menu*/  
+   }else{
+      
       flutua.style.display = 'none';
+
+      if(nome_aluno_sub != ''){
+
+         if(localStorage.getItem("nome_aluno_sub") != null){
+         
+            nome_aluno_sec_sub = localStorage.getItem("nome_aluno_sub");
+         
+         }
+
+         /*antes de inserir o nome do input na secao verifica se sao iguais*/
+         if( nome_aluno_sec_sub == nome_aluno_sub ){
+         
+            /*nomes iguais não há necessidade de escluir dados*/
+           
+         }else{
+            
+            /*se nao apagar os dados, eles são incorporados ao novo nome*/
+            if ( confirm('Apagar Histórico de ' + nome_aluno_sec_sub + '?') ) {
+               limpar_hist();
+            }
+
+         }
+
+         /*apagando ou nao os dados do historico, o nome vai mudar*/
+         localStorage.setItem("nome_aluno_sub", nome_aluno_sub);
+
+         console.log('salvou nome na secao: ' + nome_aluno_sub); 
+
+      }else{
+         console.log('NAO salvou nome na secao'); 
+      }
+      
    }
     
 }
@@ -261,7 +344,7 @@ function pontuacao(tipo){
    var pontt = document.getElementById("pontu");
    var input_err = document.getElementById("erros");
    var input_pul = document.getElementById("pulos");
-   
+
    console.log('ponti1:' + ponti);
 
 
@@ -368,24 +451,11 @@ function pontuacao(tipo){
    localStorage.setItem("arr_obj_acer_sub", JSON.stringify(arr_obj_acer));
    localStorage.setItem("arr_obj_pul_sub", JSON.stringify(arr_obj_pul));
 
+   var tempo_sub = document.getElementById("relg").innerText;
+
+   localStorage.setItem("tempo_sub", tempo_sub);
+   
    imprimir_hist();
-
-   // console.log('arr_txt_err salvo: ' + arr_obj_err);
-   // console.log('arr_txt_acer salvo: ' + arr_obj_acer);
-   // console.log('arr_txt_pul salvo: ' + arr_obj_pul);
-
-   // if (localStorage.hasOwnProperty("arr_obj_err_sub")) {
-      
-   //    JSON.parse( localStorage.getItem("arr_obj_err_sub") ).forEach(objconta => {
-      
-   //       console.log('conta: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
-
-   //    }); 
-
-   // }
-
-   //console.log(arr_txt_acer);
-   //console.log(arr_txt_pul);
 
 }
 
@@ -457,6 +527,7 @@ function memoriza_sub(){
 
 function aoiniciar(){
 
+   /*escondendo o menu flutuante*/
    const flutua = document.getElementById("flutua");
    flutua.style.display = 'none';
 
@@ -1428,21 +1499,6 @@ function imprimir_hist(){
 
 }
 
-// function reset(){
-   
-//    console.log('Apagar todos os dados');
-
-//    if (confirm('Apagar Pontos Erros e Pulos?')) {
-
-//       localStorage.setItem("pontos_sub", 0);
-//       localStorage.setItem("erros_sub", 0);
-//       localStorage.setItem("pulos_sub", 0);
-//       verificaStorage();
-
-//    }
-
-// }
-
 function limpa_cores(){
    document.getElementById("vu").style.backgroundColor = cor_normal;
    document.getElementById("vd").style.backgroundColor = cor_normal;
@@ -2042,6 +2098,26 @@ function rmmenos() {
 
 function prepara_impr(){
 
+   if(localStorage.getItem("nome_aluno_sub") != null){
+      
+      nome_aluno_sub = localStorage.getItem("nome_aluno_sub");
+   
+      document.getElementById("nome_aln").value = nome_aluno_sub;
+   
+      console.log('nome recuperado da secao: ' + nome_aluno_sub);
+   
+   }
+
+   if(localStorage.getItem("tempo_sub") != null){
+      
+      tempo_sub = localStorage.getItem("tempo_sub");
+   
+      document.getElementById("tempo_sub").innerText = tempo_sub;
+   
+      console.log('tempo recuperado da secao: ' + tempo_sub);
+   
+   }
+    
    var query = location.search.slice(1);
    var partes = query.split('&');
    var chave = '';
@@ -2070,21 +2146,27 @@ function prepara_impr(){
 
    if (localStorage.hasOwnProperty("arr_obj_err_sub")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_err_sub") ).forEach(objconta => {
-         
-         /*não será impresso os valores*/
-         if(chave=='his' && valor=='1'){
+      var parse = JSON.parse( localStorage.getItem("arr_obj_err_sub") );
 
-            html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
-         
-         }else{
+      if(parse != null){
+   
+         parse.forEach(objconta => {
+            
+            /*não será impresso os valores*/
+            if(chave=='his' && valor=='1'){
 
-            html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
-         
-         }
-         console.log('Erro: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+               html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+            
+            }else{
 
-      }); 
+               html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
+            
+            }
+            console.log('Erro: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+         }); 
+
+      }
 
       erros.innerHTML = html_err;
 
@@ -2092,21 +2174,27 @@ function prepara_impr(){
 
    if (localStorage.hasOwnProperty("arr_obj_acer_sub")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_acer_sub") ).forEach(objconta => {
-         
-         /*não será impresso os valores*/
-         if(chave=='his' && valor=='1'){
+      var parse = JSON.parse( localStorage.getItem("arr_obj_acer_sub") );
 
-            html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
-         
-         }else{
+      if(parse != null){
 
-            html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
+         parse.forEach(objconta => {
             
-         }
-         console.log('Acerto: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+            /*não será impresso os valores*/
+            if(chave=='his' && valor=='1'){
 
-      }); 
+               html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+            
+            }else{
+
+               html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
+               
+            }
+            console.log('Acerto: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+         }); 
+
+      }
 
       acertos.innerHTML = html_ace;
 
@@ -2114,21 +2202,27 @@ function prepara_impr(){
 
    if (localStorage.hasOwnProperty("arr_obj_pul_sub")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_pul_sub") ).forEach(objconta => {
-      
-         /*não será impresso os valores*/
-         if(chave=='his' && valor=='1'){
+      var parse = JSON.parse( localStorage.getItem("arr_obj_pul_sub") );
 
-            html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+      if(parse != null){
+
+         parse.forEach(objconta => {
          
-         }else{
-         
-            html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
+            /*não será impresso os valores*/
+            if(chave=='his' && valor=='1'){
 
-         }
-         console.log('Pulo: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+               html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+            
+            }else{
+            
+               html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
 
-      }); 
+            }
+            console.log('Pulo: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+
+         });
+
+      } 
 
       pulos.innerHTML = html_pul;
 

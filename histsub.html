@@ -27,11 +27,12 @@
 			display: block;
 			position: relative;
 			left: 90px;
+			margin-top: 10px;
 		}
 		.principal_impr{
 			display: block;
 			position: relative;
-			top: 80px;
+			top: 90px;
 		}
 
 		#flutua{
@@ -52,9 +53,11 @@
 		}
 
 		.bloco .titulo{
-			background-color: #bbbbbb;
+			/*background-color: #bbbbbb;*/
+			border-bottom-style: solid;
 			padding: 5px;
 			margin: 0px;
+			padding-bottom: 0px;
 		}
 
 		.bloco .contas{
@@ -87,6 +90,21 @@
 			position: absolute;
 			right: 70px;
 		}
+		.menu #nome_aln{
+			top: 45px;
+			position: absolute;
+			left: 90px;
+			border: none;
+		}
+		#tempo_sub{
+			float: right;
+			position: absolute;
+			top: 45px;
+			left: 480px;
+			font-size: 25px;
+			color: blue;
+		}
+
 
 	</style>
 
@@ -100,6 +118,10 @@
 		</button>
 		
 		<h1>HISTÓRICO DAS SUBTRAÇÕES</h1>
+
+		<input type="text" name="nome" id="nome_aln">
+
+		<span id="tempo_sub">00:00:00</span>
 
 		<div id="flutua">
 				
