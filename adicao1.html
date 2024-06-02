@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html manifest="site.appcache">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/adicao1.css">
+
+	<script src="javascript/adicao1.js"></script>
+
+	<title>Adição1 com QVL</title>
+</head>
+<body onload="aoiniciar()">
+	
+	<div id="principal">
+
+		<h1>Algorítmo da Adição com QVL</h1>
+
+		<div id="adicao">
+
+			<table>
+			
+				<thead >
+
+					<tr id="hd">
+						<th class="um"></th>
+						<th class="c"></th>
+						<th class="d"></th>
+						<th class="u"></th>
+					</tr>
+
+				</thead>
+
+				<tbody>
+
+					<tr id="vai">
+						<td class="um" id="vm">0</td>
+						<td class="c" id="vc">0</td>
+						
+						<td class="d" id="vd">
+							
+							<span id="_vd">0</span>
+						
+						</td>
+						
+						<td class="u"></td>
+					</tr>
+
+					<tr id="img">
+						<td><img src="adicao/1m.png" id="i1m" class="iudc"></td>
+						<td><img src="adicao/1c.png" id="i1c" class="iudc"></td>
+						<td><img src="adicao/1d.png" id="i1d" class="iudc"></td>
+						<td><img src="adicao/1u.png" id="i1u" class="iudc"></td>
+					</tr>
+
+					<tr id="qvl">
+						<td class="um" id="qvlum">UM</td>
+						<td class="c">C</td>
+						<td class="d">D</td>
+						<td class="u">U</td>
+					</tr>
+
+					<tr>
+						<td class="um" id="m1">1</td>
+						<td class="c" id="c1">2</td>
+						<td class="d" id="d1">5</td>
+						<td class="u" id="u1">4</td>
+					</tr>
+
+					<tr>
+						<td class="um" id="m2">2</td>
+						<td class="c" id="c2">5</td>
+						<td class="d" id="d2">9</td>
+						<td class="u" id="u2">1</td>
+					</tr>
+
+					<tr id="sol">
+						<td class="um" id="rm">0</td>
+						<td class="c" id="rc">0</td>
+						
+						<td class="d" id="rd">
+							
+							<span id="_rd">0</span>
+						
+							<span id="_rda">0</span>
+						
+						</td>
+						
+						<td class="u" id="ru">
+						
+							<span id="_ru">0</span>
+						
+						</td>
+
+					</tr>
+
+					<tr id="tbtn">
+						<td>
+							<div class="cbtn">
+								<button id="mmum" onclick="rmmais()">+</button>
+								<button id="mum" onclick="rmmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmc" onclick="rcmais()">+</button>
+								<button id="mc" onclick="rcmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmd" onclick="rdmais()">+</button>
+								<button id="md" onclick="rdmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmu" onclick="rumais()">+</button>
+								<button id="mu" onclick="rumenos()">-</button>
+							</div>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		
+		<div id="resultado">
+
+			<button id="lim" onclick="limpar()">LIMPAR</button>
+			<button id="tro" onclick="novo()">NOVO</button>
+			<button id="res" onclick="verificar()">VERIFICAR</button>
+
+			<h1 id="exibe">254 + 591 = 745</h1>
+
+			<div id="animacao">
+				
+				<div class="anime" id="idan">
+
+					Para saber se voce acertou clique no botão VERIFICAR.
+
+				</div>
+
+				<div class="anime" id="idfeliz">
+
+					<h2>Parabéns!!</h2>
+					<img src="adicao/feliz2.gif">
+
+				</div>
+
+				<div class="anime" id="idtriste">
+
+					<h2>Que pena!!</h2>
+					<img src="adicao/triste.gif">
+
+				</div>
+
+			</div>
+
+			<div id="pontuu">
+				<h1 id="pontu">Pontos: 0</h1>
+				<button id="btnreset" onclick="reset()">X</button>
+			</div>
+
+		</div>
+
+	</div>
+
+	
+
+</body>
+</html>

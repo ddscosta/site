@@ -4,562 +4,563 @@ body{
 	transform: scale(0.7);
 }
 
-/*NÃO ALTERAR*/
-@keyframes sobe_u{
-	0%{
-		transform: translate(0px, -60px);
-		opacity: 100%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(10px, -260px);
-		opacity: 0%;
-	}
-}
-
-@keyframes direita_u{
-	0%{
-		/*transform: translate(0px, 0px);*/
-		opacity: 0%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(75px, 0);
-		position: relative;
-		display: block;
-		color: blue;
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes pisca_u{
-	0%{
-		background-color: white;
-	}
-	25%{
-		background-color: rgb(0, 255, 64);
-	}
-	50%{
-		background-color: white;
-	}
-	75%{
-		background-color: rgb(0, 255, 64);
-	}
-	100%{
-		background-color: white;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_u{
-	0%{
-		opacity: 0%;
-	}
-	90%{
-		opacity: 0%;
-	}
-	100%{
-		opacity: 100%;
-	}
-}
-
-@keyframes ultimo_rev_u{
-	0%{
-		opacity: 100%;
-	}
-	90%{
-		opacity: 100%;
-	}
-	95%{
-		opacity: 0%;
-	}
-	100%{
-		opacity: 0%;
-	}
-}
-
-@keyframes ultimo_desl_u{
-	0%{
-		transform: translate(0px, 0);
-	}
-	100%{
-		transform: translate(15px, 0);
-	
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes sobe_d{
-	0%{
-		transform: translate(0px, -60px);
-		opacity: 100%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(10px, -260px);
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes direita_d{
-	0%{
-		transform: translate(20px, 0);
-		opacity: 0%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(85px, 0);
-		position: relative;
-		display: block;
-		color: red;
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes pisca_d{
-	0%{
-		background-color: white;
-	}
-	25%{
-		background-color: rgb(0, 255, 64);
-	}
-	50%{
-		background-color: white;
-	}
-	75%{
-		background-color: rgb(0, 255, 64);
-	}
-	100%{
-		background-color: white;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_d{
-	0%{
-		opacity: 0%;
-	}
-	90%{
-		opacity: 0%;
-	}
-	100%{
-		opacity: 100%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_rev_d{
-	0%{
-		opacity: 100%;
-	}
-	90%{
-		opacity: 100%;
-	}
-	95%{
-		opacity: 0%;
-	}
-	100%{
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_desl_d{
-	0%{
-		transform: translate(0px, 0);
-	}
-	100%{
-		transform: translate(15px, 0);
-	
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_desl_d1{
-	0%{
-		transform: translate(-5px, 0);
-	}
-	100%{
-		transform: translate(-5px, 0);
-	
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes sobe_c{
-	0%{
-		transform: translate(0px, -60px);
-		opacity: 100%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(10px, -260px);
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes direita_c{
-	0%{
-		/*transform: translate(0px, 0px);*/
-		opacity: 0%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(65px, 0);
-		position: relative;
-		display: block;
-		color: green;
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes direita_c2{
-	0%{
-		/*transform: translate(0px, 0px);*/
-		opacity: 0%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(70px, 0);
-		position: relative;
-		display: block;
-		color: green;
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes pisca_c{
-	0%{
-		background-color: white;
-	}
-	25%{
-		background-color: rgb(0, 255, 64);
-	}
-	50%{
-		background-color: white;
-	}
-	75%{
-		background-color: rgb(0, 255, 64);
-	}
-	100%{
-		background-color: white;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_c{
-	0%{
-		opacity: 0%;
-	}
-	90%{
-		opacity: 0%;
-	}
-	100%{
-		opacity: 100%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_rev_c{
-	0%{
-		opacity: 100%;
-	}
-	90%{
-		opacity: 100%;
-	}
-	95%{
-		opacity: 0%;
-	}
-	100%{
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_desl_c{
-	0%{
-		transform: translate(0px, 0);
-	}
-	100%{
-		transform: translate(15px, 0);
-	
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_desl_c2{
-	0%{
-		transform: translate(0px, 0);
-	}
-	100%{
-		transform: translate(10px, 0);
-	
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes sobe_m{
-	0%{
-		transform: translate(0px, -60px);
-		opacity: 100%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(10px, -260px);
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes direita_m{
-	0%{
-		/*transform: translate(0px, 0px);*/
-		opacity: 0%;
-	}
-	99%{
-		opacity: 100%;
-	}
-	100%{
-		transform: translate(65px, 0);
-		position: relative;
-		display: block;
-		color: blue;
-		opacity: 0%;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes pisca_m{
-	0%{
-		background-color: white;
-	}
-	25%{
-		background-color: rgb(0, 255, 64);
-	}
-	50%{
-		background-color: white;
-	}
-	75%{
-		background-color: rgb(0, 255, 64);
-	}
-	100%{
-		background-color: white;
-	}
-}
-
-/*NÃO ALTERAR*/
-@keyframes ultimo_m{
-	0%{
-		opacity: 0%;
-	}
-	90%{
-		opacity: 0%;
-	}
-	100%{
-		opacity: 100%;
-	}
-}
-
-@keyframes ultimo_rev_m{
-	0%{
-		opacity: 100%;
-	}
-	90%{
-		opacity: 100%;
-	}
-	95%{
-		opacity: 0%;
-	}
-	100%{
-		opacity: 0%;
-	}
-}
-
-@keyframes ultimo_desl_m{
-	0%{
-		transform: translate(0px, 0);
-	}
-	100%{
-		transform: translate(15px, 0);
-	
-	}
-}
-
-
-
-
-/*ANIMAÇÃO PARA DEZENA E UNIDADE*/
-	td#vd span#_vd{
-		color: green;
-		display: flex;	
-		position: fixed;
-		padding-left: 15px;
+/*-------------------ANIMAÇÕES---------------------*/
+	/*NÃO ALTERAR*/
+	@keyframes sobe_u{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(10px, -260px);
+			opacity: 0%;
+		}
 	}
 
-	td#vd span#_vd_ant{
-		display: flex;	
-		position: fixed;
-		padding-left: 20px;
+	@keyframes direita_u{
+		0%{
+			/*transform: translate(0px, 0px);*/
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(75px, 0);
+			position: relative;
+			display: block;
+			color: blue;
+			opacity: 0%;
+		}
 	}
 
-	td.u span#u1a, td.d span#d1a{
-		display: flex;	
-		position: fixed;
-		padding-left: 20px;
-		transform: translate(0px, -60px);
+	/*NÃO ALTERAR*/
+	@keyframes pisca_u{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
 	}
 
-	/*desativando animação*/
-	/*td#vd{
-		animation-name: pisca;
-		animation-name: ultimo;
-		animation-duration: 5s;
-		animation-timing-function: linear;
-	}*/
-
-	td#vd span#vda{
-		padding-right: 20px;
-		opacity: 0%;
-		display: flex;
-		animation-name: direita;
-		animation-duration: 2s;
-		animation-timing-function: ease-in-out;
-		animation-delay: 3s;
-		animation-iteration-count: 1;
-		/*animation-fill-mode: forwards;*/
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_u{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
 	}
 
-	td.u span#u1a, td.d span#d1a{
-		padding-right: 20px;
-		/*transform: translate(10px, 5px);*/
-		display: flex;
-		animation-name: sobe;
-		animation-duration: 5s;
-		animation-timing-function: ease-in-out;
-		animation-iteration-count: 1;
-		/*animation-fill-mode: forwards;*/
+	@keyframes ultimo_rev_u{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		95%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 0%;
+		}
 	}
 
-/*ANIMAÇÃO DA CENTENTA E DEZENA*/
-	td#vc span#_vc{
-		color: blue;
-		display: flex;	
-		position: fixed;
-		padding-left: 15px;
+	@keyframes ultimo_desl_u{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(15px, 0);
+		
+		}
 	}
 
-	td#vc span#_vc_ant{
-		color: blue;
-		display: flex;	
-		position: fixed;
-		padding-left: 15px;
+	/*NÃO ALTERAR*/
+	@keyframes sobe_d{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(10px, -260px);
+			opacity: 0%;
+		}
 	}
 
-	td.d span#d1a, td.c span#c1a{
-		display: flex;	
-		position: fixed;
-		padding-left: 20px;
-		transform: translate(0px, -60px);
+	/*NÃO ALTERAR*/
+	@keyframes direita_d{
+		0%{
+			transform: translate(20px, 0);
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(85px, 0);
+			position: relative;
+			display: block;
+			color: red;
+			opacity: 0%;
+		}
 	}
 
-	/*desativando animação*/
-	/*td#vc{
-		animation-name: pisca_c;
-		animation-name: ultimo_c;
-		animation-duration: 5s;
-		animation-timing-function: linear;
-	}*/
-
-	td#vc span#vca{
-		padding-left: 20px;
-		opacity: 0%;
-		display: flex;
-		animation-name: direita_c;
-		animation-duration: 2s;
-		animation-timing-function: ease-in-out;
-		animation-delay: 3s;
-		animation-iteration-count: 1;
+	/*NÃO ALTERAR*/
+	@keyframes pisca_d{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
 	}
 
-	td.d span#d1a, td.c span#c1a{
-		padding-right: 20px;
-		display: flex;
-		animation-name: sobe_c;
-		animation-duration: 5s;
-		animation-timing-function: ease-in-out;
-		animation-iteration-count: 1;
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_d{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
 	}
 
-/*ANIMAÇÃO PARA CENTENA E MILHAR*/
-	td#vm span#_vm{
-		color: black;
-		display: flex;	
-		position: fixed;
-		padding-left: 28px;
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_rev_d{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		95%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 0%;
+		}
 	}
 
-	td#vm span#_vm_ant{
-		display: flex;	
-		position: fixed;
-		padding-left: 20px;
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_desl_d{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(15px, 0);
+		
+		}
 	}
 
-	td.c span#c1a, td.um span#m1a{
-		display: flex;	
-		position: fixed;
-		padding-left: 20px;
-		transform: translate(0px, -60px);
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_desl_d1{
+		0%{
+			transform: translate(-5px, 0);
+		}
+		100%{
+			transform: translate(-5px, 0);
+		
+		}
 	}
 
-	/*desativando animação*/
-	/*td#vm{
-		animation-name: pisca_m;
-		animation-name: ultimo_m;
-		animation-duration: 5s;
-		animation-timing-function: linear;
-	}*/
-
-	td#vm span#vma{
-		padding-left: 20px;
-		opacity: 0%;
-		display: flex;
-		animation-name: direita_m;
-		animation-duration: 2s;
-		animation-timing-function: ease-in-out;
-		animation-delay: 3s;
-		animation-iteration-count: 1;
+	/*NÃO ALTERAR*/
+	@keyframes sobe_c{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(10px, -260px);
+			opacity: 0%;
+		}
 	}
 
-	td.c span#c1a, td.um span#m1a{
-		padding-right: 20px;
-		display: flex;
-		animation-name: sobe_m;
-		animation-duration: 5s;
-		animation-timing-function: ease-in-out;
-		animation-iteration-count: 1;
+	/*NÃO ALTERAR*/
+	@keyframes direita_c{
+		0%{
+			/*transform: translate(0px, 0px);*/
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(65px, 0);
+			position: relative;
+			display: block;
+			color: green;
+			opacity: 0%;
+		}
 	}
+
+	/*NÃO ALTERAR*/
+	@keyframes direita_c2{
+		0%{
+			/*transform: translate(0px, 0px);*/
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(70px, 0);
+			position: relative;
+			display: block;
+			color: green;
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes pisca_c{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_c{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_rev_c{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		95%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_desl_c{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(15px, 0);
+		
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_desl_c2{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(10px, 0);
+		
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes sobe_m{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(10px, -260px);
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes direita_m{
+		0%{
+			/*transform: translate(0px, 0px);*/
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(65px, 0);
+			position: relative;
+			display: block;
+			color: blue;
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes pisca_m{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_m{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	@keyframes ultimo_rev_m{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		95%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	@keyframes ultimo_desl_m{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(15px, 0);
+		
+		}
+	}
+
+
+
+
+	/*ANIMAÇÃO PARA DEZENA E UNIDADE*/
+		td#vd span#_vd{
+			color: green;
+			display: flex;	
+			position: fixed;
+			padding-left: 15px;
+		}
+
+		td#vd span#_vd_ant{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+		}
+
+		td.u span#u1a, td.d span#d1a{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+			transform: translate(0px, -60px);
+		}
+
+		/*desativando animação*/
+		/*td#vd{
+			animation-name: pisca;
+			animation-name: ultimo;
+			animation-duration: 5s;
+			animation-timing-function: linear;
+		}*/
+
+		td#vd span#vda{
+			padding-right: 20px;
+			opacity: 0%;
+			display: flex;
+			animation-name: direita;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 3s;
+			animation-iteration-count: 1;
+			/*animation-fill-mode: forwards;*/
+		}
+
+		td.u span#u1a, td.d span#d1a{
+			padding-right: 20px;
+			/*transform: translate(10px, 5px);*/
+			display: flex;
+			animation-name: sobe;
+			animation-duration: 5s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: 1;
+			/*animation-fill-mode: forwards;*/
+		}
+
+	/*ANIMAÇÃO DA CENTENTA E DEZENA*/
+		td#vc span#_vc{
+			color: blue;
+			display: flex;	
+			position: fixed;
+			padding-left: 15px;
+		}
+
+		td#vc span#_vc_ant{
+			color: blue;
+			display: flex;	
+			position: fixed;
+			padding-left: 15px;
+		}
+
+		td.d span#d1a, td.c span#c1a{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+			transform: translate(0px, -60px);
+		}
+
+		/*desativando animação*/
+		/*td#vc{
+			animation-name: pisca_c;
+			animation-name: ultimo_c;
+			animation-duration: 5s;
+			animation-timing-function: linear;
+		}*/
+
+		td#vc span#vca{
+			padding-left: 20px;
+			opacity: 0%;
+			display: flex;
+			animation-name: direita_c;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 3s;
+			animation-iteration-count: 1;
+		}
+
+		td.d span#d1a, td.c span#c1a{
+			padding-right: 20px;
+			display: flex;
+			animation-name: sobe_c;
+			animation-duration: 5s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: 1;
+		}
+
+	/*ANIMAÇÃO PARA CENTENA E MILHAR*/
+		td#vm span#_vm{
+			color: black;
+			display: flex;	
+			position: fixed;
+			padding-left: 28px;
+		}
+
+		td#vm span#_vm_ant{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+		}
+
+		td.c span#c1a, td.um span#m1a{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+			transform: translate(0px, -60px);
+		}
+
+		/*desativando animação*/
+		/*td#vm{
+			animation-name: pisca_m;
+			animation-name: ultimo_m;
+			animation-duration: 5s;
+			animation-timing-function: linear;
+		}*/
+
+		td#vm span#vma{
+			padding-left: 20px;
+			opacity: 0%;
+			display: flex;
+			animation-name: direita_m;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 3s;
+			animation-iteration-count: 1;
+		}
+
+		td.c span#c1a, td.um span#m1a{
+			padding-right: 20px;
+			display: flex;
+			animation-name: sobe_m;
+			animation-duration: 5s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: 1;
+		}
 
 
 
