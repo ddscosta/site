@@ -7,11 +7,80 @@
 
 	<script src="javascript/adicao1.js"></script>
 
+	<script src="javascript/relogio.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 	<title>Adição1 com QVL</title>
 </head>
 <body onload="aoiniciar()">
 	
 	<div id="principal">
+
+		<button class="nav-button" onclick="openNav()">
+			<i class="fa-solid fa-bars fa-2x"></i>
+		</button>
+
+		<div class="relogio" id="relg">00:00:00</div>
+
+		<div id="flutua">
+			
+			<a href="adicao1.html">INÍCIO</a> &nbsp;>>&nbsp;
+
+			<a href="histadi.html">HISTÓRICO</a>
+
+			<hr>
+
+			<div class="ate">
+				Escolher tamanho dos números. <br>&emsp;
+
+				<label for="de">De</label>
+				<input type="text" name="de" id="de" value="1" maxlength="4"> 
+				
+				<label for="ate">Até</label>
+				<input type="text" name="ate" id="ate" value="9999"maxlength="4"> 
+
+			</div>
+			
+			<hr>
+
+			<div class="ajud">
+
+				<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
+
+				<label for="ajuda">
+					<div class="tooltip"> Repetir 1ª Parcela na Resposta.
+						<!-- <span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span> -->
+					</div>	
+				</label>
+
+			</div>
+			
+			<div class="animacao">
+
+				<input type="checkbox" name="anim" id="anim" onclick="animm();">
+
+				<label for="anim">
+					<div class="tooltip"> Animação que Ensina Reagrupar.
+						<!-- <span class="tooltiptext">Mostra uma animação que ajuda o estudante a aprender o reagrupamento.</span> -->
+					</div>	
+				</label>
+
+			</div>
+
+			<hr>
+
+			<div class="nome">
+
+				<label for="nome">
+					Aluno	
+				</label>
+
+				<input type="text" name="nome" id="nome_aln">
+
+			</div>
+
+		</div>
 
 		<h1>Algorítmo da Adição com QVL</h1>
 
@@ -33,8 +102,19 @@
 				<tbody>
 
 					<tr id="vai">
-						<td class="um" id="vm">0</td>
-						<td class="c" id="vc">0</td>
+						<td class="inf" style="font-size: 25px;">Reagrupamento</td>
+
+						<td class="um" id="vm">
+
+							<span id="_vm">0</span>
+
+						</td>
+						
+						<td class="c" id="vc">
+
+							<span id="_vc">0</span>
+
+						</td>
 						
 						<td class="d" id="vd">
 							
@@ -46,6 +126,9 @@
 					</tr>
 
 					<tr id="img">
+						
+						<td class="inf">Representação</td>
+						
 						<td><img src="adicao/1m.png" id="i1m" class="iudc"></td>
 						<td><img src="adicao/1c.png" id="i1c" class="iudc"></td>
 						<td><img src="adicao/1d.png" id="i1d" class="iudc"></td>
@@ -53,6 +136,7 @@
 					</tr>
 
 					<tr id="qvl">
+						<td class="inf" style="font-size: 35; color: black;">QVL</td>
 						<td class="um" id="qvlum">UM</td>
 						<td class="c">C</td>
 						<td class="d">D</td>
@@ -60,6 +144,7 @@
 					</tr>
 
 					<tr>
+						<td class="inf">1ª Parcela =></td>
 						<td class="um" id="m1">1</td>
 						<td class="c" id="c1">2</td>
 						<td class="d" id="d1">5</td>
@@ -67,6 +152,7 @@
 					</tr>
 
 					<tr>
+						<td class="inf">2ª Parcela =></td>
 						<td class="um" id="m2">2</td>
 						<td class="c" id="c2">5</td>
 						<td class="d" id="d2">9</td>
@@ -74,8 +160,22 @@
 					</tr>
 
 					<tr id="sol">
-						<td class="um" id="rm">0</td>
-						<td class="c" id="rc">0</td>
+						<td class="inf">Soma =></td>
+						<td class="um" id="rm">
+
+							<span id="_rm">0</span>
+						
+							<span id="_rma">0</span>
+
+						</td>
+						
+						<td class="c" id="rc">
+
+							<span id="_rc">0</span>
+						
+							<span id="_rca">0</span>
+
+						</td>
 						
 						<td class="d" id="rd">
 							
@@ -94,6 +194,16 @@
 					</tr>
 
 					<tr id="tbtn">
+
+						<td class="inf" id="msg">
+
+							<div id="msgs">
+								<p>Erros:<br><b>[<span id="erros">0</span>]</b></p>
+								<p>Pulos:<br><b>[<span id="pulos">0</span>]</b></p>
+							</div>
+
+						</td>
+
 						<td>
 							<div class="cbtn">
 								<button id="mmum" onclick="rmmais()">+</button>
@@ -160,7 +270,7 @@
 
 			<div id="pontuu">
 				<h1 id="pontu">Pontos: 0</h1>
-				<button id="btnreset" onclick="reset()">X</button>
+				<button id="btnreset" onclick="resetar()">X</button>
 			</div>
 
 		</div>

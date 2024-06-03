@@ -5,6 +5,24 @@ body{
 }
 
 /*-----------ANIMAÇÕES----------------*/
+	@keyframes pisca_u{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
 	@keyframes sobe_d{
 		0%{
 			opacity: 0%;
@@ -51,26 +69,96 @@ body{
 		}
 	}
 
-	td#rd{
-		position: relative;
+	@keyframes sobe_c{
+		0%{
+			opacity: 0%;
+		}
+		5%{
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, -315px);
+			opacity: 0%;
+		}
 	}
 
-	td#rd span#_rd{
-		padding-left: 20px;
-		display: flex;
-		position: relative;
+	@keyframes pisca_c{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
 	}
-	td#rd span#_rda{
-		padding-left: 20px;
-		padding-right: 20px;
-		opacity: 0%;
-		display: flex;
-		position: absolute;
-		top: 0px;
-		/*animation-name: sobe_d;
-		animation-duration: 3s;
-		animation-timing-function: ease-in-out;
-		animation-iteration-count: 1;*/
+
+	@keyframes ultimo_c{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	@keyframes sobe_m{
+		0%{
+			opacity: 0%;
+		}
+		5%{
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, -315px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes pisca_m{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	@keyframes ultimo_m{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
 	}
 
 	td#vd{
@@ -91,6 +179,99 @@ body{
 		opacity: 0%;
 	}
 
+	td#vc{
+		position: relative;
+	}
+
+	td#vc span#_vc{
+		padding-left: 20px;
+		display: flex;
+		position: relative;
+	}
+
+	td#vc span#_vca{
+		position: absolute;
+		display: flex;
+		padding-left: 20px;
+		top: 0px;
+		opacity: 0%;
+	}
+
+	td#vm{
+		position: relative;
+	}
+
+	td#vm span#_vm{
+		padding-left: 20px;
+		display: flex;
+		position: relative;
+	}
+
+	td#vm span#_vma{
+		position: absolute;
+		display: flex;
+		padding-left: 20px;
+		top: 0px;
+		opacity: 0%;
+	}
+
+	td#rd{
+		position: relative;
+	}
+
+	td#rd span#_rd{
+		padding-left: 20px;
+		display: flex;
+		position: relative;
+	}
+
+	td#rd span#_rda{
+		position: absolute;
+		display: flex;
+		padding-left: 20px;
+		padding-right: 20px;
+		top: 0px;
+		opacity: 0%;
+	}
+
+	td#rc{
+		position: relative;
+	}
+
+	td#rc span#_rc{
+		padding-left: 20px;
+		display: flex;
+		position: relative;
+	}
+
+	td#rc span#_rca{
+		position: absolute;
+		display: flex;
+		padding-left: 20px;
+		padding-right: 20px;
+		top: 0px;
+		opacity: 0%;
+	}
+
+	td#rm{
+		position: relative;
+	}
+
+	td#rm span#_rm{
+		padding-left: 20px;
+		display: flex;
+		position: relative;
+	}
+
+	td#rm span#_rma{
+		position: absolute;
+		display: flex;
+		padding-left: 20px;
+		padding-right: 20px;
+		top: 0px;
+		opacity: 0%;
+	}
+
 
 
 
@@ -103,6 +284,50 @@ body{
 #principal h1{
 	text-align: center;
 }
+
+.nav-button{
+	display: block;
+	position: absolute;
+	box-sizing: content-box;
+	border: 0;
+	border-radius: 4px;
+	padding: 8px;
+	background-color: rgba(74,79,247,.4);
+	margin: 8px;
+	cursor: pointer;
+	width: 44px;
+}
+
+.nav-button i{
+	color: blue;
+}
+
+#relg{
+	display: block;
+	float: right;
+	font-size: 35px;
+	color: blue;
+	padding: 5px;
+}
+
+#flutua{
+    width: 700px;
+    height: 410px;
+    margin-top: 80px; /* altura que está do topo */
+    margin-left: 70px;
+    position: fixed;
+    z-index: 1000;
+    background-color: #83aca0;
+    font-size: 35px;
+    padding: 10px;
+}
+
+input[type=checkbox] {
+	width: 20px;
+	height: 20px;
+  cursor: pointer;
+}
+
 
 #adicao{
 	width: 400px;
@@ -241,11 +466,17 @@ div#resultado div#pontuu button#btnreset{
 	margin: 0px;
 }
 
+.iudc:hover{
+  cursor: pointer;
+  opacity: 0.7;
+  /*border: solid gray 1px;*/
+}
+
 table tr#img td{
 	background-color:rgba(0,0,0,.1);
 	padding: 0px;
 	margin: 0px;
-	font-size: 10px;
+	/*font-size: 10px;*/
 }
 
 #adicao h1{
@@ -264,6 +495,14 @@ table tr, td{
 	color: black;
 	background-color: rgba(0, 0, 0, .4);
 }
+
+#imgm, #imgc, #imgd,  #imgu{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	display: none;
+}
+
 .c{
 	color: blue;
 	background-color: rgba(0, 0, 0, .3);	
@@ -309,6 +548,11 @@ table tr#tbtn td{
 	font-size: 60px;
 }
 
+.cbtn button:hover{
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .cbtn button{
 	margin: 0px;
 	padding: 3px;
@@ -350,11 +594,112 @@ table{
 	font-size: 50px;
 }
 
-
-
-
-
 figure.foto-legenda:hover figcaption{
 	/*opacity: 1;*/
 }
+
+
+td.inf{
+	font-size: 30px;
+	text-align: left;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+
+td.inf{
+	background-color: #f0f0c6 !important;
+}
+
+td#msg{
+	color: blue;
+	border: solid blue 1px;
+	
+}
+
+td#msg p{
+	margin: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: inline-block;
+	
+}
+
+#msgs{
+	width: auto;
+	text-align: center;
+}
+
+td.inf p{
+	color: red;
+	text-align: center;
+}
+
+
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  /*height: auto;*/
+  /*word-break: break-all;*/
+  /*word-wrap: break-word;*/
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  font-size: 25px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+input:hover{
+	cursor: pointer;
+}
+
+#de{
+	width: 50px;
+}
+
+#ate{
+	width: 50px;
+}
+
+#nome_aln{
+	width: 480px;
+}
+
+input[type="text"]{
+    font-size:22px;
+}
+/*
+.ate{
+	font-size: 22px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}*/
+
+.ajud{
+	/*display: none;*/
+}
+
+.reag{
+	/*display: none;*/
+}
+
 

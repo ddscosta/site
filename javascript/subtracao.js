@@ -471,7 +471,7 @@ function verificaStorage(){
    var pon_pul = 0;
    var pont_pul = localStorage.getItem("pulos_sub");
    var ponti_pul = parseInt(pont_pul, 10);
-   
+
    //tipo:mais, menos, zera, null;
    var pontt = document.getElementById("pontu");
 
@@ -1527,15 +1527,19 @@ function exibir(){
    const rc = document.getElementById("rc");
    const rm = document.getElementById("rm");
 
-   const vd = document.getElementById("vd");
-   const _vd = document.getElementById("_vd");
-   const vda = document.getElementById("vda");
-   const vc = document.getElementById("vc");
-   const _vc = document.getElementById("_vc");
    const vca = document.getElementById("vca");
-   const vm = document.getElementById("vm");
-   const _vm = document.getElementById("_vm");
+   const vda = document.getElementById("vda");
    const vma = document.getElementById("vma");
+
+   const vc = document.getElementById("vc");
+   const vd = document.getElementById("vd");
+   const vm = document.getElementById("vm");
+   
+  
+
+   const _vd = document.getElementById("_vd");
+   const _vc = document.getElementById("_vc");
+   const _vm = document.getElementById("_vm");
 
    //console.log(exibe.innerText);
 
