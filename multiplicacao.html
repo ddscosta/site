@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html manifest="site.appcache">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/multiplicacao.css">
+
+	<script src="javascript/multiplicacao.js"></script>
+
+	<script src="javascript/relogio.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<title>Multiplicação com QVL</title>
+</head>
+<body onload="aoiniciar()">
+	
+	<div id="principal">
+		
+		<button class="nav-button" onclick="openNav()">
+			<i class="fa-solid fa-bars fa-2x"></i>
+		</button>
+
+		<div class="relogio" id="relg">00:00:00</div>
+
+		<div id="flutua">
+			
+			<a href="subtracao.html">INÍCIO</a> &nbsp;>>&nbsp;
+
+			<a href="histsub.html">HISTÓRICO</a>
+
+			<hr>
+
+			<div class="ate">
+				Escolher tamanho dos números. <br>&emsp;
+
+				<label for="de">De</label>
+				<input type="text" name="de" id="de" value="1" maxlength="4"> 
+				
+				<label for="ate">Até</label>
+				<input type="text" name="ate" id="ate" value="9999"maxlength="4"> 
+
+			</div>
+			
+			<hr>
+
+			<div class="ajud">
+
+				<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
+
+				<label for="ajuda">
+					<div class="tooltip"> Repetir Minuendo na Resposta.
+						<!-- <span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span> -->
+					</div>	
+				</label>
+
+			</div>
+			
+			<div class="reag">
+
+				<input type="checkbox" name="reagr" id="reagr" onclick="reagrup();">
+
+				<label for="reagr">
+					<div class="tooltip"> Números que Força Reagrupamento.
+						<!-- <span class="tooltiptext">Os números exibidos induzem à utilização do reagrupamento.</span> -->
+					</div>	
+				</label>
+
+			</div>
+
+			<div class="animacao">
+
+				<input type="checkbox" name="anim" id="anim" onclick="animm();">
+
+				<label for="anim">
+					<div class="tooltip"> Animação que Ensina Reagrupar.
+						<!-- <span class="tooltiptext">Mostra uma animação que ajuda o estudante a aprender o reagrupamento.</span> -->
+					</div>	
+				</label>
+
+			</div>
+
+			<hr>
+
+			<div class="nome">
+
+				<label for="nome">
+					Aluno	
+				</label>
+
+				<input type="text" name="nome" id="nome_aln">
+
+			</div>
+
+		</div>
+
+		<h1>Algorítmo da Subtracao com QVL</h1>
+
+		<div id="subtracao">
+
+			<table>
+			
+				<thead >
+
+					<tr id="hd">
+						<th class="um"></th>
+						<th class="c"></th>
+						<th class="d"></th>
+						<th class="u"></th>
+					</tr>
+
+				</thead>
+
+				<tbody>
+
+					<tr id="vai">
+						<td class="inf" style="font-size: 25px;">Reagrupamento</td>
+
+						<td class="um" id="vm">
+							
+							<span id="_vm"></span>
+
+							<!-- desativando a animação -->
+							<span id="_vm_ant"></span>
+
+							<span id="vma">1</span>
+
+						</td>
+
+						<td class="c" id="vc">
+							
+							<span id="_vc"></span>
+
+							<!-- desativando a animação -->
+							<span id="_vc_ant"></span>
+
+							<span id="vca">1</span>
+
+						</td>
+
+						<td class="d" id="vd">
+
+							<span id="_vd"></span>
+
+							<!-- desativando a animação -->
+							<span id="_vd_ant"></span>
+
+							<span id="vda">1</span>
+
+						</td>
+
+						<td class="u" id="vu">
+
+							<span id="_vu"></span>
+
+						</td>
+					</tr>
+
+					<tr id="img">
+						<td class="inf">Botões</td>
+						
+						<td>
+
+							<img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()">
+							
+							<!-- <div class="tooltip">
+
+								<img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()">
+
+								<span class="tooltiptext">Reagrupar para Centena.</span>
+
+							</div> -->
+
+						</td>
+
+						<td>
+
+							<img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()">
+
+							<!-- <div class="tooltip">
+
+								<img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()">
+
+								<span class="tooltiptext">Reagrupar para Dezena.</span>
+
+							</div> -->
+
+						</td>
+
+						<td>
+							<img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()">
+						
+							<!-- <div class="tooltip">
+
+								<img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()">
+
+								<span class="tooltiptext">Reagrupar para Unidade.</span>
+
+							</div> -->
+
+						</td>
+
+						<td>
+
+							<img src="subtracao/1u.png" id="i1u" class="iudc">
+
+						</td>
+
+					</tr>
+
+					<tr id="qvl">
+						<td class="inf" style="font-size: 35; color: black;">QVL</td>
+						<td class="um" id="qvlum">UM</td>
+						<td class="c" id="qvlc">C</td>
+						<td class="d" id="qvld">D</td>
+						<td class="u" id="qvlu">U</td>
+					</tr>
+
+					<tr>
+
+						<td class="inf">Minuendo =></td>
+
+						<td class="um">
+						
+							<span><img id="imgm"src="subtracao/block.png"></span>
+						
+							<span id="m1">9</span>
+
+							<span id="m1a">9</span>
+						
+						</td>
+						
+						<td class="c">
+
+							<span><img id="imgc" src="subtracao/block.png"></span>
+
+							<span id="c1">4</span>
+
+							<span id="c1a">4</span>
+
+						</td>
+
+
+						
+						<td class="d">
+
+							<span><img id="imgd" src="subtracao/block.png"></span>
+
+							<span id="d1">1</span>
+
+							<span id="d1a">1</span>
+
+						</td>
+						
+						<td class="u">
+
+							<span><img id="imgu" src="subtracao/block.png"></span>
+
+							<span id="u1">3</span>
+
+							<span id="u1a">3</span>
+
+						</td>
+
+					</tr>
+
+					<tr>	
+						<td class="inf">Subtraendo =></td>
+						<td class="um" id="m2">8</td>
+						<td class="c" id="c2">5</td>
+						<td class="d" id="d2">3</td>
+						<td class="u" id="u2">7</td>
+					</tr>
+
+					<tr id="sol">
+						<td class="inf">Diferença =></td>
+						<td class="um" id="rm">0</td>
+						<td class="c" id="rc">0</td>
+						<td class="d" id="rd">0</td>
+						<td class="u" id="ru">0</td>
+					</tr>
+
+					<tr id="tbtn">
+
+						<td class="inf" id="msg">
+
+							<div id="msgs">
+								<p>Erros:<br><b>[<span id="erros">0</span>]</b></p>
+								<p>Pulos:<br><b>[<span id="pulos">0</span>]</b></p>
+							</div>
+
+							
+							
+							<!-- 
+							Iniciante
+							Modo Fácil
+							Aprendiz
+							Ajuda
+							Principiante
+							Novato
+							Facilitar
+							Modo Retirar
+							 -->
+
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmum" onclick="rmmais()">+</button>
+								<button id="mum" onclick="rmmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmc" onclick="rcmais()">+</button>
+								<button id="mc" onclick="rcmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmd" onclick="rdmais()">+</button>
+								<button id="md" onclick="rdmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmu" onclick="rumais()">+</button>
+								<button id="mu" onclick="rumenos()">-</button>
+							</div>
+
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		
+		<div id="resultado">
+
+			<button id="lim" onclick="limpar()">LIMPAR</button>
+			<button id="tro" onclick="novo()">NOVO</button>
+			<button id="res" onclick="verificar()">VERIFICAR</button>
+
+			<h1 id="exibe">254 + 591 = 745</h1>
+
+			<div id="animacao">
+				
+				<div class="anime" id="idan">
+
+					Para saber se voce acertou clique no botão VERIFICAR.
+
+				</div>
+
+				<div class="anime" id="idfeliz">
+
+					<h2>Parabéns!!</h2>
+					<img src="adicao/feliz2.gif">
+
+				</div>
+
+				<div class="anime" id="idtriste">
+
+					<h2>Que pena!!</h2>
+					<img src="adicao/triste.gif">
+
+				</div>
+
+			</div>
+
+			<div id="pontuu">
+
+				<h1 id="pontu">Pontos: 0</h1>
+				
+				<button id="btnreset" onclick="resetar()">X</button>
+				
+				<!-- <button id="btnreset" onclick="reset()">
+				
+					<div class="tooltip">X
+						<span class="tooltiptext">Apagar pontos e Erros.</span>
+					</div>
+
+				</button> -->
+
+			</div>
+
+		</div>
+
+	</div>
+
+	
+
+</body>
+</html>
