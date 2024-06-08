@@ -1,4 +1,10 @@
 var cor_normal = "rgba(0, 0, 0, 0)";
+
+var corf_uni = "rgba(0, 0, 0, .1)";
+var corf_dez = "rgba(0, 0, 0, .2)";
+var corf_cen = "rgba(0, 0, 0, .3)";
+var corf_mil = "rgba(0, 0, 0, .4)";
+
 var verifica = true;
 var verifica_err = true;
 var verifica_pul = true;
@@ -12,26 +18,331 @@ var acertou = false;
 var animar = false; /*desativando animação*/
 
 var mult_u1 = false;
+var mult_d1 = false;
+var mult_c1 = false;
+var mult_m1 = false;
+
 var mult_u2 = false;
+var mult_d2 = false;
+var mult_c2 = false;
+var mult_m2 = false;
+
+var ativ_visor = false;
+
+//botões dos dois digitos que foram apertados para se multiplicar
+var visor_bt1 = ''; //ex.: u1
+var visor_bt2 = ''; //ex.: u2
+
+//botao para colocar a resposta dos dois digitos multiplicados
+var visor_btr = ''; //ex.: _ru1
 
 function fu1(){
-   mult_u1 = true;
-   gu1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
-   if(mult_u1==mult_u2==true){
-      visor(u1, u2);
+
+   //dois botões que geraram resultado ja estavam ativos
+   if(ativ_visor){
+
+      //limpa cores dos botões btn1 e btn2.
+      mult_tf_cor(visor_bt1);
+      mult_tf_cor(visor_bt2);
+      
+      ativ_visor=false;
+      console.log('ativ_visor_fu1:false');
+
+      //manda visor se limpar
+      visor(-1, -1, '', '');
+   
+   //ativando u1
+   }else{
+      mult_u1 = true;
+      console.log('mult_u1_fu1:true');
+      gu1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
+   }
+   
+   //u2 e u1 ativos, logo se multiplicam no visor
+   if(mult_u1 && mult_u2){
+      visor(u2, u1, 'u2', 'u1');
+   }
+   if(mult_u1 && mult_d2){
+      visor(d2, u1, 'd2', 'u1');
    }  
 }
-function fu2(){
-   mult_u2 = true;
-   gu2.style.backgroundColor = "rgba(0, 255, 64, 1)";
+
+function fd1(){
+
+   //dois botões que geraram resultado ja estavam ativos
+   if(ativ_visor){
+
+      //limpa cores dos botões btn1 e btn2.
+      mult_tf_cor(visor_bt1);
+      mult_tf_cor(visor_bt2);
+      
+      ativ_visor=false;
+      console.log('ativ_visor_fd1:false');
+
+      //manda visor se limpar
+      visor(-1, -1, '', '');
+   
+   //ativando d1
+   }else{
+      mult_d1 = true;
+      console.log('mult_d1_fd1:true');
+      gd1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
+   }
+   
+   //d1 e u2 ativos, logo se multiplicam no visor
+   if(mult_d1 && mult_u2){
+      visor(u2, d1, 'u2', 'd1');
+   }
+   if(mult_d1 && mult_d2){
+      visor(d2, d1, 'd2', 'd1');
+   }  
 }
 
-function visor(u1, u2){
-   var ex = document.getElementById("exibe");
-   var u1i = parseInt(u1.innerText,10);
-   var u2i = parseInt(u2.innerText,10);
-   ex.innerText = u2i + ' x ' + u1i + ' = ' + (u1i*u2i);
+function fu2(){
+
+   if(ativ_visor){
+     
+     //limpa cores dos botões btn1 e btn2.
+      mult_tf_cor(visor_bt1);
+      mult_tf_cor(visor_bt2);
+      
+      ativ_visor=false;
+      console.log('ativ_visor_fu2:false');
+
+      //manda visor se limpar
+      visor(-1, -1, '', '');
+
+   }else{
+      mult_u2 = true;
+      console.log('mult_u2_fu2:true');
+      gu2.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }
+   
+   //u2 e u1 ativos, logo se multiplicam no visor
+   if(mult_u2 && mult_u1){
+      visor(u1, u2, 'u1', 'u2');
+   }
+   if(mult_u2 && mult_d1){
+      visor(d1, u2, 'd1', 'u2');
+   }
 }
+
+function fd2(){
+
+   if(ativ_visor){
+     
+     //limpa cores dos botões btn1 e btn2.
+      mult_tf_cor(visor_bt1);
+      mult_tf_cor(visor_bt2);
+      
+      ativ_visor=false;
+      console.log('ativ_visor_fd2:false');
+
+      //manda visor se limpar
+      visor(-1, -1, '', '');
+
+   }else{
+      mult_d2 = true;
+      console.log('mult_d2_fd2:true');
+      gd2.style.backgroundColor = "rgba(0, 255, 64, 1)";
+   }
+   
+   //d2 e u1 ativos, logo se multiplicam no visor
+   if(mult_d2 && mult_u1){
+      visor(u1, d2, 'u1', 'd2');
+   }
+   if(mult_d2 && mult_d1){
+      visor(d1, d2, 'd1', 'd2');
+   }
+}
+
+function visor(v1, v2, bt1, bt2){
+
+   //v1 e v2 não valores dos botões bt1 e bt2, respectivamente
+   //exemplo de string que deve vir em bt1: 'u1'
+   
+   //guardando os ultimos botões usados no ultimo produto
+   visor_bt1 = bt1;
+   visor_bt2 = bt2;
+
+   var v1i = -1;
+   var v2i = -1;
+
+   //var ex = document.getElementById("exibe");
+   var visor_par = document.getElementById("visor_par");
+   var visor_res = document.getElementById("visor_res");
+
+   if(visor_bt1 == 'u1' && visor_bt2 == 'u2'){
+      v1i = parseInt(u1.innerText,10);
+      v2i = parseInt(u2.innerText,10);   
+   }else if(visor_bt1 == 'u2' && visor_bt2 == 'u1'){
+      v1i = parseInt(u2.innerText,10);
+      v2i = parseInt(u1.innerText,10);
+   }
+
+   if(visor_bt1 == 'u1' && visor_bt2 == 'd2'){
+      v1i = parseInt(u1.innerText,10);
+      v2i = parseInt(d2.innerText,10);   
+   }else if(visor_bt1 == 'd2' && visor_bt2 == 'u1'){
+      v1i = parseInt(d2.innerText,10);
+      v2i = parseInt(u1.innerText,10);  
+   }
+
+   if(visor_bt1 == 'd1' && visor_bt2 == 'u2'){
+      v1i = parseInt(d1.innerText,10);
+      v2i = parseInt(u2.innerText,10);   
+   }else if(visor_bt1 == 'u2' && visor_bt2 == 'd1'){
+      v1i = parseInt(u2.innerText,10);
+      v2i = parseInt(d1.innerText,10);  
+   }
+
+   if(visor_bt1 == 'd1' && visor_bt2 == 'd2'){
+      v1i = parseInt(d1.innerText,10);
+      v2i = parseInt(d2.innerText,10);   
+   }else if(visor_bt1 == 'd2' && visor_bt2 == 'd1'){
+      v1i = parseInt(d2.innerText,10);
+      v2i = parseInt(d1.innerText,10); 
+   }
+   
+   //dois botões já estavão ativos
+   if(v1==-1 && v2==-1){
+
+      //ex.innerText = 'aguardando...';
+      visor_par.innerText = 'aguardando...';
+      visor_res.innerText = '';
+
+      ativ_visor = false;
+      console.log('ativ_visor_visor:false');
+
+   }else{
+
+      ativ_visor = true;
+      console.log('ativ_visor_visor:true');
+
+      visor_par.innerText = v1i + ' x ' + v2i + ' = ';
+      visor_res.innerText = v1i*v2i;
+
+      //ex.innerText = v1i + ' x ' + v2i + ' = ' + (v1i*v2i);
+   }
+}
+
+function mult_tf_cor(btn){
+
+   //exemplo btn='u1'
+
+   if(btn == 'u1'){
+       
+       mult_u1 = false;
+       gu1.style.backgroundColor = corf_uni;
+       
+       console.log('mult_u1_mult_tf_cor:false');
+
+   }
+
+   if(btn == 'd1'){
+       
+       mult_d1 = false;
+       gd1.style.backgroundColor = corf_dez;
+       
+       console.log('mult_d1_mult_tf_cor:false');
+
+   }
+  
+   if(btn == 'u2'){
+      
+      mult_u2 = false;
+      gu2.style.backgroundColor = corf_uni;
+
+      console.log('mult_u2_mult_tf_cor:false');
+
+   }
+
+   if(btn == 'd2'){
+      
+      mult_d2 = false;
+      gd2.style.backgroundColor = corf_dez;
+
+      console.log('mult_d2_mult_tf_cor:false');
+
+   }
+
+}
+
+function fru1(){
+ 
+   //dois botões que geraram resultado ja estão ativos
+   if(ativ_visor){
+
+      visor_btr = '_ru1';
+
+      //inserir o resultado parcial
+      ins_rpar();
+
+   }
+
+}
+
+function frd1(){
+ 
+   //dois botões que geraram resultado ja estão ativos
+   if(ativ_visor){
+
+      visor_btr = '_rd1';
+
+      //inserir o resultado parcial
+      ins_rpar();
+
+   }
+   
+}
+
+//insere resposta parcial entre dois digitos
+function ins_rpar(){
+   
+   var _ru1 = document.getElementById('_ru1');
+   var _rd1 = document.getElementById('_rd1');
+   var _rc1 = document.getElementById('_rc1');
+   var _rm1 = document.getElementById('_rm1');
+
+   //insere na unidade e dezena
+   if(visor_btr == '_ru1'){
+
+      var numarr = visor_res.innerText.split('');
+
+      if(numarr.length == 1){
+         _ru1.innerText = numarr[0];   
+      }
+      if(numarr.length == 2){
+         _ru1.innerText = numarr[1];
+         _rd1.innerText = numarr[0];  
+      }
+      
+   }
+
+   if(visor_btr == '_rd1'){
+
+      var numarr = visor_res.innerText.split('');
+
+      if(numarr.length == 1){
+         _rd1.innerText = numarr[0];   
+      }
+      if(numarr.length == 2){
+         _rd1.innerText = numarr[1];
+         _rc1.innerText = numarr[0];  
+      }
+
+   }
+
+   if(visor_btr == '_rc1'){
+      _rc1.innerText = visor_res.innerText;
+   }
+   if(visor_btr == '_rm1'){
+      _rm1.innerText = visor_res.innerText;
+   }
+
+}
+
+
 
 function openNav(){
 
