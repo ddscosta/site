@@ -36,6 +36,11 @@ var visor_bt2 = ''; //ex.: u2
 //botao para colocar a resposta dos dois digitos multiplicados
 var visor_btr = ''; //ex.: _ru1
 
+//alerta se rd1 recebe digitos multiplicados ou vai pra reserva
+var vai_rd1 = false;
+var vai_rc1 = false;
+var vai_rm1 = false;
+
 function fu1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -98,6 +103,64 @@ function fd1(){
    }  
 }
 
+function fc1(){
+
+   //dois botões que geraram resultado ja estavam ativos
+   if(ativ_visor){
+
+      //limpa cores dos botões btn1 e btn2.
+      mult_tf_cor(visor_bt1);
+      mult_tf_cor(visor_bt2);
+      
+      ativ_visor=false;
+      console.log('ativ_visor_fc1:false');
+
+      //manda visor se limpar
+      visor(-1, -1, '', '');
+   
+   //ativando c1
+   }else{
+      mult_c1 = true;
+      console.log('mult_c1_fc1:true');
+      gc1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
+   }
+   
+   //c1 e u2 ativos, logo se multiplicam no visor
+   if(mult_c1 && mult_u2){
+      visor(u2, c1, 'u2', 'c1');
+   }
+     
+}
+
+function fm1(){
+
+   //dois botões que geraram resultado ja estavam ativos
+   if(ativ_visor){
+
+      //limpa cores dos botões btn1 e btn2.
+      mult_tf_cor(visor_bt1);
+      mult_tf_cor(visor_bt2);
+      
+      ativ_visor=false;
+      console.log('ativ_visor_fm1:false');
+
+      //manda visor se limpar
+      visor(-1, -1, '', '');
+   
+   //ativando m1
+   }else{
+      mult_m1 = true;
+      console.log('mult_m1_fm1:true');
+      gm1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
+   }
+   
+   //m1 e u2 ativos, logo se multiplicam no visor
+   if(mult_m1 && mult_u2){
+      visor(u2, m1, 'u2', 'm1');
+   }
+     
+}
+
 function fu2(){
 
    if(ativ_visor){
@@ -124,6 +187,12 @@ function fu2(){
    }
    if(mult_u2 && mult_d1){
       visor(d1, u2, 'd1', 'u2');
+   }
+   if(mult_u2 && mult_c1){
+      visor(c1, u2, 'c1', 'u2');
+   }
+   if(mult_u2 && mult_m1){
+      visor(m1, u2, 'm1', 'u2');
    }
 }
 
@@ -180,20 +249,37 @@ function visor(v1, v2, bt1, bt2){
       v2i = parseInt(u1.innerText,10);
    }
 
-   if(visor_bt1 == 'u1' && visor_bt2 == 'd2'){
-      v1i = parseInt(u1.innerText,10);
-      v2i = parseInt(d2.innerText,10);   
-   }else if(visor_bt1 == 'd2' && visor_bt2 == 'u1'){
-      v1i = parseInt(d2.innerText,10);
-      v2i = parseInt(u1.innerText,10);  
-   }
-
    if(visor_bt1 == 'd1' && visor_bt2 == 'u2'){
       v1i = parseInt(d1.innerText,10);
       v2i = parseInt(u2.innerText,10);   
    }else if(visor_bt1 == 'u2' && visor_bt2 == 'd1'){
       v1i = parseInt(u2.innerText,10);
       v2i = parseInt(d1.innerText,10);  
+   }
+
+   if(visor_bt1 == 'c1' && visor_bt2 == 'u2'){
+      v1i = parseInt(c1.innerText,10);
+      v2i = parseInt(u2.innerText,10);   
+   }else if(visor_bt1 == 'u2' && visor_bt2 == 'c1'){
+      v1i = parseInt(u2.innerText,10);
+      v2i = parseInt(c1.innerText,10);  
+   }
+
+   if(visor_bt1 == 'm1' && visor_bt2 == 'u2'){
+      v1i = parseInt(m1.innerText,10);
+      v2i = parseInt(u2.innerText,10);   
+   }else if(visor_bt1 == 'u2' && visor_bt2 == 'm1'){
+      v1i = parseInt(u2.innerText,10);
+      v2i = parseInt(m1.innerText,10);  
+   }
+
+
+   if(visor_bt1 == 'u1' && visor_bt2 == 'd2'){
+      v1i = parseInt(u1.innerText,10);
+      v2i = parseInt(d2.innerText,10);   
+   }else if(visor_bt1 == 'd2' && visor_bt2 == 'u1'){
+      v1i = parseInt(d2.innerText,10);
+      v2i = parseInt(u1.innerText,10);  
    }
 
    if(visor_bt1 == 'd1' && visor_bt2 == 'd2'){
@@ -247,7 +333,26 @@ function mult_tf_cor(btn){
        console.log('mult_d1_mult_tf_cor:false');
 
    }
+
+   if(btn == 'c1'){
+       
+       mult_c1 = false;
+       gc1.style.backgroundColor = corf_cen;
+       
+       console.log('mult_c1_mult_tf_cor:false');
+
+   }
+
+   if(btn == 'm1'){
+       
+       mult_m1 = false;
+       gm1.style.backgroundColor = corf_mil;
+       
+       console.log('mult_m1_mult_tf_cor:false');
+
+   }
   
+
    if(btn == 'u2'){
       
       mult_u2 = false;
@@ -283,14 +388,29 @@ function fru1(){
 }
 
 function frd1(){
- 
+   
+   var _rd1 = document.getElementById('_rd1');
+   var _vd = document.getElementById('_vd');
+   var _vd_orig = document.getElementById('_vd_orig');
+   
    //dois botões que geraram resultado ja estão ativos
    if(ativ_visor){
 
       visor_btr = '_rd1';
 
-      //inserir o resultado parcial
-      ins_rpar();
+      //se a valor de vai_rd1 está ativado então rd1 nao recebe resultado, mas eleva o resultado pra reserva
+      if(vai_rd1 && _rd1.innerText != '0'){
+         
+         //sobe o resultado para reserva
+         _vd.innerText = _rd1.innerText;
+         _rd1.innerText = 0;
+         
+         vai_rd1 = false;
+
+      }else{
+         //inserir o resultado parcial
+         ins_rpar();   
+      }
 
    }
    
@@ -314,7 +434,11 @@ function ins_rpar(){
       }
       if(numarr.length == 2){
          _ru1.innerText = numarr[1];
-         _rd1.innerText = numarr[0];  
+         _rd1.innerText = numarr[0]; 
+
+         //ativa o botao "vai_rd1"
+         vai_rd1 = true;
+
       }
       
    }
@@ -328,7 +452,11 @@ function ins_rpar(){
       }
       if(numarr.length == 2){
          _rd1.innerText = numarr[1];
-         _rc1.innerText = numarr[0];  
+         _rc1.innerText = numarr[0]; 
+
+         //ativa o botao "vai_rc1"
+         vai_rc1 = true; 
+
       }
 
    }
@@ -342,7 +470,25 @@ function ins_rpar(){
 
 }
 
+//função desce dezena
+function fvd(){
+   
+   var _vd = document.getElementById('_vd');
+   var _vd_orig = document.getElementById('_vd_orig');
+   var _rd1 = document.getElementById('_rd1');
+   
+   //desce a dezena e soma com quem deve somar
+   if(_vd.innerText != '0'){
 
+      //soma com _rd1
+      if(_vd_orig.innerText == '_rd1'){
+         _rd1.innerText = parseInt(_rd1.innerText, 10) + parseInt(_vd.innerText, 10);
+         _vd.innerText = 0;
+      }
+
+   }
+
+}
 
 function openNav(){
 
