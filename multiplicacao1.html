@@ -114,7 +114,7 @@
 				<tbody>
 
 					<tr id="vai">
-						<td class="inf" style="font-size: 25px;">Reagrupamento</td>
+						<td class="inf" style="font-size: 30px;">Reserva</td>
 
 						<td class="um" id="vm" onclick="fvm()">
 							
@@ -163,7 +163,15 @@
 					</tr>
 
 					<tr id="img">
-						<td class="inf">Botões</td>
+						<!-- <td class="inf">Representa</td> -->
+						<td>
+							
+							<h1 id="visor">
+								<span id="visor_par">[Tabuada]</span>
+								<span id="visor_res"></span>
+							</h1>
+
+						</td>
 						
 						<td>
 
@@ -224,15 +232,15 @@
 
 					<tr>
 
-						<td class="inf">Minuendo =></td>
+						<td class="inf">1º Fator =></td>
 
 						<td class="um" id="m1_" onclick="fm1()">
 						
 							<span><img id="imgm"src="subtracao/block.png"></span>
 						
-							<span id="m1">9</span>
+							<span id="m1"></span>
 
-							<span id="m1a">9</span>
+							<span id="m1a"></span>
 						
 						</td>
 						
@@ -240,9 +248,9 @@
 
 							<span><img id="imgc" src="subtracao/block.png"></span>
 
-							<span id="c1">4</span>
+							<span id="c1">9</span>
 
-							<span id="c1a">4</span>
+							<span id="c1a"></span>
 
 						</td>
 
@@ -252,9 +260,9 @@
 
 							<span><img id="imgd" src="subtracao/block.png"></span>
 
-							<span id="d1">1</span>
+							<span id="d1">6</span>
 
-							<span id="d1a">1</span>
+							<span id="d1a"></span>
 
 						</td>
 						
@@ -262,24 +270,24 @@
 
 							<span><img id="imgu" src="subtracao/block.png"></span>
 
-							<span id="u1">3</span>
+							<span id="u1">4</span>
 
-							<span id="u1a">3</span>
+							<span id="u1a"></span>
 
 						</td>
 
 					</tr>
 
 					<tr>	
-						<td class="inf">Subtraendo =></td>
-						<td class="um" id="m2" onclick="fm2()">8</td>
-						<td class="c" id="c2" onclick="fc2()">5</td>
-						<td class="d" id="d2" onclick="fd2()">3</td>
-						<td class="u" id="u2" onclick="fu2()">7</td>
+						<td class="inf">2º Fator =></td>
+						<td class="um" id="m2" onclick="fm2()"></td>
+						<td class="c" id="c2" onclick="fc2()"></td>
+						<td class="d" id="d2" onclick="fd2()"></td>
+						<td class="u" id="u2" onclick="fu2()">8</td>
 					</tr>
 
 					<tr id="sol">
-						<td class="inf">Diferença =></td>
+						<td class="inf">Produto =></td>
 
 						<td class="um" id="rm1" onclick="frm1()">
 
@@ -379,10 +387,10 @@
 
 			<h1 id="exibe">254 + 591 = 745</h1>
 
-			<h1 id="visor">
-				<span id="visor_par">254 + 591 =</span>
-				<span id="visor_res">745</span>
-			</h1>
+			<!-- <h1 id="visor">
+				<span id="visor_par">aguardando...</span>
+				<span id="visor_res"></span>
+			</h1> -->
 
 			<div id="animacao">
 				

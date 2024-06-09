@@ -994,6 +994,11 @@ input[type="text"]{
 	/*display: none;*/
 }
 
-
+td h1#visor{
+	font-size: 35px;
+	text-align: center;
+	padding-right: 3px;
+	white-space: nowrap;
+}
 
 

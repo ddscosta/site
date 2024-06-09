@@ -17,6 +17,12 @@ var acertou = false;
 
 var animar = false; /*desativando animação*/
 
+
+//--------------------------------------------
+/*algoritmo da multiplicação*/
+//-------------------------------------------
+
+//indica se digitos foram apertados
 var mult_u1 = false;
 var mult_d1 = false;
 var mult_c1 = false;
@@ -27,6 +33,7 @@ var mult_d2 = false;
 var mult_c2 = false;
 var mult_m2 = false;
 
+//indica se o visor foi ativado para apresentar produto de dois digitos
 var ativ_visor = false;
 
 //botões dos dois digitos que foram apertados para se multiplicar
@@ -41,6 +48,11 @@ var vai_rd1 = false;
 var vai_rc1 = false;
 var vai_rm1 = false;
 
+var um_dig = true;
+var dois_dig = false;
+var tres_dig = false;
+
+//ação ao marcar a célula da unidade do 1º Fator
 function fu1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -72,6 +84,7 @@ function fu1(){
    }  
 }
 
+//ação ao marcar a célula da dezena do 1º Fator
 function fd1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -103,6 +116,7 @@ function fd1(){
    }  
 }
 
+//ação ao marcar a célula da centena do 1º Fator
 function fc1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -132,6 +146,7 @@ function fc1(){
      
 }
 
+//ação ao marcar a célula da unidade de milhar do 1º Fator
 function fm1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -161,6 +176,7 @@ function fm1(){
      
 }
 
+//ação ao marcar a célula da unidade do 2º Fator
 function fu2(){
 
    if(ativ_visor){
@@ -196,6 +212,8 @@ function fu2(){
    }
 }
 
+//ação ao marcar a célula da dezena do 2º Fator
+//multiplicação por dois digitos ainda não está concluido
 function fd2(){
 
    if(ativ_visor){
@@ -225,6 +243,8 @@ function fd2(){
    }
 }
 
+//Visor de apresentação do produto entre dois dígitos escolhidos
+//e de captura desse produto para inseri-lo no resultado
 function visor(v1, v2, bt1, bt2){
 
    //v1 e v2 não valores dos botões bt1 e bt2, respectivamente
@@ -294,7 +314,7 @@ function visor(v1, v2, bt1, bt2){
    if(v1==-1 && v2==-1){
 
       //ex.innerText = 'aguardando...';
-      visor_par.innerText = 'aguardando...';
+      visor_par.innerText = '[Tabuada]';
       visor_res.innerText = '';
 
       ativ_visor = false;
@@ -310,8 +330,10 @@ function visor(v1, v2, bt1, bt2){
 
       //ex.innerText = v1i + ' x ' + v2i + ' = ' + (v1i*v2i);
    }
+
 }
 
+//mudança de cor para verde, ao acionar o botao
 function mult_tf_cor(btn){
 
    //exemplo btn='u1'
@@ -373,6 +395,7 @@ function mult_tf_cor(btn){
 
 }
 
+//ação ao marcar a célula do resultado da unidade gerada pelo 1º dígito do 2º Fator
 function fru1(){
  
    //dois botões que geraram resultado ja estão ativos
@@ -383,10 +406,13 @@ function fru1(){
       //inserir o resultado parcial
       ins_rpar();
 
+      exibir();
+
    }
 
 }
 
+//ação ao marcar a célula do resultado da dezena gerada pelo 1º dígito do 2º Fator
 function frd1(){
    
    var _rd1 = document.getElementById('_rd1');
@@ -411,6 +437,72 @@ function frd1(){
          //inserir o resultado parcial
          ins_rpar();   
       }
+
+      exibir();
+
+   }
+   
+}
+
+//ação ao marcar a célula do resultado da centena gerada pelo 1º dígito do 2º Fator
+function frc1(){
+   
+   var _rc1 = document.getElementById('_rc1');
+   var _vc = document.getElementById('_vc');
+   var _vc_orig = document.getElementById('_vc_orig');
+   
+   //dois botões que geraram resultado ja estão ativos
+   if(ativ_visor){
+
+      visor_btr = '_rc1';
+
+      //se a valor de vai_rc1 está ativado então rc1 nao recebe resultado, mas eleva o resultado pra reserva
+      if(vai_rc1 && _rc1.innerText != '0'){
+         
+         //sobe o resultado para reserva
+         _vc.innerText = _rc1.innerText;
+         _rc1.innerText = 0;
+         
+         vai_rc1 = false;
+
+      }else{
+         //inserir o resultado parcial
+         ins_rpar();   
+      }
+
+      exibir();
+
+   }
+   
+}
+
+//ação ao marcar a célula do resultado da uni_milhar gerada pelo 1º dígito do 2º Fator
+function frm1(){
+   
+   var _rm1 = document.getElementById('_rm1');
+   var _vm = document.getElementById('_vm');
+   var _vm_orig = document.getElementById('_vm_orig');
+   
+   //dois botões que geraram resultado ja estão ativos
+   if(ativ_visor){
+
+      visor_btr = '_rm1';
+
+      //se a valor de vai_rc1 está ativado então rc1 nao recebe resultado, mas eleva o resultado pra reserva
+      if(vai_rm1 && _rm1.innerText != '0'){
+         
+         //sobe o resultado para reserva
+         _vm.innerText = _rm1.innerText;
+         _rm1.innerText = 0;
+         
+         vai_rm1 = false;
+
+      }else{
+         //inserir o resultado parcial
+         ins_rpar();   
+      }
+
+      exibir();
 
    }
    
@@ -462,7 +554,21 @@ function ins_rpar(){
    }
 
    if(visor_btr == '_rc1'){
-      _rc1.innerText = visor_res.innerText;
+
+      var numarr = visor_res.innerText.split('');
+
+      if(numarr.length == 1){
+         _rc1.innerText = numarr[0];   
+      }
+      if(numarr.length == 2){
+         _rc1.innerText = numarr[1];
+         _rm1.innerText = numarr[0]; 
+
+         //ativa o botao "vai_rc1"
+         vai_rm1 = true; 
+
+      }
+      
    }
    if(visor_btr == '_rm1'){
       _rm1.innerText = visor_res.innerText;
@@ -470,25 +576,239 @@ function ins_rpar(){
 
 }
 
-//função desce dezena
+//função desce a dezena para se somar com digito correto
 function fvd(){
    
    var _vd = document.getElementById('_vd');
    var _vd_orig = document.getElementById('_vd_orig');
    var _rd1 = document.getElementById('_rd1');
+   var _rc1 = document.getElementById('_rc1');
+   var dig = 0;
    
    //desce a dezena e soma com quem deve somar
    if(_vd.innerText != '0'){
 
       //soma com _rd1
       if(_vd_orig.innerText == '_rd1'){
-         _rd1.innerText = parseInt(_rd1.innerText, 10) + parseInt(_vd.innerText, 10);
+
+         dig = parseInt(_rd1.innerText, 10) + parseInt(_vd.innerText, 10);
+         
+
+         if(dig > 9){
+            _rd1.innerText = dig - 10;
+            _rc1.innerText = parseInt(_rc1.innerText, 10) + 1; 
+         }else{
+            _rd1.innerText = dig;
+         }
+
          _vd.innerText = 0;
+
       }
+
+      exibir();
 
    }
 
 }
+
+//função desce centena para se somar com digito correto
+function fvc(){
+   
+   var _vc = document.getElementById('_vc');
+   var _vc_orig = document.getElementById('_vc_orig');
+   var _rc1 = document.getElementById('_rc1');
+   
+   //desce a dezena e soma com quem deve somar
+   if(_vc.innerText != '0'){
+
+      //soma com _rd1
+      if(_vc_orig.innerText == '_rc1'){
+         
+         dig = parseInt(_rc1.innerText, 10) + parseInt(_vc.innerText, 10);
+         
+         if(dig > 9){
+
+            _rc1.innerText = dig - 10;
+            _rm1.innerText = parseInt(_rm1.innerText, 10) + 1; 
+
+         }else{
+
+            _rc1.innerText = dig;
+
+         }
+
+         _vc.innerText = 0;
+         
+      }
+
+      exibir();
+
+   }
+
+}
+
+//função desce milhar para se somar com digito correto
+function fvm(){
+   
+   var _vm = document.getElementById('_vm');
+   var _vm_orig = document.getElementById('_vm_orig');
+   var _rm1 = document.getElementById('_rm1');
+   
+   //desce a dezena e soma com quem deve somar
+   if(_vm.innerText != '0'){
+
+      //soma com _rd1
+      if(_vm_orig.innerText == '_rm1'){
+         
+         dig = parseInt(_rm1.innerText, 10) + parseInt(_vm.innerText, 10);
+         
+         if(dig > 9){
+            //não devia ter acontecido, corriga na criação do número
+         }else{
+
+            _rm1.innerText = dig;
+            
+         }
+
+         _vm.innerText = 0;
+      }
+
+      exibir();
+
+   }
+
+}
+
+function set_num1(num1, completo){
+   
+   var num1c = 0;
+   var u1 = document.getElementById('u1');
+   var d1 = document.getElementById('d1');
+   var c1 = document.getElementById('c1');
+   var m1 = document.getElementById('m1');
+
+   if(completo){
+
+      var num1c = completa(num1);
+      var num1arr = num1c.split('');
+
+      u1.innerText = num1arr[3];
+      d1.innerText = num1arr[2];
+      c1.innerText = num1arr[1];
+      m1.innerText = num1arr[0];
+
+   }else{
+      var num1arr = (num1+'').split('');
+
+      if(num1arr.length == 1){
+         u1.innerText = num1arr[0];
+         d1.innerText = '';
+         c1.innerText = '';
+         m1.innerText = '';
+
+      }else if(num1arr.length == 2){
+         u1.innerText = num1arr[1];
+         d1.innerText = num1arr[0];
+         c1.innerText = '';
+         m1.innerText = '';
+
+      }else if(num1arr.length == 3){
+         u1.innerText = num1arr[2];
+         d1.innerText = num1arr[1];
+         c1.innerText = num1arr[0];
+         m1.innerText = '';
+
+      }else if(num1arr.length == 4){
+         u1.innerText = num1arr[3];
+         d1.innerText = num1arr[2];
+         c1.innerText = num1arr[1];
+         m1.innerText = num1arr[0];
+      }
+      
+   }
+
+}
+
+function set_num2(num2, completo){
+   
+   var num2c = 0;
+   var u2 = document.getElementById('u2');
+   var d2 = document.getElementById('d2');
+   var c2 = document.getElementById('c2');
+   var m2 = document.getElementById('m2');
+
+   if(completo){
+
+      var num2c = completa(num2);
+      var num2arr = num2c.split('');
+
+      u2.innerText = num2arr[3];
+      d2.innerText = num2arr[2];
+      c2.innerText = num2arr[1];
+      m2.innerText = num2arr[0];
+
+   }else{
+      var num2arr = (num2+'').split('');
+
+      if(num2arr.length == 1){
+         u2.innerText = num2arr[0];
+         d2.innerText = '';
+         c2.innerText = '';
+         m2.innerText = '';
+
+      }else if(num2arr.length == 2){
+         u2.innerText = num2arr[1];
+         d2.innerText = num2arr[0];
+         c2.innerText = '';
+         m2.innerText = '';
+
+      }else if(num2arr.length == 3){
+         u2.innerText = num2arr[2];
+         d2.innerText = num2arr[1];
+         c2.innerText = num2arr[0];
+         m2.innerText = '';
+
+      }else if(num2arr.length == 4){
+         u2.innerText = num2arr[3];
+         d2.innerText = num2arr[2];
+         c2.innerText = num2arr[1];
+         m2.innerText = num2arr[0];
+      }
+      
+   }
+
+}
+
+function limpa_cor_vai1(){
+   document.getElementById("_vd").style.backgroundColor = cor_normal;
+   document.getElementById("_vc").style.backgroundColor = cor_normal;
+   document.getElementById("_vm").style.backgroundColor = cor_normal;
+}
+function limpa_val_vai1(){
+   document.getElementById("_vd").innerText = 0;
+   document.getElementById("_vc").innerText = 0;
+   document.getElementById("_vm").innerText = 0;
+}
+function limpa_cor_fat(){
+   document.getElementById("u1_").style.backgroundColor = corf_uni;
+   document.getElementById("d1_").style.backgroundColor = corf_dez;
+   document.getElementById("c1_").style.backgroundColor = corf_cen;
+   document.getElementById("m1_").style.backgroundColor = corf_mil;
+
+   document.getElementById("u2").style.backgroundColor = corf_uni;
+   document.getElementById("d2").style.backgroundColor = corf_dez;
+   document.getElementById("c2").style.backgroundColor = corf_cen;
+   document.getElementById("m2").style.backgroundColor = corf_mil;
+}
+
+function limpa_res(){
+   document.getElementById("_ru1").innerText = 0;
+   document.getElementById("_rd1").innerText = 0;
+   document.getElementById("_rc1").innerText = 0;
+   document.getElementById("_rm1").innerText = 0;
+}
+
+//--------------------------------------------------------------------
 
 function openNav(){
 
@@ -653,12 +973,12 @@ function getn2(){
 
 function getresult(){
 
-   const ru = document.getElementById("ru");
-   const rd = document.getElementById("rd");
-   const rc = document.getElementById("rc");
-   const rm = document.getElementById("rm");
+   const _ru1 = document.getElementById("_ru1");
+   const _rd1 = document.getElementById("_rd1");
+   const _rc1 = document.getElementById("_rc1");
+   const _rm1 = document.getElementById("_rm1");
 
-   return rm.innerText+rc.innerText+rd.innerText+ru.innerText+"";
+   return _rm1.innerText+_rc1.innerText+_rd1.innerText+_ru1.innerText+"";
 
 }
 
@@ -720,11 +1040,11 @@ function verificar(){
    var in2 = parseInt(n2, 10);
    var ires = parseInt(res, 10);
 
-   var soma = in1-in2;
+   var produto = in1*in2;
 
-   console.log(in1+"-"+in2+"="+ires+">>"+soma);
+   console.log(in1+"x"+in2+"="+ires+">>"+produto);
 
-   if( soma == res){
+   if( produto == res){
       feliz();
       verifica = false;
       acertou = true;
@@ -1066,28 +1386,28 @@ function limpa_anime(){
 
 function repetirn1(){
 
-   const ru = document.getElementById("ru");
-   const rd = document.getElementById("rd");
-   const rc = document.getElementById("rc");
-   const rm = document.getElementById("rm");
+   const _ru1 = document.getElementById("_ru1");
+   const _rd1 = document.getElementById("_rd1");
+   const _rc1 = document.getElementById("_rc1");
+   const _rm1 = document.getElementById("_rm1");
 
    const u1 = document.getElementById("u1");
    const d1 = document.getElementById("d1");
    const c1 = document.getElementById("c1");
    const m1 = document.getElementById("m1");
 
-   ru.innerText = u1.innerText;
-   rd.innerText = d1.innerText;
-   rc.innerText = c1.innerText;
-   rm.innerText = m1.innerText;
+   _ru1.innerText = u1.innerText;
+   _rd1.innerText = d1.innerText;
+   _rc1.innerText = c1.innerText;
+   _rm1.innerText = m1.innerText;
 
 }
 
 function zera_result(){
-   document.getElementById("ru").innerText = 0;
-   document.getElementById("rd").innerText = 0;
-   document.getElementById("rc").innerText = 0;
-   document.getElementById("rm").innerText = 0;
+   document.getElementById("_ru1").innerText = 0;
+   document.getElementById("_rd1").innerText = 0;
+   document.getElementById("_rc1").innerText = 0;
+   document.getElementById("_rm1").innerText = 0;
 }
 
 /*provocou erro null do ParseInt
@@ -1504,8 +1824,8 @@ function rgrp_c(){
       var vcc = _vc.innerText;   
    }
 
-   const rd = document.getElementById("rd");
-   const rc = document.getElementById("rc");
+   const _rd1 = document.getElementById("_rd1");
+   const _rc1 = document.getElementById("_rc1");
    
    var d1i = parseInt(d1.innerText, 10);
    //var c1i = parseInt(c1.innerText, 10);
@@ -1547,8 +1867,8 @@ function rgrp_c(){
       _vc.innerText = c1m+"";
       
       if(ajuda){
-         rd.innerText = d1m+"";
-         rc.innerText = c1m+"";
+         _rd1.innerText = d1m+"";
+         _rc1.innerText = c1m+"";
       }
 
       imgd.style.display = 'flex';
@@ -1581,8 +1901,8 @@ function rgrp_c(){
          _vc.innerText = c1m+"";
          
          if(ajuda){
-            rd.innerText = d1m+"";
-            rc.innerText = c1m+"";
+            _rd1.innerText = d1m+"";
+            _rc1.innerText = c1m+"";
          }
 
          imgd.style.display = 'flex';
@@ -1746,8 +2066,8 @@ function rgrp_um(){
       var vmm = _vm.innerText;   
    }
 
-   const rc = document.getElementById("rc");
-   const rm = document.getElementById("rm");
+   const _rc1 = document.getElementById("_rc1");
+   const _rm1 = document.getElementById("_rm1");
    
    var c1i = parseInt(c1.innerText, 10);
    //var m1i = parseInt(m1.innerText, 10);
@@ -1787,8 +2107,8 @@ function rgrp_um(){
       _vm.innerText = m1m+"";
       
       if(ajuda){
-         rc.innerText = c1m+"";
-         rm.innerText = m1m+"";
+         _rc1.innerText = c1m+"";
+         _rm1.innerText = m1m+"";
       }
 
       imgc.style.display = 'flex';
@@ -1822,8 +2142,8 @@ function rgrp_um(){
          _vm.innerText = m1m+"";
          
          if(ajuda){
-            rc.innerText = c1m+"";
-            rm.innerText = m1m+"";
+            _rc1.innerText = c1m+"";
+            _rm1.innerText = m1m+"";
          }
 
          imgc.style.display = 'flex';
@@ -2011,10 +2331,38 @@ function exibir(){
    const c2 = document.getElementById("c2");
    const m2 = document.getElementById("m2");
 
-   const ru = document.getElementById("ru");
-   const rd = document.getElementById("rd");
-   const rc = document.getElementById("rc");
-   const rm = document.getElementById("rm");
+   const _ru1 = document.getElementById("_ru1");
+   const _rd1 = document.getElementById("_rd1");
+   const _rc1 = document.getElementById("_rc1");
+   const _rm1 = document.getElementById("_rm1");
+
+   exibe.innerText = 
+      m2.innerText+c2.innerText+d2.innerText+u2.innerText + " x " + 
+      m1.innerText+c1.innerText+d1.innerText+u1.innerText + " = " + 
+      _rm1.innerText+_rc1.innerText+_rd1.innerText+_ru1.innerText;
+
+}
+
+function exibir_sub(){
+
+   info();
+   
+   var exibe = document.getElementById("exibe");
+
+   const u1 = document.getElementById("u1");
+   const d1 = document.getElementById("d1");
+   const c1 = document.getElementById("c1");
+   const m1 = document.getElementById("m1");
+
+   const u2 = document.getElementById("u2");
+   const d2 = document.getElementById("d2");
+   const c2 = document.getElementById("c2");
+   const m2 = document.getElementById("m2");
+
+   const _ru1 = document.getElementById("_ru1");
+   const _rd1 = document.getElementById("_rd1");
+   const _rc1 = document.getElementById("_rc1");
+   const _rm1 = document.getElementById("_rm1");
 
    const vca = document.getElementById("vca");
    const vda = document.getElementById("vda");
@@ -2033,9 +2381,9 @@ function exibir(){
    //console.log(exibe.innerText);
 
    exibe.innerText = 
-      m1.innerText+c1.innerText+d1.innerText+u1.innerText + " - " + 
+      m1.innerText+c1.innerText+d1.innerText+u1.innerText + " x " + 
       m2.innerText+c2.innerText+d2.innerText+u2.innerText + " = " + 
-      rm.innerText+rc.innerText+rd.innerText+ru.innerText;
+      _rm1.innerText+_rc1.innerText+_rd1.innerText+_ru1.innerText;
 
    if(_vd.innerText != ''){
       vd.style.backgroundColor = "rgba(0, 255, 64, 1)";
@@ -2092,71 +2440,200 @@ function completa(num){
 }
 
 function novo(){
+   //Ajustes iniciais
+      var str_pulos = document.getElementById('pulos').innerText;
+      var int_pulos = parseInt(str_pulos, 10);
+
+      /*
+      apos carregamento da página: puloss = true;
+      novo() é chamada, não aumenta pulo: puloss = false
+      após verificar resultado: puloss = true, não deixa aumentar pulos
+      após clicar em novo: puloss = false;
+      registrando o número de pulos(operação não realizada)*/
+      if(!puloss){
+
+         pontuacao('menos_pulo');
+
+         int_pulos = int_pulos + 1;
+
+         document.getElementById('pulos').innerText = int_pulos;
+
+      }else{
+         puloss = false;
+      }
+
+      /*controlando a exibição de números que precisam de reagrupamento*/
+      if(reagru){
+         document.getElementById('reagr').checked = true;
+      }else{
+         document.getElementById('reagr').checked = false;
+      }
+
+      /*controlando o número de digitos que os números devem ter*/
+      var de = document.getElementById('de');
+      var dei = parseInt(de.value, 10);
+
+      console.log('de:'+de.value);
+
+      var ate = document.getElementById('ate');
+      var atei = parseInt(ate.value, 10);
+
+      console.log('ate:'+ate.value);
+
+      //ordenando os numeros corretamente
+      if(dei > atei){
+         var temp = dei;
+         dei = atei;
+         atei = temp;
+      }
+
+      if(dei>0 && dei<=9999){
+         var des = dei;
+      }else{
+         var des = 9999;
+      }
+
+      if(atei>0 && atei<=9999){
+         var ates = atei;
+      }else{
+         var ates = 9999;
+      }
+
+      console.log('des:'+des);
+      console.log('ates:'+ates);
+
+      verifica = true;
+
+      verifica_err = true;
+
+      var nlimitado = true;
+
+      var num1 = 0;
+      var num2 = 0;
+
+   //gerando números que figure um multiplicação por apenas um dígito
+   if(um_dig){
+
+      num2 = getRandomInt(des, 9);
+
+      while(nlimitado){
+         
+         console.log('procurando numeros que ao multiplicar não extrapolem 4 digitos');
+
+         num1 = getRandomInt(des, ates);
+
+         prod = num1 * num2;
+
+         if( prod < 10000 ){
+
+            console.log('produto: ' + num1 + ' x ' + num2 + ' = ' + prod + ' aceito.');
+            nlimitado = false;
+
+         }else{
+            console.log('produto: ' + num1 + ' x ' + num2 + ' = ' + prod + ' extrapolou 9999.');
+         }
+
+      }
+
+   }else if(dois_dig){
+
+   }else if(tres_dig){
+
+   }
+
+   //false: não completa os digitos vazios com zero
+   set_num1(num1, false);
+   set_num2(num2, false);
+
+   //limpa cores
+   limpa_cor_vai1();
+
+   //limpa cores fatores
+   limpa_cor_fat();
    
-   var str_pulos = document.getElementById('pulos').innerText;
-   var int_pulos = parseInt(str_pulos, 10);
+   //limpa valores
+   limpa_val_vai1();
 
-   /*
-   apos carregamento da página: puloss = true;
-   novo() é chamada, não aumenta pulo: puloss = false
-   após verificar resultado: puloss = true, não deixa aumentar pulos
-   após clicar em novo: puloss = false;
-   registrando o número de pulos(operação não realizada)*/
-   if(!puloss){
+   //limpa resultado
+   limpa_res();
 
-      pontuacao('menos_pulo');
+   //exibe a operação e seu resultado dentro do retangulo
+   exibir();
 
-      int_pulos = int_pulos + 1;
+   //limpando a tabuada
+   visor_par.innerText = '[Tabuada]';
+   visor_res.innerText = '';
 
-      document.getElementById('pulos').innerText = int_pulos;
 
-   }else{
-      puloss = false;
-   }
+}
 
-   /*controlando a exibição de números que precisam de reagrupamento*/
-   if(reagru){
-      document.getElementById('reagr').checked = true;
-   }else{
-      document.getElementById('reagr').checked = false;
-   }
+function novo_sub(){
+   
+   /*ajuste inicial*/
+      var str_pulos = document.getElementById('pulos').innerText;
+      var int_pulos = parseInt(str_pulos, 10);
 
-   /*controlando o número de digitos que os números devem ter*/
-   var de = document.getElementById('de');
-   var dei = parseInt(de.value, 10);
+      /*
+      apos carregamento da página: puloss = true;
+      novo() é chamada, não aumenta pulo: puloss = false
+      após verificar resultado: puloss = true, não deixa aumentar pulos
+      após clicar em novo: puloss = false;
+      registrando o número de pulos(operação não realizada)*/
+      if(!puloss){
 
-   console.log('de:'+de.value);
+         pontuacao('menos_pulo');
 
-   var ate = document.getElementById('ate');
-   var atei = parseInt(ate.value, 10);
+         int_pulos = int_pulos + 1;
 
-   console.log('ate:'+ate.value);
+         document.getElementById('pulos').innerText = int_pulos;
 
-   //ordenando os numeros corretamente
-   if(dei > atei){
-      var temp = dei;
-      dei = atei;
-      atei = temp;
-   }
+      }else{
+         puloss = false;
+      }
 
-   if(dei>0 && dei<=9999){
-      var des = dei;
-   }else{
-      var des = 9999;
-   }
+      /*controlando a exibição de números que precisam de reagrupamento*/
+      if(reagru){
+         document.getElementById('reagr').checked = true;
+      }else{
+         document.getElementById('reagr').checked = false;
+      }
 
-   if(atei>0 && atei<=9999){
-      var ates = atei;
-   }else{
-      var ates = 9999;
-   }
+      /*controlando o número de digitos que os números devem ter*/
+      var de = document.getElementById('de');
+      var dei = parseInt(de.value, 10);
 
-   console.log('des:'+des);
-   console.log('ates:'+ates);
+      console.log('de:'+de.value);
 
-   verifica = true;
+      var ate = document.getElementById('ate');
+      var atei = parseInt(ate.value, 10);
 
-   verifica_err = true;
+      console.log('ate:'+ate.value);
+
+      //ordenando os numeros corretamente
+      if(dei > atei){
+         var temp = dei;
+         dei = atei;
+         atei = temp;
+      }
+
+      if(dei>0 && dei<=9999){
+         var des = dei;
+      }else{
+         var des = 9999;
+      }
+
+      if(atei>0 && atei<=9999){
+         var ates = atei;
+      }else{
+         var ates = 9999;
+      }
+
+      console.log('des:'+des);
+      console.log('ates:'+ates);
+
+      verifica = true;
+
+      verifica_err = true;
 
    var reagrupavel = true;
    var num1 = 0;
@@ -2410,19 +2887,19 @@ function limpa_regrup(){
    document.getElementById("_vm").innerText = '';
 
    if(ajuda){
-      document.getElementById("ru").innerText = document.getElementById("u1").innerText;
-      document.getElementById("rd").innerText = document.getElementById("d1").innerText;
-      document.getElementById("rc").innerText = document.getElementById("c1").innerText;
-      document.getElementById("rm").innerText = document.getElementById("m1").innerText;
+      document.getElementById("_ru1").innerText = document.getElementById("u1").innerText;
+      document.getElementById("_rd1").innerText = document.getElementById("d1").innerText;
+      document.getElementById("_rc1").innerText = document.getElementById("c1").innerText;
+      document.getElementById("_rm1").innerText = document.getElementById("m1").innerText;
    }
 }
 
 function limpa_result(){
 
-   document.getElementById("ru").innerText = 0;
-   document.getElementById("rd").innerText = 0;
-   document.getElementById("rc").innerText = 0;
-   document.getElementById("rm").innerText = 0;
+   document.getElementById("_ru1").innerText = 0;
+   document.getElementById("_rd1").innerText = 0;
+   document.getElementById("_rc1").innerText = 0;
+   document.getElementById("_rm1").innerText = 0;
 
 }
 
@@ -2440,17 +2917,36 @@ function limpar(){
    //se ainda não acertou então deixa limpar
    if(verifica){
       
+      //limpa cores
+      limpa_cor_vai1();
+
+      //limpa cores fatores
+      limpa_cor_fat();
+      
+      //limpa valores
+      limpa_val_vai1();
+
+      //limpa resultado
+      limpa_res();
+
+      //exibe a operação e seu resultado dentro do retangulo
+      exibir();
+
+      //limpando a tabuada
+      visor_par.innerText = '[Tabuada]';
+      visor_res.innerText = '';
+      
       //zera o resultado da subtração
-      limpa_result();
+      //limpa_result();
 
       //zera o reagrupamento
-      limpa_regrup();
+      //limpa_regrup();
 
       //remove os bloqueior (traço inclinado que corta os números reagrupados)
-      remove_block();
+      //remove_block();
 
       //limpa as cores do reagrupamento
-      limpa_cores();
+      //limpa_cores();
 
       /*document.getElementById("u1").innerText = u1+"";
       document.getElementById("d1").innerText = d1+"";
@@ -2495,11 +2991,11 @@ function getRandomInt(min, max) {
 
 function rumais() {
 
-   const ru = document.getElementById("ru");
+   const _ru1 = document.getElementById("_ru1");
    
-   var rui = parseInt(ru.innerText, 10);
+   var rui = parseInt(_ru1.innerText, 10);
 
-   ru.innerText = (rui+1)+"";
+   _ru1.innerText = (rui+1)+"";
 
    exibir();
    
@@ -2507,11 +3003,11 @@ function rumais() {
 
 function rumenos() {
 
-   const ru = document.getElementById("ru");
+   const _ru1 = document.getElementById("_ru1");
    
-   var rui = parseInt(ru.innerText, 10);
+   var rui = parseInt(_ru1.innerText, 10);
 
-   ru.innerText = (rui-1)+"";
+   _ru1.innerText = (rui-1)+"";
    
    exibir();
 
@@ -2519,11 +3015,11 @@ function rumenos() {
 
 function rdmais() {
 
-   const rd = document.getElementById("rd");
+   const _rd1 = document.getElementById("_rd1");
    
-   var rdi = parseInt(rd.innerText, 10);
+   var rdi = parseInt(_rd1.innerText, 10);
 
-   rd.innerText = (rdi+1)+"";
+   _rd1.innerText = (rdi+1)+"";
    
    exibir();
 
@@ -2531,11 +3027,11 @@ function rdmais() {
 
 function rdmenos() {
 
-   const rd = document.getElementById("rd");
+   const _rd1 = document.getElementById("_rd1");
    
-   var rdi = parseInt(rd.innerText, 10);
+   var rdi = parseInt(_rd1.innerText, 10);
 
-   rd.innerText = (rdi-1)+"";
+   _rd1.innerText = (rdi-1)+"";
    
    exibir();
 
@@ -2543,11 +3039,11 @@ function rdmenos() {
 
 function rcmais() {
 
-   const rc = document.getElementById("rc");
+   const _rc1 = document.getElementById("_rc1");
    
-   var rci = parseInt(rc.innerText, 10);
+   var rci = parseInt(_rc1.innerText, 10);
 
-   rc.innerText = (rci+1)+"";
+   _rc1.innerText = (rci+1)+"";
    
    exibir();
 
@@ -2555,11 +3051,11 @@ function rcmais() {
 
 function rcmenos() {
 
-   const rc = document.getElementById("rc");
+   const _rc1 = document.getElementById("_rc1");
    
-   var rci = parseInt(rc.innerText, 10);
+   var rci = parseInt(_rc1.innerText, 10);
 
-   rc.innerText = (rci-1)+"";
+   _rc1.innerText = (rci-1)+"";
    
    exibir();
 
@@ -2567,11 +3063,11 @@ function rcmenos() {
 
 function rmmais() {
 
-   const rm = document.getElementById("rm");
+   const _rm1 = document.getElementById("_rm1");
    
-   var rmi = parseInt(rm.innerText, 10);
+   var rmi = parseInt(_rm1.innerText, 10);
 
-   rm.innerText = (rmi+1)+"";
+   _rm1.innerText = (rmi+1)+"";
    
    exibir();
 
@@ -2579,11 +3075,11 @@ function rmmais() {
 
 function rmmenos() {
 
-   const rm = document.getElementById("rm");
+   const _rm1 = document.getElementById("_rm1");
    
-   var rmi = parseInt(rm.innerText, 10);
+   var rmi = parseInt(_rm1.innerText, 10);
 
-   rm.innerText = (rmi-1)+"";
+   _rm1.innerText = (rmi-1)+"";
    
    exibir();
 
