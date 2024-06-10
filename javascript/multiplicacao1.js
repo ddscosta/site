@@ -597,6 +597,10 @@ function fvd(){
          if(dig > 9){
             _rd1.innerText = dig - 10;
             _rc1.innerText = parseInt(_rc1.innerText, 10) + 1; 
+            
+            //ativa o botao "vai_rc1"
+            vai_rc1 = true;
+
          }else{
             _rd1.innerText = dig;
          }
@@ -630,6 +634,9 @@ function fvc(){
 
             _rc1.innerText = dig - 10;
             _rm1.innerText = parseInt(_rm1.innerText, 10) + 1; 
+
+            //ativa o botao "vai_rc1"
+            vai_rm1 = true;
 
          }else{
 
@@ -2935,7 +2942,7 @@ function limpar(){
       //limpando a tabuada
       visor_par.innerText = '[Tabuada]';
       visor_res.innerText = '';
-      
+
       //zera o resultado da subtração
       //limpa_result();
 

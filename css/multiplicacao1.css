@@ -908,6 +908,10 @@ td#msg{
 	
 }
 
+td#tabu{
+	border: solid blue 1px;
+}
+
 td#msg p{
 	margin: 0px;
 	margin-top: 10px;
