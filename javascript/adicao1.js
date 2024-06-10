@@ -1735,15 +1735,33 @@ function prepara_impr(){
    var pulos = document.getElementById('pulos');
    var acertos = document.getElementById('acertos');
 
+   var erros_lin = document.getElementById('erros_lin');
+   var pulos_lin = document.getElementById('pulos_lin');
+   var acertos_lin = document.getElementById('acertos_lin');
+
+   var n_err = document.getElementById('n_err');
+   var n_pul = document.getElementById('n_pul');
+   var n_ace = document.getElementById('n_ace');
+   var n_err_lin = document.getElementById('n_err_lin');
+   var n_pul_lin = document.getElementById('n_pul_lin');
+   var n_ace_lin = document.getElementById('n_ace_lin');
+
    var html_err = '';
    var html_ace = '';
    var html_pul = '';
+
+   var html_err_lin = '';
+   var html_ace_lin = '';
+   var html_pul_lin = '';
 
    if (localStorage.hasOwnProperty("arr_obj_err_adi")) {
       
       var parse = JSON.parse( localStorage.getItem("arr_obj_err_adi") );
 
       if(parse != null){
+
+         n_err.innerText = "("+parse.length+")";
+         n_err_lin.innerText = "("+parse.length+")";
    
          parse.forEach(objconta => {
             
@@ -1751,10 +1769,12 @@ function prepara_impr(){
             if(chave=='his' && valor=='1'){
 
                html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">+</span><hr><span></span></div>";
-            
+               html_err_lin = html_err_lin + "<li>"+objconta.num1+" + "+objconta.num2+"</li>";
+
             }else{
 
                html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">+</span><hr><span>"+objconta.numr+"</span></div>";
+               html_err_lin = html_err_lin + "<li>"+objconta.num1+" + "+objconta.num2+" = "+objconta.numr+"</li>";
             
             }
             console.log('Erro: ' + objconta.num1 + ' + ' + objconta.num2 + ' = ' + objconta.numr );
@@ -1764,6 +1784,7 @@ function prepara_impr(){
       }
 
       erros.innerHTML = html_err;
+      erros_lin.innerHTML = '<ol>'+html_err_lin+'</ol>';
 
    }
 
@@ -1773,16 +1794,21 @@ function prepara_impr(){
 
       if(parse != null){
 
+         n_ace.innerText = "("+parse.length+")";
+         n_ace_lin.innerText = "("+parse.length+")";
+
          parse.forEach(objconta => {
             
             /*não será impresso os valores*/
             if(chave=='his' && valor=='1'){
 
                html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">+</span><hr><span></span></div>";
+               html_ace_lin = html_ace_lin + "<li>"+objconta.num1+" + "+objconta.num2+"</li>";
             
             }else{
 
                html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">+</span><hr><span>"+objconta.numr+"</span></div>";
+               html_ace_lin = html_ace_lin + "<li>"+objconta.num1+" + "+objconta.num2+" = "+objconta.numr+"</li>";
                
             }
             console.log('Acerto: ' + objconta.num1 + ' + ' + objconta.num2 + ' = ' + objconta.numr );
@@ -1792,6 +1818,7 @@ function prepara_impr(){
       }
 
       acertos.innerHTML = html_ace;
+      acertos_lin.innerHTML = '<ol>'+html_ace_lin+'</ol>';
 
    }
 
@@ -1801,16 +1828,21 @@ function prepara_impr(){
 
       if(parse != null){
 
+         n_pul.innerText = "("+parse.length+")";
+         n_pul_lin.innerText = "("+parse.length+")";
+
          parse.forEach(objconta => {
          
             /*não será impresso os valores*/
             if(chave=='his' && valor=='1'){
 
                html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">+</span><hr><span></span></div>";
+               html_pul_lin = html_pul_lin + "<li>"+objconta.num1+" + "+objconta.num2+"</li>";
             
             }else{
             
                html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">+</span><hr><span>"+objconta.numr+"</span></div>";
+               html_pul_lin = html_pul_lin + "<li>"+objconta.num1+" + "+objconta.num2+" = "+objconta.numr+"</li>";
 
             }
             console.log('Pulo: ' + objconta.num1 + ' + ' + objconta.num2 + ' = ' + objconta.numr );
@@ -1820,6 +1852,7 @@ function prepara_impr(){
       } 
 
       pulos.innerHTML = html_pul;
+      pulos_lin.innerHTML = '<ol>'+html_pul_lin+'</ol>';
 
    }
 }
