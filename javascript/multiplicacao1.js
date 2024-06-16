@@ -419,6 +419,10 @@ function frd1(){
    var _vd = document.getElementById('_vd');
    var _vd_orig = document.getElementById('_vd_orig');
    
+   var _rd1a = document.getElementById('_rd1a');
+   var vd = document.getElementById('vd');
+   var _vda = document.getElementById('_vda');
+   
    //dois botões que geraram resultado ja estão ativos
    if(ativ_visor){
 
@@ -427,10 +431,25 @@ function frd1(){
       //se a valor de vai_rd1 está ativado então rd1 nao recebe resultado, mas eleva o resultado pra reserva
       if(vai_rd1 && _rd1.innerText != '0'){
          
+         //animação para subir o resultado para reserva
+          _rd1a.style.animation = "none";
+          _vd.style.animation = "none";
+          vd.style.animation = "none";
+          setTimeout(() => _rd1a.style.animation = 
+              "sobe_d 2s linear, pisca_d 1.5s linear"
+              , 0);
+          setTimeout(() => _vd.style.animation = 
+             "ultimo_d 2s linear"
+             , 0);
+          setTimeout(() => vd.style.animation = 
+             "pisca_d 2s linear"
+             , 0);
+
          //sobe o resultado para reserva
          _vd.innerText = _rd1.innerText;
+         _vda.innerText = _rd1.innerText;
          _rd1.innerText = 0;
-         
+
          vai_rd1 = false;
 
       }else{
@@ -451,6 +470,10 @@ function frc1(){
    var _vc = document.getElementById('_vc');
    var _vc_orig = document.getElementById('_vc_orig');
    
+   var _rc1a = document.getElementById('_rc1a');
+   var vc = document.getElementById('vc');
+   var _vca = document.getElementById('_vca');
+
    //dois botões que geraram resultado ja estão ativos
    if(ativ_visor){
 
@@ -459,8 +482,23 @@ function frc1(){
       //se a valor de vai_rc1 está ativado então rc1 nao recebe resultado, mas eleva o resultado pra reserva
       if(vai_rc1 && _rc1.innerText != '0'){
          
+         //animação para subir o resultado para reserva
+          _rc1a.style.animation = "none";
+          _vc.style.animation = "none";
+          vc.style.animation = "none";
+          setTimeout(() => _rc1a.style.animation = 
+              "sobe_c 2s linear, pisca_c 1.5s linear"
+              , 0);
+          setTimeout(() => _vc.style.animation = 
+             "ultimo_c 2s linear"
+             , 0);
+          setTimeout(() => vc.style.animation = 
+             "pisca_c 2s linear"
+             , 0);
+
          //sobe o resultado para reserva
          _vc.innerText = _rc1.innerText;
+         _vca.innerText = _rc1.innerText;
          _rc1.innerText = 0;
          
          vai_rc1 = false;
@@ -483,6 +521,10 @@ function frm1(){
    var _vm = document.getElementById('_vm');
    var _vm_orig = document.getElementById('_vm_orig');
    
+   var _rm1a = document.getElementById('_rm1a');
+   var vm = document.getElementById('vm');
+   var _vma = document.getElementById('_vma');
+
    //dois botões que geraram resultado ja estão ativos
    if(ativ_visor){
 
@@ -491,8 +533,23 @@ function frm1(){
       //se a valor de vai_rc1 está ativado então rc1 nao recebe resultado, mas eleva o resultado pra reserva
       if(vai_rm1 && _rm1.innerText != '0'){
          
+         //animação para subir o resultado para reserva
+          _rm1a.style.animation = "none";
+          _vm.style.animation = "none";
+          vm.style.animation = "none";
+          setTimeout(() => _rm1a.style.animation = 
+              "sobe_m 2s linear, pisca_m 1.5s linear"
+              , 0);
+          setTimeout(() => _vm.style.animation = 
+             "ultimo_m 2s linear"
+             , 0);
+          setTimeout(() => vm.style.animation = 
+             "pisca_m 2s linear"
+             , 0);
+
          //sobe o resultado para reserva
          _vm.innerText = _rm1.innerText;
+         _vma.innerText = _rm1.innerText;
          _rm1.innerText = 0;
          
          vai_rm1 = false;
@@ -511,10 +568,22 @@ function frm1(){
 //insere resposta parcial entre dois digitos
 function ins_rpar(){
    
+   //para dá piscadas
+   var ru1 = document.getElementById('ru1');
+   var rd1 = document.getElementById('rd1');
+   var rc1 = document.getElementById('rc1');
+   var rm1 = document.getElementById('rm1');
+
+   //para inserir resposta
    var _ru1 = document.getElementById('_ru1');
    var _rd1 = document.getElementById('_rd1');
    var _rc1 = document.getElementById('_rc1');
    var _rm1 = document.getElementById('_rm1');
+
+   //para animação
+   var _rd1a = document.getElementById('_rd1a');
+   var _rc1a = document.getElementById('_rc1a');
+   var _rm1a = document.getElementById('_rm1a');
 
    //insere na unidade e dezena
    if(visor_btr == '_ru1'){
@@ -522,11 +591,30 @@ function ins_rpar(){
       var numarr = visor_res.innerText.split('');
 
       if(numarr.length == 1){
-         _ru1.innerText = numarr[0];   
+         _ru1.innerText = numarr[0];
+
+         //pisca a unidade onde irá inserir
+         ru1.style.animation = "none";
+         setTimeout(() => ru1.style.animation = 
+            "pisca_u 1s linear"
+            , 0);
+
       }
       if(numarr.length == 2){
          _ru1.innerText = numarr[1];
-         _rd1.innerText = numarr[0]; 
+         _rd1.innerText = numarr[0];
+
+         //pisca a unidade e dezena onde irá inserir
+         ru1.style.animation = "none";
+         rd1.style.animation = "none";
+         setTimeout(() => ru1.style.animation = 
+            "pisca_u 1s linear"
+            , 0);
+         setTimeout(() => rd1.style.animation = 
+            "pisca_d 1s linear"
+            , 0);
+
+         _rd1a.innerText = numarr[0]; 
 
          //ativa o botao "vai_rd1"
          vai_rd1 = true;
@@ -540,11 +628,32 @@ function ins_rpar(){
       var numarr = visor_res.innerText.split('');
 
       if(numarr.length == 1){
-         _rd1.innerText = numarr[0];   
+         _rd1.innerText = numarr[0];
+
+         //pisca a dezena onde irá inserir
+         rd1.style.animation = "none";
+         setTimeout(() => rd1.style.animation = 
+            "pisca_d 1s linear"
+            , 0);
+
+         _rd1a.innerText = numarr[0];   
       }
       if(numarr.length == 2){
          _rd1.innerText = numarr[1];
          _rc1.innerText = numarr[0]; 
+
+         //pisca a dezena e centena onde irá inserir
+         rd1.style.animation = "none";
+         rc1.style.animation = "none";
+         setTimeout(() => rd1.style.animation = 
+            "pisca_d 1s linear"
+            , 0);
+         setTimeout(() => rc1.style.animation = 
+            "pisca_c 1s linear"
+            , 0);
+
+         _rd1a.innerText = numarr[1];
+         _rc1a.innerText = numarr[0]; 
 
          //ativa o botao "vai_rc1"
          vai_rc1 = true; 
@@ -558,11 +667,32 @@ function ins_rpar(){
       var numarr = visor_res.innerText.split('');
 
       if(numarr.length == 1){
-         _rc1.innerText = numarr[0];   
+         _rc1.innerText = numarr[0];
+
+         //pisca a centena onde irá inserir
+         rc1.style.animation = "none";
+         setTimeout(() => rc1.style.animation = 
+            "pisca_c 1s linear"
+            , 0);
+
+         _rc1a.innerText = numarr[0];   
       }
       if(numarr.length == 2){
          _rc1.innerText = numarr[1];
          _rm1.innerText = numarr[0]; 
+
+         //pisca a centena e milhar onde irá inserir
+         rc1.style.animation = "none";
+         rm1.style.animation = "none";
+         setTimeout(() => rc1.style.animation = 
+            "pisca_c 1s linear"
+            , 0);
+         setTimeout(() => rm1.style.animation = 
+            "pisca_m 1s linear"
+            , 0);
+
+         _rc1a.innerText = numarr[1];
+         _rm1a.innerText = numarr[0]; 
 
          //ativa o botao "vai_rc1"
          vai_rm1 = true; 
@@ -572,6 +702,14 @@ function ins_rpar(){
    }
    if(visor_btr == '_rm1'){
       _rm1.innerText = visor_res.innerText;
+
+      //pisca a milhar onde irá inserir
+      rm1.style.animation = "none";
+      setTimeout(() => rm1.style.animation = 
+         "pisca_m 1s linear"
+         , 0);
+
+      _rm1a.innerText = visor_res.innerText;
    }
 
 }
@@ -584,6 +722,14 @@ function fvd(){
    var _rd1 = document.getElementById('_rd1');
    var _rc1 = document.getElementById('_rc1');
    var dig = 0;
+
+   var _rd1a = document.getElementById('_rd1a');
+   var _rc1a = document.getElementById('_rc1a');
+   var _vda = document.getElementById('_vda');
+   var rd1 = document.getElementById('rd1');
+   var rc1 = document.getElementById('rc1');
+   var _rd1_ant = document.getElementById('_rd1_ant');
+   var _rc1_ant = document.getElementById('_rc1_ant');
    
    //desce a dezena e soma com quem deve somar
    if(_vd.innerText != '0'){
@@ -593,16 +739,104 @@ function fvd(){
 
          dig = parseInt(_rd1.innerText, 10) + parseInt(_vd.innerText, 10);
          
-
          if(dig > 9){
+
+            //animação para descer a reserva para o resultado
+            _vda.style.animation = "none";
+
+            rd1.style.animation = "none";
+            rc1.style.animation = "none";
+
+            _rd1_ant.style.animation = "none";
+            _rc1_ant.style.animation = "none";
+
+            _rd1.style.animation = "none";
+            _rc1.style.animation = "none";
+           
+            _rd1a.style.animation = "none";
+            _rc1a.style.animation = "none";
+           
+            setTimeout(() => _vda.style.animation = 
+               "desce_d 2s linear, pisca_d 1.5s linear"
+               , 0);
+
+            setTimeout(() => rd1.style.animation = 
+               "pisca_d 2s linear"
+               , 0);
+            setTimeout(() => rc1.style.animation = 
+               "pisca_c 2s linear"
+               , 0);
+
+            setTimeout(() => _rd1_ant.style.animation = 
+               "primeiro_d 2s linear"
+               , 0);
+            setTimeout(() => _rc1_ant.style.animation = 
+               "primeiro_c 2s linear"
+               , 0);
+
+            setTimeout(() => _rd1.style.animation = 
+               "ultimo_d 2s linear"
+               , 0);
+             setTimeout(() => _rc1.style.animation = 
+               "ultimo_c 2s linear"
+               , 0);
+
+            setTimeout(() => _rd1a.style.animation = 
+               "ultimo_d 2s linear"
+               , 0);
+            setTimeout(() => _rc1a.style.animation = 
+               "ultimo_c 2s linear"
+               , 0);
+            
+
+            //salva uma copia do anterior
+            _rd1_ant.innerText = parseInt(_rd1.innerText, 10);
+            _rc1_ant.innerText = parseInt(_rc1.innerText, 10);
+
+            //altera o resultado que será apresentado
             _rd1.innerText = dig - 10;
             _rc1.innerText = parseInt(_rc1.innerText, 10) + 1; 
             
+            //altera o resultado que sera usado na animação
+            _rd1a.innerText = _rd1.innerText
+            _rc1a.innerText = _rc1.innerText;
+            
+
             //ativa o botao "vai_rc1"
             vai_rc1 = true;
 
          }else{
+
+            //animação para descer a reserva para o resultado
+            _vda.style.animation = "none";
+
+            rd1.style.animation = "none";
+
+            _rd1_ant.style.animation = "none";
+
+            _rd1.style.animation = "none";
+            
+            setTimeout(() => _vda.style.animation = 
+               "desce_d 2s linear, pisca_d 1.5s linear"
+               , 0);
+
+            setTimeout(() => rd1.style.animation = 
+               "pisca_d 2s linear"
+               , 0);
+
+            setTimeout(() => _rd1_ant.style.animation = 
+               "primeiro_d 2s linear"
+               , 0);
+
+            setTimeout(() => _rd1.style.animation = 
+               "ultimo_d 2s linear"
+               , 0);
+            
+            _rd1_ant.innerText = parseInt(_rd1.innerText, 10);
+
             _rd1.innerText = dig;
+
+            _rd1a.innerText = dig;
          }
 
          _vd.innerText = 0;
@@ -622,6 +856,13 @@ function fvc(){
    var _vc_orig = document.getElementById('_vc_orig');
    var _rc1 = document.getElementById('_rc1');
    
+   var _rc1a = document.getElementById('_rc1a');
+   var _rm1a = document.getElementById('_rm1a');
+   var _vca = document.getElementById('_vca');
+   var rc1 = document.getElementById('rc1');
+   var _rc1_ant = document.getElementById('_rc1_ant');
+   var _rm1_ant = document.getElementById('_rm1_ant');
+
    //desce a dezena e soma com quem deve somar
    if(_vc.innerText != '0'){
 
@@ -632,15 +873,102 @@ function fvc(){
          
          if(dig > 9){
 
+            //animação para descer a reserva para o resultado
+            _vca.style.animation = "none";
+
+            rc1.style.animation = "none";
+            rm1.style.animation = "none";
+
+            _rc1_ant.style.animation = "none";
+            _rm1_ant.style.animation = "none";
+
+            _rc1.style.animation = "none";
+            _rm1.style.animation = "none";
+
+            _rc1a.style.animation = "none";
+            _rm1a.style.animation = "none";
+           
+            setTimeout(() => _vca.style.animation = 
+               "desce_c 2s linear, pisca_c 1.5s linear"
+               , 0);
+
+            setTimeout(() => rc1.style.animation = 
+               "pisca_c 2s linear"
+               , 0);
+            setTimeout(() => rm1.style.animation = 
+               "pisca_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rc1_ant.style.animation = 
+               "primeiro_c 2s linear"
+               , 0);
+            setTimeout(() => _rm1_ant.style.animation = 
+               "primeiro_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rc1.style.animation = 
+               "ultimo_c 2s linear"
+               , 0);
+            setTimeout(() => _rm1.style.animation = 
+               "ultimo_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rc1a.style.animation = 
+               "ultimo_c 2s linear"
+               , 0);
+            setTimeout(() => _rm1a.style.animation = 
+               "ultimo_m 2s linear"
+               , 0);
+            
+
+            //salva uma copia do anterior
+            _rc1_ant.innerText = parseInt(_rc1.innerText, 10);
+            _rm1_ant.innerText = parseInt(_rm1.innerText, 10);
+
+            //altera o resultado que será apresentado
             _rc1.innerText = dig - 10;
             _rm1.innerText = parseInt(_rm1.innerText, 10) + 1; 
+
+            //altera o resultado que sera usado na animação
+            _rc1a.innerText = _rc1.innerText;
+            _rm1a.innerText = _rm1.innerText;
 
             //ativa o botao "vai_rc1"
             vai_rm1 = true;
 
          }else{
 
+            //animação para descer a reserva para o resultado
+            _vca.style.animation = "none";
+
+            rc1.style.animation = "none";
+
+            _rc1_ant.style.animation = "none";
+
+            _rc1.style.animation = "none";
+            
+            setTimeout(() => _vca.style.animation = 
+               "desce_c 2s linear, pisca_c 1.5s linear"
+               , 0);
+
+            setTimeout(() => rc1.style.animation = 
+               "pisca_c 2s linear"
+               , 0);
+
+            setTimeout(() => _rc1_ant.style.animation = 
+               "primeiro_c 2s linear"
+               , 0);
+
+            setTimeout(() => _rc1.style.animation = 
+               "ultimo_c 2s linear"
+               , 0);
+            
+
+            _rc1_ant.innerText = parseInt(_rc1.innerText, 10);
+
             _rc1.innerText = dig;
+
+            _rc1a.innerText = dig;
 
          }
 
@@ -661,6 +989,11 @@ function fvm(){
    var _vm_orig = document.getElementById('_vm_orig');
    var _rm1 = document.getElementById('_rm1');
    
+   var _rm1a = document.getElementById('_rm1a');
+   var _vma = document.getElementById('_vma');
+   var rm1 = document.getElementById('rm1');
+   var _rm1_ant = document.getElementById('_rm1_ant');
+
    //desce a dezena e soma com quem deve somar
    if(_vm.innerText != '0'){
 
@@ -673,7 +1006,34 @@ function fvm(){
             //não devia ter acontecido, corriga na criação do número
          }else{
 
+            //animação para descer a reserva para o resultado
+            _vma.style.animation = "none";
+            rm1.style.animation = "none";
+            _rm1_ant.style.animation = "none";
+            _rm1.style.animation = "none";
+            
+            setTimeout(() => _vma.style.animation = 
+               "desce_m 2s linear, pisca_m 1.5s linear"
+               , 0);
+
+            setTimeout(() => rm1.style.animation = 
+               "pisca_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rm1_ant.style.animation = 
+               "primeiro_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rm1.style.animation = 
+               "ultimo_m 2s linear"
+               , 0);
+            
+
+            _rm1_ant.innerText = parseInt(_rm1.innerText, 10);
+
             _rm1.innerText = dig;
+
+            _rm1a.innerText = dig;
             
          }
 
@@ -813,6 +1173,8 @@ function limpa_res(){
    document.getElementById("_rd1").innerText = 0;
    document.getElementById("_rc1").innerText = 0;
    document.getElementById("_rm1").innerText = 0;
+
+   document.getElementById("_rd1a").innerText = 0;
 }
 
 //--------------------------------------------------------------------
@@ -1351,7 +1713,7 @@ function aoiniciar(){
 
    puloss = true;
 
-   document.getElementById('ajuda').checked = false;
+   // document.getElementById('ajuda').checked = false;
 
    //novo(); 
   
@@ -1415,6 +1777,8 @@ function zera_result(){
    document.getElementById("_rd1").innerText = 0;
    document.getElementById("_rc1").innerText = 0;
    document.getElementById("_rm1").innerText = 0;
+
+   document.getElementById("_rd1a").innerText = 0;
 }
 
 /*provocou erro null do ParseInt
@@ -2470,11 +2834,11 @@ function novo(){
       }
 
       /*controlando a exibição de números que precisam de reagrupamento*/
-      if(reagru){
-         document.getElementById('reagr').checked = true;
-      }else{
-         document.getElementById('reagr').checked = false;
-      }
+      // if(reagru){
+      //    document.getElementById('reagr').checked = true;
+      // }else{
+      //    document.getElementById('reagr').checked = false;
+      // }
 
       /*controlando o número de digitos que os números devem ter*/
       var de = document.getElementById('de');
@@ -2908,6 +3272,8 @@ function limpa_result(){
    document.getElementById("_rc1").innerText = 0;
    document.getElementById("_rm1").innerText = 0;
 
+   document.getElementById("_rd1a").innerText = 0;
+
 }
 
 function limpar(){
@@ -3023,10 +3389,14 @@ function rumenos() {
 function rdmais() {
 
    const _rd1 = document.getElementById("_rd1");
+
+   const _rd1a = document.getElementById("_rd1a");
    
    var rdi = parseInt(_rd1.innerText, 10);
 
    _rd1.innerText = (rdi+1)+"";
+
+   _rd1a.innerText = (rdi+1)+"";
    
    exibir();
 
@@ -3036,9 +3406,13 @@ function rdmenos() {
 
    const _rd1 = document.getElementById("_rd1");
    
+   const _rd1a = document.getElementById("_rd1a");
+
    var rdi = parseInt(_rd1.innerText, 10);
 
    _rd1.innerText = (rdi-1)+"";
+
+   _rd1a.innerText = (rdi-1)+"";
    
    exibir();
 

@@ -104,7 +104,21 @@ body{
 			opacity: 100%;
 		}
 		100%{
-			transform: translate(10px, -260px);
+			transform: translate(0px, -390px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes desce_d{
+		0%{
+			transform: translate(0px, 0px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, 330px);
 			opacity: 0%;
 		}
 	}
@@ -143,6 +157,18 @@ body{
 		}
 		100%{
 			background-color: white;
+		}
+	}
+
+	@keyframes primeiro_d{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		100%{
+			opacity: 0%;
 		}
 	}
 
@@ -207,7 +233,21 @@ body{
 			opacity: 100%;
 		}
 		100%{
-			transform: translate(10px, -260px);
+			transform: translate(0px, -390px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes desce_c{
+		0%{
+			transform: translate(0px, 0px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, 330px);
 			opacity: 0%;
 		}
 	}
@@ -264,6 +304,18 @@ body{
 		}
 		100%{
 			background-color: white;
+		}
+	}
+
+	@keyframes primeiro_c{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		100%{
+			opacity: 0%;
 		}
 	}
 
@@ -328,7 +380,21 @@ body{
 			opacity: 100%;
 		}
 		100%{
-			transform: translate(10px, -260px);
+			transform: translate(0px, -390px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes desce_m{
+		0%{
+			transform: translate(0px, 0px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, 330px);
 			opacity: 0%;
 		}
 	}
@@ -370,6 +436,18 @@ body{
 		}
 	}
 
+	@keyframes primeiro_m{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
 	/*NÃO ALTERAR*/
 	@keyframes ultimo_m{
 		0%{
@@ -407,17 +485,119 @@ body{
 		
 		}
 	}
+/*animação para produto ini---------------------------------------*/
+	/*DEZENA----------------*/
+		td#rd1 span#_rd1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
 
-
-
-
-	/*ANIMAÇÃO PARA DEZENA E UNIDADE*/
+		td#rd1 span#_rd1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+	
 		td#vd span#_vd{
 			color: green;
 			display: flex;	
 			position: fixed;
-			padding-left: 15px;
+			padding-left: 23px;
 		}
+
+		td#vd span#_vda{
+			display: flex;	
+			position: fixed;
+			padding-left: 25px;
+			padding-right: 25px;
+			opacity: 0%;
+		}
+
+	/*CENTENA----------------*/
+		td#rc1 span#_rc1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rc1 span#_rc1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+	
+		td#vc span#_vc{
+			color: blue;
+			display: flex;	
+			position: fixed;
+			padding-left: 23px;
+		}
+
+		td#vc span#_vca{
+			display: flex;	
+			position: fixed;
+			padding-left: 25px;
+			padding-right: 25px;
+			opacity: 0%;
+		}
+
+	/*MILHAR----------------*/
+		td#rm1 span#_rm1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rm1 span#_rm1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+	
+		td#vm span#_vm{
+			color: black;
+			display: flex;	
+			position: fixed;
+			padding-left: 23px;
+		}
+
+		td#vm span#_vma{
+			display: flex;	
+			position: fixed;
+			padding-left: 25px;
+			padding-right: 25px;
+			opacity: 0%;
+		}
+
+/*animação para produto fin----------------------------------------*/
+
+
+	/*ANIMAÇÃO PARA DEZENA E UNIDADE*/
+		/*td#vd span#_vd{
+			color: green;
+			display: flex;	
+			position: fixed;
+			padding-left: 15px;
+		}*/
 
 		td#vd span#_vd_ant{
 			display: flex;	
@@ -464,12 +644,12 @@ body{
 		}
 
 	/*ANIMAÇÃO DA CENTENTA E DEZENA*/
-		td#vc span#_vc{
+		/*td#vc span#_vc{
 			color: blue;
 			display: flex;	
 			position: fixed;
 			padding-left: 15px;
-		}
+		}*/
 
 		td#vc span#_vc_ant{
 			color: blue;
@@ -514,12 +694,12 @@ body{
 		}
 
 	/*ANIMAÇÃO PARA CENTENA E MILHAR*/
-		td#vm span#_vm{
+		/*td#vm span#_vm{
 			color: black;
 			display: flex;	
 			position: fixed;
 			padding-left: 28px;
-		}
+		}*/
 
 		td#vm span#_vm_ant{
 			display: flex;	

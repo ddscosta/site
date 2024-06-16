@@ -44,36 +44,36 @@
 			
 			<hr>
 
-			<div class="ajud">
+			<!-- <div class="ajud">
 
 				<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
 
 				<label for="ajuda">
 					<div class="tooltip"> Repetir Minuendo na Resposta.
-						<!-- <span class="tooltiptext">Mostra o maior número na resposta para subtraí-lo facilmente.</span> -->
+						
 					</div>	
 				</label>
 
-			</div>
+			</div> -->
 			
-			<div class="reag">
+			<!-- <div class="reag">
 
 				<input type="checkbox" name="reagr" id="reagr" onclick="reagrup();">
 
 				<label for="reagr">
 					<div class="tooltip"> Números que Força Reagrupamento.
-						<!-- <span class="tooltiptext">Os números exibidos induzem à utilização do reagrupamento.</span> -->
+						
 					</div>	
 				</label>
 
-			</div>
+			</div> -->
 
 			<div class="animacao">
 
 				<input type="checkbox" name="anim" id="anim" onclick="animm();">
 
 				<label for="anim">
-					<div class="tooltip"> Animação que Ensina Reagrupar.
+					<div class="tooltip"> Animação de Reserva.
 						<!-- <span class="tooltiptext">Mostra uma animação que ajuda o estudante a aprender o reagrupamento.</span> -->
 					</div>	
 				</label>
@@ -120,6 +120,9 @@
 							
 							<span id="_vm">0</span>
 
+							<span id="_vma">0</span>
+
+
 							<span id="_vm_orig" style="display: none;">_rm1</span>
 
 							<!-- desativando a animação -->
@@ -133,6 +136,9 @@
 							
 							<span id="_vc">0</span>
 
+							<span id="_vca">0</span>
+
+
 							<span id="_vc_orig" style="display: none;">_rc1</span>
 
 							<!-- desativando a animação -->
@@ -145,7 +151,10 @@
 						<td class="d" id="vd" onclick="fvd()">
 
 							<span id="_vd">0</span>
+
+							<span id="_vda">0</span>
 							
+
 							<span id="_vd_orig" style="display: none;">_rd1</span>
 
 							<!-- desativando a animação -->
@@ -248,7 +257,7 @@
 
 							<span><img id="imgc" src="subtracao/block.png"></span>
 
-							<span id="c1">2</span>
+							<span id="c1">4</span>
 
 							<span id="c1a"></span>
 
@@ -260,7 +269,7 @@
 
 							<span><img id="imgd" src="subtracao/block.png"></span>
 
-							<span id="d1">6</span>
+							<span id="d1">1</span>
 
 							<span id="d1a"></span>
 
@@ -270,7 +279,7 @@
 
 							<span><img id="imgu" src="subtracao/block.png"></span>
 
-							<span id="u1">0</span>
+							<span id="u1">9</span>
 
 							<span id="u1a"></span>
 
@@ -283,7 +292,7 @@
 						<td class="um" id="m2" onclick="fm2()"></td>
 						<td class="c" id="c2" onclick="fc2()"></td>
 						<td class="d" id="d2" onclick="fd2()"></td>
-						<td class="u" id="u2" onclick="fu2()">4</td>
+						<td class="u" id="u2" onclick="fu2()">6</td>
 					</tr>
 
 					<tr id="sol">
@@ -293,7 +302,9 @@
 
 							<span id="_rm1">0</span>
 
-							<!-- <span id="_rm1a">0</span> -->
+							<span id="_rm1a">0</span>
+
+							<span id="_rm1_ant">0</span>
 
 						</td>
 						
@@ -301,7 +312,9 @@
 							
 							<span id="_rc1">0</span>
 
-							<!-- <span id="_rca1">0</span> -->
+							<span id="_rc1a">0</span>
+
+							<span id="_rc1_ant">0</span>
 
 						</td>
 						
@@ -309,7 +322,9 @@
 
 							<span id="_rd1">0</span>
 
-							<!-- <span id="_rd1a">0</span> -->
+							<span id="_rd1a">0</span>
+
+							<span id="_rd1_ant">0</span>
 
 						</td>
 
