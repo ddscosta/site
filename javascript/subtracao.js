@@ -539,6 +539,25 @@ function memoriza_sub(){
 
 function aoiniciar(){
 
+   //atalho para abrir link pelo veyon master e apagar dados e pontos sem confirmação, exemplo: pelo parametro get usando a chave del all ou seja delall=1
+   var query = location.search.slice(1);
+   var partes = query.split('&');
+   var chave = '';
+   var valor = '';
+   partes.forEach(function (parte) {
+       var chaveValor = parte.split('=');
+       chave = chaveValor[0];
+       valor = chaveValor[1];
+   });
+   console.log("chave: " + chave + " >> valor: " + valor); 
+   //.../adicao1.html?delall=1
+   if(chave == 'delall'){
+      //perigoso: apaga tudo sem confirmação
+      limpar_hist();
+      resetar_noconfirm();
+      window.history.replaceState("object or string", "Title", "site/adicao1.html");
+   }
+
    /*escondendo o menu flutuante*/
    const flutua = document.getElementById("flutua");
    flutua.style.display = 'none';
@@ -1456,6 +1475,19 @@ function resetar(){
       verificaStorage();
 
    }
+
+}
+
+function resetar_noconfirm(){
+   console.log('Apagando os dados de sessão exibidos no html sem confirmação');
+
+      //zera os dados na sessão
+      localStorage.setItem("pontos_sub", 0);
+      localStorage.setItem("erros_sub", 0);
+      localStorage.setItem("pulos_sub", 0);
+      
+      //pega os dados da sessão e escreve no html
+      verificaStorage();
 
 }
 

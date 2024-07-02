@@ -92,7 +92,7 @@ function openNav(){
          }else{
             
             /*se nao apagar os dados, eles são incorporados ao novo nome?*/
-            if ( confirm('Apagar Histórico de ' + nome_aluno_sec_adi + '? \nIsso não apaga os pontos exibidos atualmente!!') ) {
+            if ( confirm('Apagar Histórico de ' + nome_aluno_sec_adi + '?') ) {
                
                //set os arrays de objetos: arr_obj_err_adi, arr_obj_acer_adi, arr_obj_pul_adi como null
                //os novos dados já estão juntos com dados antigos, i.e. se o usuario começões sem limpar dados antigos, agora eles misturados
@@ -604,7 +604,7 @@ function reset(){
 function resetar(){
    console.log('Apagando os dados de sessão exibidos no html');
 
-   if ( confirm('Apagar Pontos Erros e Pulos? \nIsso não apaga dados do Hisórico!') ) {
+   if ( confirm('Apagar Pontos Erros e Pulos?') ) {
 
       //zera os dados na sessão
       localStorage.setItem("pontos_adi", 0);
@@ -1778,7 +1778,7 @@ function prepara_impr(){
 
    //.../histadi.html?chave=del
    if(chave == 'del'){
-      if(confirm('Apagar histórico de impressão? \nIsso não apaga os pontos exibidos atualmente!!')){
+      if(confirm('Apagar histórico de impressão?')){
          limpar_hist();
       }
    }
