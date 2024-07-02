@@ -74,8 +74,10 @@ function openNav(){
       
       flutua.style.display = 'none';
 
+      //o input html possui um nome
       if(nome_aluno_adi != ''){
 
+         //pega no nome na sessão
          if(localStorage.getItem("nome_aluno_adi") != null){
          
             nome_aluno_sec_adi = localStorage.getItem("nome_aluno_adi");
@@ -89,10 +91,16 @@ function openNav(){
            
          }else{
             
-            /*se nao apagar os dados, eles são incorporados ao novo nome*/
-            if ( confirm('Apagar Histórico de ' + nome_aluno_sec_adi + '?') ) {
+            /*se nao apagar os dados, eles são incorporados ao novo nome?*/
+            if ( confirm('Apagar Histórico de ' + nome_aluno_sec_adi + '? \nIsso não apaga os pontos exibidos atualmente!!') ) {
+               
+               //set os arrays de objetos: arr_obj_err_adi, arr_obj_acer_adi, arr_obj_pul_adi como null
+               //os novos dados já estão juntos com dados antigos, i.e. se o usuario começões sem limpar dados antigos, agora eles misturados
                limpar_hist();
+
             }
+
+            //como são tratados os dados novos e antigos
 
          }
 
@@ -335,6 +343,7 @@ function pontuacao(tipo){
    var input_err = document.getElementById("erros");
    var input_pul = document.getElementById("pulos");
 
+   //ler o array de objetos da seção
    if(JSON.parse(localStorage.getItem("arr_obj_err_adi")) != null){
        arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_adi"));
    }
@@ -352,6 +361,7 @@ function pontuacao(tipo){
    /*TIPO QUE GANHA PONTOS*/
    if(tipo == 'mais'){
 
+      //insere um objeto conta no array de objetos da seção
       arr_obj_acer.push(obj_conta);
 
       if(Number.isNaN(ponti)){
@@ -366,6 +376,7 @@ function pontuacao(tipo){
    /*TIPO QUE PERDE PONTOS*/
    if(tipo == 'menos'){
       
+      //insere um objeto conta no array de objetos da seção
       arr_obj_err.push(obj_conta);
       //arr_txt_err.push(txt_exibe+'');
 
@@ -386,6 +397,7 @@ function pontuacao(tipo){
    /*registra os pulos*/
    if(tipo == 'menos_pulo'){
       
+      //insere um objeto conta no array de objetos da seção
       arr_obj_pul.push(obj_conta);
       //arr_txt_pul.push(txt_exibe+'');
 
@@ -429,6 +441,7 @@ function pontuacao(tipo){
    localStorage.setItem("erros_adi", loc_erri);
    localStorage.setItem("pulos_adi", loc_puli);
 
+   //insere os arrays de objetos de volta na sessão
    localStorage.setItem("arr_obj_err_adi", JSON.stringify(arr_obj_err));
    localStorage.setItem("arr_obj_acer_adi", JSON.stringify(arr_obj_acer));
    localStorage.setItem("arr_obj_pul_adi", JSON.stringify(arr_obj_pul));
@@ -450,6 +463,7 @@ function pontuacao(tipo){
 
 }
 
+//pega os dados da sessão e escreve no html
 function verificaStorage(){
 
    var pon = 0;
@@ -496,6 +510,25 @@ function verificaStorage(){
 }
 
 function aoiniciar(){
+
+   //atalho para abrir link pelo veyon master e apagar dados e pontos sem confirmação, exemplo: pelo parametro get usando a chave del all ou seja delall=1
+   var query = location.search.slice(1);
+   var partes = query.split('&');
+   var chave = '';
+   var valor = '';
+   partes.forEach(function (parte) {
+       var chaveValor = parte.split('=');
+       chave = chaveValor[0];
+       valor = chaveValor[1];
+   });
+   console.log("chave: " + chave + " >> valor: " + valor); 
+   //.../adicao1.html?delall=1
+   if(chave == 'delall'){
+      //perigoso: apaga tudo sem confirmação
+      limpar_hist();
+      resetar_noconfirm();
+      window.history.replaceState("object or string", "Title", "site/adicao1.html");
+   }
 
    /*escondendo o menu flutuante*/
    const flutua = document.getElementById("flutua");
@@ -569,18 +602,35 @@ function reset(){
 }
 
 function resetar(){
-   console.log('Apagando os dados');
+   console.log('Apagando os dados de sessão exibidos no html');
 
-   if ( confirm('Apagar Pontos Erros e Pulos?') ) {
+   if ( confirm('Apagar Pontos Erros e Pulos? \nIsso não apaga dados do Hisórico!') ) {
 
+      //zera os dados na sessão
       localStorage.setItem("pontos_adi", 0);
       localStorage.setItem("erros_adi", 0);
       localStorage.setItem("pulos_adi", 0);
+      
+      //pega os dados da sessão e escreve no html
       verificaStorage();
 
    }
 
 }
+
+function resetar_noconfirm(){
+   console.log('Apagando os dados de sessão exibidos no html sem confirmação');
+
+      //zera os dados na sessão
+      localStorage.setItem("pontos_adi", 0);
+      localStorage.setItem("erros_adi", 0);
+      localStorage.setItem("pulos_adi", 0);
+      
+      //pega os dados da sessão e escreve no html
+      verificaStorage();
+
+}
+
 function limpar_hist(){
 
    localStorage.setItem("arr_obj_err_adi", null);
@@ -1713,6 +1763,7 @@ function prepara_impr(){
    
    }
     
+
    var query = location.search.slice(1);
    var partes = query.split('&');
    var chave = '';
@@ -1725,10 +1776,19 @@ function prepara_impr(){
 
    console.log("chave: " + chave + " >> valor: " + valor); 
 
+   //.../histadi.html?chave=del
    if(chave == 'del'){
-      if(confirm('Apagar histórico de impressão?')){
+      if(confirm('Apagar histórico de impressão? \nIsso não apaga os pontos exibidos atualmente!!')){
          limpar_hist();
       }
+   }
+
+   //.../histadi.html?chave=delall
+   if(chave == 'delall'){
+      //perigoso: apaga tudo sem confirmação
+      limpar_hist();
+      resetar_noconfirm();
+      window.history.replaceState("object or string", "Title", "site/histadi.html");
    }
 
    var erros = document.getElementById('erros');

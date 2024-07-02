@@ -2845,13 +2845,13 @@ function novo(){
       var dei = parseInt(de.value, 10);
 
       console.log('de:'+de.value);
-
+     
       var ate = document.getElementById('ate');
       var atei = parseInt(ate.value, 10);
 
       console.log('ate:'+ate.value);
-
-      //ordenando os numeros corretamente
+      
+      //ordenando os numeros corretamente (caso digitem de <maior> até <menor>!!! )
       if(dei > atei){
          var temp = dei;
          dei = atei;

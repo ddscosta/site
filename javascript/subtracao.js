@@ -11,6 +11,8 @@ var acertou = false;
 
 var animar = false; /*desativando animação*/
 
+var dados_sessao_sub = '';
+
 function openNav(){
 
    const flutua = document.getElementById("flutua");
@@ -68,6 +70,14 @@ function openNav(){
       
       }
 
+      //só recupera o nome????????
+
+      //vamos gardar os dados numa variavel global?
+      //dados_sessao_sub = localStorage.getItem("nome_aluno_sub");
+      //localStorage.setItem("arr_obj_err_sub", null);
+      //localStorage.setItem("arr_obj_acer_sub", null);
+      //localStorage.setItem("arr_obj_pul_sub", null);
+
    /*esconde o menu*/  
    }else{
       
@@ -96,6 +106,8 @@ function openNav(){
          }
 
          /*apagando ou nao os dados do historico, o nome vai mudar*/
+
+         /salvando o novo do aluno na sessão/
          localStorage.setItem("nome_aluno_sub", nome_aluno_sub);
 
          console.log('salvou nome na secao: ' + nome_aluno_sub); 
