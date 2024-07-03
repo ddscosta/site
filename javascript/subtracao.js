@@ -99,9 +99,9 @@ function openNav(){
          }else{
             
             /*se nao apagar os dados, eles são incorporados ao novo nome*/
-            if ( confirm('Apagar Histórico de ' + nome_aluno_sec_sub + '?') ) {
-               limpar_hist();
-            }
+            // if ( confirm('Apagar Histórico de ' + nome_aluno_sec_sub + '?') ) {
+            //    limpar_hist();
+            // }
 
          }
 
@@ -539,6 +539,9 @@ function memoriza_sub(){
 
 function aoiniciar(){
 
+   //altera cor de fundo do titulo para avisar que há dados no hitorico ou pontos
+   aviso_dados();
+
    //atalho para abrir link pelo veyon master e apagar dados e pontos sem confirmação, exemplo: pelo parametro get usando a chave del all ou seja delall=1
    var query = location.search.slice(1);
    var partes = query.split('&');
@@ -550,8 +553,8 @@ function aoiniciar(){
        valor = chaveValor[1];
    });
    console.log("chave: " + chave + " >> valor: " + valor); 
-   //.../adicao1.html?delall=1
-   if(chave == 'delall'){
+   //.../adicao1.html?del
+   if(chave == 'del'){
       //perigoso: apaga tudo sem confirmação
       limpar_hist();
       resetar_noconfirm();
@@ -2178,25 +2181,43 @@ function prepara_impr(){
 
    console.log("chave: " + chave + " >> valor: " + valor); 
 
-   if(chave == 'del'){
-      if(confirm('Apagar histórico de impressão?')){
-         limpar_hist();
-      }
-   }
+   // if(chave == 'del'){
+   //    if(confirm('Apagar histórico de impressão?')){
+   //       limpar_hist();
+   //    }
+   // }
 
    var erros = document.getElementById('erros');
    var pulos = document.getElementById('pulos');
    var acertos = document.getElementById('acertos');
+   
+   var erros_lin = document.getElementById('erros_lin');
+   var pulos_lin = document.getElementById('pulos_lin');
+   var acertos_lin = document.getElementById('acertos_lin');
+
+   var n_err = document.getElementById('n_err');
+   var n_pul = document.getElementById('n_pul');
+   var n_ace = document.getElementById('n_ace');
+   var n_err_lin = document.getElementById('n_err_lin');
+   var n_pul_lin = document.getElementById('n_pul_lin');
+   var n_ace_lin = document.getElementById('n_ace_lin');
 
    var html_err = '';
    var html_ace = '';
    var html_pul = '';
+
+   var html_err_lin = '';
+   var html_ace_lin = '';
+   var html_pul_lin = '';
 
    if (localStorage.hasOwnProperty("arr_obj_err_sub")) {
       
       var parse = JSON.parse( localStorage.getItem("arr_obj_err_sub") );
 
       if(parse != null){
+         
+         n_err.innerText = "("+parse.length+")";
+         n_err_lin.innerText = "("+parse.length+")";
    
          parse.forEach(objconta => {
             
@@ -2204,11 +2225,14 @@ function prepara_impr(){
             if(chave=='his' && valor=='1'){
 
                html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+               html_err_lin = html_err_lin + "<li>"+objconta.num1+" - "+objconta.num2+"</li>";
+
             
             }else{
 
                html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
-            
+               html_err_lin = html_err_lin + "<li>"+objconta.num1+" - "+objconta.num2+" = "+objconta.numr+"</li>";
+                  
             }
             console.log('Erro: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
 
@@ -2217,6 +2241,7 @@ function prepara_impr(){
       }
 
       erros.innerHTML = html_err;
+      erros_lin.innerHTML = '<ol>'+html_err_lin+'</ol>';
 
    }
 
@@ -2226,17 +2251,22 @@ function prepara_impr(){
 
       if(parse != null){
 
+         n_ace.innerText = "("+parse.length+")";
+         n_ace_lin.innerText = "("+parse.length+")";
+
          parse.forEach(objconta => {
             
             /*não será impresso os valores*/
             if(chave=='his' && valor=='1'){
 
                html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
-            
+               html_ace_lin = html_ace_lin + "<li>"+objconta.num1+" - "+objconta.num2+"</li>";
+               
             }else{
 
                html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
-               
+               html_ace_lin = html_ace_lin + "<li>"+objconta.num1+" - "+objconta.num2+" = "+objconta.numr+"</li>";
+                           
             }
             console.log('Acerto: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
 
@@ -2245,6 +2275,7 @@ function prepara_impr(){
       }
 
       acertos.innerHTML = html_ace;
+      acertos_lin.innerHTML = '<ol>'+html_ace_lin+'</ol>';
 
    }
 
@@ -2254,16 +2285,21 @@ function prepara_impr(){
 
       if(parse != null){
 
+         n_pul.innerText = "("+parse.length+")";
+         n_pul_lin.innerText = "("+parse.length+")";
+
          parse.forEach(objconta => {
          
             /*não será impresso os valores*/
             if(chave=='his' && valor=='1'){
 
                html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span></span></div>";
+               html_pul_lin = html_pul_lin + "<li>"+objconta.num1+" - "+objconta.num2+"</li>";
             
             }else{
             
                html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">-</span><hr><span>"+objconta.numr+"</span></div>";
+               html_pul_lin = html_pul_lin + "<li>"+objconta.num1+" - "+objconta.num2+" = "+objconta.numr+"</li>";
 
             }
             console.log('Pulo: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
@@ -2273,6 +2309,60 @@ function prepara_impr(){
       } 
 
       pulos.innerHTML = html_pul;
+      pulos_lin.innerHTML = '<ol>'+html_pul_lin+'</ol>';
 
    }
+}
+
+//altera-se a cor de fundo do titulo amarelo como aviso
+function aviso_dados(){
+
+   var titulo = document.getElementById("principal");
+
+   var parse_err_sub_st = false;
+   var parse_acer_sub_st = false;
+   var parse_pul_sub_st = false;
+
+    if (localStorage.hasOwnProperty("arr_obj_err_sub")) {
+         
+         var parse_err_sub = JSON.parse( localStorage.getItem("arr_obj_err_sub") );
+
+         if(parse_err_sub != null && parse_err_sub.length > 0){
+             parse_err_sub_st = true;
+         }
+    }
+            
+   if (localStorage.hasOwnProperty("arr_obj_acer_sub")) {
+         
+         var parse_acer_sub = JSON.parse( localStorage.getItem("arr_obj_acer_sub") );
+
+         if(parse_acer_sub != null && parse_acer_sub.length > 0){
+             parse_acer_sub_st = true;
+         }
+    }
+
+   if (localStorage.hasOwnProperty("arr_obj_pul_sub")) {
+         
+         var parse_pul_sub = JSON.parse( localStorage.getItem("arr_obj_pul_sub") );
+
+         if(parse_pul_sub != null && parse_pul_sub.length > 0){
+             parse_pul_sub_st = true;
+         }
+   }
+
+   var sub_pt = localStorage.getItem("pontos_sub");
+   var sub_er = localStorage.getItem("erros_sub");
+   var sub_pu = localStorage.getItem("pulos_sub");
+
+   var sub_pt_i = parseInt(sub_pt, 10);
+   var sub_er_i = parseInt(sub_er, 10);
+   var sub_pu_i = parseInt(sub_pu, 10);
+
+   //caso haja dados no histórico ou pontos acumulado altera-se a cor de fundo do titulo amarelo como aviso
+   if( parse_err_sub_st ||  parse_acer_sub_st || parse_pul_sub_st || sub_pt_i > 0 || sub_er_i > 0 || sub_pu_i > 0 ){
+        titulo.style.background = "#dfdf7f";
+   }else{
+       titulo.style.background = "#97e697";
+   }
+
 }

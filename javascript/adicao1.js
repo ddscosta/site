@@ -92,13 +92,13 @@ function openNav(){
          }else{
             
             /*se nao apagar os dados, eles são incorporados ao novo nome?*/
-            if ( confirm('Apagar Histórico de ' + nome_aluno_sec_adi + '?') ) {
+            //if ( confirm('Apagar Histórico de ' + nome_aluno_sec_adi + '?') ) {
                
                //set os arrays de objetos: arr_obj_err_adi, arr_obj_acer_adi, arr_obj_pul_adi como null
                //os novos dados já estão juntos com dados antigos, i.e. se o usuario começões sem limpar dados antigos, agora eles misturados
-               limpar_hist();
+               //limpar_hist();
 
-            }
+            //}
 
             //como são tratados os dados novos e antigos
 
@@ -511,6 +511,9 @@ function verificaStorage(){
 
 function aoiniciar(){
 
+    //altera cor de fundo do titulo para avisar que há dados no hitorico ou pontos
+   aviso_dados();
+
    //atalho para abrir link pelo veyon master e apagar dados e pontos sem confirmação, exemplo: pelo parametro get usando a chave del all ou seja delall=1
    var query = location.search.slice(1);
    var partes = query.split('&');
@@ -522,12 +525,12 @@ function aoiniciar(){
        valor = chaveValor[1];
    });
    console.log("chave: " + chave + " >> valor: " + valor); 
-   //.../adicao1.html?delall=1
-   if(chave == 'delall'){
+   //.../adicao1.html?del
+   if(chave == 'del'){
       //perigoso: apaga tudo sem confirmação
       limpar_hist();
       resetar_noconfirm();
-      window.history.replaceState("object or string", "Title", "site/adicao1.html");
+      window.history.replaceState("object or string", "Title", "adicao1.html");
    }
 
    /*escondendo o menu flutuante*/
@@ -1763,7 +1766,6 @@ function prepara_impr(){
    
    }
     
-
    var query = location.search.slice(1);
    var partes = query.split('&');
    var chave = '';
@@ -1777,19 +1779,11 @@ function prepara_impr(){
    console.log("chave: " + chave + " >> valor: " + valor); 
 
    //.../histadi.html?chave=del
-   if(chave == 'del'){
-      if(confirm('Apagar histórico de impressão?')){
-         limpar_hist();
-      }
-   }
-
-   //.../histadi.html?chave=delall
-   if(chave == 'delall'){
-      //perigoso: apaga tudo sem confirmação
-      limpar_hist();
-      resetar_noconfirm();
-      window.history.replaceState("object or string", "Title", "site/histadi.html");
-   }
+   // if(chave == 'del'){
+   //    if(confirm('Apagar histórico de impressão?')){
+   //       limpar_hist();
+   //    }
+   // }
 
    var erros = document.getElementById('erros');
    var pulos = document.getElementById('pulos');
@@ -1915,4 +1909,57 @@ function prepara_impr(){
       pulos_lin.innerHTML = '<ol>'+html_pul_lin+'</ol>';
 
    }
+}
+
+//altera-se a cor de fundo do titulo amarelo como aviso
+function aviso_dados(){
+
+   var titulo = document.getElementById("principal");
+
+   var parse_err_adi_st = false;
+   var parse_acer_adi_st = false;
+   var parse_pul_adi_st = false;
+
+    if (localStorage.hasOwnProperty("arr_obj_err_adi")) {
+         
+         var parse_err_adi = JSON.parse( localStorage.getItem("arr_obj_err_adi") );
+
+         if(parse_err_adi != null && parse_err_adi.length > 0){
+             parse_err_adi_st = true;
+         }
+    }
+            
+   if (localStorage.hasOwnProperty("arr_obj_acer_adi")) {
+         
+         var parse_acer_adi = JSON.parse( localStorage.getItem("arr_obj_acer_adi") );
+
+         if(parse_acer_adi != null && parse_acer_adi.length > 0){
+             parse_acer_adi_st = true;
+         }
+    }
+
+   if (localStorage.hasOwnProperty("arr_obj_pul_adi")) {
+         
+         var parse_pul_adi = JSON.parse( localStorage.getItem("arr_obj_pul_adi") );
+
+         if(parse_pul_adi != null && parse_pul_adi.length > 0){
+             parse_pul_adi_st = true;
+         }
+   }
+
+   var adi_pt = localStorage.getItem("pontos_adi");
+   var adi_er = localStorage.getItem("erros_adi");
+   var adi_pu = localStorage.getItem("pulos_adi");
+
+   var adi_pt_i = parseInt(adi_pt, 10);
+   var adi_er_i = parseInt(adi_er, 10);
+   var adi_pu_i = parseInt(adi_pu, 10);
+
+   //caso haja dados no histórico ou pontos acumulado altera-se a cor de fundo do titulo amarelo como aviso
+   if( parse_err_adi_st ||  parse_acer_adi_st || parse_pul_adi_st || adi_pt_i > 0 || adi_er_i > 0 || adi_pu_i > 0 ){
+        titulo.style.background = "#dfdf7f";
+   }else{
+       titulo.style.background = "#97e697";
+   }
+
 }
