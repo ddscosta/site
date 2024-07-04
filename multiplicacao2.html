@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html manifest="site.appcache">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/multiplicacao2.css">
+
+	<script src="javascript/multiplicacao2.js"></script>
+
+	<script src="javascript/relogio.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<title>Multiplicação(2) com QVL</title>
+</head>
+<body onload="aoiniciar()">
+	
+	<div id="principal">
+		
+		<button class="nav-button" onclick="openNav()">
+			<i class="fa-solid fa-bars fa-2x"></i>
+		</button>
+
+		<div class="relogio" id="relg">00:00:00</div>
+
+		<div id="flutua">
+			
+			<a href="multiplicacao2.html">INÍCIO</a> &nbsp;>>&nbsp;
+
+			<a href="histmult2.html">HISTÓRICO</a>
+
+			<hr>
+
+			<div class="ate">
+				Escolher tamanho dos números. <br>&emsp;
+
+				<label for="de">Multiplicando(2º Fator): de</label>
+				<input type="text" name="de" id="de" value="1" maxlength="4"> 
+				
+				<label for="ate">até</label>
+				<input type="text" name="ate" id="ate" value="9999"maxlength="4"> 
+
+			</div>
+			
+			<hr>
+
+			<!-- <div class="ajud">
+
+				<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
+
+				<label for="ajuda">
+					<div class="tooltip"> Repetir Minuendo na Resposta.
+						
+					</div>	
+				</label>
+
+			</div> -->
+			
+			<!-- <div class="reag">
+
+				<input type="checkbox" name="reagr" id="reagr" onclick="reagrup();">
+
+				<label for="reagr">
+					<div class="tooltip"> Números que Força Reagrupamento.
+						
+					</div>	
+				</label>
+
+			</div> -->
+
+			<div class="animacao">
+
+				<input type="checkbox" name="anim" id="anim" onclick="animm();">
+
+				<label for="anim">
+					<div class="tooltip"> Animação de Reserva.
+						<!-- <span class="tooltiptext">Mostra uma animação que ajuda o estudante a aprender o reagrupamento.</span> -->
+					</div>	
+				</label>
+
+			</div>
+
+			<hr>
+
+			<div class="nome">
+
+				<label for="nome">
+					Aluno	
+				</label>
+
+				<input type="text" name="nome" id="nome_aln">
+
+			</div>
+
+		</div>
+
+		<h1>Algorítmo da Multiplicação (x2) com QVL</h1>
+
+		<div id="subtracao">
+
+			<table>
+			
+				<thead >
+
+					<tr id="hd">
+						<th class="um"></th>
+						<th class="c"></th>
+						<th class="d"></th>
+						<th class="u"></th>
+					</tr>
+
+				</thead>
+
+				<tbody>
+
+					<tr id="vai">
+						<td class="inf" style="font-size: 30px;">Reserva =></td>
+
+						<td class="um" id="vm" onclick="fvm()">
+							
+							<span id="_vm">0</span>
+
+							<span id="_vma">0</span>
+
+
+							<span id="_vm_orig" style="display: none;">_rm1</span>
+
+							<!-- desativando a animação -->
+							<span id="_vm_ant"></span>
+
+							<span id="vma">1</span>
+
+						</td>
+
+						<td class="c" id="vc" onclick="fvc()">
+							
+							<span id="_vc">0</span>
+
+							<span id="_vca">0</span>
+
+
+							<span id="_vc_orig" style="display: none;">_rc1</span>
+
+							<!-- desativando a animação -->
+							<span id="_vc_ant"></span>
+
+							<span id="vca">1</span>
+
+						</td>
+
+						<td class="d" id="vd" onclick="fvd()">
+
+							<span id="_vd">0</span>
+
+							<span id="_vda">0</span>
+							
+
+							<span id="_vd_orig" style="display: none;">_rd1</span>
+
+							<!-- desativando a animação -->
+							<span id="_vd_ant"></span>
+
+							<span id="vda">1</span>
+
+						</td>
+
+						<td class="u" id="vu">
+
+							<span id="_vu"></span>
+
+						</td>
+					</tr>
+
+					<tr id="img">
+						<!-- <td class="inf">Representa</td> -->
+						<td id="tabu">
+							
+							<h1 id="visor">
+								<span id="visor_par">[Tabuada]</span>
+								<span id="visor_res"></span>
+							</h1>
+
+						</td>
+						
+						<td>
+
+							<img src="adicao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()">
+							
+							<!-- <div class="tooltip">
+
+								<img src="subtracao/1m.png" id="i1m" class="iudc"  onclick="rgrp_um()">
+
+								<span class="tooltiptext">Reagrupar para Centena.</span>
+
+							</div> -->
+
+						</td>
+
+						<td>
+
+							<img src="adicao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()">
+
+							<!-- <div class="tooltip">
+
+								<img src="subtracao/1c.png" id="i1c" class="iudc" onclick="rgrp_c()">
+
+								<span class="tooltiptext">Reagrupar para Dezena.</span>
+
+							</div> -->
+
+						</td>
+
+						<td>
+							<img src="adicao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()">
+						
+							<!-- <div class="tooltip">
+
+								<img src="subtracao/1d.png" id="i1d" class="iudc" onclick="rgrp_d()">
+
+								<span class="tooltiptext">Reagrupar para Unidade.</span>
+
+							</div> -->
+
+						</td>
+
+						<td>
+
+							<img src="adicao/1u.png" id="i1u" class="iudc">
+
+						</td>
+
+					</tr>
+
+					<tr id="qvl">
+						<td class="inf" style="font-size: 35; color: black;">QVL =></td>
+						<td class="um" id="qvlum">UM</td>
+						<td class="c" id="qvlc">C</td>
+						<td class="d" id="qvld">D</td>
+						<td class="u" id="qvlu">U</td>
+					</tr>
+
+					<tr>
+
+						<td class="inf">2º Fator =></td>
+
+						<td class="um" id="m1_" onclick="fm1()">
+						
+							<span><img id="imgm"src="subtracao/block.png"></span>
+						
+							<span id="m1">1</span>
+
+							<span id="m1a"></span>
+						
+						</td>
+						
+						<td class="c" id="c1_" onclick="fc1()">
+
+							<span><img id="imgc" src="subtracao/block.png"></span>
+
+							<span id="c1">4</span>
+
+							<span id="c1a"></span>
+
+						</td>
+
+
+						
+						<td class="d" id="d1_" onclick="fd1()">
+
+							<span><img id="imgd" src="subtracao/block.png"></span>
+
+							<span id="d1">1</span>
+
+							<span id="d1a"></span>
+
+						</td>
+						
+						<td class="u" id="u1_" onclick="fu1()">
+
+							<span><img id="imgu" src="subtracao/block.png"></span>
+
+							<span id="u1">9</span>
+
+							<span id="u1a"></span>
+
+						</td>
+
+					</tr>
+
+					<tr>	
+						<td class="inf">1º Fator =></td>
+						<td class="um" id="m2" onclick="fm2()"></td>
+						<td class="c" id="c2" onclick="fc2()"></td>
+						<td class="d" id="d2" onclick="fd2()">2</td>
+						<td class="u" id="u2" onclick="fu2()">3</td>
+					</tr>
+
+					<tr id="solp1">
+						<td class="inf">1º Prod. Parcial =></td>
+
+						<td class="um ump" id="rm1" onclick="frm1()">
+
+							<span id="_rm1">0</span>
+
+							<span id="_rm1a">0</span>
+
+							<span id="_rm1_ant">0</span>
+
+						</td>
+						
+						<td class="c cp" id="rc1" onclick="frc1()">
+							
+							<span id="_rc1">0</span>
+
+							<span id="_rc1a">0</span>
+
+							<span id="_rc1_ant">0</span>
+
+						</td>
+						
+						<td class="d dp" id="rd1" onclick="frd1()">
+
+							<span id="_rd1">0</span>
+
+							<span id="_rd1a">0</span>
+
+							<span id="_rd1_ant">0</span>
+
+						</td>
+
+						<td class="u up" id="ru1" onclick="fru1()">
+
+							<span id="_ru1">0</span>
+
+							<!-- <span id="_ru1a">0</span> -->
+
+						</td>
+
+					</tr>
+					
+					<tr id="solp2">
+						<td class="inf">2º Prod. Parcial =></td>
+
+						<td class="um ump" id="rm2" onclick="frm2()">
+
+							<span id="_rm2">0</span>
+
+							<span id="_rm2a">0</span>
+
+							<span id="_rm2_ant">0</span>
+
+						</td>
+						
+						<td class="c cp" id="rc2" onclick="frc2()">
+							
+							<span id="_rc2">0</span>
+
+							<span id="_rc2a">0</span>
+
+							<span id="_rc2_ant">0</span>
+
+						</td>
+						
+						<td class="d dp" id="rd2" onclick="frd2()">
+
+							<span id="_rd2">0</span>
+
+							<span id="_rd2a">0</span>
+
+							<span id="_rd2_ant">0</span>
+
+						</td>
+
+						<td class="u" id="ru2">
+
+							<span id="_ru2"></span>
+
+							<!-- <span id="_ru1a">0</span> -->
+
+						</td>
+
+					</tr>
+
+					<!-- produto que resulta da soma das parcelas -->
+					<tr id="sol">
+						<td class="inf">Produto =></td>
+
+						<td class="um" id="rrm1" onclick="frrm1()">
+
+							<span id="_rrm1">0</span>
+
+							<span id="_rrm1a">0</span>
+
+							<span id="_rrm1_ant">0</span>
+
+						</td>
+						
+						<td class="c" id="rrc1" onclick="frrc1()">
+							
+							<span id="_rrc1">0</span>
+
+							<span id="_rrc1a">0</span>
+
+							<span id="_rrc1_ant">0</span>
+
+						</td>
+						
+						<td class="d" id="rrd1" onclick="frrd1()">
+
+							<span id="_rrd1">0</span>
+
+							<span id="_rrd1a">0</span>
+
+							<span id="_rrd1_ant">0</span>
+
+						</td>
+
+						<td class="u" id="rru1" onclick="frru1()">
+
+							<span id="_rru1">0</span>
+
+							<!-- <span id="_ru1a">0</span> -->
+
+						</td>
+
+					</tr>
+
+					<tr id="tbtn">
+
+						<td class="inf" id="msg">
+
+							<div id="msgs">
+								<p>Erros:<br><b>[<span id="erros">0</span>]</b></p>
+								<p>Pulos:<br><b>[<span id="pulos">0</span>]</b></p>
+							</div>
+
+							
+							
+							<!-- 
+							Iniciante
+							Modo Fácil
+							Aprendiz
+							Ajuda
+							Principiante
+							Novato
+							Facilitar
+							Modo Retirar
+							 -->
+
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmum" onclick="rmmais()">+</button>
+								<button id="mum" onclick="rmmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmc" onclick="rcmais()">+</button>
+								<button id="mc" onclick="rcmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmd" onclick="rdmais()">+</button>
+								<button id="md" onclick="rdmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmu" onclick="rumais()">+</button>
+								<button id="mu" onclick="rumenos()">-</button>
+							</div>
+
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		
+		<div id="resultado">
+
+			<button id="lim" onclick="limpar()">LIMPAR</button>
+			<button id="tro" onclick="novo()">NOVO</button>
+			<button id="res" onclick="verificar()">VERIFICAR</button>
+
+			<h1 id="exibe">254 + 591 = 745</h1>
+
+			<!-- <h1 id="visor">
+				<span id="visor_par">aguardando...</span>
+				<span id="visor_res"></span>
+			</h1> -->
+
+			<div id="animacao">
+				
+				<div class="anime" id="idan">
+
+					Para saber se voce acertou clique no botão VERIFICAR.
+
+				</div>
+
+				<div class="anime" id="idfeliz">
+
+					<h2>Parabéns!!</h2>
+					<img src="adicao/feliz2.gif">
+
+				</div>
+
+				<div class="anime" id="idtriste">
+
+					<h2>Que pena!!</h2>
+					<img src="adicao/triste.gif">
+
+				</div>
+
+			</div>
+
+			<div id="pontuu">
+
+				<h1 id="pontu">Pontos: 0</h1>
+				
+				<button id="btnreset" onclick="resetar()">X</button>
+				
+				<!-- <button id="btnreset" onclick="reset()">
+				
+					<div class="tooltip">X
+						<span class="tooltiptext">Apagar pontos e Erros.</span>
+					</div>
+
+				</button> -->
+
+			</div>
+
+		</div>
+
+	</div>
+
+	
+
+</body>
+</html>
