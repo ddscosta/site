@@ -48,11 +48,17 @@ var vai_rd1 = false;
 var vai_rc1 = false;
 var vai_rm1 = false;
 
-var um_dig = true;
-var dois_dig = false;
+//alerta se rd2 recebe digitos multiplicados ou vai pra reserva
+var vai_rd2 = false;
+var vai_rc2 = false;
+var vai_rm2 = false;
+
+//decidindo a quantidade de digitos do numero que vai ser gerado para o multiplicador
+var um_dig = false;
+var dois_dig = true;
 var tres_dig = false;
 
-//ação ao marcar a célula da unidade do 1º Fator
+//ação ao marcar a célula da unidade do 1º Fator(multiplicando)
 function fu1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -75,16 +81,18 @@ function fu1(){
       gu1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
    }
    
-   //u2 e u1 ativos, logo se multiplicam no visor
+   //u2(multiplicador) e u1 ativos, logo se multiplicam no visor
    if(mult_u1 && mult_u2){
       visor(u2, u1, 'u2', 'u1');
    }
+
+   //d2(multiplicador) e u1 ativos, logo se multiplicam no visor
    if(mult_u1 && mult_d2){
       visor(d2, u1, 'd2', 'u1');
    }  
 }
 
-//ação ao marcar a célula da dezena do 1º Fator
+//ação ao marcar a célula da dezena do 1º Fator(multiplicando)
 function fd1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -107,16 +115,18 @@ function fd1(){
       gd1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
    }
    
-   //d1 e u2 ativos, logo se multiplicam no visor
+   //d1 e u2(multiplicador) ativos, logo se multiplicam no visor
    if(mult_d1 && mult_u2){
       visor(u2, d1, 'u2', 'd1');
    }
+
+   //d1 e d2(multiplicador) ativos, logo se multiplicam no visor
    if(mult_d1 && mult_d2){
       visor(d2, d1, 'd2', 'd1');
    }  
 }
 
-//ação ao marcar a célula da centena do 1º Fator
+//ação ao marcar a célula da centena do 1º Fator(multiplicando)
 function fc1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -139,14 +149,19 @@ function fc1(){
       gc1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
    }
    
-   //c1 e u2 ativos, logo se multiplicam no visor
+   //c1 e u2(multiplicador) ativos, logo se multiplicam no visor
    if(mult_c1 && mult_u2){
       visor(u2, c1, 'u2', 'c1');
+   }
+
+   //c1 e d2(multiplicador) ativos, logo se multiplicam no visor
+   if(mult_c1 && mult_d2){
+      visor(d2, c1, 'd2', 'c1');
    }
      
 }
 
-//ação ao marcar a célula da unidade de milhar do 1º Fator
+//ação ao marcar a célula da unidade de milhar do 1º Fator(multiplicando)
 function fm1(){
 
    //dois botões que geraram resultado ja estavam ativos
@@ -169,14 +184,19 @@ function fm1(){
       gm1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
    }
    
-   //m1 e u2 ativos, logo se multiplicam no visor
+   //m1 e u2(multiplicador) ativos, logo se multiplicam no visor
    if(mult_m1 && mult_u2){
       visor(u2, m1, 'u2', 'm1');
+   }
+
+   //m1 e d2(multiplicador) ativos, logo se multiplicam no visor
+   if(mult_m1 && mult_d2){
+      visor(d2, m1, 'd2', 'm1');
    }
      
 }
 
-//ação ao marcar a célula da unidade do 2º Fator
+//ação ao marcar a célula da unidade do 2º Fator(multiplicador)
 function fu2(){
 
    if(ativ_visor){
@@ -197,7 +217,7 @@ function fu2(){
       gu2.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }
    
-   //u2 e u1 ativos, logo se multiplicam no visor
+   //u2(multiplicador) e u1 ativos, logo se multiplicam no visor
    if(mult_u2 && mult_u1){
       visor(u1, u2, 'u1', 'u2');
    }
@@ -212,7 +232,7 @@ function fu2(){
    }
 }
 
-//ação ao marcar a célula da dezena do 2º Fator
+//ação ao marcar a célula da dezena do 2º Fator(multiplicador)
 //multiplicação por dois digitos ainda não está concluido
 function fd2(){
 
@@ -234,12 +254,18 @@ function fd2(){
       gd2.style.backgroundColor = "rgba(0, 255, 64, 1)";
    }
    
-   //d2 e u1 ativos, logo se multiplicam no visor
+   //d2(multiplicador) e u1 ativos, logo se multiplicam no visor
    if(mult_d2 && mult_u1){
       visor(u1, d2, 'u1', 'd2');
    }
    if(mult_d2 && mult_d1){
       visor(d1, d2, 'd1', 'd2');
+   }
+   if(mult_d2 && mult_c1){
+      visor(c1, d2, 'c1', 'd2');
+   }
+   if(mult_d2 && mult_m1){
+      visor(m1, d2, 'm1', 'd2');
    }
 }
 
@@ -308,6 +334,22 @@ function visor(v1, v2, bt1, bt2){
    }else if(visor_bt1 == 'd2' && visor_bt2 == 'd1'){
       v1i = parseInt(d2.innerText,10);
       v2i = parseInt(d1.innerText,10); 
+   }
+
+   if(visor_bt1 == 'c1' && visor_bt2 == 'd2'){
+      v1i = parseInt(c1.innerText,10);
+      v2i = parseInt(d2.innerText,10);   
+   }else if(visor_bt1 == 'd2' && visor_bt2 == 'c1'){
+      v1i = parseInt(d2.innerText,10);
+      v2i = parseInt(c1.innerText,10); 
+   }
+
+   if(visor_bt1 == 'm1' && visor_bt2 == 'd2'){
+      v1i = parseInt(m1.innerText,10);
+      v2i = parseInt(d2.innerText,10);   
+   }else if(visor_bt1 == 'd2' && visor_bt2 == 'm1'){
+      v1i = parseInt(d2.innerText,10);
+      v2i = parseInt(m1.innerText,10); 
    }
    
    //dois botões já estavão ativos
@@ -395,7 +437,7 @@ function mult_tf_cor(btn){
 
 }
 
-//ação ao marcar a célula do resultado da unidade gerada pelo 1º dígito do 2º Fator
+//ação ao marcar a célula do resultado da unidade gerada pelo 1º dígito do 2º Fator(multiplicador)
 function fru1(){
  
    //dois botões que geraram resultado ja estão ativos
@@ -412,9 +454,12 @@ function fru1(){
 
 }
 
-//ação ao marcar a célula do resultado da dezena gerada pelo 1º dígito do 2º Fator
+//ação ao marcar a célula do resultado da dezena gerada pelo 1º dígito do 2º Fator(multiplicador)
 function frd1(){
    
+   //ao colocar resultado na dezena do primeiro resultado parcial, altera-se o _vc_orig para _rc1
+   document.getElementById('_vc_orig').innerText = '_rc1';
+
    var _rd1 = document.getElementById('_rd1');
    var _vd = document.getElementById('_vd');
    var _vd_orig = document.getElementById('_vd_orig');
@@ -463,9 +508,66 @@ function frd1(){
    
 }
 
-//ação ao marcar a célula do resultado da centena gerada pelo 1º dígito do 2º Fator
+//ação ao marcar a célula do resultado da dezena gerada pelo 2º dígito do 2º Fator(multiplicador)
+function frd2(){
+   
+   //ao colocar resultado na dezena do segundo resultado parcial, altera-se o _vc_orig para _rc2
+   document.getElementById('_vc_orig').innerText = '_rc2';
+
+   var _rd2 = document.getElementById('_rd2');
+   var _vd = document.getElementById('_vd');
+   var _vd_orig = document.getElementById('_vd_orig');
+   
+   var _rd2a = document.getElementById('_rd2a');
+   var vd = document.getElementById('vd');
+   var _vda = document.getElementById('_vda');
+   
+   //dois botões que geraram resultado ja estão ativos
+   if(ativ_visor){
+
+      visor_btr = '_rd2';
+
+      //se a valor de vai_rd2 está ativado então rd2 nao recebe resultado, mas eleva o resultado pra reserva
+      if(vai_rd2 && _rd2.innerText != '0'){
+         
+         //animação para subir o resultado para reserva
+          _rd2a.style.animation = "none";
+          _vd.style.animation = "none";
+          vd.style.animation = "none";
+          setTimeout(() => _rd2a.style.animation = 
+              "sobe_d 2s linear, pisca_d 1.5s linear"
+              , 0);
+          setTimeout(() => _vd.style.animation = 
+             "ultimo_d 2s linear"
+             , 0);
+          setTimeout(() => vd.style.animation = 
+             "pisca_d 2s linear"
+             , 0);
+
+         //sobe o resultado para reserva
+         _vd.innerText = _rd2.innerText;
+         _vda.innerText = _rd2.innerText;
+         _rd2.innerText = 0;
+
+         vai_rd2 = false;
+
+      }else{
+         //inserir o resultado parcial
+         ins_rpar();   
+      }
+
+      exibir();
+
+   }
+   
+}
+
+//ação ao marcar a célula do resultado da centena gerada pelo 1º dígito do 2º Fator(multiplicador)
 function frc1(){
    
+   //ao colocar resultado na centena do primeiro resultado parcial, altera-se o _vm_orig para _rm1
+   document.getElementById('_vm_orig').innerText = '_rm1';
+
    var _rc1 = document.getElementById('_rc1');
    var _vc = document.getElementById('_vc');
    var _vc_orig = document.getElementById('_vc_orig');
@@ -514,7 +616,61 @@ function frc1(){
    
 }
 
-//ação ao marcar a célula do resultado da uni_milhar gerada pelo 1º dígito do 2º Fator
+//ação ao marcar a célula do resultado da centena gerada pelo 2º dígito do 2º Fator(multiplicador)
+function frc2(){
+   
+   //ao colocar resultado na centena do segundo resultado parcial, altera-se o _vm_orig para _rm2
+   document.getElementById('_vm_orig').innerText = '_rm2';
+
+   var _rc2 = document.getElementById('_rc2');
+   var _vc = document.getElementById('_vc');
+   var _vc_orig = document.getElementById('_vc_orig');
+   
+   var _rc2a = document.getElementById('_rc2a');
+   var vc = document.getElementById('vc');
+   var _vca = document.getElementById('_vca');
+
+   //dois botões que geraram resultado ja estão ativos
+   if(ativ_visor){
+
+      visor_btr = '_rc2';
+
+      //se a valor de vai_rc2 está ativado então rc2 nao recebe resultado, mas eleva o resultado pra reserva
+      if(vai_rc2 && _rc2.innerText != '0'){
+         
+         //animação para subir o resultado para reserva
+          _rc2a.style.animation = "none";
+          _vc.style.animation = "none";
+          vc.style.animation = "none";
+          setTimeout(() => _rc2a.style.animation = 
+              "sobe2_c 2s linear, pisca2_c 1.5s linear"
+              , 0);
+          setTimeout(() => _vc.style.animation = 
+             "ultimo2_c 2s linear"
+             , 0);
+          setTimeout(() => vc.style.animation = 
+             "pisca2_c 2s linear"
+             , 0);
+
+         //sobe o resultado para reserva
+         _vc.innerText = _rc2.innerText;
+         _vca.innerText = _rc2.innerText;
+         _rc2.innerText = 0;
+         
+         vai_rc2 = false;
+
+      }else{
+         //inserir o resultado parcial
+         ins_rpar();   
+      }
+
+      exibir();
+
+   }
+   
+}
+
+//ação ao marcar a célula do resultado da uni_milhar gerada pelo 1º dígito do 2º Fator(multiplicador)
 function frm1(){
    
    var _rm1 = document.getElementById('_rm1');
@@ -565,6 +721,57 @@ function frm1(){
    
 }
 
+//ação ao marcar a célula do resultado da uni_milhar gerada pelo 2º dígito do 2º Fator(multiplicador)
+function frm2(){
+   
+   var _rm2 = document.getElementById('_rm2');
+   var _vm = document.getElementById('_vm');
+   var _vm_orig = document.getElementById('_vm_orig');
+   
+   var _rm2a = document.getElementById('_rm2a');
+   var vm = document.getElementById('vm');
+   var _vma = document.getElementById('_vma');
+
+   //dois botões que geraram resultado ja estão ativos
+   if(ativ_visor){
+
+      visor_btr = '_rm2';
+
+      //se a valor de vai_rc1 está ativado então rc1 nao recebe resultado, mas eleva o resultado pra reserva
+      if(vai_rm2 && _rm2.innerText != '0'){
+         
+         //animação para subir o resultado para reserva
+          _rm2a.style.animation = "none";
+          _vm.style.animation = "none";
+          vm.style.animation = "none";
+          setTimeout(() => _rm2a.style.animation = 
+              "sobe2_m 2s linear, pisca2_m 1.5s linear"
+              , 0);
+          setTimeout(() => _vm.style.animation = 
+             "ultimo2_m 2s linear"
+             , 0);
+          setTimeout(() => vm.style.animation = 
+             "pisca2_m 2s linear"
+             , 0);
+
+         //sobe o resultado para reserva
+         _vm.innerText = _rm2.innerText;
+         _vma.innerText = _rm2.innerText;
+         _rm2.innerText = 0;
+         
+         vai_rm2 = false;
+
+      }else{
+         //inserir o resultado parcial
+         ins_rpar();   
+      }
+
+      exibir();
+
+   }
+   
+}
+
 //insere resposta parcial entre dois digitos
 function ins_rpar(){
    
@@ -574,16 +781,33 @@ function ins_rpar(){
    var rc1 = document.getElementById('rc1');
    var rm1 = document.getElementById('rm1');
 
+   //para dá piscadas
+   var ru2 = document.getElementById('ru2');
+   var rd2 = document.getElementById('rd2');
+   var rc2 = document.getElementById('rc2');
+   var rm2 = document.getElementById('rm2');
+
    //para inserir resposta
    var _ru1 = document.getElementById('_ru1');
    var _rd1 = document.getElementById('_rd1');
    var _rc1 = document.getElementById('_rc1');
    var _rm1 = document.getElementById('_rm1');
 
+   //para inserir resposta
+   var _ru2 = document.getElementById('_ru2');
+   var _rd2 = document.getElementById('_rd2');
+   var _rc2 = document.getElementById('_rc2');
+   var _rm2 = document.getElementById('_rm2');
+
    //para animação
    var _rd1a = document.getElementById('_rd1a');
    var _rc1a = document.getElementById('_rc1a');
    var _rm1a = document.getElementById('_rm1a');
+
+   //para animação
+   var _rd2a = document.getElementById('_rd2a');
+   var _rc2a = document.getElementById('_rc2a');
+   var _rm2a = document.getElementById('_rm2a');
 
    //insere na unidade e dezena
    if(visor_btr == '_ru1'){
@@ -662,6 +886,45 @@ function ins_rpar(){
 
    }
 
+   if(visor_btr == '_rd2'){
+
+      var numarr = visor_res.innerText.split('');
+
+      if(numarr.length == 1){
+         _rd2.innerText = numarr[0];
+
+         //pisca a dezena onde irá inserir
+         rd2.style.animation = "none";
+         setTimeout(() => rd2.style.animation = 
+            "pisca_d 1s linear"
+            , 0);
+
+         _rd2a.innerText = numarr[0];   
+      }
+      if(numarr.length == 2){
+         _rd2.innerText = numarr[1];
+         _rc2.innerText = numarr[0]; 
+
+         //pisca a dezena e centena onde irá inserir
+         rd2.style.animation = "none";
+         rc2.style.animation = "none";
+         setTimeout(() => rd2.style.animation = 
+            "pisca_d 1s linear"
+            , 0);
+         setTimeout(() => rc2.style.animation = 
+            "pisca_c 1s linear"
+            , 0);
+
+         _rd2a.innerText = numarr[1];
+         _rc2a.innerText = numarr[0]; 
+
+         //ativa o botao "vai_rc1"
+         vai_rc2 = true; 
+
+      }
+
+   }
+
    if(visor_btr == '_rc1'){
 
       var numarr = visor_res.innerText.split('');
@@ -700,6 +963,46 @@ function ins_rpar(){
       }
       
    }
+
+   if(visor_btr == '_rc2'){
+
+      var numarr = visor_res.innerText.split('');
+
+      if(numarr.length == 1){
+         _rc2.innerText = numarr[0];
+
+         //pisca a centena onde irá inserir
+         rc2.style.animation = "none";
+         setTimeout(() => rc2.style.animation = 
+            "pisca_c 1s linear"
+            , 0);
+
+         _rc2a.innerText = numarr[0];   
+      }
+      if(numarr.length == 2){
+         _rc2.innerText = numarr[1];
+         _rm2.innerText = numarr[0]; 
+
+         //pisca a centena e milhar onde irá inserir
+         rc2.style.animation = "none";
+         rm2.style.animation = "none";
+         setTimeout(() => rc2.style.animation = 
+            "pisca_c 1s linear"
+            , 0);
+         setTimeout(() => rm2.style.animation = 
+            "pisca_m 1s linear"
+            , 0);
+
+         _rc2a.innerText = numarr[1];
+         _rm2a.innerText = numarr[0]; 
+
+         //ativa o botao "vai_rc1"
+         vai_rm2 = true; 
+
+      }
+      
+   }
+
    if(visor_btr == '_rm1'){
       _rm1.innerText = visor_res.innerText;
 
@@ -710,6 +1013,18 @@ function ins_rpar(){
          , 0);
 
       _rm1a.innerText = visor_res.innerText;
+   }
+
+   if(visor_btr == '_rm2'){
+      _rm2.innerText = visor_res.innerText;
+
+      //pisca a milhar onde irá inserir
+      rm2.style.animation = "none";
+      setTimeout(() => rm2.style.animation = 
+         "pisca_m 1s linear"
+         , 0);
+
+      _rm2a.innerText = visor_res.innerText;
    }
 
 }
@@ -864,7 +1179,7 @@ function fvc(){
    var _rm1_ant = document.getElementById('_rm1_ant');
 
    //desce a dezena e soma com quem deve somar
-   if(_vc.innerText != '0'){
+   if( _vc.innerText != '0' ){
 
       //soma com _rd1
       if(_vc_orig.innerText == '_rc1'){
@@ -976,6 +1291,116 @@ function fvc(){
          
       }
 
+      //soma com _rd2
+      if(_vc_orig.innerText == '_rc2'){
+         
+         dig = parseInt(_rc2.innerText, 10) + parseInt(_vc.innerText, 10);
+         
+         if(dig > 9){
+
+            //animação para descer a reserva para o resultado
+            _vca.style.animation = "none";
+
+            rc2.style.animation = "none";
+            rm2.style.animation = "none";
+
+            _rc2_ant.style.animation = "none";
+            _rm2_ant.style.animation = "none";
+
+            _rc2.style.animation = "none";
+            _rm2.style.animation = "none";
+
+            _rc2a.style.animation = "none";
+            _rm2a.style.animation = "none";
+           
+            setTimeout(() => _vca.style.animation = 
+               "desce2_c 2s linear, pisca2_c 1.5s linear"
+               , 0);
+
+            setTimeout(() => rc2.style.animation = 
+               "pisca2_c 2s linear"
+               , 0);
+            setTimeout(() => rm2.style.animation = 
+               "pisca2_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rc2_ant.style.animation = 
+               "primeiro2_c 2s linear"
+               , 0);
+            setTimeout(() => _rm2_ant.style.animation = 
+               "primeiro2_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rc2.style.animation = 
+               "ultimo2_c 2s linear"
+               , 0);
+            setTimeout(() => _rm2.style.animation = 
+               "ultimo2_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rc2a.style.animation = 
+               "ultimo2_c 2s linear"
+               , 0);
+            setTimeout(() => _rm2a.style.animation = 
+               "ultimo2_m 2s linear"
+               , 0);
+            
+
+            //salva uma copia do anterior
+            _rc2_ant.innerText = parseInt(_rc2.innerText, 10);
+            _rm2_ant.innerText = parseInt(_rm2.innerText, 10);
+
+            //altera o resultado que será apresentado
+            _rc2.innerText = dig - 10;
+            _rm2.innerText = parseInt(_rm2.innerText, 10) + 1; 
+
+            //altera o resultado que sera usado na animação
+            _rc2a.innerText = _rc2.innerText;
+            _rm2a.innerText = _rm2.innerText;
+
+            //ativa o botao "vai_rc1"
+            vai_rm2 = true;
+
+         }else{
+
+            //animação para descer a reserva para o resultado
+            _vca.style.animation = "none";
+
+            rc2.style.animation = "none";
+
+            _rc2_ant.style.animation = "none";
+
+            _rc2.style.animation = "none";
+            
+            setTimeout(() => _vca.style.animation = 
+               "desce2_c 2s linear, pisca2_c 1.5s linear"
+               , 0);
+
+            setTimeout(() => rc2.style.animation = 
+               "pisca2_c 2s linear"
+               , 0);
+
+            setTimeout(() => _rc2_ant.style.animation = 
+               "primeiro2_c 2s linear"
+               , 0);
+
+            setTimeout(() => _rc2.style.animation = 
+               "ultimo2_c 2s linear"
+               , 0);
+            
+
+            _rc2_ant.innerText = parseInt(_rc2.innerText, 10);
+
+            _rc2.innerText = dig;
+
+            _rc2a.innerText = dig;
+
+         }
+
+         _vc.innerText = 0;
+         
+      }
+
       exibir();
 
    }
@@ -997,7 +1422,7 @@ function fvm(){
    //desce a dezena e soma com quem deve somar
    if(_vm.innerText != '0'){
 
-      //soma com _rd1
+      //soma com _rm1
       if(_vm_orig.innerText == '_rm1'){
          
          dig = parseInt(_rm1.innerText, 10) + parseInt(_vm.innerText, 10);
@@ -1034,6 +1459,49 @@ function fvm(){
             _rm1.innerText = dig;
 
             _rm1a.innerText = dig;
+            
+         }
+
+         _vm.innerText = 0;
+      }
+
+      //soma com _rm2
+      if(_vm_orig.innerText == '_rm2'){
+         
+         dig = parseInt(_rm2.innerText, 10) + parseInt(_vm.innerText, 10);
+         
+         if(dig > 9){
+            //não devia ter acontecido, corriga na criação do número
+         }else{
+
+            //animação para descer a reserva para o resultado
+            _vma.style.animation = "none";
+            rm2.style.animation = "none";
+            _rm2_ant.style.animation = "none";
+            _rm2.style.animation = "none";
+            
+            setTimeout(() => _vma.style.animation = 
+               "desce2_m 2s linear, pisca2_m 1.5s linear"
+               , 0);
+
+            setTimeout(() => rm2.style.animation = 
+               "pisca2_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rm2_ant.style.animation = 
+               "primeiro2_m 2s linear"
+               , 0);
+
+            setTimeout(() => _rm2.style.animation = 
+               "ultimo2_m 2s linear"
+               , 0);
+            
+
+            _rm2_ant.innerText = parseInt(_rm2.innerText, 10);
+
+            _rm2.innerText = dig;
+
+            _rm2a.innerText = dig;
             
          }
 
@@ -2880,17 +3348,45 @@ function novo(){
       var dei = parseInt(de.value, 10);
 
       console.log('de:'+de.value);
+
+      var de2 = document.getElementById('de2');
+      var de2i = parseInt(de2.value, 10);
+
+      console.log('de2:'+de2.value);
      
       var ate = document.getElementById('ate');
       var atei = parseInt(ate.value, 10);
 
       console.log('ate:'+ate.value);
-      
+
+      var ate2 = document.getElementById('ate2');
+      var ate2i = parseInt(ate2.value, 10);
+
+      console.log('ate2:'+ate2.value);
+
+      //não permitimos apenas 1 digito no multiplicador
+      if(de2i < 10){
+         var de2i = 10;
+         var de2s = de2i;
+      }
+
+      if(ate2i < 10){
+         var ate2i = 10;
+         var ate2s = ate2i;
+      }
+
       //ordenando os numeros corretamente (caso digitem de <maior> até <menor>!!! )
       if(dei > atei){
          var temp = dei;
          dei = atei;
          atei = temp;
+      }
+
+      //multiplicador
+      if(de2i > ate2i){
+         var temp = de2i;
+         de2i = ate2i;
+         ate2i = temp;
       }
 
       if(dei>0 && dei<=9999){
@@ -2899,14 +3395,28 @@ function novo(){
          var des = 9999;
       }
 
+      //multiplicador
+      if(de2i>0 && de2i<=9999){
+         var de2s = de2i;
+      }else{
+         var de2s = 9999;
+      }
+
       if(atei>0 && atei<=9999){
          var ates = atei;
       }else{
          var ates = 9999;
       }
 
-      console.log('des:'+des);
-      console.log('ates:'+ates);
+      //multiplicador
+      if(ate2i>0 && ate2i<=9999){
+         var ate2s = ate2i;
+      }else{
+         var ate2s = 9999;
+      }
+
+      console.log('de2s:'+de2s);
+      console.log('ate2s:'+ate2s);
 
       verifica = true;
 
@@ -2920,7 +3430,7 @@ function novo(){
    //gerando números que figure um multiplicação por apenas um dígito
    if(um_dig){
 
-      num2 = getRandomInt(des, 9);
+      num2 = getRandomInt(de2s, ate2s);
 
       while(nlimitado){
          
@@ -2942,6 +3452,27 @@ function novo(){
       }
 
    }else if(dois_dig){
+
+      num2 = getRandomInt(de2s, ate2s);
+
+      while(nlimitado){
+         
+         console.log('procurando numeros que ao multiplicar não extrapolem 4 digitos');
+
+         num1 = getRandomInt(des, ates);
+
+         prod = num1 * num2;
+
+         if( prod < 10000 ){
+
+            console.log('produto: ' + num1 + ' x ' + num2 + ' = ' + prod + ' aceito.');
+            nlimitado = false;
+
+         }else{
+            console.log('produto: ' + num1 + ' x ' + num2 + ' = ' + prod + ' extrapolou 9999.');
+         }
+
+      }
 
    }else if(tres_dig){
 
