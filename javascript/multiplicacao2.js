@@ -385,7 +385,7 @@ function mult_tf_cor(btn){
        mult_u1 = false;
        gu1.style.backgroundColor = corf_uni;
        
-       console.log('mult_u1_mult1_tf_cor:false');
+       console.log('mult_u1_mult2_tf_cor:false');
 
    }
 
@@ -394,7 +394,7 @@ function mult_tf_cor(btn){
        mult_d1 = false;
        gd1.style.backgroundColor = corf_dez;
        
-       console.log('mult_d1_mult1_tf_cor:false');
+       console.log('mult_d1_mult2_tf_cor:false');
 
    }
 
@@ -403,7 +403,7 @@ function mult_tf_cor(btn){
        mult_c1 = false;
        gc1.style.backgroundColor = corf_cen;
        
-       console.log('mult_c1_mult1_tf_cor:false');
+       console.log('mult_c1_mult2_tf_cor:false');
 
    }
 
@@ -412,7 +412,7 @@ function mult_tf_cor(btn){
        mult_m1 = false;
        gm1.style.backgroundColor = corf_mil;
        
-       console.log('mult_m1_mult1_tf_cor:false');
+       console.log('mult_m1_mult2_tf_cor:false');
 
    }
   
@@ -422,7 +422,7 @@ function mult_tf_cor(btn){
       mult_u2 = false;
       gu2.style.backgroundColor = corf_uni;
 
-      console.log('mult_u2_mult1_tf_cor:false');
+      console.log('mult_u2_mult2_tf_cor:false');
 
    }
 
@@ -431,7 +431,7 @@ function mult_tf_cor(btn){
       mult_d2 = false;
       gd2.style.backgroundColor = corf_dez;
 
-      console.log('mult_d2_mult1_tf_cor:false');
+      console.log('mult_d2_mult2_tf_cor:false');
 
    }
 
@@ -1615,15 +1615,20 @@ function set_num2(num2, completo){
 }
 
 function limpa_cor_vai1(){
+
    document.getElementById("_vd").style.backgroundColor = cor_normal;
    document.getElementById("_vc").style.backgroundColor = cor_normal;
    document.getElementById("_vm").style.backgroundColor = cor_normal;
+
 }
+
 function limpa_val_vai1(){
    document.getElementById("_vd").innerText = 0;
    document.getElementById("_vc").innerText = 0;
    document.getElementById("_vm").innerText = 0;
+
 }
+
 function limpa_cor_fat(){
    document.getElementById("u1_").style.backgroundColor = corf_uni;
    document.getElementById("d1_").style.backgroundColor = corf_dez;
@@ -1634,6 +1639,7 @@ function limpa_cor_fat(){
    document.getElementById("d2").style.backgroundColor = corf_dez;
    document.getElementById("c2").style.backgroundColor = corf_cen;
    document.getElementById("m2").style.backgroundColor = corf_mil;
+
 }
 
 function limpa_res(){
@@ -1643,6 +1649,19 @@ function limpa_res(){
    document.getElementById("_rm1").innerText = 0;
 
    document.getElementById("_rd1a").innerText = 0;
+
+   document.getElementById("_rd2").innerText = 0;
+   document.getElementById("_rc2").innerText = 0;
+   document.getElementById("_rm2").innerText = 0;
+
+   document.getElementById("_rd2a").innerText = 0;
+
+   document.getElementById("_rru1").innerText = 0;
+   document.getElementById("_rrd1").innerText = 0;
+   document.getElementById("_rrc1").innerText = 0;
+   document.getElementById("_rrm1").innerText = 0;
+
+   document.getElementById("_rrd1a").innerText = 0;
 }
 
 //--------------------------------------------------------------------
@@ -1653,15 +1672,15 @@ function openNav(){
 
    var nome_aln = document.getElementById("nome_aln");
 
-   var nome_aluno_mult1 = '';
-   var nome_aluno_sec_mult1 = '';
+   var nome_aluno_mult2 = '';
+   var nome_aluno_sec_mult2 = '';
    
    /*pega o nome do input*/
    if(nome_aln != null){
       
-      nome_aluno_mult1 = nome_aln.value;     
+      nome_aluno_mult2 = nome_aln.value;     
       
-      console.log('nome no input: ' + nome_aluno_mult1);
+      console.log('nome no input: ' + nome_aluno_mult2);
    }else{
    
       console.log('nome null no input');
@@ -1676,27 +1695,27 @@ function openNav(){
       flutua.style.display = 'block';
       
       /*recupera nome da sessao*/
-      if(localStorage.getItem("nome_aluno_mult1") != null){
+      if(localStorage.getItem("nome_aluno_mult2") != null){
       
-         nome_aluno_sec_mult1 = localStorage.getItem("nome_aluno_mult1");
+         nome_aluno_sec_mult2 = localStorage.getItem("nome_aluno_mult2");
          
-         document.getElementById("nome_aln").value = nome_aluno_sec_mult1;
+         document.getElementById("nome_aln").value = nome_aluno_sec_mult2;
 
          /*antes de inserir o nome da secao no input verifica se sao iguais*/
-         // if( nome_aluno_sec_mult1 == nome_aluno_mult1 ){
+         // if( nome_aluno_sec_mult2 == nome_aluno_mult2 ){
          
-         //    document.getElementById("nome_aln").value = nome_aluno_sec_mult1;
+         //    document.getElementById("nome_aln").value = nome_aluno_sec_mult2;
          
          // }else{
             
-         //    if ( confirm('Apagar Histórico de ' + nome_aluno_sec_mult1 + '?') ) {
+         //    if ( confirm('Apagar Histórico de ' + nome_aluno_sec_mult2 + '?') ) {
          //       limpar_hist();
-         //       document.getElementById("nome_aln").value = nome_aluno_sec_mult1;
+         //       document.getElementById("nome_aln").value = nome_aluno_sec_mult2;
          //    }
 
          // }
          
-         console.log('nome recuperado da secao: ' + nome_aluno_sec_mult1);
+         console.log('nome recuperado da secao: ' + nome_aluno_sec_mult2);
       
       }else{
          
@@ -1709,32 +1728,32 @@ function openNav(){
       
       flutua.style.display = 'none';
 
-      if(nome_aluno_mult1 != ''){
+      if(nome_aluno_mult2 != ''){
 
-         if(localStorage.getItem("nome_aluno_mult1") != null){
+         if(localStorage.getItem("nome_aluno_mult2") != null){
          
-            nome_aluno_sec_mult1 = localStorage.getItem("nome_aluno_mult1");
+            nome_aluno_sec_mult2 = localStorage.getItem("nome_aluno_mult2");
          
          }
 
          /*antes de inserir o nome do input na secao verifica se sao iguais*/
-         if( nome_aluno_sec_mult1 == nome_aluno_mult1 ){
+         if( nome_aluno_sec_mult2 == nome_aluno_mult2 ){
          
             /*nomes iguais não há necessidade de escluir dados*/
            
          }else{
             
             /*se nao apagar os dados, eles são incorporados ao novo nome*/
-            // if ( confirm('Apagar Histórico de ' + nome_aluno_sec_mult1 + '?') ) {
+            // if ( confirm('Apagar Histórico de ' + nome_aluno_sec_mult2 + '?') ) {
             //    limpar_hist();
             // }
 
          }
 
          /*apagando ou nao os dados do historico, o nome vai mudar*/
-         localStorage.setItem("nome_aluno_mult1", nome_aluno_mult1);
+         localStorage.setItem("nome_aluno_mult2", nome_aluno_mult2);
 
-         console.log('salvou nome na secao: ' + nome_aluno_mult1); 
+         console.log('salvou nome na secao: ' + nome_aluno_mult2); 
 
       }else{
          console.log('NAO salvou nome na secao'); 
@@ -1810,12 +1829,12 @@ function getn2(){
 
 function getresult(){
 
-   const _ru1 = document.getElementById("_ru1");
-   const _rd1 = document.getElementById("_rd1");
-   const _rc1 = document.getElementById("_rc1");
-   const _rm1 = document.getElementById("_rm1");
+   const _rru1 = document.getElementById("_rru1");
+   const _rrd1 = document.getElementById("_rrd1");
+   const _rrc1 = document.getElementById("_rrc1");
+   const _rrm1 = document.getElementById("_rrm1");
 
-   return _rm1.innerText+_rc1.innerText+_rd1.innerText+_ru1.innerText+"";
+   return _rrm1.innerText+_rrc1.innerText+_rrd1.innerText+_rru1.innerText+"";
 
 }
 
@@ -1940,7 +1959,7 @@ function info(){
    triste.style.display = 'none';
 }
 
-function get_obj_conta_mult1(){
+function get_obj_conta_mult2(){
 
    var num1 = get_num1_int();
    var num2 = get_num2_int();
@@ -1969,9 +1988,9 @@ function pontuacao(tipo){
    var txt_erros = '';
    var txt_pulos = '';
 
-   var pont = localStorage.getItem("pontos_mult1");
-   var loc_err = localStorage.getItem("erros_mult1");
-   var loc_pul = localStorage.getItem("pulos_mult1");
+   var pont = localStorage.getItem("pontos_mult2");
+   var loc_err = localStorage.getItem("erros_mult2");
+   var loc_pul = localStorage.getItem("pulos_mult2");
 
    var ponti = parseInt(pont, 10);
    var loc_erri = parseInt(loc_err, 10);
@@ -1984,21 +2003,21 @@ function pontuacao(tipo){
    console.log('ponti1:' + ponti);
 
 
-   if(JSON.parse(localStorage.getItem("arr_obj_err_mult1")) != null){
-       arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_mult1"));
+   if(JSON.parse(localStorage.getItem("arr_obj_err_mult2")) != null){
+       arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_mult2"));
    }
-   if(JSON.parse(localStorage.getItem("arr_obj_acer_mult1")) != null){
-       arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_mult1"));
+   if(JSON.parse(localStorage.getItem("arr_obj_acer_mult2")) != null){
+       arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_mult2"));
    }
-   if(JSON.parse(localStorage.getItem("arr_obj_pul_mult1")) != null){
-       arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_mult1"));
+   if(JSON.parse(localStorage.getItem("arr_obj_pul_mult2")) != null){
+       arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_mult2"));
    }
 
    // console.log('arr_txt_err secao: ' + arr_obj_err);
    // console.log('arr_txt_acer secao: ' + arr_obj_acer);
    // console.log('arr_txt_pul secao: ' + arr_obj_pul);
 
-   var obj_conta = get_obj_conta_mult1();
+   var obj_conta = get_obj_conta_mult2();
 
    console.log('obj_conta: ' + obj_conta);
 
@@ -2079,17 +2098,17 @@ function pontuacao(tipo){
    console.log('loc_erri:' + loc_erri);
    console.log('loc_puli:' + loc_puli);
 
-   localStorage.setItem("pontos_mult1", ponti);
-   localStorage.setItem("erros_mult1", loc_erri);
-   localStorage.setItem("pulos_mult1", loc_puli);
+   localStorage.setItem("pontos_mult2", ponti);
+   localStorage.setItem("erros_mult2", loc_erri);
+   localStorage.setItem("pulos_mult2", loc_puli);
 
-   localStorage.setItem("arr_obj_err_mult1", JSON.stringify(arr_obj_err));
-   localStorage.setItem("arr_obj_acer_mult1", JSON.stringify(arr_obj_acer));
-   localStorage.setItem("arr_obj_pul_mult1", JSON.stringify(arr_obj_pul));
+   localStorage.setItem("arr_obj_err_mult2", JSON.stringify(arr_obj_err));
+   localStorage.setItem("arr_obj_acer_mult2", JSON.stringify(arr_obj_acer));
+   localStorage.setItem("arr_obj_pul_mult2", JSON.stringify(arr_obj_pul));
 
-   var tempo_mult1 = document.getElementById("relg").innerText;
+   var tempo_mult2 = document.getElementById("relg").innerText;
 
-   localStorage.setItem("tempo_mult1", tempo_mult1);
+   localStorage.setItem("tempo_mult2", tempo_mult2);
    
    imprimir_hist();
 
@@ -2097,15 +2116,15 @@ function pontuacao(tipo){
 
 function verificaStorage(){
    var pon = 0;
-   var pont = localStorage.getItem("pontos_mult1");
+   var pont = localStorage.getItem("pontos_mult2");
    var ponti = parseInt(pont, 10);
 
    var pon_err = 0;
-   var pont_err = localStorage.getItem("erros_mult1");
+   var pont_err = localStorage.getItem("erros_mult2");
    var ponti_err = parseInt(pont_err, 10);
 
    var pon_pul = 0;
-   var pont_pul = localStorage.getItem("pulos_mult1");
+   var pont_pul = localStorage.getItem("pulos_mult2");
    var ponti_pul = parseInt(pont_pul, 10);
 
    //tipo:mais, menos, zera, null;
@@ -2139,7 +2158,7 @@ function verificaStorage(){
 
 }
 
-function memoriza_mult1(){
+function memoriza_mult2(){
    
    const u1 = document.getElementById("u1");
    const d1 = document.getElementById("d1");
@@ -2182,7 +2201,7 @@ function aoiniciar(){
       //perigoso: apaga tudo sem confirmação
       limpar_hist();
       resetar_noconfirm();
-      window.history.replaceState("object or string", "Title", "multiplicacao1.html");
+      window.history.replaceState("object or string", "Title", "multiplicacao2.html");
    }
 
    gu1 = document.getElementById('u1_');
@@ -2263,12 +2282,28 @@ function repetirn1(){
 }
 
 function zera_result(){
+
    document.getElementById("_ru1").innerText = 0;
    document.getElementById("_rd1").innerText = 0;
    document.getElementById("_rc1").innerText = 0;
    document.getElementById("_rm1").innerText = 0;
 
    document.getElementById("_rd1a").innerText = 0;
+
+   document.getElementById("_rd2").innerText = 0;
+   document.getElementById("_rc2").innerText = 0;
+   document.getElementById("_rm2").innerText = 0;
+
+   document.getElementById("_rd2a").innerText = 0;
+
+   document.getElementById("_rru1").innerText = 0;
+   document.getElementById("_rrd1").innerText = 0;
+   document.getElementById("_rrc1").innerText = 0;
+   document.getElementById("_rrm1").innerText = 0;
+
+   document.getElementById("_rrd1a").innerText = 0;
+
+
 }
 
 /*provocou erro null do ParseInt
@@ -3108,9 +3143,9 @@ function resetar(){
 
    if ( confirm('Apagar Pontos Erros e Pulos?') ) {
 
-      localStorage.setItem("pontos_mult1", 0);
-      localStorage.setItem("erros_mult1", 0);
-      localStorage.setItem("pulos_mult1", 0);
+      localStorage.setItem("pontos_mult2", 0);
+      localStorage.setItem("erros_mult2", 0);
+      localStorage.setItem("pulos_mult2", 0);
       verificaStorage();
 
    }
@@ -3121,9 +3156,9 @@ function resetar_noconfirm(){
    console.log('Apagando os dados de sessão exibidos no html sem confirmação');
 
       //zera os dados na sessão
-      localStorage.setItem("pontos_mult1", 0);
-      localStorage.setItem("erros_mult1", 0);
-      localStorage.setItem("pulos_mult1", 0);
+      localStorage.setItem("pontos_mult2", 0);
+      localStorage.setItem("erros_mult2", 0);
+      localStorage.setItem("pulos_mult2", 0);
       
       //pega os dados da sessão e escreve no html
       verificaStorage();
@@ -3132,27 +3167,27 @@ function resetar_noconfirm(){
 
 function limpar_hist(){
 
-   localStorage.setItem("arr_obj_err_mult1", null);
-   localStorage.setItem("arr_obj_acer_mult1", null);
-   localStorage.setItem("arr_obj_pul_mult1", null);
+   localStorage.setItem("arr_obj_err_mult2", null);
+   localStorage.setItem("arr_obj_acer_mult2", null);
+   localStorage.setItem("arr_obj_pul_mult2", null);
 
 }
 
 function imprimir_hist(){
 
-   // if(JSON.parse(localStorage.getItem("arr_obj_err_mult1")) != null){
-   //     arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_mult1"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_err_mult2")) != null){
+   //     arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_mult2"));
    // }
-   // if(JSON.parse(localStorage.getItem("arr_obj_acer_mult1")) != null){
-   //     arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_mult1"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_acer_mult2")) != null){
+   //     arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_mult2"));
    // }
-   // if(JSON.parse(localStorage.getItem("arr_obj_pul_mult1")) != null){
-   //     arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_mult1"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_pul_mult2")) != null){
+   //     arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_mult2"));
    // }
 
-   if (localStorage.hasOwnProperty("arr_obj_err_mult1")) {
+   if (localStorage.hasOwnProperty("arr_obj_err_mult2")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_err_mult1") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_err_mult2") ).forEach(objconta => {
       
          console.log('Erro: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
 
@@ -3160,9 +3195,9 @@ function imprimir_hist(){
 
    }
 
-   if (localStorage.hasOwnProperty("arr_obj_acer_mult1")) {
+   if (localStorage.hasOwnProperty("arr_obj_acer_mult2")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_acer_mult1") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_acer_mult2") ).forEach(objconta => {
       
          console.log('Acerto: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
 
@@ -3170,9 +3205,9 @@ function imprimir_hist(){
 
    }
 
-   if (localStorage.hasOwnProperty("arr_obj_pul_mult1")) {
+   if (localStorage.hasOwnProperty("arr_obj_pul_mult2")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_pul_mult1") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_pul_mult2") ).forEach(objconta => {
       
          console.log('Pulo: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
 
@@ -3205,19 +3240,19 @@ function exibir(){
    const c2 = document.getElementById("c2");
    const m2 = document.getElementById("m2");
 
-   const _ru1 = document.getElementById("_ru1");
-   const _rd1 = document.getElementById("_rd1");
-   const _rc1 = document.getElementById("_rc1");
-   const _rm1 = document.getElementById("_rm1");
+   const _rru1 = document.getElementById("_rru1");
+   const _rrd1 = document.getElementById("_rrd1");
+   const _rrc1 = document.getElementById("_rrc1");
+   const _rrm1 = document.getElementById("_rrm1");
 
    exibe.innerText = 
       m2.innerText+c2.innerText+d2.innerText+u2.innerText + " x " + 
       m1.innerText+c1.innerText+d1.innerText+u1.innerText + " = " + 
-      _rm1.innerText+_rc1.innerText+_rd1.innerText+_ru1.innerText;
+      _rrm1.innerText+_rrc1.innerText+_rrd1.innerText+_rru1.innerText;
 
 }
 
-function exibir_mult1(){
+function exibir_mult2(){
 
    info();
    
@@ -3474,6 +3509,7 @@ function novo(){
 
       }
 
+   //ainda não implementado
    }else if(tres_dig){
 
    }
@@ -3504,7 +3540,7 @@ function novo(){
 
 }
 
-function novo_mult1(){
+function novo_mult2(){
    
    /*ajuste inicial*/
       var str_pulos = document.getElementById('pulos').innerText;
@@ -3777,7 +3813,7 @@ function novo_mult1(){
 
    //limpar();
 
-   //memoriza_mult1();
+   //memoriza_mult2();
 
    //remove o traço de bloqueios
    remove_block();
@@ -3930,11 +3966,13 @@ function getRandomInt(min, max) {
 
 function rumais() {
 
-   const _ru1 = document.getElementById("_ru1");
-   
-   var rui = parseInt(_ru1.innerText, 10);
+   limpa_tabuada();
 
-   _ru1.innerText = (rui+1)+"";
+   const _rru1 = document.getElementById("_rru1");
+   
+   var rui = parseInt(_rru1.innerText, 10);
+
+   _rru1.innerText = (rui+1)+"";
 
    exibir();
    
@@ -3942,11 +3980,13 @@ function rumais() {
 
 function rumenos() {
 
-   const _ru1 = document.getElementById("_ru1");
-   
-   var rui = parseInt(_ru1.innerText, 10);
+   limpa_tabuada();
 
-   _ru1.innerText = (rui-1)+"";
+   const _rru1 = document.getElementById("_rru1");
+   
+   var rui = parseInt(_rru1.innerText, 10);
+
+   _rru1.innerText = (rui-1)+"";
    
    exibir();
 
@@ -3954,15 +3994,17 @@ function rumenos() {
 
 function rdmais() {
 
-   const _rd1 = document.getElementById("_rd1");
+   limpa_tabuada();
 
-   const _rd1a = document.getElementById("_rd1a");
+   const _rrd1 = document.getElementById("_rrd1");
+
+   const _rrd1a = document.getElementById("_rrd1a");
    
-   var rdi = parseInt(_rd1.innerText, 10);
+   var rdi = parseInt(_rrd1.innerText, 10);
 
-   _rd1.innerText = (rdi+1)+"";
+   _rrd1.innerText = (rdi+1)+"";
 
-   _rd1a.innerText = (rdi+1)+"";
+   _rrd1a.innerText = (rdi+1)+"";
    
    exibir();
 
@@ -3970,15 +4012,17 @@ function rdmais() {
 
 function rdmenos() {
 
-   const _rd1 = document.getElementById("_rd1");
+   limpa_tabuada();
+
+   const _rrd1 = document.getElementById("_rrd1");
    
-   const _rd1a = document.getElementById("_rd1a");
+   const _rrd1a = document.getElementById("_rrd1a");
 
-   var rdi = parseInt(_rd1.innerText, 10);
+   var rdi = parseInt(_rrd1.innerText, 10);
 
-   _rd1.innerText = (rdi-1)+"";
+   _rrd1.innerText = (rdi-1)+"";
 
-   _rd1a.innerText = (rdi-1)+"";
+   _rrd1a.innerText = (rdi-1)+"";
    
    exibir();
 
@@ -3986,11 +4030,13 @@ function rdmenos() {
 
 function rcmais() {
 
-   const _rc1 = document.getElementById("_rc1");
-   
-   var rci = parseInt(_rc1.innerText, 10);
+   limpa_tabuada();
 
-   _rc1.innerText = (rci+1)+"";
+   const _rrc1 = document.getElementById("_rrc1");
+   
+   var rci = parseInt(_rrc1.innerText, 10);
+
+   _rrc1.innerText = (rci+1)+"";
    
    exibir();
 
@@ -3998,11 +4044,13 @@ function rcmais() {
 
 function rcmenos() {
 
-   const _rc1 = document.getElementById("_rc1");
-   
-   var rci = parseInt(_rc1.innerText, 10);
+   limpa_tabuada();
 
-   _rc1.innerText = (rci-1)+"";
+   const _rrc1 = document.getElementById("_rrc1");
+   
+   var rci = parseInt(_rrc1.innerText, 10);
+
+   _rrc1.innerText = (rci-1)+"";
    
    exibir();
 
@@ -4010,11 +4058,13 @@ function rcmenos() {
 
 function rmmais() {
 
-   const _rm1 = document.getElementById("_rm1");
-   
-   var rmi = parseInt(_rm1.innerText, 10);
+   limpa_tabuada();
 
-   _rm1.innerText = (rmi+1)+"";
+   const _rrm1 = document.getElementById("_rrm1");
+   
+   var rmi = parseInt(_rrm1.innerText, 10);
+
+   _rrm1.innerText = (rmi+1)+"";
    
    exibir();
 
@@ -4022,35 +4072,49 @@ function rmmais() {
 
 function rmmenos() {
 
-   const _rm1 = document.getElementById("_rm1");
-   
-   var rmi = parseInt(_rm1.innerText, 10);
+   limpa_tabuada();
 
-   _rm1.innerText = (rmi-1)+"";
+   const _rrm1 = document.getElementById("_rrm1");
+   
+   var rmi = parseInt(_rrm1.innerText, 10);
+
+   _rrm1.innerText = (rmi-1)+"";
    
    exibir();
 
 }
 
+function limpa_tabuada(){
+
+   //limpando a tabuada
+   visor_par.innerText = '[Tabuada]';
+   visor_res.innerText = '';
+
+   //limpa cores dos botões btn1 e btn2.
+   mult_tf_cor(visor_bt1);
+   mult_tf_cor(visor_bt2);
+
+}
+
 function prepara_impr(){
 
-   if(localStorage.getItem("nome_aluno_mult1") != null){
+   if(localStorage.getItem("nome_aluno_mult2") != null){
       
-      nome_aluno_mult1 = localStorage.getItem("nome_aluno_mult1");
+      nome_aluno_mult2 = localStorage.getItem("nome_aluno_mult2");
    
-      document.getElementById("nome_aln").value = nome_aluno_mult1;
+      document.getElementById("nome_aln").value = nome_aluno_mult2;
    
-      console.log('nome recuperado da secao: ' + nome_aluno_mult1);
+      console.log('nome recuperado da secao: ' + nome_aluno_mult2);
    
    }
 
-   if(localStorage.getItem("tempo_mult1") != null){
+   if(localStorage.getItem("tempo_mult2") != null){
       
-      tempo_mult1 = localStorage.getItem("tempo_mult1");
+      tempo_mult2 = localStorage.getItem("tempo_mult2");
    
-      document.getElementById("tempo_mult1").innerText = tempo_mult1;
+      document.getElementById("tempo_mult2").innerText = tempo_mult2;
    
-      console.log('tempo recuperado da secao: ' + tempo_mult1);
+      console.log('tempo recuperado da secao: ' + tempo_mult2);
    
    }
     
@@ -4095,9 +4159,9 @@ function prepara_impr(){
    var html_ace_lin = '';
    var html_pul_lin = '';
 
-   if (localStorage.hasOwnProperty("arr_obj_err_mult1")) {
+   if (localStorage.hasOwnProperty("arr_obj_err_mult2")) {
       
-      var parse = JSON.parse( localStorage.getItem("arr_obj_err_mult1") );
+      var parse = JSON.parse( localStorage.getItem("arr_obj_err_mult2") );
 
       if(parse != null){
 
@@ -4129,9 +4193,9 @@ function prepara_impr(){
 
    }
 
-   if (localStorage.hasOwnProperty("arr_obj_acer_mult1")) {
+   if (localStorage.hasOwnProperty("arr_obj_acer_mult2")) {
       
-      var parse = JSON.parse( localStorage.getItem("arr_obj_acer_mult1") );
+      var parse = JSON.parse( localStorage.getItem("arr_obj_acer_mult2") );
 
       if(parse != null){
 
@@ -4163,9 +4227,9 @@ function prepara_impr(){
 
    }
 
-   if (localStorage.hasOwnProperty("arr_obj_pul_mult1")) {
+   if (localStorage.hasOwnProperty("arr_obj_pul_mult2")) {
       
-      var parse = JSON.parse( localStorage.getItem("arr_obj_pul_mult1") );
+      var parse = JSON.parse( localStorage.getItem("arr_obj_pul_mult2") );
 
       if(parse != null){
 
@@ -4203,47 +4267,47 @@ function aviso_dados(){
 
    var titulo = document.getElementById("principal");
 
-   var parse_err_mult1_st = false;
-   var parse_acer_mult1_st = false;
-   var parse_pul_mult1_st = false;
+   var parse_err_mult2_st = false;
+   var parse_acer_mult2_st = false;
+   var parse_pul_mult2_st = false;
 
-    if (localStorage.hasOwnProperty("arr_obj_err_mult1")) {
+    if (localStorage.hasOwnProperty("arr_obj_err_mult2")) {
          
-         var parse_err_mult1 = JSON.parse( localStorage.getItem("arr_obj_err_mult1") );
+         var parse_err_mult2 = JSON.parse( localStorage.getItem("arr_obj_err_mult2") );
 
-         if(parse_err_mult1 != null && parse_err_mult1.length > 0){
-             parse_err_mult1_st = true;
+         if(parse_err_mult2 != null && parse_err_mult2.length > 0){
+             parse_err_mult2_st = true;
          }
     }
             
-   if (localStorage.hasOwnProperty("arr_obj_acer_mult1")) {
+   if (localStorage.hasOwnProperty("arr_obj_acer_mult2")) {
          
-         var parse_acer_mult1 = JSON.parse( localStorage.getItem("arr_obj_acer_mult1") );
+         var parse_acer_mult2 = JSON.parse( localStorage.getItem("arr_obj_acer_mult2") );
 
-         if(parse_acer_mult1 != null && parse_acer_mult1.length > 0){
-             parse_acer_mult1_st = true;
+         if(parse_acer_mult2 != null && parse_acer_mult2.length > 0){
+             parse_acer_mult2_st = true;
          }
     }
 
-   if (localStorage.hasOwnProperty("arr_obj_pul_mult1")) {
+   if (localStorage.hasOwnProperty("arr_obj_pul_mult2")) {
          
-         var parse_pul_mult1 = JSON.parse( localStorage.getItem("arr_obj_pul_mult1") );
+         var parse_pul_mult2 = JSON.parse( localStorage.getItem("arr_obj_pul_mult2") );
 
-         if(parse_pul_mult1 != null && parse_pul_mult1.length > 0){
-             parse_pul_mult1_st = true;
+         if(parse_pul_mult2 != null && parse_pul_mult2.length > 0){
+             parse_pul_mult2_st = true;
          }
    }
 
-   var mult_pt = localStorage.getItem("pontos_mult1");
-   var mult_er = localStorage.getItem("erros_mult1");
-   var mult_pu = localStorage.getItem("pulos_mult1");
+   var mult_pt = localStorage.getItem("pontos_mult2");
+   var mult_er = localStorage.getItem("erros_mult2");
+   var mult_pu = localStorage.getItem("pulos_mult2");
 
    var mult_pt_i = parseInt(mult_pt, 10);
    var mult_er_i = parseInt(mult_er, 10);
    var mult_pu_i = parseInt(mult_pu, 10);
 
    //caso haja dados no histórico ou pontos acumulado altera-se a cor de fundo do titulo amarelo como aviso
-   if( parse_err_mult1_st ||  parse_acer_mult1_st || parse_pul_mult1_st || mult_pt_i > 0 || mult_er_i > 0 || mult_pu_i > 0 ){
+   if( parse_err_mult2_st ||  parse_acer_mult2_st || parse_pul_mult2_st || mult_pt_i > 0 || mult_er_i > 0 || mult_pu_i > 0 ){
         titulo.style.background = "#dfdf7f";
    }else{
        titulo.style.background = "#97e697";
