@@ -69,11 +69,11 @@ function fu1(){
       visor(-1, -1, '', '');
    
    //ativando u1
-   }else{
+   }//else{
       mult_u1 = true;
       console.log('mult_u1_fu1:true');
       gu1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
-   }
+   //}
    
    //u2 e u1 ativos, logo se multiplicam no visor
    if(mult_u1 && mult_u2){
@@ -101,11 +101,11 @@ function fd1(){
       visor(-1, -1, '', '');
    
    //ativando d1
-   }else{
+   }//else{
       mult_d1 = true;
       console.log('mult_d1_fd1:true');
       gd1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
-   }
+   //}
    
    //d1 e u2 ativos, logo se multiplicam no visor
    if(mult_d1 && mult_u2){
@@ -133,11 +133,11 @@ function fc1(){
       visor(-1, -1, '', '');
    
    //ativando c1
-   }else{
+   }//else{
       mult_c1 = true;
       console.log('mult_c1_fc1:true');
       gc1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
-   }
+   //}
    
    //c1 e u2 ativos, logo se multiplicam no visor
    if(mult_c1 && mult_u2){
@@ -163,11 +163,11 @@ function fm1(){
       visor(-1, -1, '', '');
    
    //ativando m1
-   }else{
+   }//else{
       mult_m1 = true;
       console.log('mult_m1_fm1:true');
       gm1.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
-   }
+   //}
    
    //m1 e u2 ativos, logo se multiplicam no visor
    if(mult_m1 && mult_u2){
@@ -191,11 +191,11 @@ function fu2(){
       //manda visor se limpar
       visor(-1, -1, '', '');
 
-   }else{
+   }//else{
       mult_u2 = true;
       console.log('mult_u2_fu2:true');
       gu2.style.backgroundColor = "rgba(0, 255, 64, 1)";
-   }
+   //}
    
    //u2 e u1 ativos, logo se multiplicam no visor
    if(mult_u2 && mult_u1){
@@ -228,11 +228,11 @@ function fd2(){
       //manda visor se limpar
       visor(-1, -1, '', '');
 
-   }else{
+   }//else{
       mult_d2 = true;
       console.log('mult_d2_fd2:true');
       gd2.style.backgroundColor = "rgba(0, 255, 64, 1)";
-   }
+   //}
    
    //d2 e u1 ativos, logo se multiplicam no visor
    if(mult_d2 && mult_u1){
