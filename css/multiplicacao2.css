@@ -252,6 +252,23 @@ body{
 		}
 	}
 
+	@keyframes soberr_c{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		95%{
+			transform: translate(-20px, -200px);
+			opacity: 100%;
+		}
+		97%{
+			transform: scale(0.7);
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
 	@keyframes desce_c{
 		0%{
 			transform: translate(0px, 0px);
@@ -465,6 +482,23 @@ body{
 		}
 		100%{
 			transform: translate(0px, -460px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes soberr_m{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		95%{
+			transform: translate(-20px, -200px);
+			opacity: 100%;
+		}
+		97%{
+			transform: scale(0.7);
+		}
+		100%{
 			opacity: 0%;
 		}
 	}
@@ -699,6 +733,13 @@ body{
 		}
 
 	/*CENTENA----------------*/
+		td#rc1 span#_vc1{
+			display: flex;
+			font-size: 30px;
+			position: fixed;
+			transform: translate(2px, -65px);
+		}
+
 		td#rc1 span#_rc1a{
 			display: flex;	
 			position: fixed;
@@ -769,6 +810,13 @@ body{
 		}
 
 	/*MILHAR----------------*/
+		td#rm1 span#_vm1{
+			display: flex;
+			font-size: 30px;
+			position: fixed;
+			transform: translate(2px, -65px);	
+		}
+
 		td#rm1 span#_rm1a{
 			display: flex;	
 			position: fixed;

@@ -1627,6 +1627,9 @@ function limpa_val_vai1(){
    document.getElementById("_vc").innerText = 0;
    document.getElementById("_vm").innerText = 0;
 
+   document.getElementById("_vc1").innerText = '';
+   document.getElementById("_vm1").innerText = '';
+
 }
 
 function limpa_cor_fat(){
@@ -3966,13 +3969,20 @@ function getRandomInt(min, max) {
 
 function rumais() {
 
+   //desabilita tabuada (e inserção automatica de valores) quando iniciamos a soma
    limpa_tabuada();
 
    const _rru1 = document.getElementById("_rru1");
    
    var rui = parseInt(_rru1.innerText, 10);
 
-   _rru1.innerText = (rui+1)+"";
+   if( rui > 8){
+       _rru1.innerText = 9;
+   }else{
+       _rru1.innerText = rui+1;
+   }
+
+   //_rru1.innerText = (rui+1)+"";
 
    exibir();
    
@@ -3986,7 +3996,13 @@ function rumenos() {
    
    var rui = parseInt(_rru1.innerText, 10);
 
-   _rru1.innerText = (rui-1)+"";
+   if( rui < 1){
+       _rru1.innerText = 0;
+   }else{
+       _rru1.innerText = rui-1;
+   }
+
+   //_rru1.innerText = (rui-1)+"";
    
    exibir();
 
@@ -3998,13 +4014,81 @@ function rdmais() {
 
    const _rrd1 = document.getElementById("_rrd1");
 
-   const _rrd1a = document.getElementById("_rrd1a");
+   const rc1 = document.getElementById("rc1");
+   const rrc1 = document.getElementById("rrc1");
+   
+   const _rrc1a = document.getElementById("_rrc1a");
    
    var rdi = parseInt(_rrd1.innerText, 10);
 
-   _rrd1.innerText = (rdi+1)+"";
+   const _vc1 = document.getElementById("_vc1");
+  
+   var conts = _vc1.innerText+_rrd1.innerText;
+   var conti = parseInt(conts, 10);
+   conti = conti + 1;
+   if(conti>-1 && conti<10){
+      _rrd1.innerText = conti;
+      //_rrc1a.innerText = conti;
+   }else{
 
-   _rrd1a.innerText = (rdi+1)+"";
+      if(conti>9 && conti <100){
+            
+            var contis = conti+'';
+            
+            var contarr = contis.split('');
+            
+            var rud = parseInt(contarr[1], 10);
+            
+            var ruc = parseInt(contarr[0], 10);
+            
+            _rrd1.innerText = rud;
+            
+            //_rca.innerText = ruc;
+            _rrc1a.innerText = ruc;
+            _vc1.innerText = ruc;
+
+            //console.log(ruc +'>>'+ rud);
+
+            //faz efeito no acrescimo das dezenas
+            if(rud == 0){
+               
+               if(animar){
+
+                  _vc1.style.animation = "none";
+                  _rrc1a.style.animation = "none";
+                  rrc1.style.animation = "none";
+                  rc1.style.animation = "none";
+                  
+                  setTimeout(() => _rrc1a.style.animation = 
+                  "soberr_c 2s linear, pisca_c 1s linear"
+                  , 5);
+                  setTimeout(() => _vc1.style.animation = 
+                  "ultimo_c 2s linear"
+                  , 5);
+                  setTimeout(() => rrc1.style.animation = 
+                  "pisca_c 2s linear"
+                  , 5);
+                  setTimeout(() => rc1.style.animation = 
+                  "pisca_c 2s linear"
+                  , 5);
+
+               }
+
+            }else{
+
+               _rrd1.innerText = rud;
+               _rrc1a.innerText = ruc;
+               _vc1.innerText = ruc;
+            
+            }
+            
+      }
+
+   }
+
+  // _rrd1.innerText = rdi+1;
+
+   //_rrd1a.innerText = rdi+1;
    
    exibir();
 
@@ -4014,15 +4098,160 @@ function rdmenos() {
 
    limpa_tabuada();
 
+   const _vc1 = document.getElementById("_vc1");
+
    const _rrd1 = document.getElementById("_rrd1");
    
-   const _rrd1a = document.getElementById("_rrd1a");
+   const rc1 = document.getElementById("rc1");
+   const rrc1 = document.getElementById("rrc1");
+
+   const _rrc1a = document.getElementById("_rrc1a");
 
    var rdi = parseInt(_rrd1.innerText, 10);
 
-   _rrd1.innerText = (rdi-1)+"";
 
-   _rrd1a.innerText = (rdi-1)+"";
+   var conts = _vc1.innerText+_rrd1.innerText;
+   
+   var conti = parseInt(conts, 10);
+
+   conti = conti - 1;
+
+   contis = conti+"";
+
+   //console.log('contis >> '+contis);
+
+   if(conti>-1 && conti<10){
+      
+         var contarr = contis.split('');
+
+         if(contarr.length > 1 ){
+
+            var rud = parseInt(contarr[1], 10);
+         
+            var ruc = parseInt(contarr[0], 10);
+
+            _rrd1.innerText = rud;
+            
+            //_rc.innerText = ruc+"";
+            _rrc1a.innerText = ruc;
+            _vc1.innerText = ruc+"";
+
+            //console.log('-1<conti<10::rud: ' + rud);
+
+            //console.log('-1<conti<10::ruc: ' + ruc);
+
+         }else{
+
+            var rud = parseInt(contarr[0], 10);
+
+            console.log('rud: ' + rud);
+
+            var ruc = 0;
+
+            if(rud == 9){
+
+               _rrd1.innerText = rud;
+               
+
+               _rrc1a.innerText = ruc;
+               _vc1.innerText = ruc;
+               //_rc.innerText = ruc+"";
+               //_rca.innerText = ruc+"";
+
+
+
+               if(animar){
+
+                  _vc1.style.animation = "none";
+                  _rrc1a.style.animation = "none";
+                  rrc1.style.animation = "none";
+                  rc1.style.animation = "none";
+                  
+                  setTimeout(() => _rrc1a.style.animation = 
+                  "soberr_c 2s linear, pisca_c 1s linear"
+                  , 5);
+                  setTimeout(() => _vc1.style.animation = 
+                  "ultimo_c 2s linear"
+                  , 5);
+                  setTimeout(() => rrc1.style.animation = 
+                  "pisca_d 2s linear"
+                  , 5);
+                  setTimeout(() => rc1.style.animation = 
+                  "pisca_c 2s linear"
+                  , 5);
+
+               }
+
+            }else{
+
+               _rrd1.innerText = contis;
+               
+               _vc1.innerText = "0";
+               _rrc1a.innerText = 0;
+               //_rc.innerText = "0";
+               //_rca.innerText = "0";
+
+            }
+         
+         }
+         
+   }else
+
+      if(conti>9 && conti <100){
+
+         var contarr = contis.split('');
+         
+         var rud = parseInt(contarr[1], 10);
+         
+         var ruc = parseInt(contarr[0], 10);
+
+         //console.log('9<conti<100::ruc: ' + ruc);
+
+         //console.log('9<conti<100::rud: ' + rud);
+
+         //faz efeito no acrescimo das dezenas
+         if(rud == 9){
+            
+            _rrd1.innerText = rud;
+
+            _vc1.innerText = ruc;
+            _rrc1a.innerText = ruc;
+
+            //_rca.innerText = ruc;
+            
+            _vc1.style.animation = "none";
+            _rrc1a.style.animation = "none";
+            rrc1.style.animation = "none";
+            rc1.style.animation = "none";
+            
+            setTimeout(() => _rrc1a.style.animation = 
+            "soberr_c 2s linear, pisca_c 1s linear"
+            , 5);
+            setTimeout(() => _vc1.style.animation = 
+            "ultimo_c 2s linear"
+            , 5);
+            setTimeout(() => rrc1.style.animation = 
+            "pisca_d 2s linear"
+            , 5);
+            setTimeout(() => rc1.style.animation = 
+            "pisca_c 2s linear"
+            , 5);
+
+         }else{
+
+            _rrd1.innerText = rud+"";
+            
+            _vc1.innerText = ruc+"";
+            _rrc1a.innerText = ruc;
+            //_rca.innerText = ruc+"";
+         
+         }
+         
+   }
+
+   //_rrd1.innerText = (rdi-1)+"";
+
+   //_rrd1a.innerText = (rdi-1)+"";
    
    exibir();
 
@@ -4034,9 +4263,76 @@ function rcmais() {
 
    const _rrc1 = document.getElementById("_rrc1");
    
+   const _rrm1a = document.getElementById("_rrm1a");
+
    var rci = parseInt(_rrc1.innerText, 10);
 
-   _rrc1.innerText = (rci+1)+"";
+   const _vm1 = document.getElementById("_vm1");
+   //const _vc1 = document.getElementById("_vc1");
+  
+   var conts = _vm1.innerText+_rrc1.innerText;
+   var conti = parseInt(conts, 10);
+   conti = conti + 1;
+   if(conti>-1 && conti<10){
+      _rrc1.innerText = conti;
+      //_rrm1a.innerText = conti;
+   }else{
+
+      if(conti>9 && conti <100){
+            
+            var contis = conti+'';
+            
+            var contarr = contis.split('');
+            
+            var ruc = parseInt(contarr[1], 10);
+            
+            var rum = parseInt(contarr[0], 10);
+            
+            _rrc1.innerText = ruc;
+
+            _rrm1a.innerText = rum;
+            _vm1.innerText = rum;
+
+            //console.log(ruc +'>>'+ rud);
+
+            //faz efeito no acrescimo das dezenas
+            if(ruc == 0){
+               
+               if(animar){
+
+                  _vm1.style.animation = "none";
+                  _rrm1a.style.animation = "none";
+                  rrm1.style.animation = "none";
+                  rm1.style.animation = "none";
+                  
+                  setTimeout(() => _rrm1a.style.animation = 
+                  "soberr_m 2s linear, pisca_m 1s linear"
+                  , 5);
+                  setTimeout(() => _vm1.style.animation = 
+                  "ultimo_m 2s linear"
+                  , 5);
+                  setTimeout(() => rrm1.style.animation = 
+                  "pisca_m 2s linear"
+                  , 5);
+                  setTimeout(() => rm1.style.animation = 
+                  "pisca_m 2s linear"
+                  , 5);
+
+               }
+
+            }else{
+
+               _rrc1.innerText = ruc+"";
+               _rrm1a.innerText = rum;
+               _vm1.innerText = rum+"";
+            
+            }
+            
+      }
+
+   }
+
+   //_rrc1.innerText = (rci+1)+"";
    
    exibir();
 
@@ -4046,11 +4342,160 @@ function rcmenos() {
 
    limpa_tabuada();
 
+   const _vm1 = document.getElementById("_vm1");
+
    const _rrc1 = document.getElementById("_rrc1");
+
+   const rm1 = document.getElementById("rm1");
+   const rrm1 = document.getElementById("rrm1");
+
+   const _rrm1a = document.getElementById("_rrm1a");
    
    var rci = parseInt(_rrc1.innerText, 10);
 
-   _rrc1.innerText = (rci-1)+"";
+
+   var conts = _vm1.innerText+_rrc1.innerText;
+   
+   var conti = parseInt(conts, 10);
+
+   conti = conti - 1;
+
+   contis = conti+"";
+
+   //console.log('contis >> '+contis);
+
+   if(conti>-1 && conti<10){
+      
+         var contarr = contis.split('');
+
+         if(contarr.length > 1 ){
+
+            var ruc = parseInt(contarr[1], 10);
+         
+            var rum = parseInt(contarr[0], 10);
+
+            _rrc1.innerText = ruc;
+            
+            //_rc.innerText = ruc+"";
+            _vm1.innerText = rum;
+            _rrm1a.innerText = rum;
+
+            //console.log('-1<conti<10::rud: ' + rud);
+
+            //console.log('-1<conti<10::ruc: ' + ruc);
+
+         }else{
+
+            var ruc = parseInt(contarr[0], 10);
+
+            //console.log('rud: ' + rud);
+
+            var rum = 0;
+
+            if(ruc == 9){
+
+               _rrc1.innerText = ruc;
+               
+               _vm1.innerText = rum;
+               _rrm1a.innerText = rum;
+               //_rc.innerText = ruc+"";
+               //_rca.innerText = ruc+"";
+
+               if(animar){
+
+                  _vm1.style.animation = "none";
+                  _rrm1a.style.animation = "none";
+                  rrm1.style.animation = "none";
+                  rm1.style.animation = "none";
+                  
+                  setTimeout(() => _rrm1a.style.animation = 
+                  "soberr_m 2s linear, pisca_m 1s linear"
+                  , 5);
+                  setTimeout(() => _vm1.style.animation = 
+                  "ultimo_m 2s linear"
+                  , 5);
+                  setTimeout(() => rrm1.style.animation = 
+                  "pisca_m 2s linear"
+                  , 5);
+                  setTimeout(() => rm1.style.animation = 
+                  "pisca_m 2s linear"
+                  , 5);
+
+               }
+
+            }else{
+
+               _rrc1.innerText = contis;
+               
+               _vm1.innerText = 0;
+               _rrm1a.innerText = 0;
+               //_rc.innerText = "0";
+               //_rca.innerText = "0";
+
+            }
+         
+         }
+         
+   }else
+
+      if(conti>9 && conti <100){
+
+         var contarr = contis.split('');
+         
+         var ruc = parseInt(contarr[1], 10);
+         
+         var rum = parseInt(contarr[0], 10);
+
+         //console.log('9<conti<100::ruc: ' + ruc);
+
+         //console.log('9<conti<100::rud: ' + rud);
+
+         //faz efeito no acrescimo das dezenas
+         if(ruc == 9){
+            
+            _rrc1.innerText = ruc;
+            
+            _vm1.innerText = rum;
+            _rrm1a.innerText = rum;
+            
+
+            //_rca.innerText = ruc;
+            
+            if(animar){
+
+               _vm1.style.animation = "none";
+               _rrm1a.style.animation = "none";
+               rrm1.style.animation = "none";
+               rm1.style.animation = "none";
+               
+               setTimeout(() => _rrm1a.style.animation = 
+               "soberr_m 2s linear, pisca_m 1s linear"
+               , 5);
+               setTimeout(() => _vm1.style.animation = 
+               "ultimo_m 2s linear"
+               , 5);
+               setTimeout(() => rrm1.style.animation = 
+               "pisca_m 2s linear"
+               , 5);
+               setTimeout(() => rm1.style.animation = 
+               "pisca_m 2s linear"
+               , 5);
+
+            }
+
+         }else{
+
+            _rrc1.innerText = ruc;
+            
+            _vm1.innerText = rum;
+            _rrm1a.innerText = rum;
+            //_rca.innerText = ruc+"";
+         
+         }
+         
+   }
+
+   //_rrc1.innerText = (rci-1)+"";
    
    exibir();
 
@@ -4064,7 +4509,13 @@ function rmmais() {
    
    var rmi = parseInt(_rrm1.innerText, 10);
 
-   _rrm1.innerText = (rmi+1)+"";
+   if(rmi > 8){
+      _rrm1.innerText = 9;
+   }else{
+      _rrm1.innerText = rmi+1;
+   }
+
+   //_rrm1.innerText = (rmi+1)+"";
    
    exibir();
 
@@ -4078,7 +4529,13 @@ function rmmenos() {
    
    var rmi = parseInt(_rrm1.innerText, 10);
 
-   _rrm1.innerText = (rmi-1)+"";
+   if(rmi < 1){
+      _rrm1.innerText = 0;
+   }else{
+      _rrm1.innerText = rmi-1;
+   }
+
+   //_rrm1.innerText = (rmi-1);
    
    exibir();
 

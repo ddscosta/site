@@ -1342,7 +1342,7 @@ function rdmenos() {
    const _rd = document.getElementById("_rd");
    const _rca = document.getElementById("_rca");
 
-   var conts = _vm.innerText+vc.innerText+_rd.innerText;
+   var conts = _vm.innerText+_vc.innerText+_rd.innerText;
    
    var conti = parseInt(conts, 10);
 
