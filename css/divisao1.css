@@ -1,0 +1,1528 @@
+@charset "UTF-8";
+
+body{
+	transform: scale(0.7);
+}
+
+/*-------------------ANIMAÇÕES---------------------*/
+	/*NÃO ALTERAR*/
+	@keyframes sobe_u{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(10px, -260px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes direita_u{
+		0%{
+			/*transform: translate(0px, 0px);*/
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(75px, 0);
+			position: relative;
+			display: block;
+			color: blue;
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes pisca_u{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_u{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	@keyframes ultimo_rev_u{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		95%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	@keyframes ultimo_desl_u{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(15px, 0);
+		
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes sobe_d{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, -390px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes desce_d{
+		0%{
+			transform: translate(0px, 0px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, 330px);
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes direita_d{
+		0%{
+			transform: translate(20px, 0);
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(85px, 0);
+			position: relative;
+			display: block;
+			color: red;
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes pisca_d{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	@keyframes primeiro_d{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_d{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_rev_d{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		95%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_desl_d{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(15px, 0);
+		
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_desl_d1{
+		0%{
+			transform: translate(-5px, 0);
+		}
+		100%{
+			transform: translate(-5px, 0);
+		
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes sobe_c{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, -390px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes sobe2_c{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, -460px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes soberr_c{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		95%{
+			transform: translate(-20px, -200px);
+			opacity: 100%;
+		}
+		97%{
+			transform: scale(0.7);
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	@keyframes desce_c{
+		0%{
+			transform: translate(0px, 0px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, 330px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes desce2_c{
+		0%{
+			transform: translate(0px, 0px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, 390px);
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes direita_c{
+		0%{
+			/*transform: translate(0px, 0px);*/
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(65px, 0);
+			position: relative;
+			display: block;
+			color: green;
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes direita_c2{
+		0%{
+			/*transform: translate(0px, 0px);*/
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(70px, 0);
+			position: relative;
+			display: block;
+			color: green;
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes pisca_c{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	@keyframes pisca2_c{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	@keyframes primeiro_c{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	@keyframes primeiro2_c{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_c{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	@keyframes ultimo2_c{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_rev_c{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		95%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_desl_c{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(15px, 0);
+		
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_desl_c2{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(10px, 0);
+		
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes sobe_m{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, -390px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes sobe2_m{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, -460px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes soberr_m{
+		0%{
+			transform: translate(0px, -60px);
+			opacity: 100%;
+		}
+		95%{
+			transform: translate(-20px, -200px);
+			opacity: 100%;
+		}
+		97%{
+			transform: scale(0.7);
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	@keyframes desce_m{
+		0%{
+			transform: translate(0px, 0px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, 330px);
+			opacity: 0%;
+		}
+	}
+
+	@keyframes desce2_m{
+		0%{
+			transform: translate(0px, 0px);
+			opacity: 100%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(0px, 390px);
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes direita_m{
+		0%{
+			/*transform: translate(0px, 0px);*/
+			opacity: 0%;
+		}
+		99%{
+			opacity: 100%;
+		}
+		100%{
+			transform: translate(65px, 0);
+			position: relative;
+			display: block;
+			color: blue;
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes pisca_m{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	@keyframes pisca2_m{
+		0%{
+			background-color: white;
+		}
+		25%{
+			background-color: rgb(0, 255, 64);
+		}
+		50%{
+			background-color: white;
+		}
+		75%{
+			background-color: rgb(0, 255, 64);
+		}
+		100%{
+			background-color: white;
+		}
+	}
+
+	@keyframes primeiro_m{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	@keyframes primeiro2_m{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	/*NÃO ALTERAR*/
+	@keyframes ultimo_m{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	@keyframes ultimo2_m{
+		0%{
+			opacity: 0%;
+		}
+		90%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 100%;
+		}
+	}
+
+	@keyframes ultimo_rev_m{
+		0%{
+			opacity: 100%;
+		}
+		90%{
+			opacity: 100%;
+		}
+		95%{
+			opacity: 0%;
+		}
+		100%{
+			opacity: 0%;
+		}
+	}
+
+	@keyframes ultimo_desl_m{
+		0%{
+			transform: translate(0px, 0);
+		}
+		100%{
+			transform: translate(15px, 0);
+		
+		}
+	}
+/*animação para produto ini---------------------------------------*/
+	/*DEZENA----------------*/
+		td#rd1 span#_rd1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rrd1 span#_rrd1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rd2 span#_rd2a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+
+
+		td#rd1 span#_rd1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rrd1 span#_rrd1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rd2 span#_rd2_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+	
+		td#vd span#_vd{
+			color: green;
+			display: flex;	
+			position: fixed;
+			padding-left: 23px;
+		}
+
+		td#vd span#_vda{
+			display: flex;	
+			position: fixed;
+			padding-left: 25px;
+			padding-right: 25px;
+			opacity: 0%;
+		}
+
+	/*CENTENA----------------*/
+		td#rc1 span#_vc1{
+			display: flex;
+			font-size: 30px;
+			position: fixed;
+			transform: translate(2px, -65px);
+		}
+
+		td#rc1 span#_rc1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rrc1 span#_rrc1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rc2 span#_rc2a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rc1 span#_rc1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rrc1 span#_rrc1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rc2 span#_rc2_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+	
+		td#vc span#_vc{
+			color: blue;
+			display: flex;	
+			position: fixed;
+			padding-left: 23px;
+		}
+
+		td#vc span#_vca{
+			display: flex;	
+			position: fixed;
+			padding-left: 25px;
+			padding-right: 25px;
+			opacity: 0%;
+		}
+
+	/*MILHAR----------------*/
+		td#rm1 span#_vm1{
+			display: flex;
+			font-size: 30px;
+			position: fixed;
+			transform: translate(2px, -65px);	
+		}
+
+		td#rm1 span#_rm1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rrm1 span#_rrm1a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rm2 span#_rm2a{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rm1 span#_rm1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rrm1 span#_rrm1_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+
+		td#rm2 span#_rm2_ant{
+			display: flex;	
+			position: fixed;
+			transform: translate(0px, -60px);
+			padding-left: 23px;
+			padding-right: 23px;
+			opacity: 0%;
+		}
+	
+		td#vm span#_vm{
+			color: black;
+			display: flex;	
+			position: fixed;
+			padding-left: 23px;
+		}
+
+		td#vm span#_vma{
+			display: flex;	
+			position: fixed;
+			padding-left: 25px;
+			padding-right: 25px;
+			opacity: 0%;
+		}
+
+/*animação para produto fin----------------------------------------*/
+
+
+	/*ANIMAÇÃO PARA DEZENA E UNIDADE*/
+		/*td#vd span#_vd{
+			color: green;
+			display: flex;	
+			position: fixed;
+			padding-left: 15px;
+		}*/
+
+		td#vd span#_vd_ant{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+		}
+
+		td.u span#u1a, td.d span#d1a{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+			transform: translate(0px, -60px);
+		}
+
+		/*desativando animação*/
+		/*td#vd{
+			animation-name: pisca;
+			animation-name: ultimo;
+			animation-duration: 5s;
+			animation-timing-function: linear;
+		}*/
+
+		td#vd span#vda{
+			padding-right: 20px;
+			opacity: 0%;
+			display: flex;
+			animation-name: direita;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 3s;
+			animation-iteration-count: 1;
+			/*animation-fill-mode: forwards;*/
+		}
+
+		td.u span#u1a, td.d span#d1a{
+			padding-right: 20px;
+			/*transform: translate(10px, 5px);*/
+			display: flex;
+			animation-name: sobe;
+			animation-duration: 5s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: 1;
+			/*animation-fill-mode: forwards;*/
+		}
+
+	/*ANIMAÇÃO DA CENTENTA E DEZENA*/
+		/*td#vc span#_vc{
+			color: blue;
+			display: flex;	
+			position: fixed;
+			padding-left: 15px;
+		}*/
+
+		td#vc span#_vc_ant{
+			color: blue;
+			display: flex;	
+			position: fixed;
+			padding-left: 15px;
+		}
+
+		td.d span#d1a, td.c span#c1a{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+			transform: translate(0px, -60px);
+		}
+
+		/*desativando animação*/
+		/*td#vc{
+			animation-name: pisca_c;
+			animation-name: ultimo_c;
+			animation-duration: 5s;
+			animation-timing-function: linear;
+		}*/
+
+		td#vc span#vca{
+			padding-left: 20px;
+			opacity: 0%;
+			display: flex;
+			animation-name: direita_c;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 3s;
+			animation-iteration-count: 1;
+		}
+
+		td.d span#d1a, td.c span#c1a{
+			padding-right: 20px;
+			display: flex;
+			animation-name: sobe_c;
+			animation-duration: 5s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: 1;
+		}
+
+	/*ANIMAÇÃO PARA CENTENA E MILHAR*/
+		/*td#vm span#_vm{
+			color: black;
+			display: flex;	
+			position: fixed;
+			padding-left: 28px;
+		}*/
+
+		td#vm span#_vm_ant{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+		}
+
+		td.c span#c1a, td.um span#m1a{
+			display: flex;	
+			position: fixed;
+			padding-left: 20px;
+			transform: translate(0px, -60px);
+		}
+
+		/*desativando animação*/
+		/*td#vm{
+			animation-name: pisca_m;
+			animation-name: ultimo_m;
+			animation-duration: 5s;
+			animation-timing-function: linear;
+		}*/
+
+		td#vm span#vma{
+			padding-left: 20px;
+			opacity: 0%;
+			display: flex;
+			animation-name: direita_m;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-delay: 3s;
+			animation-iteration-count: 1;
+		}
+
+		td.c span#c1a, td.um span#m1a{
+			padding-right: 20px;
+			display: flex;
+			animation-name: sobe_m;
+			animation-duration: 5s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: 1;
+		}
+
+
+
+#principal{
+	width: 950px;
+	margin: auto;
+	border:solid black;
+}
+
+#principal h1{
+	text-align: center;
+}
+
+.nav-button{
+	display: block;
+	position: absolute;
+	box-sizing: content-box;
+	border: 0;
+	border-radius: 4px;
+	padding: 8px;
+	background-color: rgba(74,79,247,.4);
+	margin: 8px;
+	cursor: pointer;
+	width: 44px;
+}
+
+.nav-button i{
+	color: blue;
+}
+
+#relg{
+	display: block;
+	float: right;
+	font-size: 35px;
+	color: blue;
+	padding: 5px;
+}
+
+#flutua{
+    width: 700px;
+    height: 410px;
+    margin-top: 80px; /* altura que está do topo */
+    margin-left: 70px;
+    position: fixed;
+    z-index: 1000;
+    background-color: #83aca0;
+    font-size: 35px;
+    padding: 10px;
+}
+
+input[type=checkbox] {
+	width: 20px;
+	height: 20px;
+  cursor: pointer;
+}
+
+#subtracao{
+	width: 400px;
+	display: inline;
+	float: left;
+	margin:10px;
+	/*width: 400px;
+	display: block;
+	margin: auto; /*pra funcionar precisa de um display block*/
+	/*text-align: center;*/
+}
+
+
+#resultado{
+	width: 400px;
+	display: inline;
+	float: right;
+	margin:10px;
+	text-align: center;
+	/*width: 400px;
+	display: block;
+	margin: auto; /*pra funcionar precisa de um display block*/
+	/*text-align: center;*/
+
+	/*width: 400px;
+	display: block;
+	float: right;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin: auto; /*pra funcionar precisa de um display block*/
+	/*text-align: center;*/
+}
+
+#resultado button{
+	width: auto;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#resultado button:hover{
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#resultado h1{
+	font-size: 40px;
+	border:solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+div#resultado div#pontuu{
+	font-size: 40px;
+	border:solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+div#resultado div#pontuu h1#pontu{
+	position: absolute;
+	margin: 0px;
+	margin-right: 10px;
+	border: none;
+}
+
+div#resultado div#pontuu button#btnreset{
+	margin-left: 350px;
+	margin-bottom: 2px;
+	width: 40px;
+}
+
+/*div#resultado div#pontuu h1#pontu, button#btnreset{
+	display: block;
+}
+
+div#resultado div#pontuu h1#pontu{
+
+	float: left;
+}
+
+div#resultado div#pontuu button#btnreset{
+	float: right;
+}*/
+
+
+#animacao{
+	width: 400px;
+	/*height: 270px;*/
+	height: 342px;
+	font-size: 30px;
+	/*background-color: yellow;*/
+	margin-top: 0px;
+	padding-top: 0px;
+	border:solid black;
+	
+}
+
+.anime{
+	font-size: 50px;
+	/*background-color: white;*/
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+	display: block;
+	vertical-align: middle;
+}
+
+.anime h2{
+	font-size: 50px;
+	margin: 0px;
+	text-align: center;
+}
+
+.anime img{
+	width: 200px;
+	height: 200px;
+	text-align: center;
+}
+
+#idan{
+	/*display: none;*/
+}
+
+#idfeliz{
+	display: none;
+}
+
+#idtriste{
+	display: none;
+}
+
+.iudc{
+	width: 70px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.iudc:hover{
+  cursor: pointer;
+  opacity: 0.7;
+  /*border: solid gray 1px;*/
+}
+
+table tr#img td{
+	background-color:rgba(0,0,0,.1);
+	padding: 0px;
+	margin: 0px;
+	/*font-size: 35px;*/
+}
+
+#subtracao h1{
+	color: blue;
+}
+
+table tr, td{
+	/*border: solid black 1px;
+	border-collapse: collapse;*/
+	/*padding: 15px;
+	margin: 15px;
+	text-align: center;
+	//width: 40px;*/
+}
+
+.um{
+	color: black;
+	background-color: rgba(0, 0, 0, .4);
+}
+
+.ump{
+	border: solid;
+	width: 50px;
+	height: 50px;
+}
+
+#imgm, #imgc, #imgd,  #imgu{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	display: none;
+}
+
+.c{
+	color: blue;
+	background-color: rgba(0, 0, 0, .3);	
+}
+
+.cp{
+	border: solid;
+}
+
+.d{
+	color: green;
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.dp{
+	border: solid;
+}
+
+.u{
+	color: red;
+	background-color: rgba(0, 0, 0, .1);
+}
+
+.up{
+	border: solid;
+}
+
+/*table tr#vai{
+	color: green;
+	font-weight: bolder;
+	font-size: 40px;	
+	padding: 0px;
+	background-color: white;
+	border-style: none;
+}*/
+
+/*table thead tr#hd th{
+	border-style: none;
+	background-color: white;
+}*/
+
+table tr#vai td{
+	/*color: green;*/
+	font-weight: bolder;
+	font-size: 40px;	
+	padding: 0px;
+	background-color: white;
+}
+
+table tr#tbtn td{
+	padding: 0px;
+}
+
+.cbtn{
+	margin: 0px;
+	padding: 0px;
+	font-size: 60px;
+	
+}
+
+.cbtn button:hover{
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.cbtn button{
+	margin: 0px;
+	padding: 3px;
+	font-size: 50px;
+	width: 60px;
+	background-color: rgba(74,79,247,.4);
+}
+
+button{
+	margin: 0px;
+	padding: 3px;
+	font-size: 25px;
+	width: 40px;
+	background-color: rgba(74,79,247,.4);
+}
+
+table tr#qvl{
+	color: red;	
+}
+
+table tr td#qvlum{
+	font-size: 37px;	
+}
+
+table tr#sol td{
+	background-color: white;
+	height: 50px;
+	/*border-top-style:solid;*/
+}
+
+table{
+	width: 500px;
+	margin: auto;
+	font-size: 50px;
+}
+
+table tr td{
+	width: 50px;
+	text-align: center;
+}
+
+figure.foto-legenda:hover figcaption{
+	/*opacity: 1;*/
+}
+
+th.inf{
+	font-size: 40px;
+	text-align: center;
+	padding: 5px;
+	white-space: nowrap;
+	border: solid blue;
+}
+
+td.inf{
+	font-size: 40px;
+	text-align: center;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+
+td.inf{
+	background-color: #f0f0c6 !important;
+}
+
+td#msg{
+	color: blue;
+	border: solid blue 1px;
+	
+}
+
+td#tabu{
+	border: solid blue 1px;
+}
+
+td#msg p{
+	margin: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: inline-block;
+	
+}
+
+#msgs{
+	width: auto;
+	text-align: center;
+}
+
+td.inf p{
+	color: red;
+	text-align: center;
+}
+
+
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  /*height: auto;*/
+  /*word-break: break-all;*/
+  /*word-wrap: break-word;*/
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  font-size: 25px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+input:hover{
+	cursor: pointer;
+}
+
+#de{
+	width: 50px;
+}
+
+#ate{
+	width: 50px;
+}
+
+#de2{
+	width: 50px;
+}
+
+#ate2{
+	width: 50px;
+}
+
+#nome_aln{
+	width: 480px;
+}
+
+input[type="text"]{
+    font-size:22px;
+}
+/*
+.ate{
+	font-size: 22px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}*/
+
+.ajud{
+	/*display: none;*/
+}
+
+.reag{
+	/*display: none;*/
+}
+
+td h1#visor{
+	font-size: 35px;
+	text-align: center;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+
+ol {
+  counter-reset: list;
+}
+ol > li {
+  list-style: none;
+}
+ol > li:before {
+  content: counter(list, lower-alpha) ") ";
+  counter-increment: list;
+}
