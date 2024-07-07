@@ -1509,11 +1509,16 @@ input[type="text"]{
 	/*display: none;*/
 }
 
+th h1#visor{
+	margin: 0px;
+}
+
 td h1#visor{
 	font-size: 35px;
 	text-align: center;
 	padding-right: 3px;
 	white-space: nowrap;
+	margin: 0px;
 }
 
 ol {
