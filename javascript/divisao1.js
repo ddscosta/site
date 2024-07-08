@@ -102,6 +102,12 @@ var q_div_temp = '';
 //valor do produto parcial entre um numero do quociente e divisor
 var q_pro_temp = '';
 
+//valor da subtração parcial entre produto e numero ligeiramente acima
+var q_sub_temp = '';
+
+//indica que será feita a operação de subtração
+var ativ_sub = false;
+
 //ação ao clicar no dividendo(dvd) unidade
 function fdvd_u(){
    
@@ -116,9 +122,6 @@ function fdvd_u(){
    
    visor_msg( get_dvd_mark() );
 
-   //mult_u1 = true;
-   //console.log('mult_u1_fu1:true');
-   //dvd_u.style.backgroundColor = "rgba(0, 255, 64, 1)"; 
 }
 
 //ação ao clicar no dividendo(dvd) dezena
@@ -152,16 +155,37 @@ function fdvd_c(){
 
 //ação ao clicar no dividendo(dvd) milhar
 function fdvd_m(){
-  //preenche/pinta ou descarta/pinta o valor clicado
-   if(val_dvd_m == ''){
-      val_dvd_m = dvd_m.innerText;
-      dvd_m.style.backgroundColor = corf_ativo;
-   }else{
-      val_dvd_m = '';
-      dvd_m.style.backgroundColor = corf_mil;
-   }
+  
    
-   visor_msg( get_dvd_mark() );
+
+   //indica que deve ser feita uma subtração
+   //a primeira subtração que envolve o dividendo sempre será iniciada com a milhar
+   if(ativ_sub){
+
+      //o resultado da subtração está na variavel q_sub_temp
+      
+      //faz a subtração e pega a string para mostrar no visor
+      //prefixo da linha minuendo é 'dvd'
+      //prefixo da linha subtraendo é 'dvd1'
+      var subt_vis = get_subt('dvd', 'dvd1');
+
+      visor_msg( subt_vis );
+
+   }else{
+
+     //preenche/pinta ou descarta/pinta o valor clicado
+      if(val_dvd_m == ''){
+         val_dvd_m = dvd_m.innerText;
+         dvd_m.style.backgroundColor = corf_ativo;
+      }else{
+         val_dvd_m = '';
+         dvd_m.style.backgroundColor = corf_mil;
+      }
+      
+      visor_msg( get_dvd_mark() );
+
+   }
+
 }
 
 //ação ao clicar no divisor(dvs)
@@ -225,6 +249,7 @@ function fdvs(){
 
       }
 
+   //vamos efetuar a multiplicação
    }else{
       console.log('vamos mult>>'+q_div_temp+'*'+val_dvs_ud);
       
@@ -238,7 +263,6 @@ function fdvs(){
          vdu = '0'+vdu;
       }
       
-      //vamos efetuar a multiplicação
       if( qdt == '' ||  vdu == ''){
 
          //limpa o resultado do produto
@@ -322,6 +346,10 @@ function fq_m(){
    //    dvd_m.style.backgroundColor = corf_mil;
    // }
 
+   if(q_div_temp == 0){
+      q_div_temp = q_div_temp+'';
+   }
+
    //o valor da divisão já foi inserido no quociente. Por ser o passo final da divisão, vamos resetar tudo
    if(q_div_temp == q_m.innerText){
       
@@ -341,28 +369,38 @@ function fq_m(){
       visor_msg( q_m.innerText );
       q_m.style.backgroundColor = corf_ativo;
 
+   //vamos inserir o resultado da divisao
    }else{
 
       //não há resultado de divisão na variavel q_div_temp
-      if(q_div_temp == ''){
+      // if(q_div_temp == ''){
 
-         q_m.innerText = 0;
+      //    q_m.innerText = 0;
          
-      }else{
+      // }else{
          
          q_m.innerText = q_div_temp;
 
          q_m.style.backgroundColor = corf_ativo;
 
-      }
+     // }
 
    }
 
 }
 
-//escreve resultado
+//escreve resultado da multiplicação
 function fdvd1(ord){
    
+   console.log('q_pro_temp:'+q_pro_temp);
+
+  
+   //quando q_pro_temp é zero precisamos transformar em string
+   if(q_pro_temp == 0){
+      q_pro_temp = q_pro_temp+'';
+   }
+
+    //escreve o resultado do produto
    if(q_pro_temp != ''){
       
       var arr_qpro = (q_pro_temp+'').split('');
@@ -384,9 +422,119 @@ function fdvd1(ord){
       }
 
       //por enquanto vamos permitir uma só tentativa de posicionar esse valor
-      q_pro_temp = '';      
+      q_pro_temp = '';  
+
+   //inicia o processo de subtração
+   }else{
+
+      limpa_val_divid();
+      limpa_cor_divid();
+
+      limpa_val_divis();
+      limpa_cor_divis();
+
+      limpa_val_quoc();
+      limpa_cor_quoc();
+
+      //captura o resultado da multiplicação presente nesta linha
+      var nlin1 = get_lin_num('dvd1');
+
+      if(nlin1 == 0){
+         nlin1 = nlin1+'';
+      }
+
+      if(nlin1 != ''){
+         
+         q_pro_temp = nlin1;
+         visor_msg( nlin1 );
+         ativ_sub = true;
+         console.log('ativ_sub:'+ativ_sub);
+
+      }else{
+
+         q_pro_temp = '';
+         visor_msg( '' );
+         ativ_sub = false;
+         console.log('ativ_sub:'+ativ_sub);
+
+      }
+      
 
    }
+
+}
+
+//escreve resultado da subtracao
+function fdvd2(ord){
+   
+   console.log('q_sub_temp:'+q_sub_temp);
+   console.log('q_prodd_temp:'+q_pro_temp);
+  
+   //quando q_pro_temp é zero precisamos transformar em string
+   if(q_sub_temp == 0){
+      q_sub_temp = q_sub_temp+'';
+   }
+
+    //escreve o resultado da subtração
+   if(q_sub_temp != ''){
+      
+      var arr_qsub = (q_sub_temp+'').split('');
+        
+      //clicou-se na linha2(subtração)
+      
+      //coloca o resultado da variavel q_sub_temp
+      if(ord == 'u'){
+         set_subt('dvd2', 3, arr_qsub);
+      }
+      if(ord == 'd'){
+        set_subt('dvd2', 2, arr_qsub);
+      }
+      if(ord == 'c'){
+        set_subt('dvd2', 1, arr_qsub);
+      }
+      if(ord == 'm'){
+         set_subt('dvd2', 0, arr_qsub);
+      }
+
+      
+      //por enquanto vamos permitir uma só tentativa de posicionar esse valor
+      q_sub_temp = ''; 
+
+      //encerrando a subtração
+      ativ_sub = false;
+
+   }else{
+   
+      limpa_val_divid();
+      limpa_cor_divid();
+
+      limpa_val_divis();
+      limpa_cor_divis();
+
+      limpa_val_quoc();
+      limpa_cor_quoc();
+
+      limpa_cor_resto('dvd1');
+      limpa_cor_resto('dvd2');
+
+      ativ_sub = false;
+   
+   }
+
+   // }else{
+      
+   //    limpa_val_divid();
+   //    limpa_cor_divid();
+
+   //    limpa_val_divis();
+   //    limpa_cor_divis();
+
+   //    limpa_val_quoc();
+   //    limpa_cor_quoc();
+
+   //    ativ_sub = false;
+
+   // }
 
 }
 
@@ -445,6 +593,32 @@ function get_divisor(){
 
 }
 
+//retorna os números de uma linha especifica
+function get_lin_num(pre){
+
+   var dvd1_u = document.getElementById(pre+'_u');
+   var dvd1_d = document.getElementById(pre+'_d');
+   var dvd1_c = document.getElementById(pre+'_c');
+   var dvd1_m = document.getElementById(pre+'_m');
+
+   var num = dvd1_m.innerText + dvd1_c.innerText + dvd1_d.innerText + dvd1_u.innerText;
+   var numi = '';
+
+   console.log('num_'+pre+':'+num);
+
+   if(num == 0){
+      num = num+'';
+   }
+
+   if( num != ''){
+      numi = parseInt(num, 10);
+      return numi;
+   }
+
+   return '';
+   
+}
+
 function set_prod(pre, ini, arr_qpro){
    
    var ini_opt = ['m','c','d','u'];
@@ -492,6 +666,120 @@ function set_prod(pre, ini, arr_qpro){
 
 }
 
+//pega o valor do produto que está na linha pre, ex.: 'dvd1'
+function get_subt(pre_mi, pre_su){
+
+   var vu = document.getElementById(pre_mi+'_u');
+   var vc = document.getElementById(pre_mi+'_c');
+   var vd = document.getElementById(pre_mi+'_d');
+   var vm = document.getElementById(pre_mi+'_m');
+
+   //pega o valor do produto que está na linha pre, ex.: 'dvd1'
+   if( q_pro_temp != '' && pre_su == 'dvd1'){
+
+      subt = q_pro_temp+'';
+      var subti = parseInt(subt, 10);
+
+      //pinta os numeros considerados na subtração de acordo com a quantidade de dígitos do subtraendo
+      
+      //pega o valor que está na linha imediatamente acima, i.e. dividendo e seleciona-o
+      var minu = get_dividendo()+'';
+      var minuu = '';
+      
+      console.log('subt:'+subt);
+      console.log('tamanho:'+subt.length);
+
+      if(subt.length > 0){
+         vm.style.backgroundColor = corf_ativo;
+         minuu = minuu + minu[0];
+      }
+      if(subt.length > 1){
+         vc.style.backgroundColor = corf_ativo;
+         minuu = minuu + minu[1];
+      }
+      if(subt.length > 2){
+         vd.style.backgroundColor = corf_ativo;
+         minuu = minuu + minu[2];
+      }
+      if(subt.length > 3){
+         vu.style.backgroundColor = corf_ativo;
+         minuu = minuu + minu[3];
+      }
+
+      
+      var minuui = parseInt(minuu, 10);
+
+      //faz a sutração e guarda para inserir quando a linha abaixo for clicada
+      q_sub_temp = (minuui - subti);
+
+      
+  
+      return minuu + ' - ' + subt + ' = ' + q_sub_temp;
+
+      //visor_msg( subt + ' - ' + minu + ' = ' + q_sub_temp );
+
+   }
+
+}
+
+function set_subt(pre, ini, arr_qsub){
+
+   var ini_opt = ['m','c','d','u'];
+   
+   var qs = (q_sub_temp+'').length;
+   var qp = (q_pro_temp+'').length;
+
+   console.log('qs:'+qs+'>>qp:'+qp);
+   
+   if( (qp - qs) == 1){
+      document.getElementById(pre+'_'+ini_opt[ini]).innerText = 0;
+      document.getElementById(pre+'_'+ini_opt[ini]).style.backgroundColor = corf_ativo;
+      ini = ini+1;
+   }else
+   if( (qp - qs) == 2){
+      document.getElementById(pre+'_'+ini_opt[ini]).innerText = 0;
+      document.getElementById(pre+'_'+ini_opt[ini+1]).innerText = 0;
+      document.getElementById(pre+'_'+ini_opt[ini]).style.backgroundColor = corf_ativo;
+      document.getElementById(pre+'_'+ini_opt[ini+1]).style.backgroundColor = corf_ativo;
+      ini = ini+2;
+   }else
+   if( (qp - qs) == 3){
+      document.getElementById(pre+'_'+ini_opt[ini]).innerText = 0;
+      document.getElementById(pre+'_'+ini_opt[ini+1]).innerText = 0;
+      document.getElementById(pre+'_'+ini_opt[ini+2]).innerText = 0;
+      document.getElementById(pre+'_'+ini_opt[ini]).style.backgroundColor = corf_ativo;
+      document.getElementById(pre+'_'+ini_opt[ini+1]).style.backgroundColor = corf_ativo;
+      document.getElementById(pre+'_'+ini_opt[ini+2]).style.backgroundColor = corf_ativo;
+      ini = ini+3;
+   }
+
+   /*
+   pre:prefixo...div1
+   ini:inicio da insersao...0
+   arr_qsub: array com o resultado da subtração
+   */
+
+   if(arr_qsub.length > 0){
+      document.getElementById(pre+'_'+ini_opt[ini]).innerText = arr_qsub[0];
+      document.getElementById(pre+'_'+ini_opt[ini]).style.backgroundColor = corf_ativo;
+   }
+   
+   if(arr_qsub.length > 1){
+      document.getElementById(pre+'_'+ini_opt[ini+1]).innerText = arr_qsub[1];
+      document.getElementById(pre+'_'+ini_opt[ini+1]).style.backgroundColor = corf_ativo;
+   }
+
+   if(arr_qsub.length > 2){
+      document.getElementById(pre+'_'+ini_opt[ini+2]).innerText = arr_qsub[2];
+      document.getElementById(pre+'_'+ini_opt[ini+2]).style.backgroundColor = corf_ativo;
+   }
+   if(arr_qsub.length > 3){
+      document.getElementById(pre+'_'+ini_opt[ini+3]).innerText = arr_qsub[3];
+      document.getElementById(pre+'_'+ini_opt[ini+3]).style.backgroundColor = corf_ativo;
+   }
+
+}
+
 function limpa_val_divid(){
    val_dvd_u = '';
    val_dvd_d = '';
@@ -529,5 +817,14 @@ function limpa_cor_quoc(){
       q_d.style.backgroundColor = cor_normal;
       q_c.style.backgroundColor = cor_normal;
       q_m.style.backgroundColor = cor_normal;
+}
+
+function limpa_cor_resto(pre){
+   
+   document.getElementById(pre+'_u').style.backgroundColor = corf_uni;
+   document.getElementById(pre+'_d').style.backgroundColor = corf_dez;
+   document.getElementById(pre+'_c').style.backgroundColor = corf_cen;
+   document.getElementById(pre+'_m').style.backgroundColor = corf_mil;
 
 }
+
