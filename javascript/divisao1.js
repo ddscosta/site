@@ -105,6 +105,9 @@ var q_pro_temp = '';
 //valor da subtração parcial entre produto e numero ligeiramente acima
 var q_sub_temp = '';
 
+//operação sendo executada no momento. ex.: divi, mult, subt
+var oper = '';
+
 //indica que será feita a operação de subtração
 var ativ_sub = false;
 
@@ -141,6 +144,18 @@ function fdvd_d(){
 
 //ação ao clicar no dividendo(dvd) centena
 function fdvd_c(){
+
+   //nenhuma operação em andamento
+   if(oper == ''){
+
+      //limpa valores do dividendo com variavel 'val_dvd_...' esta vazia
+      limpa_cor_divid_v();
+
+      //limpa cor do divisor, quociente, resto
+      limpa_cor_dsqr();
+
+   }
+
    //preenche/pinta ou descarta/pinta o valor clicado
    if(val_dvd_c == ''){
       val_dvd_c = dvd_c.innerText;
@@ -156,24 +171,23 @@ function fdvd_c(){
 //ação ao clicar no dividendo(dvd) milhar
 function fdvd_m(){
   
-   
-
    //indica que deve ser feita uma subtração
    //a primeira subtração que envolve o dividendo sempre será iniciada com a milhar
    if(ativ_sub){
 
       //o resultado da subtração está na variavel q_sub_temp
       
-      //faz a subtração e pega a string para mostrar no visor
       //prefixo da linha minuendo é 'dvd'
       //prefixo da linha subtraendo é 'dvd1'
+      //faz a subtração e pega a string para mostrar no visor
       var subt_vis = get_subt('dvd', 'dvd1');
 
       visor_msg( subt_vis );
 
+   //se não vai fazer subtração entao marca a milhar e mostra no visor, além de limpar o resto
    }else{
 
-     //preenche/pinta ou descarta/pinta o valor clicado
+      //preenche/pinta ou descarta/pinta o valor clicado
       if(val_dvd_m == ''){
          val_dvd_m = dvd_m.innerText;
          dvd_m.style.backgroundColor = corf_ativo;
@@ -183,6 +197,10 @@ function fdvd_m(){
       }
       
       visor_msg( get_dvd_mark() );
+      
+      //se não há nenhuma operação em andamento então vai selecionar número e também limpar do divisor, quociente e resto
+      //limpa cor do divisor, quociente, resto
+      limpa_cor_dsqr();
 
    }
 
@@ -230,6 +248,9 @@ function fdvs(){
 
          if(divisi != 0){
             
+            //operação sendo realizada nesse momento
+            oper = 'divi';
+
             q_div_temp = Math.floor(dividi/divisi);
             
             visor_msg( dividi + ' \u00F7 ' + divisi + ' = ' + q_div_temp );
@@ -251,6 +272,7 @@ function fdvs(){
 
    //vamos efetuar a multiplicação
    }else{
+      
       console.log('vamos mult>>'+q_div_temp+'*'+val_dvs_ud);
       
       //gambiarra para quando for zero
@@ -270,6 +292,10 @@ function fdvs(){
          console.log('Não há dois valores para multiplicar');
 
       }else{
+
+         //operação sendo realizada nesse momento
+         oper = 'mult';
+
          //numeros da última divisão
          var quoc = q_div_temp;
 
@@ -379,6 +405,9 @@ function fq_m(){
          
       // }else{
          
+         //operação sendo realizada nesse momento(nenhuma)
+         oper = '';
+
          q_m.innerText = q_div_temp;
 
          q_m.style.backgroundColor = corf_ativo;
@@ -394,7 +423,6 @@ function fdvd1(ord){
    
    console.log('q_pro_temp:'+q_pro_temp);
 
-  
    //quando q_pro_temp é zero precisamos transformar em string
    if(q_pro_temp == 0){
       q_pro_temp = q_pro_temp+'';
@@ -422,7 +450,10 @@ function fdvd1(ord){
       }
 
       //por enquanto vamos permitir uma só tentativa de posicionar esse valor
-      q_pro_temp = '';  
+      q_pro_temp = ''; 
+
+      //operação sendo realizada nesse momento(nenhuma)
+      oper = ''; 
 
    //inicia o processo de subtração
    }else{
@@ -503,8 +534,35 @@ function fdvd2(ord){
       //encerrando a subtração
       ativ_sub = false;
 
+      //operação sendo realizada nesse momento(nenhuma)
+      oper = '';
+
+      //limpa_cor_divid();
+      //limpa_cor_resto('dvd1');
+      
    }else{
    
+      console.log('ord:'+ord+'>>val_dvd_c:'+val_dvd_c);
+      
+      //vamos baixar numeros para continuar dividindo
+      //ex.: verifica se apenas a centena do dividendo está ativa. Se estiver, baixa na 'ord' correta
+      if(ord == 'c' && val_dvd_c != ''){
+         
+         document.getElementById('dvd2_'+ord).innerText = val_dvd_c;
+         
+      }
+      if(ord == 'd' && val_dvd_d != ''){
+         
+         document.getElementById('dvd2_'+ord).innerText = val_dvd_d;
+         
+      }
+      if(ord == 'u' && val_dvd_u != ''){
+         
+         document.getElementById('dvd2_'+ord).innerText = val_dvd_u;
+         
+      }
+
+      //agora limpamos
       limpa_val_divid();
       limpa_cor_divid();
 
@@ -518,7 +576,7 @@ function fdvd2(ord){
       limpa_cor_resto('dvd2');
 
       ativ_sub = false;
-   
+
    }
 
    // }else{
@@ -706,14 +764,14 @@ function get_subt(pre_mi, pre_su){
          minuu = minuu + minu[3];
       }
 
+      //operação sendo realizada nesse momento
+      oper = 'subt';
       
       var minuui = parseInt(minuu, 10);
 
       //faz a sutração e guarda para inserir quando a linha abaixo for clicada
       q_sub_temp = (minuui - subti);
 
-      
-  
       return minuu + ' - ' + subt + ' = ' + q_sub_temp;
 
       //visor_msg( subt + ' - ' + minu + ' = ' + q_sub_temp );
@@ -807,6 +865,25 @@ function limpa_cor_divid(){
 
 }
 
+//limpa cores do dividendo se a variavel estiver vazia
+function limpa_cor_divid_v(){
+   if(val_dvd_u == ''){
+      dvd_u.style.backgroundColor = corf_uni;   
+   }
+   if(val_dvd_d == ''){
+      dvd_d.style.backgroundColor = corf_dez;
+   }
+
+   if(val_dvd_c == ''){
+      dvd_c.style.backgroundColor = corf_cen;
+   }
+
+   if(val_dvd_m == ''){
+      dvd_m.style.backgroundColor = corf_mil;
+   }
+
+}
+
 function limpa_cor_divis(){
    dvs_u.style.backgroundColor = cor_normal;
    dvs_d.style.backgroundColor = cor_normal;
@@ -826,5 +903,21 @@ function limpa_cor_resto(pre){
    document.getElementById(pre+'_c').style.backgroundColor = corf_cen;
    document.getElementById(pre+'_m').style.backgroundColor = corf_mil;
 
+}
+
+function limpa_cor_restos(pre){
+   limpa_cor_resto('dvd1');
+   limpa_cor_resto('dvd2');
+   limpa_cor_resto('dvd3');
+   limpa_cor_resto('dvd4');
+   limpa_cor_resto('dvd5');
+   limpa_cor_resto('dvd6');
+}
+
+//limpa cor do divisor, quociente, resto
+function limpa_cor_dsqr(){
+   limpa_cor_divis();
+   limpa_cor_quoc();
+   limpa_cor_restos();
 }
 
