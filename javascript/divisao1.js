@@ -41,6 +41,10 @@ function aoiniciar(){
 
    visor = document.getElementById('visor');
 
+   dvd2_u = document.getElementById('dvd2_u');
+   dvd2_d = document.getElementById('dvd2_d');
+   dvd2_c = document.getElementById('dvd2_c');
+   dvd2_m = document.getElementById('dvd2_m');
 
 }
 
@@ -89,6 +93,12 @@ var val_dvd_c = '';
 var val_dvd_m = '';
 
 //valores ativos que foram clicados (se não clicou estao vazios)
+var val_dvd2_u = '';
+var val_dvd2_d = '';
+var val_dvd2_c = '';
+var val_dvd2_m = '';
+
+//valores ativos que foram clicados (se não clicou estao vazios)
 var val_dvs_ud = ''; //unidade e dezena juntos
 
 var val_quo_u = '';
@@ -110,6 +120,9 @@ var oper = '';
 
 //indica que será feita a operação de subtração
 var ativ_sub = false;
+
+//inicio de um cliclo da divisao
+var ini_cic = false;
 
 //ação ao clicar no dividendo(dvd) unidade
 function fdvd_u(){
@@ -363,6 +376,9 @@ function fq_c(){
 //clicou na milhar do quociente
 function fq_m(){
 
+   //aqui inicia-se um ciclo da divisao(quando um resultado é inserido no quociente)
+   ini_cic = true;
+
    //preenche/pinta ou descarta/pinta o valor clicado
    // if(q_m == ''){
    //    q_m = dvd_m.innerText;
@@ -549,33 +565,99 @@ function fdvd2(ord){
       if(ord == 'c' && val_dvd_c != ''){
          
          document.getElementById('dvd2_'+ord).innerText = val_dvd_c;
+         ini_cic = true;
+         limpa_fim_cic();
          
       }
       if(ord == 'd' && val_dvd_d != ''){
          
          document.getElementById('dvd2_'+ord).innerText = val_dvd_d;
+         ini_cic = true;
+         limpa_fim_cic();
          
       }
       if(ord == 'u' && val_dvd_u != ''){
          
          document.getElementById('dvd2_'+ord).innerText = val_dvd_u;
+         ini_cic = true;
+         limpa_fim_cic();
          
       }
 
       //agora limpamos
-      limpa_val_divid();
-      limpa_cor_divid();
+      // limpa_val_divid();
+      // limpa_cor_divid();
 
-      limpa_val_divis();
-      limpa_cor_divis();
+      // limpa_val_divis();
+      // limpa_cor_divis();
 
-      limpa_val_quoc();
-      limpa_cor_quoc();
+      // limpa_val_quoc();
+      // limpa_cor_quoc();
 
-      limpa_cor_resto('dvd1');
-      limpa_cor_resto('dvd2');
+      // limpa_cor_resto('dvd1');
+      // limpa_cor_resto('dvd2');
+      
 
       ativ_sub = false;
+
+
+      if(ord == 'm'){
+
+         //preenche/pinta ou descarta/pinta o valor clicado
+         if(val_dvd2_m == '' && dvd2_m.innerText != ''){
+            val_dvd2_m = dvd2_m.innerText;
+            dvd2_m.style.backgroundColor = corf_ativo;
+         }else{
+            val_dvd2_m = '';
+            dvd2_m.style.backgroundColor = corf_mil;
+         }
+         
+         visor_msg( get_dvd2_mark() );
+
+      }
+      if(ord == 'c'){
+
+         //preenche/pinta ou descarta/pinta o valor clicado
+         if(val_dvd2_c == '' && dvd2_c.innerText != ''){
+            val_dvd2_c = dvd2_c.innerText;
+            dvd2_c.style.backgroundColor = corf_ativo;
+         }else{
+            val_dvd2_c = '';
+            dvd2_c.style.backgroundColor = corf_cen;
+         }
+         
+         visor_msg( get_dvd2_mark() );
+
+      }
+      if(ord == 'd'){
+
+         //preenche/pinta ou descarta/pinta o valor clicado
+         if(val_dvd2_d == '' && dvd2_d.innerText != ''){
+            val_dvd2_d = dvd2_d.innerText;
+            dvd2_d.style.backgroundColor = corf_ativo;
+         }else{
+            val_dvd2_d = '';
+            dvd2_d.style.backgroundColor = corf_dez;
+         }
+         
+         visor_msg( get_dvd2_mark() );
+
+      }
+      if(ord == 'u'){
+
+         //preenche/pinta ou descarta/pinta o valor clicado
+         if(val_dvd2_u == '' && dvd2_u.innerText != ''){
+            val_dvd2_u = dvd2_u.innerText;
+            dvd2_u.style.backgroundColor = corf_ativo;
+         }else{
+            val_dvd2_u = '';
+            dvd2_u.style.backgroundColor = corf_uni;
+         }
+         
+         visor_msg( get_dvd2_mark() );
+
+      }
+
 
    }
 
@@ -608,6 +690,18 @@ function visor_msg(msg){
 //retorna os números do dividendo que estão marcados
 function get_dvd_mark(){
    var res = val_dvd_m + val_dvd_c + val_dvd_d + val_dvd_u;
+   if(res != ''){
+      var resi = parseInt(res, 10);
+      return resi;
+   }else{
+      return '';
+   }
+  
+}
+
+//retorna os números do resto que estão marcados
+function get_dvd2_mark(){
+   var res = val_dvd2_m + val_dvd2_c + val_dvd2_d + val_dvd2_u;
    if(res != ''){
       var resi = parseInt(res, 10);
       return resi;
@@ -662,14 +756,20 @@ function get_lin_num(pre){
    var num = dvd1_m.innerText + dvd1_c.innerText + dvd1_d.innerText + dvd1_u.innerText;
    var numi = '';
 
-   console.log('num_'+pre+':'+num);
-
    if(num == 0){
       num = num+'';
    }
 
+   console.log('num_'+pre+':'+num);
+
    if( num != ''){
       numi = parseInt(num, 10);
+      console.log('numi_'+pre+':'+numi );
+      
+      if( isNaN(numi) ){
+         return '';
+      }
+
       return numi;
    }
 
@@ -921,3 +1021,17 @@ function limpa_cor_dsqr(){
    limpa_cor_restos();
 }
 
+function limpa_fim_cic(){
+   //agora limpamos
+   limpa_val_divid();
+   limpa_cor_divid();
+
+   limpa_val_divis();
+   limpa_cor_divis();
+
+   limpa_val_quoc();
+   limpa_cor_quoc();
+
+   limpa_cor_resto('dvd1');
+   limpa_cor_resto('dvd2');
+}
