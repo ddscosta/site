@@ -555,7 +555,8 @@ function fdvd2(ord){
 
       //limpa_cor_divid();
       //limpa_cor_resto('dvd1');
-      
+    
+   //baixa um número ou seleciona números  
    }else{
    
       console.log('ord:'+ord+'>>val_dvd_c:'+val_dvd_c);
@@ -584,22 +585,7 @@ function fdvd2(ord){
          
       }
 
-      //agora limpamos
-      // limpa_val_divid();
-      // limpa_cor_divid();
-
-      // limpa_val_divis();
-      // limpa_cor_divis();
-
-      // limpa_val_quoc();
-      // limpa_cor_quoc();
-
-      // limpa_cor_resto('dvd1');
-      // limpa_cor_resto('dvd2');
-      
-
       ativ_sub = false;
-
 
       if(ord == 'm'){
 
@@ -937,6 +923,7 @@ function set_subt(pre, ini, arr_qsub){
    }
 
 }
+
 
 function limpa_val_divid(){
    val_dvd_u = '';
