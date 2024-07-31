@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html manifest="site.appcache">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- Bootstrap CSS >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"-->
+
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script-->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/divisao1.css">
+
+	<script src="javascript/relogio.js"></script>
+
+
+	<title>Divisão(2) com QVL</title>
+</head>
+<body onload="aoiniciar()">
+	
+	<div id="principal">
+		
+		<button class="nav-button" onclick="openNav()">
+			<i class="fa-solid fa-bars fa-2x"></i>
+		</button>
+
+		<div class="relogio" id="relg">00:00:00</div>
+
+
+		<h1>Algorítmo da Divisão (x1) com QVL</h1>
+
+		<div id="subtracao">
+
+			<table id="tb_divisao">
+			
+				<thead >
+
+					<tr id="hd">
+						<th class="inf" colspan="8"><h1 id="visor">[Tabuada]</h1></th>
+						
+					</tr>
+
+				</thead>
+
+				<tbody>
+					<tr>
+						<td class="inf" colspan="4" >&dArr;Dividendo&dArr;</td>
+
+						<td colspan="4" ></td>
+						
+					</tr>
+					<tr>
+						<td class="um">M</td>
+						<td class="c">C</td>
+						<td class="d">D</td>
+						<td class="u">U</td>
+
+						<td class="inf" colspan="4" >&dArr;Divisor&dArr; </td>
+						
+					</tr>
+
+					<tr class="l1">
+						<td class="m um dvd" id="dvd_m" onclick="fdvd_m()">1</td>
+						<td class="c dvd" id="dvd_c" onclick="fdvd_c()">8</td>
+						<td class="d dvd" id="dvd_d" onclick="fdvd_d()">2</td>
+						<td class="u dvd" id="dvd_u" onclick="fdvd_u()">7</td>
+
+						<td class="dvs" id="dvs_u" onclick="fdvs()">9</td>
+						<td class="dvs" id="dvs_d" onclick="fdvs()"></td>
+						<td colspan="2"></td>
+						
+					</tr>
+
+					<tr class="l2">
+						<td class="m um" id="dvd1_m" onclick="fdvd1('m')">&nbsp;</td>
+						<td class="c" id="dvd1_c" onclick="fdvd1('c')"></td>
+						<td class="d" id="dvd1_d" onclick="fdvd1('d')"></td>
+						<td class="u" id="dvd1_u" onclick="fdvd1('u')"></td>
+
+						<td class="um">M</td>
+						<td class="c">C</td>
+						<td class="d">D</td>
+						<td class="u">U</td>
+					</tr>
+					<tr>
+						<td class="um" id="dvd2_m" onclick="fdvd2('m')">&nbsp;</td>
+						<td class="c" id="dvd2_c" onclick="fdvd2('c')"></td>
+						<td class="d" id="dvd2_d" onclick="fdvd2('d')"></td>
+						<td class="u" id="dvd2_u" onclick="fdvd2('u')"></td>
+
+						<td id="q_m" onclick="fq_m()">&nbsp;</td>
+						<td id="q_c" onclick="fq_c()">&nbsp;</td>
+						<td id="q_d" onclick="fq_d()">&nbsp;</td>
+						<td id="q_u" onclick="fq_u()">&nbsp;</td>
+					</tr>
+
+					<tr>
+						<td class="um" id="dvd3_m" onclick="fdvd3_m()">&nbsp;</td>
+						<td class="c" id="dvd3_c" onclick="fdvd3_c()"></td>
+						<td class="d" id="dvd3_d" onclick="fdvd3_d()"></td>
+						<td class="u" id="dvd3_u" onclick="fdvd3_u()"></td>
+
+						<td class="inf" colspan="4" >&uArr;Quociente&uArr;</td>
+					</tr>
+
+					<tr>
+						<td class="um" id="dvd4_m" onclick="fdvd4_m()">&nbsp;</td>
+						<td class="c" id="dvd4_c" onclick="fdvd4_c()"></td>
+						<td class="d" id="dvd4_d" onclick="fdvd4_d()"></td>
+						<td class="u" id="dvd4_u" onclick="fdvd4_u()"></td>
+
+						<td colspan="4" ></td>
+					</tr>
+					<tr>
+						<td class="um" id="dvd5_m" onclick="fdvd5_m()">&nbsp;</td>
+						<td class="c" id="dvd5_c" onclick="fdvd5_c()"></td>
+						<td class="d" id="dvd5_d" onclick="fdvd5_d()"></td>
+						<td class="u" id="dvd5_u" onclick="fdvd5_u()"></td>
+
+						<td colspan="4" ></td>
+					</tr>
+					<tr>
+						<td class="um" id="dvd6_m" onclick="fdv6_m()">&nbsp;</td>
+						<td class="c" id="dvd6_c" onclick="fdv6_c()"></td>
+						<td class="d" id="dvd6_d" onclick="fdv6_d()"></td>
+						<td class="u" id="dvd6_u" onclick="fdv6_u()"></td>
+
+						<td colspan="4" ></td>
+					</tr>
+					<tr>
+						<td class="um"></td>
+						<td class="c"></td>
+						<td class="d">2</td>
+						<td class="u">7</td>
+
+						<td colspan="4" ></td>
+					</tr>
+					<tr>
+						<td class="um"></td>
+						<td class="c"></td>
+						<td class="d">0</td>
+						<td class="u">0</td>
+
+						<td colspan="4" ></td>
+					</tr>
+
+					<tr>
+						<td class="inf" colspan="4" >&uArr;Resto&uArr;</td>
+
+						<td colspan="4" ></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		
+		<div id="resultado">
+
+			<button id="lim" onclick="limpar()">LIMPAR</button>
+			<button id="tro" onclick="novo()">NOVO</button>
+			<button id="res" onclick="verificar()">VERIFICAR</button>
+
+			<h1 id="exibe">254 + 591 = 745</h1>
+
+			<div id="animacao">
+				
+				<div class="anime" id="idan">
+
+					Para saber se voce acertou clique no botão VERIFICAR.
+
+				</div>
+
+				<div class="anime" id="idfeliz">
+
+					<h2>Parabéns!!</h2>
+					<img src="adicao/feliz2.gif">
+
+				</div>
+
+				<div class="anime" id="idtriste">
+
+					<h2>Que pena!!</h2>
+					<img src="adicao/triste.gif">
+
+				</div>
+
+			</div>
+
+			<div id="pontuu">
+
+				<h1 id="pontu">Pontos: 0</h1>
+				
+				<button id="btnreset" onclick="resetar()">X</button>
+				
+			</div>
+
+		</div>
+
+	</div>
+
+	//script que use jquery fica depois de todo html pois ready está pronto
+	<script type="text/javascript">
+
+		// $('#visor').on('click', function() {
+		//    alert('vai');
+		// });
+    	
+    </script>
+
+
+	<script src="javascript/divisao2.js"></script>
+
+
+</body>
+
+
+</html>

@@ -1,3 +1,55 @@
+//--------------------------------------------
+/*algoritmo da divisão tentativa 2(com matriz arrays e objetos)*/
+//-------------------------------------------
+
+//ação ao clicar em qualquer célula da tabela
+$('#tb_divisao tbody td').on('click', function() {
+   
+   console.log( $(this).attr('class') );
+   console.log( $(this).attr('id') );
+   console.log( $(this).text() );
+
+   console.log( $(this).closest('tr').attr('class') );
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var cor_normal = "rgba(0, 0, 0, 0)";
 
 var corf_uni = "rgba(0, 0, 0, .1)";
@@ -20,9 +72,6 @@ var acertou = false;
 var animar = false; /*desativando animação*/
 
 
-//--------------------------------------------
-/*algoritmo da divisão*/
-//-------------------------------------------
 
 //criando a classe dividendo
    class Dividendo{
