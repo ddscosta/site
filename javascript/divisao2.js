@@ -2,16 +2,84 @@
 /*algoritmo da divisão tentativa 2(com matriz arrays e objetos)*/
 //-------------------------------------------
 
+var nlin = ''; // 1,2,3,4,5,6,7,8,9,''
+var ocol = ''; // m, c, d, u, ''
+var pcol = ''; // dd, ds, q, r, ''
+
 //ação ao clicar em qualquer célula da tabela
 $('#tb_divisao tbody td').on('click', function() {
    
-   console.log( $(this).attr('class') );
-   console.log( $(this).attr('id') );
-   console.log( $(this).text() );
+   // console.log( $(this).attr('class') );
+   // console.log( $(this).attr('id') );
+   // console.log( $(this).text() );
+   // console.log( $(this).closest('tr').attr('class') );
+   
+   var lin = $(this).closest('tr').attr('class');
 
-   console.log( $(this).closest('tr').attr('class') );
+   if(lin == undefined){
+      nlin = '';
+   }else if(lin.length > 2){
+      var arlin = lin.split(' ');
+      if(arlin[0] == 'l'){
+         nlin = arlin[1];
+      }else{
+         nlin = '';
+      }
+   }else{
+      nlin = '';
+   }
+
+   console.log( 'numero da linha: '+nlin );
+
+   var col = $(this).attr('class');
+
+   if(col == undefined){
+      ocol = '';
+      pcol = '';
+   }else if(col.length > 2){
+      var arcol = col.split(' ');
+      if( (arcol[0] == 'm' || arcol[0] == 'c' || arcol[0] == 'd' || arcol[0] == 'u') && (arcol[1] == 'dd' || arcol[1] == 'ds' || arcol[1] == 'q' || arcol[1] == 'r') ){
+         ocol = arcol[0];
+         pcol = arcol[1];
+      }else{
+         ocol = '';
+         pcol = '';
+      }
+   }else{
+      ocol = '';
+      pcol = '';
+   }
+
+   console.log( 'ordem: '+ocol );
+
+   console.log( 'partes: '+pcol );
+
+   //fase de divisão e seleção do dividendo está ativada
+   if(f_div && f_div_1){
+      console.log( 'fase de divisão e seleção do dividendo está ativada');
+      sel_dd(this);
+   }
 
 });
+
+function sel_dd(_this){
+   
+   if( $(_this).text() != '' ){
+      _this.style.backgroundColor = corf_ativo;
+   }
+
+
+   // //preenche/pinta ou descarta/pinta o valor clicado
+   // if(val_dvd_u == ''){
+   //    val_dvd_u = dvd_u.innerText;
+   //    dvd_u.style.backgroundColor = corf_ativo;
+   // }else{
+   //    val_dvd_u = '';
+   //    dvd_u.style.backgroundColor = corf_uni;
+   // }
+   
+   // visor_msg( get_dvd_mark() );
+}
 
 
 
