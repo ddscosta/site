@@ -932,13 +932,28 @@ function sel_rs(_this, ocol, pcol, nlin){
    return resto;
  
 }
+
+//seleciona um intervalo
+function sel_cel(ocol, pcol, nlin){
+   
+   var cel = $('.l.'+nlin+' > .'+ocol+'.'+pcol);
+
+   console.log('sel_cel:'+cel);
+
+   cel.css('backgroundColor', corf_ativo);   
+    
+}
+
 //seleciona um intervalo
 function sel_int(_this, ocol, pcol, nlin, num){
   
    //se nlin>1 então seleciona nlin-1
    if(nlin > 2){
       
-      sel_r(_this, ocol, pcol, (nlin-1) );
+     // sel_r(_this, ocol, pcol, (nlin-1) );
+
+      sel_cel('m', 'r', (nlin-1) );
+      sel_cel('c', 'r', (nlin-1) );
 
     //se nlin=1 então seleciona dividendo
    }else{
@@ -949,55 +964,61 @@ function sel_int(_this, ocol, pcol, nlin, num){
       
       var len = arr_num.length;
 
-      console.log('lennnnnnnnnnnnnnnnn:'+len);
+      //console.log('lennnnnnnnnnnnnnnnn:'+len);
+      console.log('len-------:'+len);
+
+      //sel_cel('m', 'dd', (nlin-1) );
+      //sel_cel('c', 'dd', (nlin-1) );
+
 
       if(ocol == 'm'){
+
          if(len == 1){
-            sel( _this, 'm', pcol );
+            sel_cel('m', 'dd', (nlin-1) );
          }
          if(len == 2){
-            sel( _this, 'm', pcol );
-            sel( _this, 'c', pcol );
+            sel_cel('m', 'dd', (nlin-1) );
+            sel_cel('c', 'dd', (nlin-1) );
          }
          if(len == 3){
-            sel( _this, 'm', pcol );
-            sel( _this, 'c', pcol );
-            sel( _this, 'd', pcol );
+            sel_cel('m', 'dd', (nlin-1) );
+            sel_cel('c', 'dd', (nlin-1) );
+            sel_cel('d', 'dd', (nlin-1) );
          }
          if(len == 4){
-            sel( _this, 'm', pcol );
-            sel( _this, 'c', pcol );
-            sel( _this, 'd', pcol );
-            sel( _this, 'u', pcol );
+            sel_cel('m', 'dd', (nlin-1) );
+            sel_cel('c', 'dd', (nlin-1) );
+            sel_cel('d', 'dd', (nlin-1) );
+            sel_cel('u', 'dd', (nlin-1) );
          }
       }
 
       if(ocol == 'c'){
          if(len == 1){
-            sel( _this, 'c', pcol );
+            sel_cel('c', 'dd', (nlin-1) );
          }
          if(len == 2){
-            sel( _this, 'c', pcol );
-            sel( _this, 'd', pcol );
+           sel_cel('c', 'dd', (nlin-1) );
+            sel_cel('d', 'dd', (nlin-1) );
          }
          if(len == 3){
-            sel( _this, 'c', pcol );
-            sel( _this, 'd', pcol );
-            sel( _this, 'u', pcol );
+            sel_cel('c', 'dd', (nlin-1) );
+            sel_cel('d', 'dd', (nlin-1) );
+            sel_cel('u', 'dd', (nlin-1) );
          }
       }
       if(ocol == 'd'){
          if(len == 1){
-            sel( _this, 'd', pcol );
+            sel_cel('d', 'dd', (nlin-1) );
          }
          if(len == 2){
-            sel( _this, 'd', pcol );
-            sel( _this, 'u', pcol );
+            sel_cel('d', 'dd', (nlin-1) );
+            sel_cel('u', 'dd', (nlin-1) );
          }
       }
       if(ocol == 'u'){
          if(len == 1){
-            sel( _this, 'u', pcol );
+            sel_cel('u', 'dd', (nlin-1) );
          }
       }
 
