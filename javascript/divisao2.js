@@ -6,79 +6,772 @@ var nlin = ''; // 1,2,3,4,5,6,7,8,9,''
 var ocol = ''; // m, c, d, u, ''
 var pcol = ''; // dd, ds, q, r, ''
 
+//resultados parciais ao clicar nas celulas
+   //dividendo inicial
+   var dvd = 0;
+
+   //divisor que sera usado no produto
+   var dvsp = 0;
+   
+   //resultado parcial de uma divisão
+   var rquo = '';
+
+   //quociente selecionado para o produto
+   var quop = '';
+
+   //resultado do produto parcial 
+   var rpro = '';
+
 //ação ao clicar em qualquer célula da tabela
 $('#tb_divisao tbody td').on('click', function() {
-   
-   // console.log( $(this).attr('class') );
-   // console.log( $(this).attr('id') );
-   // console.log( $(this).text() );
-   // console.log( $(this).closest('tr').attr('class') );
-   
-   var lin = $(this).closest('tr').attr('class');
+  
+   //prerequisitos iniciais 
+      // console.log( $(this).attr('class') );
+      // console.log( $(this).attr('id') );
+      // console.log( $(this).text() );
+      // console.log( $(this).closest('tr').attr('class') );
+      
+      //localiza o nome da classe da linha clicada
+      var lin = $(this).closest('tr').attr('class');
 
-   if(lin == undefined){
-      nlin = '';
-   }else if(lin.length > 2){
-      var arlin = lin.split(' ');
-      if(arlin[0] == 'l'){
-         nlin = arlin[1];
+      //classes não encontradas
+      if(lin == undefined){
+         
+         nlin = '';
+
+      //elemento tr com três caracteres(letra, espaço, número). ex.: l 1, ou seja, linha 1
+      }else if(lin.length > 2){
+         
+         var arlin = lin.split(' ');
+
+         if(arlin[0] == 'l'){
+            nlin = arlin[1];
+         }else{
+            nlin = '';
+         }
+
+      //elemento tr menos de 3 caracteres
       }else{
          nlin = '';
       }
-   }else{
-      nlin = '';
-   }
 
-   console.log( 'numero da linha: '+nlin );
+      console.log( 'numero da linha: '+nlin );
 
-   var col = $(this).attr('class');
+      var col = $(this).attr('class');
 
-   if(col == undefined){
-      ocol = '';
-      pcol = '';
-   }else if(col.length > 2){
-      var arcol = col.split(' ');
-      if( (arcol[0] == 'm' || arcol[0] == 'c' || arcol[0] == 'd' || arcol[0] == 'u') && (arcol[1] == 'dd' || arcol[1] == 'ds' || arcol[1] == 'q' || arcol[1] == 'r') ){
-         ocol = arcol[0];
-         pcol = arcol[1];
+      if(col == undefined){
+         ocol = '';
+         pcol = '';
+      }else if(col.length > 2){
+         var arcol = col.split(' ');
+         if( (arcol[0] == 'm' || arcol[0] == 'c' || arcol[0] == 'd' || arcol[0] == 'u') && (arcol[1] == 'dd' || arcol[1] == 'ds' || arcol[1] == 'q' || arcol[1] == 'r') ){
+            ocol = arcol[0];
+            pcol = arcol[1];
+         }else{
+            ocol = '';
+            pcol = '';
+         }
       }else{
          ocol = '';
          pcol = '';
       }
-   }else{
-      ocol = '';
-      pcol = '';
+
+      console.log( 'ordem(ocol): '+ocol );
+
+      console.log( 'partes(pcol): '+pcol );
+
+   //se clicarmos na linha 1
+   if(nlin == 1){
+
+      //se clicarmos no dividendo
+      if(pcol == 'dd'){
+
+         //ideia: sempre que clicar no dividendo inicia-se a divisão novamente
+         //f_div
+         //f_div_1;
+         //f_div_2 = false;
+         //f_div_3 = false;
+
+         //fase de divisão e seleção do dividendo está ativada
+         if(f_div && f_div_1){
+
+            //f_div
+            //f_div_1;
+            f_div_2 = false;
+            f_div_3 = false;
+
+            console.log( 'fase de divisão e seleção do dividendo está ativada');
+            
+            //seleciona o célula usando uma cor(verde)
+            dvd = sel_dd(this, ocol, pcol);
+
+         }
+
+      }
+
+      //se clicarmos no divisor
+      if(pcol == 'ds'){
+
+         //a fase 1 da divisão esta ativa, ou seja há números selecionados no dividendo
+         if(f_div && f_div_1){
+
+            //f_div
+            //f_div_1;
+            f_div_2 = true;
+            //f_div_3
+
+            //seleciona o célula usando uma cor(verde)
+            rquo = sel_ds(this, ocol, pcol);
+
+            console.log('quo divisao:'+rquo);
+
+         }
+
+
+         //a fase 2 de escolha do quociente está ativa, ou seja, ha numeros selecionados no quociente
+         if(f_mul && f_mul_1){
+
+            //seleciona a célula do divisor usando para o produto
+            dvsp = sel_dsp(this, ocol, pcol);
+
+            //f_mul
+            //f_mul_1
+            f_mul_2 = true;
+            //f_mul_3
+
+            //escreve o quociente
+            // $(this).html(quo);
+
+             console.log('dvsp:'+dvsp);
+
+         }
+
+      }
+
    }
 
-   console.log( 'ordem: '+ocol );
+   //se clicarmos na linha 2
+   if(nlin == 2){
 
-   console.log( 'partes: '+pcol );
+      //se clicarmos em algum lugar do resto
+      if(pcol == 'r'){
 
-   //fase de divisão e seleção do dividendo está ativada
-   if(f_div && f_div_1){
-      console.log( 'fase de divisão e seleção do dividendo está ativada');
-      sel_dd(this);
+         //as 3 primeiras fases foram concluidas
+         if(f_mul && f_mul_1 && f_mul_2 && f_mul_3  ){
+
+            f_mul = false;
+            f_mul_1 = false;
+            f_mul_2 = false;
+            f_mul_3 = false;
+
+            //inicia-se a proxima fase: a subtração
+            f_sub = true;
+            f_sub_1 = true;
+
+            continue: limpar divisor, quociente
+            //limpa as cores do dividendo e divisor e quociente
+            //un_sel_dd();
+            //un_sel_ds();
+            //un_sel_qu();
+
+         }else{
+
+            //as 3 primeiras fases da multiplicação estão ativadas
+            if(f_mul && f_mul_1 && f_mul_2 ){
+
+               //f_mul
+               //f_mul_1;
+               //f_mul_2;
+               f_mul_3 = true;
+
+               sel(this, ocol, pcol);
+
+               //escreve o resto
+               //$(this).html(quo);
+               
+               //busca números do divisor selecionados
+               var dvs = get_ds();
+
+               //busca números do quociente selecionados
+               var quo = get_qu();
+
+               var mult = calc_mul(dvs, quo);
+
+               //console.log('quop multt:'+quo);
+
+               console.log('mult:'+mult);
+
+               //preenche e seleciona una linha de resto
+               set_r(this, ocol, pcol, nlin, mult);
+
+            }
+
+         }
+
+         //a fase da multiplicação está ativa
+         // if(f_mul && f_mul_1){
+
+         //    //seleciona a célula do quociente usando uma cor(verde)
+         //    quop = sel_qu(this, ocol, pcol);
+
+         //    //f_mul
+         //    //f_mul_1
+         //    //f_mul_2 = true;
+         //    //f_mul_3
+
+         //    //escreve o quociente
+         //    // $(this).html(quo);
+
+         //     console.log('quop:'+quop);
+
+         // }
+
+      }
+
+   }
+
+   //se clicarmos na linha 3
+   if(nlin == 3){
+
+      //se clicarmos no quociente
+      if(pcol == 'q'){
+
+         //as 3 primeiras fases foram concluidas
+         if(f_div && f_div_1 && f_div_2 && f_div_3  ){
+
+            f_div = false;
+            f_div_1 = false;
+            f_div_2 = false;
+            f_div_3 = false;
+
+            //inicia-se a proxima fase: produto
+            f_mul = true;
+            f_mul_1 = true;
+
+            //limpa as cores do dividendo e divisor e quociente
+            un_sel_dd();
+            un_sel_ds();
+            un_sel_qu();
+
+         }else{
+
+            //as 3 primeiras fases estão ativadas
+            if(f_div && f_div_1 && f_div_2 ){
+
+               //f_div
+               //f_div_1;
+               //f_div_2;
+               f_div_3 = true;
+
+               sel(this, ocol, pcol);
+
+               //escreve o quociente
+               $(this).html(rquo);
+
+               console.log('escreve quo:'+rquo);
+
+
+            }
+
+         }
+
+         //a fase da multiplicação está ativa
+         if(f_mul && f_mul_1){
+
+            //seleciona a célula do quociente usando uma cor(verde)
+            quop = sel_qu(this, ocol, pcol);
+
+            //f_mul
+            //f_mul_1
+            //f_mul_2 = true;
+            //f_mul_3
+
+            //escreve o quociente
+            // $(this).html(quo);
+
+             console.log('quop:'+quop);
+
+         }
+
+      }
+
    }
 
 });
 
-function sel_dd(_this){
+var rgbb = 'rgb(255, 255, 255)';
+
+function set(_this, ocol, pcol, num){
+   
+   $(_this).html(num);
+
+}
+
+//preenche o resto, uma ordem por vez
+function set_ro(lin, ocol, pcol, num){
+   
+   var cls = '.l.' + lin + ' > .' + ocol + '.' + pcol;
+
+   var cel = $(cls);
+
+   console.log('cel:'+cel);
+
+   cel.html(num);
+   
+}
+
+function set_r(_this, ocol, pcol, nlin, num){
+
+   var arr_num = (num+'').split('');
+
+   var len = arr_num.length;
+
+   //set_ro(1, 'm', 'r', 9);
+
+   //inserindo restos
+   if(pcol == 'r'){
+
+      if( ocol == 'm' ){
+
+         if(len > 0){
+            set_ro(nlin, 'm', 'r', arr_num[0]);
+            set_ro(nlin, 'c', 'r', arr_num[1]);
+            set_ro(nlin, 'd', 'r', arr_num[2]);
+            set_ro(nlin, 'u', 'r', arr_num[3]);
+         }
+
+      }
+      if( ocol == 'c' ){
+
+         if(len > 0){
+            set_ro(nlin, 'c', 'r', arr_num[0]);
+            set_ro(nlin, 'd', 'r', arr_num[1]);
+            set_ro(nlin, 'u', 'r', arr_num[2]);
+         }
+
+      }
+      if( ocol == 'd' ){
+
+         if(len > 0){
+            set_ro(nlin, 'd', 'r', arr_num[0]);
+            set_ro(nlin, 'u', 'r', arr_num[1]);
+         }
+
+      }
+      if( ocol == 'u' ){
+
+         if(len > 0){
+            set_ro(nlin, 'u', 'r', arr_num[0]);
+         }
+
+      }
+
+      //seleciona depois de preenchido
+      sel_r( _this, ocol, pcol, nlin);
+
+   }
+   
+}
+
+function sel(_this, ocol, pcol){
+   
+   var rgb = 'rgb(0, 255, 64)';
    
    if( $(_this).text() != '' ){
-      _this.style.backgroundColor = corf_ativo;
+      
+      //cor está ativa: desativa
+      if( _this.style.backgroundColor == rgb ){
+         
+         if(ocol == 'm'){
+            
+            if(pcol == 'ds'){
+               _this.style.backgroundColor = rgbb; 
+            }else{
+               _this.style.backgroundColor = corf_mil;   
+            }
+               
+         }
+         
+         if(ocol == 'c'){
+
+            if(pcol == 'ds'){
+               _this.style.backgroundColor = rgbb; 
+            }else{
+               _this.style.backgroundColor = corf_cen;   
+            }
+
+         }
+
+         if(ocol == 'd'){
+            _this.style.backgroundColor = corf_dez;   
+         }
+
+         if(ocol == 'u'){
+            _this.style.backgroundColor = corf_uni;   
+         }
+         
+      //cor não está ativa: ativa
+      }else{
+         
+         _this.style.backgroundColor = corf_ativo;
+            
+      }
    }
 
+}
 
-   // //preenche/pinta ou descarta/pinta o valor clicado
-   // if(val_dvd_u == ''){
-   //    val_dvd_u = dvd_u.innerText;
-   //    dvd_u.style.backgroundColor = corf_ativo;
-   // }else{
-   //    val_dvd_u = '';
-   //    dvd_u.style.backgroundColor = corf_uni;
-   // }
+function sel_dd(_this, ocol, pcol){
    
-   // visor_msg( get_dvd_mark() );
+   sel( _this, ocol, pcol );
+
+   //busca números do dividendo selecionados
+   var dividendo = get_dd();
+
+   visor_msg( dividendo );
+
+   return dividendo;
+
+}
+
+function sel_ds(_this, ocol, pcol){
+   
+   //seleciona o divisor
+   sel( _this, ocol, pcol );
+
+
+   //busca números do divisor selecionados
+   var dvs = get_ds();
+
+   //busca números do dividendo selecionados
+   var dvd = get_dd();
+
+   //divide dois valores(sting ou nao) e retorna a parte inteira da divisão
+   var quoo = calc_quo(dvd, dvs);
+
+   if(quoo == null){
+
+      //console.log('merda:'+ (quo == 0) );
+      //console.log('merda:'+ (quo == '') );
+      visor_msg( dvd );
+
+   }else{
+
+      visor_msg( dvd + ' \u00F7 ' + dvs + ' = ' + quoo );
+
+   }
+
+   return quoo;
+
+}
+
+function sel_qu(_this, ocol, pcol){
+   
+   if( $(_this).html() == '' || $(_this).html() == '&nbsp;' ){
+
+      console.log('celular qu vazia');
+
+   }else{
+      
+      sel( _this, ocol, pcol );
+
+      //busca números do dividendo selecionados
+      var quociente = get_qu();
+
+      visor_msg( quociente );
+
+      return quociente;
+      
+   }
+
+}
+
+//selecionar o divisor que será multiplicado
+function sel_dsp(_this, ocol, pcol){
+   
+   //seleciona o divisor
+   sel( _this, ocol, pcol );
+
+   //busca números do divisor selecionados
+   var dvs = get_ds();
+
+   //busca números do quociente selecionados
+   var quo = get_qu();
+
+   var mult = calc_mul(dvs, quo);
+
+   //divide dois valores(sting ou nao) e retorna a parte inteira da divisão
+   //var quo = calc_quo(dvd, dvs);
+
+   if(mult == null){
+
+      //console.log('merda:'+ (quo == 0) );
+      //console.log('merda:'+ (quo == '') );
+      visor_msg( quo );
+
+   }else{
+
+      visor_msg( quo + ' x ' + dvs + ' = ' + mult );
+
+   }
+
+   return dvs;
+   
+}
+
+//seleciona uma linha de resto
+function sel_r(_this, ocol, pcol, nlin){
+   
+   var lrm = $('.l.'+nlin+' > .m.r');
+   var lrc = $('.l.'+nlin+' > .c.r');
+   var lrd = $('.l.'+nlin+' > .d.r');
+   var lru = $('.l.'+nlin+' > .u.r');
+
+   if(pcol == 'r'){
+
+      if(lrm.html() != '' && lrm.html() != '&nbsp;'){
+         lrm.css('backgroundColor', corf_ativo);   
+      }
+      if(lrc.html() != '' && lrc.html() != '&nbsp;'){
+         lrc.css('backgroundColor', corf_ativo);
+      }
+      if(lrd.html() != '' && lrd.html() != '&nbsp;'){
+         lrd.css('backgroundColor', corf_ativo);
+      }
+      if(lru.html() != '' && lru.html() != '&nbsp;'){
+         lru.css('backgroundColor', corf_ativo);
+      }
+      
+   }
+   
+}
+
+function un_sel(lin, ocol, pcol){
+
+   //$('.l.1 > .m.q');
+   var cls = '.l.' + lin + ' > .' + ocol + '.' + pcol;
+
+   var cel = $(cls);
+
+   console.log('cel:'+cel);
+   
+   if(ocol == 'm'){
+      if(pcol == 'ds'){
+         cel.css('backgroundColor', rgbb); 
+      }else{
+         cel.css('backgroundColor', corf_mil);  
+      }  
+   }
+
+   if(ocol == 'c'){
+      if(pcol == 'ds'){
+         cel.css('backgroundColor', rgbb); 
+      }else{
+         cel.css('backgroundColor', corf_cen);  
+      }   
+   }
+
+   if(ocol == 'd'){
+      cel.css('backgroundColor', corf_dez);   
+   }
+   
+   if(ocol == 'u'){
+      cel.css('backgroundColor', corf_uni);   
+   }
+
+}
+
+function un_sel_dd(){
+   
+   un_sel(1, 'm', 'dd');
+   un_sel(1, 'c', 'dd');
+   un_sel(1, 'd', 'dd');
+   un_sel(1, 'u', 'dd');
+
+}
+
+function un_sel_ds(){
+   
+   un_sel(1, 'm', 'ds');
+   un_sel(1, 'c', 'ds');
+
+}
+
+function un_sel_qu(){
+   
+   un_sel(3, 'm', 'q');
+   un_sel(3, 'c', 'q');
+   un_sel(3, 'd', 'q');
+   un_sel(3, 'u', 'q');
+
+}
+
+//verifica as células selecionadas do dividendo e retorna o número
+function get_dd(){
+
+   var rgb = 'rgb(0, 255, 64)';
+   //var dd = 0;
+   var dd = '';
+
+   var l1m = $('.l.1 > .m.dd');
+   var l1c = $('.l.1 > .c.dd');
+   var l1d = $('.l.1 > .d.dd');
+   var l1u = $('.l.1 > .u.dd');
+
+   // var l1mi = parseInt( l1m.html(), 10 ) * 1000;
+   // var l1ci = parseInt( l1c.html(), 10 ) * 100;
+   // var l1di = parseInt( l1d.html(), 10 ) * 10;
+   // var l1ui = parseInt( l1u.html(), 10 ) * 1;
+
+   //console.log( l1m.css({background:color}) );
+
+   if(l1m.css('backgroundColor') == rgb){
+      //dd = dd+l1mi;
+      dd = dd+l1m.html();
+   }
+   if(l1c.css('backgroundColor') == rgb){
+      //dd = dd+l1ci;
+      dd = dd+l1c.html();
+   }
+   if(l1d.css('backgroundColor') == rgb){
+      //dd = dd+l1di;
+      dd = dd+l1d.html();
+   }
+   if(l1u.css('backgroundColor') == rgb){
+      //dd = dd+l1ui;
+      dd = dd+l1u.html();
+   }
+   
+   //var dividendo = parseInt(dd, 10);
+   
+   //console.log( dividendo );
+
+   console.log( 'dd:'+dd );
+
+   return dd;
+
+}
+
+//verifica as células selecionadas do dividendo e retorna o número
+function get_ds(){
+
+   var rgb = 'rgb(0, 255, 64)';
+   //var dd = 0;
+   var ds = '';
+
+   //por enquanto divisão até dois dígitos
+   var l1m = $('.l.1 > .m.ds');
+   var l1c = $('.l.1 > .c.ds');
+
+   if(l1m.css('backgroundColor') == rgb){
+      ds = ds+l1m.html();
+   }
+   if(l1c.css('backgroundColor') == rgb){
+      ds = ds+l1c.html();
+   }
+   
+   console.log( 'ds:'+ds );
+
+   return ds;
+
+}
+
+//verifica as células selecionadas do quociente e retorna o número
+function get_qu(){
+
+   var rgb = 'rgb(0, 255, 64)';
+   //var dd = 0;
+   var qu = '';
+
+   var l3m = $('.l.3 > .m.q');
+   var l3c = $('.l.3 > .c.q');
+   var l3d = $('.l.3 > .d.q');
+   var l3u = $('.l.3 > .u.q');
+
+   if(l3m.css('backgroundColor') == rgb){
+      qu = qu+l3m.html();
+   }
+   if(l3c.css('backgroundColor') == rgb){
+      qu = qu+l3c.html();
+   }
+   if(l3d.css('backgroundColor') == rgb){
+      qu = qu+l3d.html();
+   }
+   if(l3u.css('backgroundColor') == rgb){
+      qu = qu+l3u.html();
+   }
+   
+   console.log( 'qu:'+qu );
+
+   return qu;
+
+}
+
+//retorna o número na linha dos restos
+function get_r(nlin){
+
+   var lrm = $('.l.'+nlin+' > .m.r');
+   var lrc = $('.l.'+nlin+' > .c.r');
+   var lrd = $('.l.'+nlin+' > .d.r');
+   var lru = $('.l.'+nlin+' > .u.r');
+
+   var numr = lrm.html()+lrc.html()+lrd.html()+lru.html();
+   var numri = parseInt(numr, 10);
+   
+   console.log( 'numri:'+numri );
+
+   return numri;
+
+}
+
+//recebe duas string e retorna o resultado inteiro da divisão
+function calc_quo(dvd, dvs){
+   
+   var dvsi = parseInt(dvs, 10);
+   var dvdi = parseInt(dvd, 10);
+
+   var quo = null;
+
+   if( isNaN(dvdi) || isNaN(dvsi) || dvsi == 0 || dvdi == '' || dvsi == '' ){
+      
+      console.log('Erro!!!');
+
+      return quo;
+
+   }
+
+   quo = Math.floor(dvdi/dvsi);
+   
+   console.log('quo:' + quo);
+
+   return quo;
+
+}
+
+//recebe duas string e retorna o resultado inteiro da divisão
+function calc_mul(quo, dvs){
+   
+   var dvsi = parseInt(dvs, 10);
+   var quoi = parseInt(quo, 10);
+
+   console.log('calc_mul:dvsi:'+dvsi);
+   console.log('calc_mul:quoi:'+quoi);
+
+   var mul = null;
+
+   if( isNaN(quoi) || isNaN(dvsi) ){
+      
+      console.log('Multiplicação>>Erro!!!');
+
+      return mul;
+
+   }
+
+   mul = quoi*dvsi;
+   
+   console.log('mul:' + mul);
+
+   return mul;
+
 }
 
 
