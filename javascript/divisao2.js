@@ -505,6 +505,8 @@ $('#tb_divisao tbody td').on('click', function() {
             //mostra resto no visor i guarda o resultado desse produto
             rpro = sel_rs(this, ocol, pcol, nlin);
 
+            console.log('Resultado da multiplicação:'+rpro);
+
             console.log('fase subtração iniciada');
 
             //f_sub
@@ -512,9 +514,9 @@ $('#tb_divisao tbody td').on('click', function() {
             f_sub_2 = true;
             //f_div_3;
 
-            //seleciona o dividendo para a subtração e guarda resultado
+            //seleciona o dividendo para a subtração e guarda resultado em rsub
             //rsub = sel_dds(this, ocol, pcol, rpro);
-            sel_sub(this, ocol, pcol, nlin, rpro);
+            rsub = sel_sub(this, ocol, pcol, nlin, rpro);
 
 
          //passo 1: escreve o produto
@@ -561,7 +563,7 @@ $('#tb_divisao tbody td').on('click', function() {
 
          console.log('se linha for impar: escreve subtração; baixa numero do dividendo');
 
-         //inserir o resultado da subtrçao
+         //inserir o resultado da subtraçao
          if(f_sub && f_sub_1 && f_sub_2){
 
             //f_sub
@@ -602,6 +604,7 @@ $('#tb_divisao tbody td').on('click', function() {
 
             //seleciona uma linha de resto e mostra no visor
             ndvd = sel_rs(this, ocol, pcol, nlin); //retur resto
+            dvd = ndvd;
 
             //seleciona valor do dividendo a ser baixado
             //dvdb = sel_dd(this, ocol, pcol);
@@ -691,6 +694,8 @@ function set_r(_this, ocol, pcol, nlin, num){
 
 //escreve o resultado da subtração de digitos escolhidos no dividendo pelo produto parcial nas colunas dos restos
 function set_rs(_this, ocol, pcol, nlin, num){
+
+   console.log('resultado da subtração a ser escrito:'+num);
 
    var arr_num = (num+'').split('');
 
@@ -927,6 +932,8 @@ function sel_rs(_this, ocol, pcol, nlin){
 
    var resto = get_r(nlin);
 
+   console.log('numero da linha selecionada:'+resto);
+
    visor_msg( resto );
 
    return resto;
@@ -947,7 +954,7 @@ function sel_cel(ocol, pcol, nlin){
 //seleciona um intervalo
 function sel_int(_this, ocol, pcol, nlin, num){
   
-   //se nlin>1 então seleciona nlin-1
+   //se nlin>1 então seleciona nlin-1(linhas de restos)
    if(nlin > 2){
       
      // sel_r(_this, ocol, pcol, (nlin-1) );
@@ -965,7 +972,8 @@ function sel_int(_this, ocol, pcol, nlin, num){
       var len = arr_num.length;
 
       //console.log('lennnnnnnnnnnnnnnnn:'+len);
-      console.log('len-------:'+len);
+      console.log('--numero a ser selecionado:'+num);
+      console.log('--tamanho::'+len);
 
       //sel_cel('m', 'dd', (nlin-1) );
       //sel_cel('c', 'dd', (nlin-1) );
@@ -1025,6 +1033,7 @@ function sel_int(_this, ocol, pcol, nlin, num){
    }
 
 }
+
 //faz a subtração com a linha anterior e exibe no visor
 function sel_sub(_this, ocol, pcol, nlin, prod){
 
@@ -1066,6 +1075,7 @@ function sel_sub(_this, ocol, pcol, nlin, prod){
    }
 
    return subb;
+
 }
 /*
 function sel_dds(_this, ocol, pcol, prod){
@@ -1321,7 +1331,12 @@ function get_r(nlin){
    var lru = $('.l.'+nlin+' > .u.r');
 
    var numr = lrm.html()+lrc.html()+lrd.html()+lru.html();
-   var numri = parseInt(numr, 10);
+   
+   var numrs = numr.replace('&nbsp;','');
+
+   console.log( 'numrs:'+numrs );
+
+   var numri = parseInt(numrs, 10);
    
    console.log( 'numri:'+numri );
 
