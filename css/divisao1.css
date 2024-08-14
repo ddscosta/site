@@ -1531,3 +1531,9 @@ ol > li:before {
   content: counter(list, lower-alpha) ") ";
   counter-increment: list;
 }
+
+td.s{
+	//display: none;
+	color: white;
+	width: 2px;
+} 

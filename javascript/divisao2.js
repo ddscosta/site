@@ -337,6 +337,7 @@ $('#tb_divisao tbody td').on('click', function() {
             //f_mul_1
             //f_mul_2 = true;
             //f_mul_3
+            un_sel_rr();
 
             //escreve o quociente
             // $(this).html(quo);
@@ -406,7 +407,7 @@ $('#tb_divisao tbody td').on('click', function() {
    }
 
    //se clicarmos na linha 4 ocorre o mesmo da linha 2
-   if(nlin == 4){
+   /*if(nlin == 4){
 
       //se clicarmos em algum lugar do resto
       if(pcol == 'r'){
@@ -473,7 +474,7 @@ $('#tb_divisao tbody td').on('click', function() {
 
       }
 
-   }
+   }*/
 
    //ação baseada nas partes(dd, ds, q, r): se clicarmos na parte do resto
    if( pcol == 'r'){
@@ -901,6 +902,11 @@ function sel_r(_this, ocol, pcol, nlin){
    var lrd = $('.l.'+nlin+' > .d.r');
    var lru = $('.l.'+nlin+' > .u.r');
 
+   console.log('selecionar lrm:'+lrm.html() );
+   console.log('selecionar lrc:'+lrc.html() );
+   console.log('selecionar lrd:'+lrd.html() );
+   console.log('selecionar lru:'+lru.html() );
+
    if(pcol == 'r'){
 
       if(lrm.html() != '' && lrm.html() != '&nbsp;'){
@@ -928,7 +934,15 @@ function sel_rs(_this, ocol, pcol, nlin){
    var lrd = $('.l.'+nlin+' > .d.r');
    var lru = $('.l.'+nlin+' > .u.r');
 
+   var ls = $('.l.'+nlin+' > .s');
+
+   //seleciona uma linha de resto
    sel_r(_this, ocol, pcol, nlin);
+
+   //ls.css("display", "none");
+   //ls.css("display", "block");
+   //ls.css("color:", "back");
+   ls.css('color','#000');
 
    var resto = get_r(nlin);
 
@@ -945,10 +959,12 @@ function sel_cel(ocol, pcol, nlin){
    
    var cel = $('.l.'+nlin+' > .'+ocol+'.'+pcol);
 
-   console.log('sel_cel:'+cel);
+   console.log('sel_cel:'+cel.html());
 
-   cel.css('backgroundColor', corf_ativo);   
-    
+   if(cel.html() != '' && cel.html() != '&nbsp;'){
+      cel.css('backgroundColor', corf_ativo); 
+   }
+
 }
 
 //seleciona um intervalo
@@ -961,6 +977,8 @@ function sel_int(_this, ocol, pcol, nlin, num){
 
       sel_cel('m', 'r', (nlin-1) );
       sel_cel('c', 'r', (nlin-1) );
+      sel_cel('d', 'r', (nlin-1) );
+      sel_cel('u', 'r', (nlin-1) );
 
     //se nlin=1 então seleciona dividendo
    }else{
