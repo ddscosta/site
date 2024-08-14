@@ -92,8 +92,12 @@ $('#tb_divisao tbody td').on('click', function() {
    //se clicarmos na linha 1
    if(nlin == 1){
 
+     // visorp_msg('Passo 1: Escolher Dividendo...');
+
       //se clicarmos no dividendo
       if(pcol == 'dd'){
+
+         visorp_msg('Passo 1.1: Escolher Dividendo  e...');
 
          //ideia: sempre que clicar no dividendo inicia-se a divisão novamente
          //f_div
@@ -134,6 +138,8 @@ $('#tb_divisao tbody td').on('click', function() {
          //a fase de baixar valores do dividendo
          if(f_bai && f_bai_1){
 
+            visorp_msg('Passo 4.1: Escolher Novo Dividento...');
+
             //f_bai
             //f_bai_1;
             f_bai_2 = true;
@@ -156,6 +162,8 @@ $('#tb_divisao tbody td').on('click', function() {
          //a fase 1 da divisão esta ativa, ou seja há números selecionados no dividendo
          if(f_div && f_div_1){
 
+            visorp_msg('Passo 1.2: Escolher Divisor e...');
+
             //f_div
             //f_div_1;
             f_div_2 = true;
@@ -171,6 +179,8 @@ $('#tb_divisao tbody td').on('click', function() {
 
          //a fase 2 de escolha do quociente está ativa, ou seja, ha numeros selecionados no quociente
          if(f_mul && f_mul_1){
+
+            visorp_msg('Passo 2.2: Multiplicar pelo Divisor e...');
 
             //seleciona a célula do divisor usando para o produto
             dvsp = sel_dsp(this, ocol, pcol);
@@ -189,6 +199,8 @@ $('#tb_divisao tbody td').on('click', function() {
 
          //já deve haver um novo dividendo selecionado. vamos reiniciar o processo de divisão
          if(f_bai && f_bai_1 && f_bai_2){
+
+            visorp_msg('Passo 4.3: Continuar Dividindo.');
 
             f_div = true;
             f_div_1 = true;
@@ -291,6 +303,8 @@ $('#tb_divisao tbody td').on('click', function() {
          //as 3 primeiras fases foram concluidas
          if(f_div && f_div_1 && f_div_2 && f_div_3  ){
 
+            visorp_msg('Passo 1.2: Escolher Quociente e...');
+
             f_div = false;
             f_div_1 = false;
             f_div_2 = false;
@@ -306,6 +320,8 @@ $('#tb_divisao tbody td').on('click', function() {
             un_sel_qu();
 
          }else{
+
+            visorp_msg('Passo 1.3: Escrever Quociente.');
 
             //as 3 primeiras fases estão ativadas
             if(f_div && f_div_1 && f_div_2 ){
@@ -329,6 +345,8 @@ $('#tb_divisao tbody td').on('click', function() {
 
          //a fase da multiplicação está ativa
          if(f_mul && f_mul_1){
+
+            visorp_msg('Passo 2.1: Escolher Quociente e...');
 
             //seleciona a célula do quociente usando uma cor(verde)
             quop = sel_qu(this, ocol, pcol);
@@ -487,6 +505,8 @@ $('#tb_divisao tbody td').on('click', function() {
          //passo 2: clicou encima do produto escrito: encerra produto e inicia a subtração
          if(f_mul && f_mul_1 && f_mul_2 && f_mul_3  ){
 
+            visorp_msg('Passo 3.1: Fazer Subtração...');
+
             f_mul = false;
             f_mul_1 = false;
             f_mul_2 = false;
@@ -525,6 +545,8 @@ $('#tb_divisao tbody td').on('click', function() {
 
             //as 3 primeiras fases da multiplicação estão ativadas
             if(f_mul && f_mul_1 && f_mul_2 ){
+
+               visorp_msg('Passo 2.3: Escrever produto.');
 
                //f_mul
                //f_mul_1;
@@ -567,6 +589,8 @@ $('#tb_divisao tbody td').on('click', function() {
          //inserir o resultado da subtraçao
          if(f_sub && f_sub_1 && f_sub_2){
 
+            visorp_msg('Passo 3.2: Escrever Subtração...');
+
             //f_sub
             //f_sub_1
             //f_sub_2;
@@ -589,6 +613,8 @@ $('#tb_divisao tbody td').on('click', function() {
 
          //baixa o valores do dividendo
          if(f_bai && f_bai_1 && f_bai_2){
+
+            visorp_msg('Passo 4.2: Baixar novo Dividendo.');
 
             //f_bai
             //f_bai_1;
@@ -1570,6 +1596,7 @@ function aoiniciar(){
    q_m = document.getElementById('q_m');
 
    visor = document.getElementById('visor');
+   visorp = document.getElementById('visorp');
 
    dvd2_u = document.getElementById('dvd2_u');
    dvd2_d = document.getElementById('dvd2_d');
@@ -2310,11 +2337,22 @@ function fdvd2(ord){
 
 }
 
+//visor para a tabuada
 function visor_msg(msg){
    if(msg == ''){
       visor.innerText = '[Tabuada]';
    }else{
       visor.innerText = msg;
+   }
+   
+}
+
+//visor para os passos
+function visorp_msg(msg){
+   if(msg == ''){
+      visorp.innerText = '[PASSOS DA DIVISÃO]';
+   }else{
+      visorp.innerText = msg;
    }
    
 }
