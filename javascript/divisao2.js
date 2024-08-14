@@ -138,7 +138,7 @@ $('#tb_divisao tbody td').on('click', function() {
          //a fase de baixar valores do dividendo
          if(f_bai && f_bai_1){
 
-            visorp_msg('Passo 4.1: Escolher Novo Dividento...');
+            visorp_msg('Passo 4.1: Escolher Novo Dividendo...');
 
             //f_bai
             //f_bai_1;
@@ -200,7 +200,7 @@ $('#tb_divisao tbody td').on('click', function() {
          //já deve haver um novo dividendo selecionado. vamos reiniciar o processo de divisão
          if(f_bai && f_bai_1 && f_bai_2){
 
-            visorp_msg('Passo 4.3: Continuar Dividindo.');
+            visorp_msg('Passo 4.3: Continuar Dividindo!!!');
 
             f_div = true;
             f_div_1 = true;
@@ -614,7 +614,7 @@ $('#tb_divisao tbody td').on('click', function() {
          //baixa o valores do dividendo
          if(f_bai && f_bai_1 && f_bai_2){
 
-            visorp_msg('Passo 4.2: Baixar novo Dividendo.');
+            visorp_msg('Passo 4.2: Baixar Dividendo.');
 
             //f_bai
             //f_bai_1;
@@ -1545,7 +1545,7 @@ var acertou = false;
 var animar = false; /*desativando animação*/
 
 
-
+/*
 //criando a classe dividendo
    class Dividendo{
       constructor(m,c,d,u){
@@ -1570,7 +1570,7 @@ var animar = false; /*desativando animação*/
 
    const div = new Dividendo(1,2,3,4);
    div.log();
-
+*/
 
 function aoiniciar(){
 
@@ -1579,9 +1579,10 @@ function aoiniciar(){
    //sf_ativar('');
 
    //ativa a fase 1(divisao) e 1.1(selecionar dividendo)
-   f_ativar(1);
-   sf_ativar(1.1);
+   f_div = true;
+   f_div_1 = true;
    
+   /*
    dvd_u = document.getElementById('dvd_u');
    dvd_d = document.getElementById('dvd_d');
    dvd_c = document.getElementById('dvd_c');
@@ -1594,17 +1595,18 @@ function aoiniciar(){
    q_d = document.getElementById('q_d');
    q_c = document.getElementById('q_c');
    q_m = document.getElementById('q_m');
-
+*/
    visor = document.getElementById('visor');
    visorp = document.getElementById('visorp');
-
+/*
    dvd2_u = document.getElementById('dvd2_u');
    dvd2_d = document.getElementById('dvd2_d');
    dvd2_c = document.getElementById('dvd2_c');
    dvd2_m = document.getElementById('dvd2_m');
-
+*/
 }
 
+/*
 //indica se digitos foram apertados
 var mult_u1 = false;
 var mult_d1 = false;
@@ -1615,10 +1617,11 @@ var mult_u2 = false;
 var mult_d2 = false;
 var mult_c2 = false;
 var mult_m2 = false;
-
+*/
 //indica se o visor foi ativado para apresentar produto de dois digitos
 var ativ_visor = false;
 
+/*
 //botões dos dois digitos que foram apertados para se multiplicar
 var visor_bt1 = ''; //ex.: u1
 var visor_bt2 = ''; //ex.: u2
@@ -1640,9 +1643,9 @@ var vai_rm2 = false;
 var um_dig = false;
 var dois_dig = true;
 var tres_dig = false;
+*/
 
-
-
+/*
 //valores ativos que foram clicados (se não clicou estao vazios)
 var val_dvd_u = '';
 var val_dvd_d = '';
@@ -1680,6 +1683,8 @@ var ativ_sub = false;
 
 //inicio de um cliclo da divisao
 var ini_cic = false;
+
+*/
 
 //----------------------------i30-07-2024
 //depois de um longo periodo sem codar!!
@@ -1722,6 +1727,8 @@ var f_bai = false;//f4
    var f_bai_1 = false;//f4.1
    var f_bai_2 = false;//f4.2
 
+
+///*
 //apenas uma das 4 fases está ativada por vez ou tudo desativado.
 //parametros: 1,2,3,4,''
 function f_ativar(fase){
@@ -1794,9 +1801,11 @@ function sf_ativar(fase){
 
 }
 
+//*/
 
 //-------------------------f30-07-2024
 
+/*
 //ação ao clicar no dividendo(dvd) unidade
 function fdvd_u(){
    
@@ -2337,6 +2346,8 @@ function fdvd2(ord){
 
 }
 
+*/
+
 //visor para a tabuada
 function visor_msg(msg){
    if(msg == ''){
@@ -2357,6 +2368,7 @@ function visorp_msg(msg){
    
 }
 
+/*
 //retorna os números do dividendo que estão marcados
 function get_dvd_mark(){
    var res = val_dvd_m + val_dvd_c + val_dvd_d + val_dvd_u;
@@ -2451,11 +2463,11 @@ function set_prod(pre, ini, arr_qpro){
    
    var ini_opt = ['m','c','d','u'];
    
-   /*
-   pre:prefixo...div1
-   ini:inicio da insersao...0
-   arr_qpro: array com o resultado do produto
-   */
+   
+   //pre:prefixo...div1
+   //ini:inicio da insersao...0
+   //arr_qpro: array com o resultado do produto
+   
 
    if(arr_qpro.length == 1){
       document.getElementById(pre+'_'+ini_opt[ini]).innerText = arr_qpro[0];
@@ -2581,11 +2593,11 @@ function set_subt(pre, ini, arr_qsub){
       ini = ini+3;
    }
 
-   /*
-   pre:prefixo...div1
-   ini:inicio da insersao...0
-   arr_qsub: array com o resultado da subtração
-   */
+   
+   //pre:prefixo...div1
+   //ini:inicio da insersao...0
+   //arr_qsub: array com o resultado da subtração
+   
 
    if(arr_qsub.length > 0){
       document.getElementById(pre+'_'+ini_opt[ini]).innerText = arr_qsub[0];
@@ -2608,6 +2620,73 @@ function set_subt(pre, ini, arr_qsub){
 
 }
 
+*/
+
+function limpar(){
+   
+   limpa_r();
+
+   limpa_q();
+
+   limpa_dd();
+
+   limpa_ds();
+
+   //desativando as fases
+   f_ativar('');
+   sf_ativar('');
+   
+   f_ativar('1');
+   sf_ativar('1.1');
+
+}
+
+function limpa_r(){
+
+    for (var i = 1; i < 9; i++) {
+
+      $('.l.'+i+' > .m.r').html('&nbsp;');
+      $('.l.'+i+' > .c.r').html('');
+      $('.l.'+i+' > .d.r').html('');
+      $('.l.'+i+' > .u.r').html('');
+      
+      $('.l.'+i+' > .m.r').css('backgroundColor', corf_mil);   
+      $('.l.'+i+' > .c.r').css('backgroundColor', corf_cen);   
+      $('.l.'+i+' > .d.r').css('backgroundColor', corf_dez);   
+      $('.l.'+i+' > .u.r').css('backgroundColor', corf_uni);   
+
+      $('.l.'+i+' > .s').css('color','#fff');
+
+   }
+
+}
+
+function limpa_q(){
+   $('.l.3 > .m.q').html('&nbsp;');
+   $('.l.3 > .c.q').html('&nbsp;');
+   $('.l.3 > .d.q').html('&nbsp;');
+   $('.l.3 > .u.q').html('&nbsp;');
+
+   $('.l.3 > .m.q').css('backgroundColor', corf_mil);   
+   $('.l.3 > .c.q').css('backgroundColor', corf_cen);   
+   $('.l.3 > .d.q').css('backgroundColor', corf_dez);   
+   $('.l.3 > .u.q').css('backgroundColor', corf_uni);
+}
+
+function limpa_dd(){
+   
+   $('.l.1 > .m.dd').css('backgroundColor', corf_mil);   
+   $('.l.1 > .c.dd').css('backgroundColor', corf_cen);   
+   $('.l.1 > .d.dd').css('backgroundColor', corf_dez);   
+   $('.l.1 > .u.dd').css('backgroundColor', corf_uni);
+}
+
+function limpa_ds(){
+   
+   $('.l.1 > .m.ds').css('backgroundColor', '#fff');   
+   $('.l.1 > .c.ds').css('backgroundColor', '#fff');   
+   
+}
 
 function limpa_val_divid(){
    val_dvd_u = '';

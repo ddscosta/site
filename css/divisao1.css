@@ -1521,6 +1521,17 @@ td h1#visor{
 	margin: 0px;
 }
 
+div#resultado h1#visorp{
+	font-size: 45px;
+	text-align: center;
+	padding-right: 3px;
+	white-space: nowrap;
+	margin: 0px;
+	white-space: normal;
+	color: blue;
+	text-decoration: bolder;
+}
+
 ol {
   counter-reset: list;
 }
