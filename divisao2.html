@@ -32,6 +32,84 @@
 
 		<div class="relogio" id="relg">00:00:00</div>
 
+		<div id="flutua">
+			
+			<a href="multiplicacao2.html">INÍCIO</a> &nbsp;>>&nbsp;
+
+			<a href="histmult2.html">HISTÓRICO</a>
+
+			<hr>
+
+			<div class="ate">
+				Escolher tamanho dos números. <br>&emsp;
+
+				<label for="de">Multiplicando(1º Fator): de</label>
+				<input type="text" name="de" id="de" value="1" maxlength="4"> 
+				
+				<label for="ate">até</label>
+				<input type="text" name="ate" id="ate" value="9999"maxlength="4"> 
+				
+				<br>&emsp;
+				
+				<label for="de2">Multiplicador(2º Fator): de</label>
+				<input type="text" name="de2" id="de2" value="10" minlength="2" maxlength="2"> 
+				
+				<label for="ate2">até</label>
+				<input type="text" name="ate2" id="ate2" value="99" minlength="2" maxlength="2"> 
+				
+			</div>
+			
+			<hr>
+
+			<!-- <div class="ajud">
+
+				<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
+
+				<label for="ajuda">
+					<div class="tooltip"> Repetir Minuendo na Resposta.
+						
+					</div>	
+				</label>
+
+			</div> -->
+			
+			<!-- <div class="reag">
+
+				<input type="checkbox" name="reagr" id="reagr" onclick="reagrup();">
+
+				<label for="reagr">
+					<div class="tooltip"> Números que Força Reagrupamento.
+						
+					</div>	
+				</label>
+
+			</div> -->
+
+			<div class="animacao">
+
+				<input type="checkbox" name="anim" id="anim" onclick="animm();">
+
+				<label for="anim">
+					<div class="tooltip"> Animação de Reserva.
+						<!-- <span class="tooltiptext">Mostra uma animação que ajuda o estudante a aprender o reagrupamento.</span> -->
+					</div>	
+				</label>
+
+			</div>
+
+			<hr>
+
+			<div class="nome">
+
+				<label for="nome">
+					Aluno	
+				</label>
+
+				<input type="text" name="nome" id="nome_aln">
+
+			</div>
+
+		</div>
 
 		<h1>Algorítmo da Divisão (x1) com QVL</h1>
 
@@ -218,6 +296,61 @@
 			</div>
 
 		</div>
+
+		<table>
+			<thead></thead>
+			<tbody>
+				<tr id="tbtn">
+
+					<td class="inf" id="msg">
+
+						<div id="msgs">
+							<p>Erros:<br><b>[<span id="erros">0</span>]</b></p>
+							<p>Pulos:<br><b>[<span id="pulos">0</span>]</b></p>
+						</div>
+
+						
+						
+						<!-- 
+						Iniciante
+						Modo Fácil
+						Aprendiz
+						Ajuda
+						Principiante
+						Novato
+						Facilitar
+						Modo Retirar
+						 -->
+
+					</td>
+					<td>
+						<div class="cbtn">
+							<button id="mmum" onclick="rmmais()">+</button>
+							<button id="mum" onclick="rmmenos()">-</button>
+						</div>
+					</td>
+					<td>
+						<div class="cbtn">
+							<button id="mmc" onclick="rcmais()">+</button>
+							<button id="mc" onclick="rcmenos()">-</button>
+						</div>
+					</td>
+					<td>
+						<div class="cbtn">
+							<button id="mmd" onclick="rdmais()">+</button>
+							<button id="md" onclick="rdmenos()">-</button>
+						</div>
+					</td>
+					<td>
+						<div class="cbtn">
+							<button id="mmu" onclick="rumais()">+</button>
+							<button id="mu" onclick="rumenos()">-</button>
+						</div>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
 	</div>
 
