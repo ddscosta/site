@@ -1389,7 +1389,7 @@ figure.foto-legenda:hover figcaption{
 }
 
 th.inf{
-	font-size: 40px;
+	font-size: 35px;
 	text-align: center;
 	padding: 5px;
 	white-space: nowrap;
@@ -1554,4 +1554,24 @@ td.s{
 table.placar{
 	position: relative;
 	width: auto; 
+}
+
+table tr td.ds1{
+	border-left: solid black;
+	border-bottom: solid black;
+	border-top: solid black;
+	
+}
+
+table tr td.ds2{
+	border-bottom: solid black;
+	border-top: solid black;
+	
+}
+
+table tr td.ds3{
+	border-right: solid black;
+	border-bottom: solid black;
+	border-top: solid black;
+	
 }

@@ -727,6 +727,40 @@ function set_rs(_this, ocol, pcol, nlin, num){
    
 }
 
+//preenche o divisor ord=ds ou dividendo ord=dd
+function set_num(num, parte){
+   
+   num = num+'';
+
+   var ord = ['m','c','d','u'];
+
+   arr_num = num.split('');
+
+   for (var i = 0; i < arr_num.length; i++) {
+      
+      console.log('ord[i]:'+ord[i]);
+
+      if(parte=='dd'){
+         $('.l.1 > .'+ord[i]+'.dd').html( arr_num[i] );
+         console.log('arr_num[i]>'+arr_num[i]+'>dd:'+arr_num[i]);
+      }
+      if(parte=='ds'){
+         if(arr_num.length==1){
+            $('.l.1 > .m.ds').html( arr_num[i] );
+            $('.l.1 > .c.ds').html('');
+            console.log('arr_num[i]>'+arr_num[i]+'>ds:'+arr_num[i]);
+         }else{
+             $('.l.1 > .'+ord[i]+'.ds').html( arr_num[i] );
+            console.log('arr_num[i]>'+arr_num[i]+'>ds:'+arr_num[i]);
+         }
+        
+      }
+      
+   }
+
+}
+
+//recebe um objeto jquery _this
 function sel(_this, ocol, pcol){
    
    var rgb = 'rgb(0, 255, 64)';
@@ -774,6 +808,54 @@ function sel(_this, ocol, pcol){
 
 }
 
+//recebe uma string que representa classes
+function selcl(clas, ocol, pcol){
+   
+   var rgb = 'rgb(0, 255, 64)';
+   
+   if( $(clas).text() != '' ){
+      
+      //cor está ativa: desativa
+      if( $(clas).css('backgroundColor') == rgb ){
+         
+         if(ocol == 'm'){
+            
+            if(pcol == 'ds'){
+               $(clas).css('backgroundColor', rgbb); 
+            }else{ 
+               $(clas).css('backgroundColor', corf_mil);  
+            }
+               
+         }
+         
+         if(ocol == 'c'){
+
+            if(pcol == 'ds'){
+               $(clas).css('backgroundColor', rgbb); 
+            }else{ 
+               $(clas).css('backgroundColor', corf_cen);  
+            }
+
+         }
+
+         if(ocol == 'd'){
+            $(clas).css('backgroundColor', corf_dez);   
+         }
+
+         if(ocol == 'u'){
+            $(clas).css('backgroundColor', corf_uni);  
+         }
+         
+      //cor não está ativa: ativa
+      }else{
+         
+         $(clas).css('backgroundColor', corf_ativo);
+            
+      }
+   }
+
+}
+
 function sel_dd(_this, ocol, pcol){
    
    sel( _this, ocol, pcol );
@@ -789,8 +871,11 @@ function sel_dd(_this, ocol, pcol){
 
 function sel_ds(_this, ocol, pcol){
    
-   //seleciona o divisor
-   sel( _this, ocol, pcol );
+   //seleciona o divisor inteiramente
+   //sel( _this, ocol, pcol );
+
+   selcl( '.l.1 > .m.ds', ocol, pcol );
+   selcl( '.l.1 > .c.ds', ocol, pcol );
 
 
    //busca números do divisor selecionados
@@ -843,7 +928,9 @@ function sel_qu(_this, ocol, pcol){
 function sel_dsp(_this, ocol, pcol){
    
    //seleciona o divisor
-   sel( _this, ocol, pcol );
+   //sel( _this, ocol, pcol );
+   selcl( '.l.1 > .m.ds', ocol, pcol );
+   selcl( '.l.1 > .c.ds', ocol, pcol );
 
    //busca números do divisor selecionados
    var dvs = get_ds();
@@ -1079,8 +1166,9 @@ function sel_sub(_this, ocol, pcol, nlin, prod){
 function sel_ds2(_this, ocol, pcol){
    
    //seleciona o divisor
-   sel( _this, ocol, pcol );
-
+   //sel( _this, ocol, pcol );
+   selcl( '.l.1 > .m.ds', ocol, pcol );
+   selcl( '.l.1 > .c.ds', ocol, pcol );
 
    //busca números do divisor selecionados
    var dvs = get_ds();
@@ -2296,11 +2384,11 @@ function novo(){
 
       console.log('ate2:'+ate2.value);
 
-      //não permitimos apenas 1 digito no multiplicador
+      /*/não permitimos apenas 1 digito no multiplicador
       if(de2i < 10){
          var de2i = 10;
          var de2s = de2i;
-      }
+      }*/
 
       if(ate2i < 10){
          var ate2i = 10;
@@ -2359,7 +2447,15 @@ function novo(){
       var num1 = 0;
       var num2 = 0;
 
-   //gerando números que figure um multiplicação por apenas um dígito
+      num1 = getRandomInt(des, ates);
+
+      console.log('numero 1:'+num1);
+
+      num2 = getRandomInt(de2s, ate2s);
+
+      console.log('numero 2:'+num2);
+
+   /*/gerando números que figure um multiplicação por apenas um dígito
    if(um_dig){
 
       num2 = getRandomInt(de2s, ate2s);
@@ -2409,23 +2505,14 @@ function novo(){
    //ainda não implementado
    }else if(tres_dig){
 
-   }
+   }*/
 
    //false: não completa os digitos vazios com zero
-   set_num1(num1, false);
-   set_num2(num2, false);
+   //set_num1(num1, false);
+   //set_num2(num2, false);
 
-   //limpa cores
-   //limpa_cor_vai1();
-
-   //limpa cores fatores
-   //limpa_cor_fat();
-   
-   //limpa valores
-   //limpa_val_vai1();
-
-   //limpa resultado
-   //limpa_res();
+   set_num(num1, 'dd');
+   set_num(num2, 'ds');
 
    //exibe a operação e seu resultado dentro do retangulo
    exibir();
@@ -2443,8 +2530,58 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function set_num1(num1, completo){}
+/*
+function set_num1(num1, completo){
+
+   var num1c = 0;
+   var u1 = document.getElementById('u1');
+   var d1 = document.getElementById('d1');
+   var c1 = document.getElementById('c1');
+   var m1 = document.getElementById('m1');
+
+   if(completo){
+
+      var num1c = completa(num1);
+      var num1arr = num1c.split('');
+
+      u1.innerText = num1arr[3];
+      d1.innerText = num1arr[2];
+      c1.innerText = num1arr[1];
+      m1.innerText = num1arr[0];
+
+   }else{
+      var num1arr = (num1+'').split('');
+
+      if(num1arr.length == 1){
+         u1.innerText = num1arr[0];
+         d1.innerText = '';
+         c1.innerText = '';
+         m1.innerText = '';
+
+      }else if(num1arr.length == 2){
+         u1.innerText = num1arr[1];
+         d1.innerText = num1arr[0];
+         c1.innerText = '';
+         m1.innerText = '';
+
+      }else if(num1arr.length == 3){
+         u1.innerText = num1arr[2];
+         d1.innerText = num1arr[1];
+         c1.innerText = num1arr[0];
+         m1.innerText = '';
+
+      }else if(num1arr.length == 4){
+         u1.innerText = num1arr[3];
+         d1.innerText = num1arr[2];
+         c1.innerText = num1arr[1];
+         m1.innerText = num1arr[0];
+      }
+      
+   }
+
+}
 function set_num2(num2, completo){}
+*/
 
 function exibir(){
 
