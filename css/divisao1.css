@@ -1127,6 +1127,8 @@ input[type=checkbox] {
 	/*text-align: center;*/
 }
 
+
+
 #resultado button{
 	width: auto;
 	margin-left: 10px;
@@ -1548,3 +1550,8 @@ td.s{
 	color: white;
 	width: 2px;
 } 
+
+table.placar{
+	position: relative;
+	width: auto; 
+}

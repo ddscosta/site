@@ -1552,6 +1552,29 @@ var animar = false; /*desativando animação*/
 
 function aoiniciar(){
 
+
+    //altera cor de fundo do titulo para avisar que há dados no hitorico ou pontos
+   aviso_dados();
+
+   //atalho para abrir link pelo veyon master e apagar dados e pontos sem confirmação, exemplo: pelo parametro get usando a chave del all ou seja delall=1
+   var query = location.search.slice(1);
+   var partes = query.split('&');
+   var chave = '';
+   var valor = '';
+   partes.forEach(function (parte) {
+       var chaveValor = parte.split('=');
+       chave = chaveValor[0];
+       valor = chaveValor[1];
+   });
+   console.log("chave: " + chave + " >> valor: " + valor); 
+   //.../adicao1.html?del
+   if(chave == 'del'){
+      //perigoso: apaga tudo sem confirmação
+      limpar_hist();
+      resetar_noconfirm();
+      window.history.replaceState("object or string", "Title", "divisao2.html");
+   }
+
    //padrao: desativa todas as fases e subfases
    //f_ativar('');
    //sf_ativar('');
@@ -1563,6 +1586,22 @@ function aoiniciar(){
   
    visor = document.getElementById('visor');
    visorp = document.getElementById('visorp');
+
+      /*escondendo o menu flutuante*/
+   const flutua = document.getElementById("flutua");
+   flutua.style.display = 'none';
+
+   
+   puloss = true;
+
+   // document.getElementById('ajuda').checked = false;
+
+   //novo(); 
+  
+   verificaStorage();
+
+   exibir();
+
 
 }
 
@@ -1888,9 +1927,9 @@ function verificar(){
 
    if(!verifica_pul){return false;}
 
-   var dd = get_dd();
-   var ds = get_ds();
-   var qu = get_qu();
+   var dd = get_ddi();
+   var ds = get_dsi();
+   var qu = get_qui();
    var rs = get_rs();
 
    var ddi = parseInt(dd,10);
@@ -2163,19 +2202,19 @@ function verificaStorage(){
 
 function imprimir_hist(){
 
-   // if(JSON.parse(localStorage.getItem("arr_obj_err_mult2")) != null){
-   //     arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_mult2"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_err_divi2")) != null){
+   //     arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_divi2"));
    // }
-   // if(JSON.parse(localStorage.getItem("arr_obj_acer_mult2")) != null){
-   //     arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_mult2"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_acer_divi2")) != null){
+   //     arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_divi2"));
    // }
-   // if(JSON.parse(localStorage.getItem("arr_obj_pul_mult2")) != null){
-   //     arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_mult2"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_pul_divi2")) != null){
+   //     arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_divi2"));
    // }
 
-   if (localStorage.hasOwnProperty("arr_obj_err_mult2")) {
+   if (localStorage.hasOwnProperty("arr_obj_err_divi2")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_err_mult2") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_err_divi2") ).forEach(objconta => {
       
          console.log('Erro: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
 
@@ -2183,9 +2222,9 @@ function imprimir_hist(){
 
    }
 
-   if (localStorage.hasOwnProperty("arr_obj_acer_mult2")) {
+   if (localStorage.hasOwnProperty("arr_obj_acer_divi2")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_acer_mult2") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_acer_divi2") ).forEach(objconta => {
       
          console.log('Acerto: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
 
@@ -2193,9 +2232,9 @@ function imprimir_hist(){
 
    }
 
-   if (localStorage.hasOwnProperty("arr_obj_pul_mult2")) {
+   if (localStorage.hasOwnProperty("arr_obj_pul_divi2")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_pul_mult2") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_pul_divi2") ).forEach(objconta => {
       
          console.log('Pulo: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
 
@@ -2418,5 +2457,324 @@ function exibir(){
    console.log('dd:'+get_ddi());
    console.log('ds:'+get_dsi());
    console.log('qu:'+get_qui());
+
+}
+
+
+//altera-se a cor de fundo do titulo amarelo como aviso
+function aviso_dados(){
+
+   var titulo = document.getElementById("principal");
+
+   var parse_err_divi2_st = false;
+   var parse_acer_divi2_st = false;
+   var parse_pul_divi2_st = false;
+
+    if (localStorage.hasOwnProperty("arr_obj_err_divi2")) {
+         
+         var parse_err_divi2 = JSON.parse( localStorage.getItem("arr_obj_err_divi2") );
+
+         if(parse_err_divi2 != null && parse_err_divi2.length > 0){
+             parse_err_divi2_st = true;
+             console.log(parse_err_divi2);
+         }
+    }
+            
+   if (localStorage.hasOwnProperty("arr_obj_acer_divi2")) {
+         
+         var parse_acer_divi2 = JSON.parse( localStorage.getItem("arr_obj_acer_divi2") );
+
+         if(parse_acer_divi2 != null && parse_acer_divi2.length > 0){
+             parse_acer_divi2_st = true;
+             console.log(parse_acer_divi2);
+         }
+    }
+
+   if (localStorage.hasOwnProperty("arr_obj_pul_divi2")) {
+         
+         var parse_pul_divi2 = JSON.parse( localStorage.getItem("arr_obj_pul_divi2") );
+
+         if(parse_pul_divi2 != null && parse_pul_divi2.length > 0){
+             parse_pul_divi2_st = true;
+             console.log(parse_pul_divi2);
+         }
+   }
+
+   var mult_pt = localStorage.getItem("pontos_divi2");
+   var mult_er = localStorage.getItem("erros_divi2");
+   var mult_pu = localStorage.getItem("pulos_divi2");
+
+   var mult_pt_i = parseInt(mult_pt, 10);
+   var mult_er_i = parseInt(mult_er, 10);
+   var mult_pu_i = parseInt(mult_pu, 10);
+
+   //caso haja dados no histórico ou pontos acumulado altera-se a cor de fundo do titulo amarelo como aviso
+   if( parse_err_divi2_st ||  parse_acer_divi2_st || parse_pul_divi2_st || mult_pt_i > 0 || mult_er_i > 0 || mult_pu_i > 0 ){
+        titulo.style.background = "#dfdf7f";
+   }else{
+       titulo.style.background = "#97e697";
+   }
+
+   console.log('Erros? '+parse_err_divi2_st);
+   console.log('Acertos? '+parse_acer_divi2_st);
+   console.log('Pulos? '+parse_pul_divi2_st);
+   
+}
+
+function resetar(){
+   console.log('Apagando os dados');
+
+   if ( confirm('Apagar Pontos Erros e Pulos?') ) {
+
+      localStorage.setItem("pontos_divi2", 0);
+      localStorage.setItem("erros_divi2", 0);
+      localStorage.setItem("pulos_divi2", 0);
+      verificaStorage();
+
+      console.log('Dados Apagados');
+
+   }else{
+      console.log('Dados Não Apagados');
+   }
+
+}
+
+function resetar_noconfirm(){
+   console.log('Apagando os dados de sessão exibidos no html sem confirmação');
+
+      //zera os dados na sessão
+      localStorage.setItem("pontos_divi2", 0);
+      localStorage.setItem("erros_divi2", 0);
+      localStorage.setItem("pulos_divi2", 0);
+      
+      //pega os dados da sessão e escreve no html
+      verificaStorage();
+
+}
+
+function limpar_hist(){
+
+   localStorage.setItem("arr_obj_err_divi2", null);
+   localStorage.setItem("arr_obj_acer_divi2", null);
+   localStorage.setItem("arr_obj_pul_divi2", null);
+
+}
+
+function rumais() {
+
+   //desabilita tabuada (e inserção automatica de valores) quando iniciamos a soma
+   //limpa_tabuada();
+
+   const q_u = $('#q_u');
+   
+   console.log('q_u.html():'+q_u.html());
+
+   var q = 0;
+
+   if(q_u.html() != '&nbsp;'){
+      q = q_u.html();
+   }
+   
+   var qi = parseInt(q, 10);
+
+   if( qi > 8){
+       q_u.html(9);
+   }else{
+       q_u.html(qi+1);
+   }
+
+   console.log('qi:'+qi);
+
+   exibir();
+   
+}
+
+function rumenos() {
+
+   const q_u = $('#q_u');
+   
+   console.log('q_u.html():'+q_u.html());
+
+   var q = 0;
+
+   if(q_u.html() != '&nbsp;'){
+      q = q_u.html();
+   }
+   
+   var qi = parseInt(q, 10);
+
+   if( qi < 1){
+       q_u.html(0);
+   }else{
+       q_u.html(qi-1);
+   }
+
+   console.log('qi:'+qi);
+
+   exibir();
+
+}
+function rdmais() {
+
+   //desabilita tabuada (e inserção automatica de valores) quando iniciamos a soma
+   //limpa_tabuada();
+
+   const q_d = $('#q_d');
+   
+   console.log('q_d.html():'+q_d.html());
+
+   var q = 0;
+
+   if(q_d.html() != '&nbsp;'){
+      q = q_d.html();
+   }
+   
+   var qi = parseInt(q, 10);
+
+   if( qi > 8){
+       q_d.html(9);
+   }else{
+       q_d.html(qi+1);
+   }
+
+   console.log('qi:'+qi);
+
+   exibir();
+   
+}
+
+function rdmenos() {
+
+   const q_d = $('#q_d');
+   
+   console.log('q_d.html():'+q_d.html());
+
+   var q = 0;
+
+   if(q_d.html() != '&nbsp;'){
+      q = q_d.html();
+   }
+   
+   var qi = parseInt(q, 10);
+
+   if( qi < 1){
+       q_d.html(0);
+   }else{
+       q_d.html(qi-1);
+   }
+
+   console.log('qi:'+qi);
+
+   exibir();
+
+}
+
+function rcmais() {
+
+   //desabilita tabuada (e inserção automatica de valores) quando iniciamos a soma
+   //limpa_tabuada();
+
+   const q_c = $('#q_c');
+   
+   console.log('q_c.html():'+q_c.html());
+
+   var q = 0;
+
+   if(q_c.html() != '&nbsp;'){
+      q = q_c.html();
+   }
+   
+   var qi = parseInt(q, 10);
+
+   if( qi > 8){
+       q_c.html(9);
+   }else{
+       q_c.html(qi+1);
+   }
+
+   console.log('qi:'+qi);
+
+   exibir();
+   
+}
+
+function rcmenos() {
+
+   const q_c = $('#q_c');
+   
+   console.log('q_c.html():'+q_c.html());
+
+   var q = 0;
+
+   if(q_c.html() != '&nbsp;'){
+      q = q_c.html();
+   }
+   
+   var qi = parseInt(q, 10);
+
+   if( qi < 1){
+       q_c.html(0);
+   }else{
+       q_c.html(qi-1);
+   }
+
+   console.log('qi:'+qi);
+
+   exibir();
+
+}
+
+function rmmais() {
+
+   //desabilita tabuada (e inserção automatica de valores) quando iniciamos a soma
+   //limpa_tabuada();
+
+   const q_m = $('#q_m');
+   
+   console.log('q_m.html():'+q_m.html());
+
+   var q = 0;
+
+   if(q_m.html() != '&nbsp;'){
+      q = q_m.html();
+   }
+   
+   var qi = parseInt(q, 10);
+
+   if( qi > 8){
+       q_m.html(9);
+   }else{
+       q_m.html(qi+1);
+   }
+
+   console.log('qi:'+qi);
+
+   exibir();
+   
+}
+
+function rmmenos() {
+
+   const q_m = $('#q_m');
+   
+   console.log('q_m.html():'+q_m.html());
+
+   var q = 0;
+
+   if(q_m.html() != '&nbsp;'){
+      q = q_m.html();
+   }
+   
+   var qi = parseInt(q, 10);
+
+   if( qi < 1){
+       q_m.html(0);
+   }else{
+       q_m.html(qi-1);
+   }
+
+   console.log('qi:'+qi);
+
+   exibir();
 
 }

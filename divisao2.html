@@ -61,30 +61,6 @@
 			
 			<hr>
 
-			<!-- <div class="ajud">
-
-				<input type="checkbox" name="ajuda" id="ajuda" onclick="ajudaa();">
-
-				<label for="ajuda">
-					<div class="tooltip"> Repetir Minuendo na Resposta.
-						
-					</div>	
-				</label>
-
-			</div> -->
-			
-			<!-- <div class="reag">
-
-				<input type="checkbox" name="reagr" id="reagr" onclick="reagrup();">
-
-				<label for="reagr">
-					<div class="tooltip"> Números que Força Reagrupamento.
-						
-					</div>	
-				</label>
-
-			</div> -->
-
 			<div class="animacao">
 
 				<input type="checkbox" name="anim" id="anim" onclick="animm();">
@@ -210,7 +186,31 @@
 						<td class="d r" id="dvd5_d" ></td>
 						<td class="u r" id="dvd5_u" ></td>
 
-						<td colspan="4" ></td>
+						<td>
+							<div class="cbtn">
+								<button id="mmum" onclick="rmmais()">+</button>
+								
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmc" onclick="rcmais()">+</button>
+								
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmd" onclick="rdmais()">+</button>
+								
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								<button id="mmu" onclick="rumais()">+</button>
+								
+							</div>
+
+						</td>
 					</tr>
 					<tr class="l 7">
 						<td class="s"></td>
@@ -219,7 +219,31 @@
 						<td class="d r" id="dvd6_d" ></td>
 						<td class="u r" id="dvd6_u" ></td>
 
-						<td colspan="4" ></td>
+						<td>
+							<div class="cbtn">
+								
+								<button id="mum" onclick="rmmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								
+								<button id="mc" onclick="rcmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								
+								<button id="md" onclick="rdmenos()">-</button>
+							</div>
+						</td>
+						<td>
+							<div class="cbtn">
+								
+								<button id="mu" onclick="rumenos()">-</button>
+							</div>
+
+						</td>
 					</tr>
 					<tr class="l 8">
 						<td class="s">-</td>
@@ -295,62 +319,29 @@
 				
 			</div>
 
+			
+				<table class="placar">
+				<thead></thead>
+				<tbody>
+					<tr >
+
+						<td class="inf" id="msg">
+
+							<div id="msgs">
+								<p>Erros:<br><b>[<span id="erros">0</span>]</b></p>
+								<p>Pulos:<br><b>[<span id="pulos">0</span>]</b></p>
+							</div>
+
+						</td>
+						
+					</tr>
+				</tbody>
+			
+		</table>
+
 		</div>
 
-		<table>
-			<thead></thead>
-			<tbody>
-				<tr id="tbtn">
-
-					<td class="inf" id="msg">
-
-						<div id="msgs">
-							<p>Erros:<br><b>[<span id="erros">0</span>]</b></p>
-							<p>Pulos:<br><b>[<span id="pulos">0</span>]</b></p>
-						</div>
-
-						
-						
-						<!-- 
-						Iniciante
-						Modo Fácil
-						Aprendiz
-						Ajuda
-						Principiante
-						Novato
-						Facilitar
-						Modo Retirar
-						 -->
-
-					</td>
-					<td>
-						<div class="cbtn">
-							<button id="mmum" onclick="rmmais()">+</button>
-							<button id="mum" onclick="rmmenos()">-</button>
-						</div>
-					</td>
-					<td>
-						<div class="cbtn">
-							<button id="mmc" onclick="rcmais()">+</button>
-							<button id="mc" onclick="rcmenos()">-</button>
-						</div>
-					</td>
-					<td>
-						<div class="cbtn">
-							<button id="mmd" onclick="rdmais()">+</button>
-							<button id="md" onclick="rdmenos()">-</button>
-						</div>
-					</td>
-					<td>
-						<div class="cbtn">
-							<button id="mmu" onclick="rumais()">+</button>
-							<button id="mu" onclick="rumenos()">-</button>
-						</div>
-
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		
 
 	</div>
 
@@ -366,8 +357,6 @@
 
 	<script src="javascript/divisao2.js"></script>
 
-
 </body>
-
 
 </html>
