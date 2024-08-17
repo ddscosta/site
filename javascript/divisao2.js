@@ -109,7 +109,7 @@ $('#tb_divisao tbody td').on('click', function() {
    //se clicarmos na linha 1
    if(nlin == 1){
 
-     // visorp_msg('Passo 1: Escolher Dividendo...');
+      // visorp_msg('Passo 1: Escolher Dividendo...');
 
       //se clicarmos no dividendo
       if(pcol == 'dd'){
@@ -239,11 +239,6 @@ $('#tb_divisao tbody td').on('click', function() {
 
    }
 
-   //se clicarmos na linha 2
-   if(nlin == 2){
-
-   }
-
    //se clicarmos na linha 3
    if(nlin == 3){
 
@@ -318,133 +313,7 @@ $('#tb_divisao tbody td').on('click', function() {
 
       }
 
-      /*
-      //se clicarmos no resto
-      if(pcol == 'r'){
-
-         //a fase da subtração está ativa:vamos inserir o resultado da subtrçao
-         if(f_sub && f_sub_1 && f_sub_2){
-
-            //f_sub
-            //f_sub_1
-            //f_sub_2;
-            //f_sub_3 = true;
-
-            //vamos escrever o resultado da subtração nas colunas dos restos
-            set_rs(this, ocol, pcol, nlin, rsub);
-
-            //finaliza subtração
-            f_sub = false;
-            f_sub_1 = false;
-            f_sub_2 = false;
-            //f_sub_3 = true;
-
-            //inicia fase de baixar valores
-            f_bai = true;
-            f_bai_1 = true;
-
-         }
-
-         //baixa o valores do dividendo na linha 3
-         if(f_bai && f_bai_1 && f_bai_2){
-
-            //f_bai
-            //f_bai_1;
-            //f_bai_2 = true;
-            //f_bai_3;
-
-            //remove as seleções do dividendo e dos restos
-            un_sel_dd();
-            //un_sel_rr();
-
-            console.log('baixar o dvdb:'+dvdb);
-
-            set(this, ocol, pcol, dvdb);
-
-            //seleciona uma linha de resto e mostra no visor
-            ndvd = sel_rs(this, ocol, pcol, nlin); //retur resto
-
-            //seleciona valor do dividendo a ser baixado
-            //dvdb = sel_dd(this, ocol, pcol);
-
-         }
-
-         
-
-      }
-      */
-
    }
-
-   //se clicarmos na linha 4 ocorre o mesmo da linha 2
-   /*if(nlin == 4){
-
-      //se clicarmos em algum lugar do resto
-      if(pcol == 'r'){
-
-         //as 3 primeiras fases foram concluidas
-         if(f_mul && f_mul_1 && f_mul_2 && f_mul_3  ){
-
-            f_mul = false;
-            f_mul_1 = false;
-            f_mul_2 = false;
-            f_mul_3 = false;
-
-            //inicia-se a proxima fase: a subtração
-            f_sub = true;
-            f_sub_1 = true;
-
-            //continue: limpar divisor, quociente
-            
-            //limpa as cores do dividendo e divisor e quociente
-            //un_sel_dd();
-            un_sel_ds();
-            un_sel_qu();
-
-            //motra resto no visor i guarda o resultado desse produto
-            rpro = sel_rs(this, ocol, pcol, nlin);
-
-            console.log('fase subtração iniciada');
-
-         }else{
-
-            //as 3 primeiras fases da multiplicação estão ativadas
-            if(f_mul && f_mul_1 && f_mul_2 ){
-
-               //f_mul
-               //f_mul_1;
-               //f_mul_2;
-               f_mul_3 = true;
-
-               sel(this, ocol, pcol);
-
-               //escreve o resto
-               //$(this).html(quo);
-               
-               //busca números do divisor selecionados
-               var dvs = get_ds();
-
-               //busca números do quociente selecionados
-               var quo = get_qu();
-
-               var mult = calc_mul(dvs, quo);
-
-               //console.log('quop multt:'+quo);
-
-               console.log('mult:'+mult);
-
-               //preenche e seleciona una linha de resto
-               set_r(this, ocol, pcol, nlin, mult);
-
-               console.log('fase multiplicação finalizada');
-
-            }
-
-         }
-
-      }
-
-   }*/
 
    //ação baseada nas partes(dd, ds, q, r): se clicarmos na parte do resto
    if( pcol == 'r'){
@@ -808,7 +677,7 @@ function sel(_this, ocol, pcol){
 
 }
 
-//recebe uma string que representa classes
+//seleciona celulas da tabela. recebe uma string que representa classes
 function selcl(clas, ocol, pcol){
    
    var rgb = 'rgb(0, 255, 64)';
@@ -856,6 +725,7 @@ function selcl(clas, ocol, pcol){
 
 }
 
+//seleciona uma célula ao clicar no dividendo
 function sel_dd(_this, ocol, pcol){
    
    sel( _this, ocol, pcol );
@@ -869,6 +739,7 @@ function sel_dd(_this, ocol, pcol){
 
 }
 
+//seleciona duas células do divisor, ao mesmo tempo
 function sel_ds(_this, ocol, pcol){
    
    //seleciona o divisor inteiramente
@@ -903,6 +774,7 @@ function sel_ds(_this, ocol, pcol){
 
 }
 
+//seleciona uma célula do quociente
 function sel_qu(_this, ocol, pcol){
    
    if( $(_this).html() == '' || $(_this).html() == '&nbsp;' ){
@@ -924,7 +796,7 @@ function sel_qu(_this, ocol, pcol){
 
 }
 
-//selecionar o divisor que será multiplicado
+//seleciona as duas celulas não vazias do divisor que será multiplicado
 function sel_dsp(_this, ocol, pcol){
    
    //seleciona o divisor
@@ -999,14 +871,13 @@ function sel_rs(_this, ocol, pcol, nlin){
    var lrd = $('.l.'+nlin+' > .d.r');
    var lru = $('.l.'+nlin+' > .u.r');
 
+   //sinal de menos
    var ls = $('.l.'+nlin+' > .s');
 
    //seleciona uma linha de resto
    sel_r(_this, ocol, pcol, nlin);
 
-   //ls.css("display", "none");
-   //ls.css("display", "block");
-   //ls.css("color:", "back");
+   //faz a cor do sinal ficar preto(era branco i.e. oculto)
    ls.css('color','#000');
 
    var resto = get_r(nlin);
@@ -1162,7 +1033,7 @@ function sel_sub(_this, ocol, pcol, nlin, prod){
 }
 
 
-//faz e mostra o resultado a partir da seguda divisao
+//faz e mostra o resultado a partir da seguda divisao parcial
 function sel_ds2(_this, ocol, pcol){
    
    //seleciona o divisor
@@ -1318,7 +1189,7 @@ function get_dd(){
 
 }
 
-//obterm o numero do divisor
+//obterm o numero inteiro completo do dividendo
 function get_ddi(){
 
    var lrm = $('.l.1 > .m.dd');
@@ -1344,7 +1215,7 @@ function get_ddi(){
 
 }
 
-//obterm o numero do divisor
+//obtem o numero inteiro completo do divisor
 function get_dsi(){
 
    var lrm = $('.l.1 > .m.ds');
@@ -1370,17 +1241,38 @@ function get_dsi(){
 
 }
 
-//obterm o numero do divisor
+//obterm o numero inteiro completo do quociente
 function get_qui(){
 
    var lrm = $('.l.3 > .m.q');
    var lrc = $('.l.3 > .c.q');
    var lrd = $('.l.3 > .d.q');
    var lru = $('.l.3 > .u.q');
+   /*
+   var qm = lrm.html();
+   var qc = lrc.html();
+   var qd = lrd.html();
+   var qu = lru.html();
+
+   id(lrm.html() == '&nbsp;' || lrm.html() == ''){
+      qm = 0;
+   }
+   id(lrc.html() == '&nbsp;' || lrc.html() == ''){
+      qc = 0;
+   }
+   id(lrd.html() == '&nbsp;' || lrd.html() == ''){
+      qd = 0;
+   }
+   id(lru.html() == '&nbsp;' || lru.html() == ''){
+      qu = 0;
+   }
+   
+   var numr = qm+qc+qd+qu;
+   */
 
    var numr = lrm.html()+lrc.html()+lrd.html()+lru.html();
    
-   var numrs = numr.replaceAll('&nbsp;','');
+   var numrs = numr.replaceAll('&nbsp;','0');
 
    console.log( 'quocientes:'+numrs );
 
@@ -1485,10 +1377,10 @@ function calc_quo(dvd, dvs){
    var dvdi = parseInt(dvd, 10);
 
    var quo = null;
-
-   if( isNaN(dvdi) || isNaN(dvsi) || dvsi == 0 || dvdi == '' || dvsi == '' ){
+   //dvdi=0 e dvdi='' produzem o mesmo booleano
+   if( isNaN(dvdi) || isNaN(dvsi) || dvsi == 0 ){
       
-      console.log('Erro!!!');
+      console.log('Erro!!! >> dvdi:'+dvdi+' >> dvsi:'+dvsi);
 
       return quo;
 
@@ -1812,6 +1704,9 @@ function sf_ativar(fase){
 
 //visor para a tabuada
 function visor_msg(msg){
+   
+   msg = msg+'';
+
    if(msg == ''){
       visor.innerText = '[Tabuada]';
    }else{
