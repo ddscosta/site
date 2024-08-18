@@ -1571,7 +1571,6 @@ function aoiniciar(){
    const flutua = document.getElementById("flutua");
    flutua.style.display = 'none';
 
-   
    puloss = true;
 
    // document.getElementById('ajuda').checked = false;
@@ -1743,11 +1742,13 @@ function limpar(){
    f_ativar(1);
    sf_ativar(1.1);
 
+   info();
+
 }
 
 function limpa_r(){
 
-    for (var i = 1; i < 9; i++) {
+    for (var i = 1; i < 10; i++) {
 
       $('.l.'+i+' > .m.r').html('&nbsp;');
       $('.l.'+i+' > .c.r').html('');
@@ -2411,6 +2412,8 @@ function novo(){
 
    //exibe a operação e seu resultado dentro do retangulo
    exibir();
+
+   limpar();
 
    //limpando a tabuada
    //visor_par.innerText = '[Tabuada]';
