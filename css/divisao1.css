@@ -1524,14 +1524,15 @@ td h1#visor{
 }
 
 div#resultado h1#visorp{
-	font-size: 45px;
+	font-size: 39px;
 	text-align: center;
 	padding-right: 3px;
 	white-space: nowrap;
-	margin: 0px;
+	margin: 0px 0px 10px 0px;
 	white-space: normal;
 	color: blue;
 	text-decoration: bolder;
+	
 }
 
 ol {

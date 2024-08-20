@@ -459,6 +459,9 @@ $('#tb_divisao tbody td').on('click', function() {
 
          }
 
+         //escreve resto no span resto
+         $('#resto').html( get_rs() );
+
       }
 
    }
@@ -1367,7 +1370,23 @@ function get_r(nlin){
 
 //retorna a ultima linha preenchida dos restos
 function get_rs(){
-   return '';
+   
+   var rtemp = null;
+
+   for (var i = 9; i > 1; i--) {
+
+      rtemp = get_r(i);
+      
+      console.log('rtemp:'+rtemp);
+
+      if(!isNaN(rtemp)){
+         console.log('rtemp_in:'+rtemp);
+         break;
+      }
+
+   }
+
+   return rtemp;
 }
 
 //recebe duas string e retorna o resultado inteiro da divisão
@@ -1735,6 +1754,9 @@ function limpar(){
 
    limpa_ds();
 
+   //limpa visores
+   limpa_vis();
+
    //desativando as fases
    f_ativar();
    sf_ativar();
@@ -1791,6 +1813,11 @@ function limpa_ds(){
    $('.l.1 > .m.ds').css('backgroundColor', '#fff');   
    $('.l.1 > .c.ds').css('backgroundColor', '#fff');   
    
+}
+
+function limpa_vis(){
+   $('#visor').html('[Tabuada]');
+   $('#visorp').html('[PASSOS DA DIVISÃO]');
 }
 
 function openNav(){
@@ -1924,9 +1951,17 @@ function verificar(){
    //divide dois valores(sting ou nao) e retorna a parte inteira da divisão
    var divisao = calc_quo(dd, ds);
 
+   var restou = dd % ds;
+   var resto = get_rs();
+
+   console.log('resto do usuario:'+resto);
+   console.log('resto da operação:'+restou);
+
+   //verificar 1136/8
+
    console.log(ddi+" / "+dsi+"="+qui+">>"+divisao);
 
-   if( divisao == qui){
+   if( divisao == qui && restou == resto){
       feliz();
       verifica = false;
       acertou = true;
@@ -2350,58 +2385,6 @@ function novo(){
       num2 = getRandomInt(de2s, ate2s);
 
       console.log('numero 2:'+num2);
-
-   /*/gerando números que figure um multiplicação por apenas um dígito
-   if(um_dig){
-
-      num2 = getRandomInt(de2s, ate2s);
-
-      while(nlimitado){
-         
-         console.log('procurando numeros que ao multiplicar não extrapolem 4 digitos');
-
-         num1 = getRandomInt(des, ates);
-
-         prod = num1 * num2;
-
-         if( prod < 10000 ){
-
-            console.log('produto: ' + num1 + ' x ' + num2 + ' = ' + prod + ' aceito.');
-            nlimitado = false;
-
-         }else{
-            console.log('produto: ' + num1 + ' x ' + num2 + ' = ' + prod + ' extrapolou 9999.');
-         }
-
-      }
-
-   }else if(dois_dig){
-
-      num2 = getRandomInt(de2s, ate2s);
-
-      while(nlimitado){
-         
-         console.log('procurando numeros que ao multiplicar não extrapolem 4 digitos');
-
-         num1 = getRandomInt(des, ates);
-
-         prod = num1 * num2;
-
-         if( prod < 10000 ){
-
-            console.log('produto: ' + num1 + ' x ' + num2 + ' = ' + prod + ' aceito.');
-            nlimitado = false;
-
-         }else{
-            console.log('produto: ' + num1 + ' x ' + num2 + ' = ' + prod + ' extrapolou 9999.');
-         }
-
-      }
-
-   //ainda não implementado
-   }else if(tres_dig){
-
-   }*/
 
    //false: não completa os digitos vazios com zero
    //set_num1(num1, false);
