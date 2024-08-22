@@ -23,6 +23,9 @@ var nlin = ''; // 1,2,3,4,5,6,7,8,9,''
 var ocol = ''; // m, c, d, u, ''
 var pcol = ''; // dd, ds, q, r, ''
 
+//permite o aluno fazer a divisão sem ajuda (automação de tabuada)
+var solo = true;
+
 //resultados parciais ao clicar nas celulas
    //dividendo inicial
    var dvd = 0;
@@ -47,6 +50,13 @@ var pcol = ''; // dd, ds, q, r, ''
 
    //novo dividendo a ser dividido
    var ndvd = '';
+
+   //guarda a ordem(m,c,d,u) e a parte(dd, ds, r, q) clicada para escrever o que o aluno digitar
+   var escr_ocol = '';
+   var escr_pcol = '';
+
+   //sinal que permite o evento do teclado escrever na celula referenciada por escr_ocol e escr_pcol
+   var escreva = false;
 
 //ação ao clicar em qualquer célula da tabela
 $('#tb_divisao tbody td').on('click', function() {
@@ -102,299 +112,167 @@ $('#tb_divisao tbody td').on('click', function() {
          pcol = '';
       }
 
+      //guarda a ordem e a parte clicada para inserir valores digitado pelo usuario
+      escr_ocol = ocol;
+      escr_pcol = pcol;
+
       console.log( 'ordem(ocol): '+ocol );
 
       console.log( 'partes(pcol): '+pcol );
 
-   //se clicarmos na linha 1
-   if(nlin == 1){
+   //a usuario faz a divisão sem nenhuma ajuda
+   if(solo){
 
-      // visorp_msg('Passo 1: Escolher Dividendo...');
+      if(pcol == 'r' || pcol == 'q'){
+         
+         console.log('Usuário solo: faz sua propria divisão');
+         //permite selecionar restos a partir da linha 2 e quociente
+         un_sel_rr();
+         un_sel_qu();
+         selv(this, ocol, pcol);
 
-      //se clicarmos no dividendo
-      if(pcol == 'dd'){
+         //permite digitar um número na celula
+         //sinal que permite o evento do teclado escrever na celula referenciada por escr_ocol e escr_pcol
+         escreva = true;
+        
 
-         visorp_msg('Passo 1.1: Escolher Dividendo  e...');
+      }else{
 
-         //ideia: sempre que clicar no dividendo inicia-se a divisão novamente
-         //f_div
-         //f_div_1;
-         //f_div_2 = false;
-         //f_div_3 = false;
-
-         //fase de divisão e seleção do dividendo está ativada
-         if(f_div && f_div_1){
-
-            //f_div
-            //f_div_1;
-            f_div_2 = false;
-            f_div_3 = false;
-
-            console.log( 'fase de divisão e seleção do dividendo está ativada');
-            
-            //seleciona o célula usando uma cor(verde)
-            dvd = sel_dd(this, ocol, pcol);
-
-         }
-
-         /*
-         //fase da subtração está ativada
-         if(f_sub && f_sub_1){
-
-            //f_sub
-            //f_sub_1;
-            f_sub_2 = true;
-            //f_div_3;
-
-            //seleciona o dividendo para a subtração e guarda resultado
-            rsub = sel_dds(this, ocol, pcol, rpro);
-
-
-         }*/
-
-         //a fase de baixar valores do dividendo
-         if(f_bai && f_bai_1){
-
-            visorp_msg('Passo 4.1: Escolher Novo Dividendo...');
-
-            //f_bai
-            //f_bai_1;
-            f_bai_2 = true;
-            //f_bai_3;
-
-            //remove as seleções do dividendo e dos restos
-            un_sel_dd();
-            un_sel_rr();
-
-            //seleciona valor do dividendo a ser baixado
-            dvdb = sel_dd(this, ocol, pcol);
-
-         }
+         escreva = false;
 
       }
 
-      //se clicarmos no divisor
-      if(pcol == 'ds'){
+   }else{
 
-         //a fase 1 da divisão esta ativa, ou seja há números selecionados no dividendo
-         if(f_div && f_div_1){
+      //não deixa escrever teclas digitadas
+      escreva = false;
 
-            visorp_msg('Passo 1.2: Escolher Divisor e...');
+      //se clicarmos na linha 1
+      if(nlin == 1){
 
+         // visorp_msg('Passo 1: Escolher Dividendo...');
+
+         //se clicarmos no dividendo
+         if(pcol == 'dd'){
+
+            visorp_msg('Passo 1.1: Escolher Dividendo  e...');
+
+            //ideia: sempre que clicar no dividendo inicia-se a divisão novamente
             //f_div
             //f_div_1;
-            f_div_2 = true;
-            //f_div_3
+            //f_div_2 = false;
+            //f_div_3 = false;
 
-            //seleciona o célula usando uma cor(verde)
-            rquo = sel_ds(this, ocol, pcol);
-
-            console.log('quo divisao:'+rquo);
-
-         }
-
-
-         //a fase 2 de escolha do quociente está ativa, ou seja, ha numeros selecionados no quociente
-         if(f_mul && f_mul_1){
-
-            visorp_msg('Passo 2.2: Multiplicar pelo Divisor e...');
-
-            //seleciona a célula do divisor usando para o produto
-            dvsp = sel_dsp(this, ocol, pcol);
-
-            //f_mul
-            //f_mul_1
-            f_mul_2 = true;
-            //f_mul_3
-
-            //escreve o quociente
-            // $(this).html(quo);
-
-             console.log('dvsp:'+dvsp);
-
-         }
-
-         //já deve haver um novo dividendo selecionado. vamos reiniciar o processo de divisão
-         if(f_bai && f_bai_1 && f_bai_2){
-
-            visorp_msg('Passo 4.3: Continuar Dividindo!!!');
-
-            f_div = true;
-            f_div_1 = true;
-            f_div_2 = true;
-            //f_div_3
-
-            f_bai = false;
-            f_bai_1 = false;
-            f_bai_2 = false;
-
-            //seleciona o dividor e retorna o resultado da divisão
-            rquo = sel_ds2(this, ocol, pcol);
-
-            console.log('resultado da divisão rquo:'+rquo);
-
-         }
-
-      }
-
-   }
-
-   //se clicarmos na linha 3
-   if(nlin == 3){
-
-      //se clicarmos no quociente
-      if(pcol == 'q'){
-
-         //as 3 primeiras fases foram concluidas
-         if(f_div && f_div_1 && f_div_2 && f_div_3  ){
-
-            visorp_msg('Passo 1.2: Escolher Quociente e...');
-
-            f_div = false;
-            f_div_1 = false;
-            f_div_2 = false;
-            f_div_3 = false;
-
-            //inicia-se a proxima fase: produto
-            f_mul = true;
-            f_mul_1 = true;
-
-            //limpa as cores do dividendo e divisor e quociente
-            un_sel_dd();
-            un_sel_ds();
-            un_sel_qu();
-
-         }else{
-
-            visorp_msg('Passo 1.3: Escrever Quociente.');
-
-            //as 3 primeiras fases estão ativadas
-            if(f_div && f_div_1 && f_div_2 ){
+            //fase de divisão e seleção do dividendo está ativada
+            if(f_div && f_div_1){
 
                //f_div
                //f_div_1;
-               //f_div_2;
-               f_div_3 = true;
+               f_div_2 = false;
+               f_div_3 = false;
 
-               sel(this, ocol, pcol);
+               console.log( 'fase de divisão e seleção do dividendo está ativada');
+               
+               //seleciona o célula usando uma cor(verde)
+               dvd = sel_dd(this, ocol, pcol);
 
-               //escreve o quociente
-               $(this).html(rquo);
+            }
 
-               console.log('escreve quo:'+rquo);
+            /*
+            //fase da subtração está ativada
+            if(f_sub && f_sub_1){
 
-               exibir();
+               //f_sub
+               //f_sub_1;
+               f_sub_2 = true;
+               //f_div_3;
 
+               //seleciona o dividendo para a subtração e guarda resultado
+               rsub = sel_dds(this, ocol, pcol, rpro);
+
+
+            }*/
+
+            //a fase de baixar valores do dividendo
+            if(f_bai && f_bai_1){
+
+               visorp_msg('Passo 4.1: Escolher Novo Dividendo...');
+
+               //f_bai
+               //f_bai_1;
+               f_bai_2 = true;
+               //f_bai_3;
+
+               //remove as seleções do dividendo e dos restos
+               un_sel_dd();
+               un_sel_rr();
+
+               //seleciona valor do dividendo a ser baixado
+               dvdb = sel_dd(this, ocol, pcol);
 
             }
 
          }
 
-         //a fase da multiplicação está ativa
-         if(f_mul && f_mul_1){
+         //se clicarmos no divisor
+         if(pcol == 'ds'){
 
-            visorp_msg('Passo 2.1: Escolher Quociente e...');
+            //a fase 1 da divisão esta ativa, ou seja há números selecionados no dividendo
+            if(f_div && f_div_1){
 
-            //seleciona a célula do quociente usando uma cor(verde)
-            quop = sel_qu(this, ocol, pcol);
+               visorp_msg('Passo 1.2: Escolher Divisor e...');
 
-            //f_mul
-            //f_mul_1
-            //f_mul_2 = true;
-            //f_mul_3
-            un_sel_rr();
+               //f_div
+               //f_div_1;
+               f_div_2 = true;
+               //f_div_3
 
-            //escreve o quociente
-            // $(this).html(quo);
+               //seleciona o célula usando uma cor(verde)
+               rquo = sel_ds(this, ocol, pcol);
 
-             console.log('quop:'+quop);
+               console.log('quo divisao:'+rquo);
 
-         }
-
-      }
-
-   }
-
-   //ação baseada nas partes(dd, ds, q, r): se clicarmos na parte do resto
-   if( pcol == 'r'){
-
-      //se linha for par: escreve produto; inicia subtração com a linha superior
-      if(nlin % 2 == 0){
-
-         console.log('se linha for par: escreve produto; inicia subtração com a linha superior');
-
-         //passo 2: clicou encima do produto escrito: encerra produto e inicia a subtração
-         if(f_mul && f_mul_1 && f_mul_2 && f_mul_3  ){
-
-            visorp_msg('Passo 3.1: Fazer Subtração...');
-
-            f_mul = false;
-            f_mul_1 = false;
-            f_mul_2 = false;
-            f_mul_3 = false;
-
-            //inicia-se a proxima fase: a subtração
-            f_sub = true;
-            f_sub_1 = true;
-
-            //continue: limpar divisor, quociente
-            
-            //limpa as cores do dividendo e divisor e quociente
-            //un_sel_dd();
-            un_sel_ds();
-            un_sel_qu();
-
-            //mostra resto no visor i guarda o resultado desse produto
-            rpro = sel_rs(this, ocol, pcol, nlin);
-
-            console.log('Resultado da multiplicação:'+rpro);
-
-            console.log('fase subtração iniciada');
-
-            //f_sub
-            //f_sub_1;
-            f_sub_2 = true;
-            //f_div_3;
-
-            //seleciona o dividendo para a subtração e guarda resultado em rsub
-            //rsub = sel_dds(this, ocol, pcol, rpro);
-            rsub = sel_sub(this, ocol, pcol, nlin, rpro);
+            }
 
 
-         //passo 1: escreve o produto
-         }else{
+            //a fase 2 de escolha do quociente está ativa, ou seja, ha numeros selecionados no quociente
+            if(f_mul && f_mul_1){
 
-            //as 3 primeiras fases da multiplicação estão ativadas
-            if(f_mul && f_mul_1 && f_mul_2 ){
+               visorp_msg('Passo 2.2: Multiplicar pelo Divisor e...');
 
-               visorp_msg('Passo 2.3: Escrever produto.');
+               //seleciona a célula do divisor usando para o produto
+               dvsp = sel_dsp(this, ocol, pcol);
 
                //f_mul
-               //f_mul_1;
-               //f_mul_2;
-               f_mul_3 = true;
+               //f_mul_1
+               f_mul_2 = true;
+               //f_mul_3
 
-               sel(this, ocol, pcol);
+               //escreve o quociente
+               // $(this).html(quo);
 
-               //escreve o resto
-               //$(this).html(quo);
-               
-               //busca números do divisor selecionados
-               var dvs = get_ds();
+                console.log('dvsp:'+dvsp);
 
-               //busca números do quociente selecionados
-               var quo = get_qu();
+            }
 
-               var mult = calc_mul(dvs, quo);
+            //já deve haver um novo dividendo selecionado. vamos reiniciar o processo de divisão
+            if(f_bai && f_bai_1 && f_bai_2){
 
-               //console.log('quop multt:'+quo);
+               visorp_msg('Passo 4.3: Continuar Dividindo!!!');
 
-               console.log('mult:'+mult);
+               f_div = true;
+               f_div_1 = true;
+               f_div_2 = true;
+               //f_div_3
 
-               //preenche e seleciona una linha de resto
-               set_r(this, ocol, pcol, nlin, mult);
+               f_bai = false;
+               f_bai_1 = false;
+               f_bai_2 = false;
 
-               console.log('fase multiplicação finalizada');
+               //seleciona o dividor e retorna o resultado da divisão
+               rquo = sel_ds2(this, ocol, pcol);
+
+               console.log('resultado da divisão rquo:'+rquo);
 
             }
 
@@ -402,65 +280,230 @@ $('#tb_divisao tbody td').on('click', function() {
 
       }
 
-      //se linha for impar: escreve subtração; baixa numero do dividendo
-      if(nlin % 2 == 1){
+      //se clicarmos na linha 3
+      if(nlin == 3){
 
-         console.log('se linha for impar: escreve subtração; baixa numero do dividendo');
+         //se clicarmos no quociente
+         if(pcol == 'q'){
 
-         //inserir o resultado da subtraçao
-         if(f_sub && f_sub_1 && f_sub_2){
+            //as 3 primeiras fases foram concluidas
+            if(f_div && f_div_1 && f_div_2 && f_div_3  ){
 
-            visorp_msg('Passo 3.2: Escrever Subtração...');
+               visorp_msg('Passo 1.2: Escolher Quociente e...');
 
-            //f_sub
-            //f_sub_1
-            //f_sub_2;
-            //f_sub_3 = true;
+               f_div = false;
+               f_div_1 = false;
+               f_div_2 = false;
+               f_div_3 = false;
 
-            //vamos escrever o resultado da subtração nas colunas dos restos
-            set_rs(this, ocol, pcol, nlin, rsub);
+               //inicia-se a proxima fase: produto
+               f_mul = true;
+               f_mul_1 = true;
 
-            //finaliza subtração
-            f_sub = false;
-            f_sub_1 = false;
-            f_sub_2 = false;
-            //f_sub_3 = true;
+               //limpa as cores do dividendo e divisor e quociente
+               un_sel_dd();
+               un_sel_ds();
+               un_sel_qu();
 
-            //inicia fase de baixar valores
-            f_bai = true;
-            f_bai_1 = true;
+            }else{
+
+               visorp_msg('Passo 1.3: Escrever Quociente.');
+
+               //as 3 primeiras fases estão ativadas
+               if(f_div && f_div_1 && f_div_2 ){
+
+                  //f_div
+                  //f_div_1;
+                  //f_div_2;
+                  f_div_3 = true;
+
+                  sel(this, ocol, pcol);
+
+                  //escreve o quociente
+                  $(this).html(rquo);
+
+                  console.log('escreve quo:'+rquo);
+
+                  exibir();
+
+
+               }
+
+            }
+
+            //a fase da multiplicação está ativa
+            if(f_mul && f_mul_1){
+
+               visorp_msg('Passo 2.1: Escolher Quociente e...');
+
+               //seleciona a célula do quociente usando uma cor(verde)
+               quop = sel_qu(this, ocol, pcol);
+
+               //f_mul
+               //f_mul_1
+               //f_mul_2 = true;
+               //f_mul_3
+               un_sel_rr();
+
+               //escreve o quociente
+               // $(this).html(quo);
+
+                console.log('quop:'+quop);
+
+            }
 
          }
 
-         //baixa o valores do dividendo
-         if(f_bai && f_bai_1 && f_bai_2){
+      }
 
-            visorp_msg('Passo 4.2: Baixar Dividendo.');
+      //ação baseada nas partes(dd, ds, q, r): se clicarmos na parte do resto
+      if( pcol == 'r'){
 
-            //f_bai
-            //f_bai_1;
-            //f_bai_2 = true;
-            //f_bai_3;
+         //se linha for par: escreve produto; inicia subtração com a linha superior
+         if(nlin % 2 == 0){
 
-            //remove as seleções do dividendo e dos restos
-            un_sel_dd();
-            //un_sel_rr();
+            console.log('se linha for par: escreve produto; inicia subtração com a linha superior');
 
-            console.log('baixar o dvdb:'+dvdb);
+            //passo 2: clicou encima do produto escrito: encerra produto e inicia a subtração
+            if(f_mul && f_mul_1 && f_mul_2 && f_mul_3  ){
 
-            set(this, ocol, pcol, dvdb);
+               visorp_msg('Passo 3.1: Fazer Subtração...');
 
-            //seleciona uma linha de resto e mostra no visor
-            ndvd = sel_rs(this, ocol, pcol, nlin); //retur resto
-            dvd = ndvd;
+               f_mul = false;
+               f_mul_1 = false;
+               f_mul_2 = false;
+               f_mul_3 = false;
 
-            //seleciona valor do dividendo a ser baixado
-            //dvdb = sel_dd(this, ocol, pcol);
+               //inicia-se a proxima fase: a subtração
+               f_sub = true;
+               f_sub_1 = true;
+
+               //continue: limpar divisor, quociente
+               
+               //limpa as cores do dividendo e divisor e quociente
+               //un_sel_dd();
+               un_sel_ds();
+               un_sel_qu();
+
+               //mostra resto no visor i guarda o resultado desse produto
+               rpro = sel_rs(this, ocol, pcol, nlin);
+
+               console.log('Resultado da multiplicação:'+rpro);
+
+               console.log('fase subtração iniciada');
+
+               //f_sub
+               //f_sub_1;
+               f_sub_2 = true;
+               //f_div_3;
+
+               //seleciona o dividendo para a subtração e guarda resultado em rsub
+               //rsub = sel_dds(this, ocol, pcol, rpro);
+               rsub = sel_sub(this, ocol, pcol, nlin, rpro);
+
+
+            //passo 1: escreve o produto
+            }else{
+
+               //as 3 primeiras fases da multiplicação estão ativadas
+               if(f_mul && f_mul_1 && f_mul_2 ){
+
+                  visorp_msg('Passo 2.3: Escrever produto.');
+
+                  //f_mul
+                  //f_mul_1;
+                  //f_mul_2;
+                  f_mul_3 = true;
+
+                  sel(this, ocol, pcol);
+
+                  //escreve o resto
+                  //$(this).html(quo);
+                  
+                  //busca números do divisor selecionados
+                  var dvs = get_ds();
+
+                  //busca números do quociente selecionados
+                  var quo = get_qu();
+
+                  var mult = calc_mul(dvs, quo);
+
+                  //console.log('quop multt:'+quo);
+
+                  console.log('mult:'+mult);
+
+                  //preenche e seleciona una linha de resto
+                  set_r(this, ocol, pcol, nlin, mult);
+
+                  console.log('fase multiplicação finalizada');
+
+               }
+
+            }
 
          }
 
-         //escreve resto no span resto
-         $('#resto').html( get_rs() );
+         //se linha for impar: escreve subtração; baixa numero do dividendo
+         if(nlin % 2 == 1){
+
+            console.log('se linha for impar: escreve subtração; baixa numero do dividendo');
+
+            //inserir o resultado da subtraçao
+            if(f_sub && f_sub_1 && f_sub_2){
+
+               visorp_msg('Passo 3.2: Escrever Subtração...');
+
+               //f_sub
+               //f_sub_1
+               //f_sub_2;
+               //f_sub_3 = true;
+
+               //vamos escrever o resultado da subtração nas colunas dos restos
+               set_rs(this, ocol, pcol, nlin, rsub);
+
+               //finaliza subtração
+               f_sub = false;
+               f_sub_1 = false;
+               f_sub_2 = false;
+               //f_sub_3 = true;
+
+               //inicia fase de baixar valores
+               f_bai = true;
+               f_bai_1 = true;
+
+            }
+
+            //baixa o valores do dividendo
+            if(f_bai && f_bai_1 && f_bai_2){
+
+               visorp_msg('Passo 4.2: Baixar Dividendo.');
+
+               //f_bai
+               //f_bai_1;
+               //f_bai_2 = true;
+               //f_bai_3;
+
+               //remove as seleções do dividendo e dos restos
+               un_sel_dd();
+               //un_sel_rr();
+
+               console.log('baixar o dvdb:'+dvdb);
+
+               set(this, ocol, pcol, dvdb);
+
+               //seleciona uma linha de resto e mostra no visor
+               ndvd = sel_rs(this, ocol, pcol, nlin); //retur resto
+               dvd = ndvd;
+
+               //seleciona valor do dividendo a ser baixado
+               //dvdb = sel_dd(this, ocol, pcol);
+
+            }
+
+            //escreve resto no span resto
+            $('#resto').html( get_rs() );
+
+         }
 
       }
 
@@ -469,6 +512,25 @@ $('#tb_divisao tbody td').on('click', function() {
 });
 
 var rgbb = 'rgb(255, 255, 255)';
+
+
+function keyPressed(evt){
+    evt = evt || window.event;
+    var key = evt.keyCode || evt.which;
+    return String.fromCharCode(key); 
+}
+
+document.onkeypress = function(evt) {
+    var str = keyPressed(evt);
+    console.log('tecla pressionada:'+str);
+    if(escreva){
+         console.log('escrevendo...:'+str);
+         var clas = '.l.2 > .m.r';
+         set_num_cl(clas, escr_ocol, escr_pcol, str);
+
+    }
+};
+
 
 function set(_this, ocol, pcol, num){
    
@@ -632,6 +694,19 @@ function set_num(num, parte){
 
 }
 
+//secreve na celula da tabela. recebe uma string que representa classes
+function set_num_cl(clas, ocol, pcol, num){
+   
+   $(clas).text(num);
+
+   //if( $(clas).text() != '' ){
+      
+      //$(clas).html(num);
+
+   //}
+
+}
+
 //recebe um objeto jquery _this
 function sel(_this, ocol, pcol){
    
@@ -677,6 +752,54 @@ function sel(_this, ocol, pcol){
             
       }
    }
+
+}
+
+//recebe um objeto jquery _this e seleciona, mesmo estando vazio
+function selv(_this, ocol, pcol){
+   
+   var rgb = 'rgb(0, 255, 64)';
+   
+   //if( $(_this).text() != '' ){
+      
+      //cor está ativa: desativa
+      if( _this.style.backgroundColor == rgb ){
+         
+         if(ocol == 'm'){
+            
+            if(pcol == 'ds'){
+               _this.style.backgroundColor = rgbb; 
+            }else{
+               _this.style.backgroundColor = corf_mil;   
+            }
+               
+         }
+         
+         if(ocol == 'c'){
+
+            if(pcol == 'ds'){
+               _this.style.backgroundColor = rgbb; 
+            }else{
+               _this.style.backgroundColor = corf_cen;   
+            }
+
+         }
+
+         if(ocol == 'd'){
+            _this.style.backgroundColor = corf_dez;   
+         }
+
+         if(ocol == 'u'){
+            _this.style.backgroundColor = corf_uni;   
+         }
+         
+      //cor não está ativa: ativa
+      }else{
+         
+         _this.style.backgroundColor = corf_ativo;
+            
+      }
+   //}
 
 }
 
