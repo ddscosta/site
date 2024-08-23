@@ -54,6 +54,7 @@ var solo = true;
    //guarda a ordem(m,c,d,u) e a parte(dd, ds, r, q) clicada para escrever o que o aluno digitar
    var escr_ocol = '';
    var escr_pcol = '';
+   var escr_nlin = '';
 
    //sinal que permite o evento do teclado escrever na celula referenciada por escr_ocol e escr_pcol
    var escreva = false;
@@ -115,6 +116,7 @@ $('#tb_divisao tbody td').on('click', function() {
       //guarda a ordem e a parte clicada para inserir valores digitado pelo usuario
       escr_ocol = ocol;
       escr_pcol = pcol;
+      escr_nlin = nlin;
 
       console.log( 'ordem(ocol): '+ocol );
 
@@ -514,20 +516,45 @@ $('#tb_divisao tbody td').on('click', function() {
 var rgbb = 'rgb(255, 255, 255)';
 
 
-function keyPressed(evt){
+// function keyPressed(evt){
+//     evt = evt || window.event;
+//     var key = evt.keyCode || evt.which;
+//     console.log('tecla:'+key);
+//     return key;
+//     //return String.fromCharCode(key); 
+// }
+
+document.onkeydown = function(evt) {
     evt = evt || window.event;
     var key = evt.keyCode || evt.which;
-    return String.fromCharCode(key); 
-}
+    console.log('tecla:'+key);
+    
+    //var k = keyPressed(evt);
+    var str = String.fromCharCode(key);
 
-document.onkeypress = function(evt) {
-    var str = keyPressed(evt);
+    console.log('codigo da tecla:'+key);
+
     console.log('tecla pressionada:'+str);
     if(escreva){
          console.log('escrevendo...:'+str);
-         var clas = '.l.2 > .m.r';
-         set_num_cl(clas, escr_ocol, escr_pcol, str);
-
+         var clas = '.l.'+escr_nlin+' > .'+escr_ocol+'.'+escr_pcol;
+         console.log('na classe:'+clas);
+         //0=48 9=57
+         //tecla delete ou backspace pressionada
+         if(key == 46 || key == 8){
+            set_num_cl(clas, escr_ocol, escr_pcol, '');   
+         }else{
+            //permite apenas caractere de 0 a 9
+            if(key > 47 && key < 58){
+               set_num_cl(clas, escr_ocol, escr_pcol, str);   
+            }
+               
+         }
+         
+         exibir();
+         //escreve resto no span resto
+         $('#resto').html( get_rs() );
+         
     }
 };
 
