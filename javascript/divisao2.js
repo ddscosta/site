@@ -113,10 +113,13 @@ $('#tb_divisao tbody td').on('click', function() {
          pcol = '';
       }
 
-      //guarda a ordem e a parte clicada para inserir valores digitado pelo usuario
-      escr_ocol = ocol;
-      escr_pcol = pcol;
-      escr_nlin = nlin;
+      //guarda a ordem e a parte clicada para inserir valores digitado pelo usuario, apenas se for r>1 e q
+      if(pcol=='r' || pcol=='q'){
+         escr_ocol = ocol;
+         escr_pcol = pcol;
+         escr_nlin = nlin;
+      }
+      
 
       console.log( 'ordem(ocol): '+ocol );
 
@@ -557,6 +560,27 @@ document.onkeydown = function(evt) {
          
     }
 };
+
+//escreve número na td ativa atraves dos numeros disponivel mostrados ao usuario
+function tecl(num){
+
+   //se num=1 este será o valor inserido na td ativa
+   console.log('tlec:escrevendo...:'+num);
+   var clas = '.l.'+escr_nlin+' > .'+escr_ocol+'.'+escr_pcol;
+   console.log('tlec:na classe:'+clas);
+
+   if(num == 'limp'){
+      set_num_cl(clas, escr_ocol, escr_pcol, ''); 
+   }else{
+      set_num_cl(clas, escr_ocol, escr_pcol, num); 
+   }
+
+   exibir();
+   //escreve resto no span resto
+   $('#resto').html( get_rs() );
+
+
+}
 
 
 function set(_this, ocol, pcol, num){

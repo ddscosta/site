@@ -1576,3 +1576,8 @@ table tr td.ds3{
 	border-top: solid black;
 	
 }
+
+#btn_limp{
+	min-width: 100%;
+	min-height: 70px;
+}
