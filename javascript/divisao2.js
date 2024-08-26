@@ -24,7 +24,7 @@ var ocol = ''; // m, c, d, u, ''
 var pcol = ''; // dd, ds, q, r, ''
 
 //permite o aluno fazer a divisão sem ajuda (automação de tabuada)
-var solo = true;
+var solo = false;
 
 //resultados parciais ao clicar nas celulas
    //dividendo inicial
@@ -2102,6 +2102,17 @@ function animm(){
    }
    console.log('animar:'+animar);
 
+}
+
+function fsolo(){
+   var soloo = document.getElementById('solo_id').checked;
+
+   if(soloo){
+      solo = true;
+   }else{
+      solo = false;
+   }
+   console.log('soloo:'+soloo);
 }
 
 function verificar(){
