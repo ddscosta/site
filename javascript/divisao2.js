@@ -2000,15 +2000,15 @@ function openNav(){
 
    var nome_aln = document.getElementById("nome_aln");
 
-   var nome_aluno_divi2 = '';
-   var nome_aluno_sec_divi2 = '';
+   var nome_aluno_divi = '';
+   var nome_aluno_sec_divi = '';
    
    /*pega o nome do input*/
    if(nome_aln != null){
       
-      nome_aluno_divi2 = nome_aln.value;     
+      nome_aluno_divi = nome_aln.value;     
       
-      console.log('nome no input: ' + nome_aluno_divi2);
+      console.log('nome no input: ' + nome_aluno_divi);
    }else{
    
       console.log('nome null no input');
@@ -2023,27 +2023,27 @@ function openNav(){
       flutua.style.display = 'block';
       
       /*recupera nome da sessao*/
-      if(localStorage.getItem("nome_aluno_divi2") != null){
+      if(localStorage.getItem("nome_aluno_divi") != null){
       
-         nome_aluno_sec_divi2 = localStorage.getItem("nome_aluno_divi2");
+         nome_aluno_sec_divi = localStorage.getItem("nome_aluno_divi");
          
-         document.getElementById("nome_aln").value = nome_aluno_sec_divi2;
+         document.getElementById("nome_aln").value = nome_aluno_sec_divi;
 
          /*antes de inserir o nome da secao no input verifica se sao iguais*/
-         // if( nome_aluno_sec_divi2 == nome_aluno_divi2 ){
+         // if( nome_aluno_sec_divi == nome_aluno_divi ){
          
-         //    document.getElementById("nome_aln").value = nome_aluno_sec_divi2;
+         //    document.getElementById("nome_aln").value = nome_aluno_sec_divi;
          
          // }else{
             
-         //    if ( confirm('Apagar Histórico de ' + nome_aluno_sec_divi2 + '?') ) {
+         //    if ( confirm('Apagar Histórico de ' + nome_aluno_sec_divi + '?') ) {
          //       limpar_hist();
-         //       document.getElementById("nome_aln").value = nome_aluno_sec_divi2;
+         //       document.getElementById("nome_aln").value = nome_aluno_sec_divi;
          //    }
 
          // }
          
-         console.log('nome recuperado da secao: ' + nome_aluno_sec_divi2);
+         console.log('nome recuperado da secao: ' + nome_aluno_sec_divi);
       
       }else{
          
@@ -2056,32 +2056,32 @@ function openNav(){
       
       flutua.style.display = 'none';
 
-      if(nome_aluno_divi2 != ''){
+      if(nome_aluno_divi != ''){
 
-         if(localStorage.getItem("nome_aluno_divi2") != null){
+         if(localStorage.getItem("nome_aluno_divi") != null){
          
-            nome_aluno_sec_divi2 = localStorage.getItem("nome_aluno_divi2");
+            nome_aluno_sec_divi = localStorage.getItem("nome_aluno_divi");
          
          }
 
          /*antes de inserir o nome do input na secao verifica se sao iguais*/
-         if( nome_aluno_sec_divi2 == nome_aluno_divi2 ){
+         if( nome_aluno_sec_divi == nome_aluno_divi ){
          
             /*nomes iguais não há necessidade de escluir dados*/
            
          }else{
             
             /*se nao apagar os dados, eles são incorporados ao novo nome*/
-            // if ( confirm('Apagar Histórico de ' + nome_aluno_sec_divi2 + '?') ) {
+            // if ( confirm('Apagar Histórico de ' + nome_aluno_sec_divi + '?') ) {
             //    limpar_hist();
             // }
 
          }
 
          /*apagando ou nao os dados do historico, o nome vai mudar*/
-         localStorage.setItem("nome_aluno_divi2", nome_aluno_divi2);
+         localStorage.setItem("nome_aluno_divi", nome_aluno_divi);
 
-         console.log('salvou nome na secao: ' + nome_aluno_divi2); 
+         console.log('salvou nome na secao: ' + nome_aluno_divi); 
 
       }else{
          console.log('NAO salvou nome na secao'); 
@@ -2194,14 +2194,35 @@ function info(){
    triste.style.display = 'none';
 }
 
-function get_obj_conta_divi2(){
+function get_obj_conta_divi(){
 
-   var num1 = parseInt( get_dd(), 10);
-   var num2 = parseInt( get_ds(), 10);
-   var numr = parseInt( get_qu(), 10);
+   
+   var num1 = parseInt( get_ddi(), 10);
+   var num2 = parseInt( get_dsi(), 10);
+   var numr = parseInt( get_rs(), 10 );
+   var numq = parseInt( get_qui(), 10);
 
-   var obj_conta = { num1: num1, num2: num2, numr: numr };
+   if(isNaN( numq )){
+      numq = 0;
+   }
+   if(isNaN( numr )){
+      numr = 0;
+   }
+   if(isNaN( num1 )){
+      num1 = 0;
+   }
+   if(isNaN( num2 )){
+      num2 = 0;
+   }
+   console.log('num1 obj_conta:'+num1);
+   console.log('num2 obj_conta:'+num2);
+   console.log('numq obj_conta:'+numq);
+   console.log('numr obj_conta:'+numr);
 
+   var obj_conta = { num1: num1, num2: num2, numr: numr, numq: numq };
+   
+   //console.log('obj_conta:'+obj_conta);
+   
    return obj_conta;
 
 }
@@ -2223,9 +2244,9 @@ function pontuacao(tipo){
    var txt_erros = '';
    var txt_pulos = '';
 
-   var pont = localStorage.getItem("pontos_divi2");
-   var loc_err = localStorage.getItem("erros_divi2");
-   var loc_pul = localStorage.getItem("pulos_divi2");
+   var pont = localStorage.getItem("pontos_divi");
+   var loc_err = localStorage.getItem("erros_divi");
+   var loc_pul = localStorage.getItem("pulos_divi");
 
    var ponti = parseInt(pont, 10);
    var loc_erri = parseInt(loc_err, 10);
@@ -2238,23 +2259,26 @@ function pontuacao(tipo){
    console.log('ponti1:' + ponti);
 
 
-   if(JSON.parse(localStorage.getItem("arr_obj_err_divi2")) != null){
-       arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_divi2"));
+   if(JSON.parse(localStorage.getItem("arr_obj_err_divi")) != null){
+       arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_divi"));
    }
-   if(JSON.parse(localStorage.getItem("arr_obj_acer_divi2")) != null){
-       arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_divi2"));
+   if(JSON.parse(localStorage.getItem("arr_obj_acer_divi")) != null){
+       arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_divi"));
    }
-   if(JSON.parse(localStorage.getItem("arr_obj_pul_divi2")) != null){
-       arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_divi2"));
+   if(JSON.parse(localStorage.getItem("arr_obj_pul_divi")) != null){
+       arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_divi"));
    }
 
    // console.log('arr_txt_err secao: ' + arr_obj_err);
    // console.log('arr_txt_acer secao: ' + arr_obj_acer);
    // console.log('arr_txt_pul secao: ' + arr_obj_pul);
 
-   var obj_conta = get_obj_conta_divi2();
+   var obj_conta = get_obj_conta_divi();
 
-   console.log('obj_conta: ' + obj_conta);
+   console.log('obj_conta obtida da tabela n1: ' + obj_conta.num1);
+   console.log('obj_conta obtida da tabela n2: ' + obj_conta.num2);
+   console.log('obj_conta obtida da tabela qu: ' + obj_conta.numq);
+   console.log('obj_conta obtida da tabela rs: ' + obj_conta.numr);
 
    /*TIPO QUE GANHA PONTOS*/
    if(tipo == 'mais'){
@@ -2333,17 +2357,17 @@ function pontuacao(tipo){
    console.log('loc_erri:' + loc_erri);
    console.log('loc_puli:' + loc_puli);
 
-   localStorage.setItem("pontos_divi2", ponti);
-   localStorage.setItem("erros_divi2", loc_erri);
-   localStorage.setItem("pulos_divi2", loc_puli);
+   localStorage.setItem("pontos_divi", ponti);
+   localStorage.setItem("erros_divi", loc_erri);
+   localStorage.setItem("pulos_divi", loc_puli);
 
-   localStorage.setItem("arr_obj_err_divi2", JSON.stringify(arr_obj_err));
-   localStorage.setItem("arr_obj_acer_divi2", JSON.stringify(arr_obj_acer));
-   localStorage.setItem("arr_obj_pul_divi2", JSON.stringify(arr_obj_pul));
+   localStorage.setItem("arr_obj_err_divi", JSON.stringify(arr_obj_err));
+   localStorage.setItem("arr_obj_acer_divi", JSON.stringify(arr_obj_acer));
+   localStorage.setItem("arr_obj_pul_divi", JSON.stringify(arr_obj_pul));
 
-   var tempo_divi2 = document.getElementById("relg").innerText;
+   var tempo_divi = document.getElementById("relg").innerText;
 
-   localStorage.setItem("tempo_divi2", tempo_divi2);
+   localStorage.setItem("tempo_divi", tempo_divi);
    
    imprimir_hist();
 
@@ -2351,15 +2375,15 @@ function pontuacao(tipo){
 
 function verificaStorage(){
    var pon = 0;
-   var pont = localStorage.getItem("pontos_divi2");
+   var pont = localStorage.getItem("pontos_divi");
    var ponti = parseInt(pont, 10);
 
    var pon_err = 0;
-   var pont_err = localStorage.getItem("erros_divi2");
+   var pont_err = localStorage.getItem("erros_divi");
    var ponti_err = parseInt(pont_err, 10);
 
    var pon_pul = 0;
-   var pont_pul = localStorage.getItem("pulos_divi2");
+   var pont_pul = localStorage.getItem("pulos_divi");
    var ponti_pul = parseInt(pont_pul, 10);
 
    //tipo:mais, menos, zera, null;
@@ -2395,41 +2419,41 @@ function verificaStorage(){
 
 function imprimir_hist(){
 
-   // if(JSON.parse(localStorage.getItem("arr_obj_err_divi2")) != null){
-   //     arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_divi2"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_err_divi")) != null){
+   //     arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_divi"));
    // }
-   // if(JSON.parse(localStorage.getItem("arr_obj_acer_divi2")) != null){
-   //     arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_divi2"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_acer_divi")) != null){
+   //     arr_obj_acer = JSON.parse(localStorage.getItem("arr_obj_acer_divi"));
    // }
-   // if(JSON.parse(localStorage.getItem("arr_obj_pul_divi2")) != null){
-   //     arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_divi2"));
+   // if(JSON.parse(localStorage.getItem("arr_obj_pul_divi")) != null){
+   //     arr_obj_pul = JSON.parse(localStorage.getItem("arr_obj_pul_divi"));
    // }
 
-   if (localStorage.hasOwnProperty("arr_obj_err_divi2")) {
+   if (localStorage.hasOwnProperty("arr_obj_err_divi")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_err_divi2") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_err_divi") ).forEach(objconta => {
       
-         console.log('Erro: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+         console.log('Erro: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')'  );
 
       }); 
 
    }
 
-   if (localStorage.hasOwnProperty("arr_obj_acer_divi2")) {
+   if (localStorage.hasOwnProperty("arr_obj_acer_divi")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_acer_divi2") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_acer_divi") ).forEach(objconta => {
       
-         console.log('Acerto: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+         console.log('Acerto: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')'  );
 
       }); 
 
    }
 
-   if (localStorage.hasOwnProperty("arr_obj_pul_divi2")) {
+   if (localStorage.hasOwnProperty("arr_obj_pul_divi")) {
       
-      JSON.parse( localStorage.getItem("arr_obj_pul_divi2") ).forEach(objconta => {
+      JSON.parse( localStorage.getItem("arr_obj_pul_divi") ).forEach(objconta => {
       
-         console.log('Pulo: ' + objconta.num1 + ' - ' + objconta.num2 + ' = ' + objconta.numr );
+         console.log('Pulo: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')'  );
 
       }); 
 
@@ -2658,58 +2682,58 @@ function aviso_dados(){
 
    var titulo = document.getElementById("principal");
 
-   var parse_err_divi2_st = false;
-   var parse_acer_divi2_st = false;
-   var parse_pul_divi2_st = false;
+   var parse_err_divi_st = false;
+   var parse_acer_divi_st = false;
+   var parse_pul_divi_st = false;
 
-    if (localStorage.hasOwnProperty("arr_obj_err_divi2")) {
+    if (localStorage.hasOwnProperty("arr_obj_err_divi")) {
          
-         var parse_err_divi2 = JSON.parse( localStorage.getItem("arr_obj_err_divi2") );
+         var parse_err_divi = JSON.parse( localStorage.getItem("arr_obj_err_divi") );
 
-         if(parse_err_divi2 != null && parse_err_divi2.length > 0){
-             parse_err_divi2_st = true;
-             console.log(parse_err_divi2);
+         if(parse_err_divi != null && parse_err_divi.length > 0){
+             parse_err_divi_st = true;
+             console.log(parse_err_divi);
          }
     }
             
-   if (localStorage.hasOwnProperty("arr_obj_acer_divi2")) {
+   if (localStorage.hasOwnProperty("arr_obj_acer_divi")) {
          
-         var parse_acer_divi2 = JSON.parse( localStorage.getItem("arr_obj_acer_divi2") );
+         var parse_acer_divi = JSON.parse( localStorage.getItem("arr_obj_acer_divi") );
 
-         if(parse_acer_divi2 != null && parse_acer_divi2.length > 0){
-             parse_acer_divi2_st = true;
-             console.log(parse_acer_divi2);
+         if(parse_acer_divi != null && parse_acer_divi.length > 0){
+             parse_acer_divi_st = true;
+             console.log(parse_acer_divi);
          }
     }
 
-   if (localStorage.hasOwnProperty("arr_obj_pul_divi2")) {
+   if (localStorage.hasOwnProperty("arr_obj_pul_divi")) {
          
-         var parse_pul_divi2 = JSON.parse( localStorage.getItem("arr_obj_pul_divi2") );
+         var parse_pul_divi = JSON.parse( localStorage.getItem("arr_obj_pul_divi") );
 
-         if(parse_pul_divi2 != null && parse_pul_divi2.length > 0){
-             parse_pul_divi2_st = true;
-             console.log(parse_pul_divi2);
+         if(parse_pul_divi != null && parse_pul_divi.length > 0){
+             parse_pul_divi_st = true;
+             console.log(parse_pul_divi);
          }
    }
 
-   var mult_pt = localStorage.getItem("pontos_divi2");
-   var mult_er = localStorage.getItem("erros_divi2");
-   var mult_pu = localStorage.getItem("pulos_divi2");
+   var mult_pt = localStorage.getItem("pontos_divi");
+   var mult_er = localStorage.getItem("erros_divi");
+   var mult_pu = localStorage.getItem("pulos_divi");
 
    var mult_pt_i = parseInt(mult_pt, 10);
    var mult_er_i = parseInt(mult_er, 10);
    var mult_pu_i = parseInt(mult_pu, 10);
 
    //caso haja dados no histórico ou pontos acumulado altera-se a cor de fundo do titulo amarelo como aviso
-   if( parse_err_divi2_st ||  parse_acer_divi2_st || parse_pul_divi2_st || mult_pt_i > 0 || mult_er_i > 0 || mult_pu_i > 0 ){
+   if( parse_err_divi_st ||  parse_acer_divi_st || parse_pul_divi_st || mult_pt_i > 0 || mult_er_i > 0 || mult_pu_i > 0 ){
         titulo.style.background = "#dfdf7f";
    }else{
        titulo.style.background = "#97e697";
    }
 
-   console.log('Erros? '+parse_err_divi2_st);
-   console.log('Acertos? '+parse_acer_divi2_st);
-   console.log('Pulos? '+parse_pul_divi2_st);
+   console.log('Erros? '+parse_err_divi_st);
+   console.log('Acertos? '+parse_acer_divi_st);
+   console.log('Pulos? '+parse_pul_divi_st);
    
 }
 
@@ -2718,9 +2742,9 @@ function resetar(){
 
    if ( confirm('Apagar Pontos Erros e Pulos?') ) {
 
-      localStorage.setItem("pontos_divi2", 0);
-      localStorage.setItem("erros_divi2", 0);
-      localStorage.setItem("pulos_divi2", 0);
+      localStorage.setItem("pontos_divi", 0);
+      localStorage.setItem("erros_divi", 0);
+      localStorage.setItem("pulos_divi", 0);
       verificaStorage();
 
       console.log('Dados Apagados');
@@ -2735,9 +2759,9 @@ function resetar_noconfirm(){
    console.log('Apagando os dados de sessão exibidos no html sem confirmação');
 
       //zera os dados na sessão
-      localStorage.setItem("pontos_divi2", 0);
-      localStorage.setItem("erros_divi2", 0);
-      localStorage.setItem("pulos_divi2", 0);
+      localStorage.setItem("pontos_divi", 0);
+      localStorage.setItem("erros_divi", 0);
+      localStorage.setItem("pulos_divi", 0);
       
       //pega os dados da sessão e escreve no html
       verificaStorage();
@@ -2746,9 +2770,9 @@ function resetar_noconfirm(){
 
 function limpar_hist(){
 
-   localStorage.setItem("arr_obj_err_divi2", null);
-   localStorage.setItem("arr_obj_acer_divi2", null);
-   localStorage.setItem("arr_obj_pul_divi2", null);
+   localStorage.setItem("arr_obj_err_divi", null);
+   localStorage.setItem("arr_obj_acer_divi", null);
+   localStorage.setItem("arr_obj_pul_divi", null);
 
 }
 
@@ -2969,4 +2993,170 @@ function rmmenos() {
 
    exibir();
 
+}
+
+function prepara_impr(){
+
+   if(localStorage.getItem("nome_aluno_divi") != null){
+      
+      nome_aluno_divi = localStorage.getItem("nome_aluno_divi");
+   
+      document.getElementById("nome_aln").value = nome_aluno_divi;
+   
+      console.log('nome recuperado da secao: ' + nome_aluno_divi);
+   
+   }
+
+   if(localStorage.getItem("tempo_divi") != null){
+      
+      tempo_divi = localStorage.getItem("tempo_divi");
+   
+      document.getElementById("tempo_divi").innerText = tempo_divi;
+   
+      console.log('tempo recuperado da secao: ' + tempo_divi);
+   
+   }
+    
+   var query = location.search.slice(1);
+   var partes = query.split('&');
+   var chave = '';
+   var valor = '';
+   partes.forEach(function (parte) {
+       var chaveValor = parte.split('=');
+       chave = chaveValor[0];
+       valor = chaveValor[1];
+   });
+
+   console.log("chave: " + chave + " >> valor: " + valor); 
+
+   // if(chave == 'del'){
+   //    if(confirm('Apagar histórico de impressão?')){
+   //       limpar_hist();
+   //    }
+   // }
+
+   var erros = document.getElementById('erros');
+   var pulos = document.getElementById('pulos');
+   var acertos = document.getElementById('acertos');
+
+   var erros_lin = document.getElementById('erros_lin');
+   var pulos_lin = document.getElementById('pulos_lin');
+   var acertos_lin = document.getElementById('acertos_lin');
+
+   var n_err = document.getElementById('n_err');
+   var n_pul = document.getElementById('n_pul');
+   var n_ace = document.getElementById('n_ace');
+   var n_err_lin = document.getElementById('n_err_lin');
+   var n_pul_lin = document.getElementById('n_pul_lin');
+   var n_ace_lin = document.getElementById('n_ace_lin');
+
+   var html_err = '';
+   var html_ace = '';
+   var html_pul = '';
+
+   var html_err_lin = '';
+   var html_ace_lin = '';
+   var html_pul_lin = '';
+
+   if (localStorage.hasOwnProperty("arr_obj_err_divi")) {
+      
+      var parse = JSON.parse( localStorage.getItem("arr_obj_err_divi") );
+
+      if(parse != null){
+
+         n_err.innerText = "("+parse.length+")";
+         n_err_lin.innerText = "("+parse.length+")";
+   
+         parse.forEach(objconta => {
+            
+            /*não será impresso os valores*/
+            if(chave=='his' && valor=='1'){
+
+               html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
+               html_err_lin = html_err_lin + "<li>"+objconta.num2+" \u00F7 "+objconta.num1+"</li>";
+
+            }else{
+
+               html_err = html_err + "<div class=\"conta\"><span>"+objconta.num2+"</span>&nbsp;&nbsp;<span>"+objconta.num1+"</span><span class=\"sinal\">|_</span><hr><span>"+objconta.numq+"</span></div>";
+               html_err_lin = html_err_lin + "<li>"+objconta.num2+" \u00F7 "+objconta.num1+" = "+objconta.numr+"</li>";
+            
+            }
+            console.log('Erro: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq +'(resto: '+ objconta.numq+')' );
+
+         }); 
+
+      }
+
+      erros.innerHTML = html_err;
+      erros_lin.innerHTML = '<ol>'+html_err_lin+'</ol>';
+
+   }
+
+   if (localStorage.hasOwnProperty("arr_obj_acer_divi")) {
+      
+      var parse = JSON.parse( localStorage.getItem("arr_obj_acer_divi") );
+
+      if(parse != null){
+
+         n_ace.innerText = "("+parse.length+")";
+         n_ace_lin.innerText = "("+parse.length+")";
+
+         parse.forEach(objconta => {
+            
+            /*não será impresso os valores*/
+            if(chave=='his' && valor=='1'){
+
+               html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
+               html_ace_lin = html_ace_lin + "<li>"+objconta.num2+" x "+objconta.num1+"</li>";
+            
+            }else{
+
+               html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span>"+objconta.numr+"</span></div>";
+               html_ace_lin = html_ace_lin + "<li>"+objconta.num2+" x "+objconta.num1+" = "+objconta.numr+"</li>";
+               
+            }
+            console.log('Acerto: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq +'(resto: '+ objconta.numq+')' );
+
+         }); 
+
+      }
+
+      acertos.innerHTML = html_ace;
+      acertos_lin.innerHTML = '<ol>'+html_ace_lin+'</ol>';
+
+   }
+
+   if (localStorage.hasOwnProperty("arr_obj_pul_divi")) {
+      
+      var parse = JSON.parse( localStorage.getItem("arr_obj_pul_divi") );
+
+      if(parse != null){
+
+         n_pul.innerText = "("+parse.length+")";
+         n_pul_lin.innerText = "("+parse.length+")";
+
+         parse.forEach(objconta => {
+         
+            /*não será impresso os valores*/
+            if(chave=='his' && valor=='1'){
+
+               html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
+               html_pul_lin = html_pul_lin + "<li>"+objconta.num2+" x "+objconta.num1+"</li>";
+            
+            }else{
+            
+               html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span>"+objconta.numr+"</span></div>";
+               html_pul_lin = html_pul_lin + "<li>"+objconta.num2+" x "+objconta.num1+" = "+objconta.numr+"</li>";
+
+            }
+            console.log('Pulo: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq +'(resto: '+ objconta.numq+')' );
+
+         });
+
+      } 
+
+      pulos.innerHTML = html_pul;
+      pulos_lin.innerHTML = '<ol>'+html_pul_lin+'</ol>';
+
+   }
 }
