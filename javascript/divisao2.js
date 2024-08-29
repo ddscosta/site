@@ -2212,6 +2212,7 @@ function get_obj_conta_divi(){
    var num2 = parseInt( get_dsi(), 10);
    var numr = parseInt( get_rs(), 10 );
    var numq = parseInt( get_qui(), 10);
+   var html = $('#subtracao').html();
 
    if(isNaN( numq )){
       numq = 0;
@@ -2230,7 +2231,7 @@ function get_obj_conta_divi(){
    console.log('numq obj_conta:'+numq);
    console.log('numr obj_conta:'+numr);
 
-   var obj_conta = { num1: num1, num2: num2, numr: numr, numq: numq };
+   var obj_conta = { num1: num1, num2: num2, numr: numr, numq: numq, html: html };
    
    //console.log('obj_conta:'+obj_conta);
    
@@ -2290,6 +2291,7 @@ function pontuacao(tipo){
    console.log('obj_conta obtida da tabela n2: ' + obj_conta.num2);
    console.log('obj_conta obtida da tabela qu: ' + obj_conta.numq);
    console.log('obj_conta obtida da tabela rs: ' + obj_conta.numr);
+   console.log('obj_conta obtida da tabela html: ' + obj_conta.html);
 
    /*TIPO QUE GANHA PONTOS*/
    if(tipo == 'mais'){
@@ -2444,7 +2446,7 @@ function imprimir_hist(){
       
       JSON.parse( localStorage.getItem("arr_obj_err_divi") ).forEach(objconta => {
       
-         console.log('Erro: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')'  );
+         console.log('Erro: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')' + ' html: '+ objconta.html  );
 
       }); 
 
@@ -2454,7 +2456,7 @@ function imprimir_hist(){
       
       JSON.parse( localStorage.getItem("arr_obj_acer_divi") ).forEach(objconta => {
       
-         console.log('Acerto: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')'  );
+         console.log('Acerto: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')' + ' html: '+ objconta.html );
 
       }); 
 
@@ -2464,7 +2466,7 @@ function imprimir_hist(){
       
       JSON.parse( localStorage.getItem("arr_obj_pul_divi") ).forEach(objconta => {
       
-         console.log('Pulo: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')'  );
+         console.log('Pulo: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq + ' (resto: '+ objconta.numr+')' + ' html: '+ objconta.html );
 
       }); 
 
@@ -3083,14 +3085,18 @@ function prepara_impr(){
             /*não será impresso os valores*/
             if(chave=='his' && valor=='1'){
 
-               html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
-               html_err_lin = html_err_lin + "<li>"+objconta.num2+" \u00F7 "+objconta.num1+"</li>";
+               //html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
+               //html_err_lin = html_err_lin + "<li>"+objconta.num2+" \u00F7 "+objconta.num1+"</li>";
+
+               html_err = html_err + objconta.html;
 
             }else{
 
-               html_err = html_err + "<div class=\"conta\"><span>"+objconta.num2+"</span>&nbsp;&nbsp;<span>"+objconta.num1+"</span><span class=\"sinal\">|_</span><hr><span>"+objconta.numq+"</span></div>";
-               html_err_lin = html_err_lin + "<li>"+objconta.num2+" \u00F7 "+objconta.num1+" = "+objconta.numr+"</li>";
+               //html_err = html_err + "<div class=\"conta\"><span>"+objconta.num2+"</span>&nbsp;&nbsp;<span>"+objconta.num1+"</span><span class=\"sinal\">|_</span><hr><span>"+objconta.numq+"</span></div>";
+               //html_err_lin = html_err_lin + "<li>"+objconta.num2+" \u00F7 "+objconta.num1+" = "+objconta.numr+"</li>";
             
+               html_err = html_err + objconta.html;
+
             }
             console.log('Erro: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq +'(resto: '+ objconta.numq+')' );
 
@@ -3117,13 +3123,17 @@ function prepara_impr(){
             /*não será impresso os valores*/
             if(chave=='his' && valor=='1'){
 
-               html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
-               html_ace_lin = html_ace_lin + "<li>"+objconta.num2+" x "+objconta.num1+"</li>";
-            
+               //html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
+               //html_ace_lin = html_ace_lin + "<li>"+objconta.num2+" x "+objconta.num1+"</li>";
+               
+               html_ace = html_ace + objconta.html;
+
             }else{
 
-               html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span>"+objconta.numr+"</span></div>";
-               html_ace_lin = html_ace_lin + "<li>"+objconta.num2+" x "+objconta.num1+" = "+objconta.numr+"</li>";
+               //html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span>"+objconta.numr+"</span></div>";
+               //html_ace_lin = html_ace_lin + "<li>"+objconta.num2+" x "+objconta.num1+" = "+objconta.numr+"</li>";
+               
+               html_ace = html_ace + objconta.html;
                
             }
             console.log('Acerto: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq +'(resto: '+ objconta.numq+')' );
@@ -3151,13 +3161,17 @@ function prepara_impr(){
             /*não será impresso os valores*/
             if(chave=='his' && valor=='1'){
 
-               html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
-               html_pul_lin = html_pul_lin + "<li>"+objconta.num2+" x "+objconta.num1+"</li>";
-            
+               //html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
+               //html_pul_lin = html_pul_lin + "<li>"+objconta.num2+" x "+objconta.num1+"</li>";
+               
+               html_pul = html_pul + objconta.html;
+
             }else{
             
-               html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span>"+objconta.numr+"</span></div>";
-               html_pul_lin = html_pul_lin + "<li>"+objconta.num2+" x "+objconta.num1+" = "+objconta.numr+"</li>";
+               //html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span>"+objconta.numr+"</span></div>";
+               //html_pul_lin = html_pul_lin + "<li>"+objconta.num2+" x "+objconta.num1+" = "+objconta.numr+"</li>";
+
+               html_pul = html_pul + objconta.html;
 
             }
             console.log('Pulo: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq +'(resto: '+ objconta.numq+')' );
