@@ -1563,6 +1563,30 @@ function get_rs(){
    return rtemp;
 }
 
+//retorna a classe da ultima linha preenchida dos restos
+function get_rs_cls(){
+   
+   var rtemp = null;
+
+   var lin = '';
+
+   for (var i = 9; i > 1; i--) {
+
+      rtemp = get_r(i);
+      
+      console.log('rtemp:'+rtemp);
+
+      if(!isNaN(rtemp)){
+         console.log('rtemp_in:'+rtemp);
+         lin = i;
+         break;
+      }
+
+   }
+
+   return lin;
+}
+
 //recebe duas string e retorna o resultado inteiro da divisão
 function calc_quo(dvd, dvs){
    
@@ -2205,7 +2229,7 @@ function info(){
    triste.style.display = 'none';
 }
 
-function get_obj_conta_divi(){
+function get_obj_conta_divi(tipo){
 
    
    var num1 = parseInt( get_ddi(), 10);
@@ -2214,6 +2238,8 @@ function get_obj_conta_divi(){
    var numq = parseInt( get_qui(), 10);
    var html = $('#subtracao').html();
 
+   //tipo: mais, menos, menos_pulo
+  
    if(isNaN( numq )){
       numq = 0;
    }
@@ -2231,7 +2257,7 @@ function get_obj_conta_divi(){
    console.log('numq obj_conta:'+numq);
    console.log('numr obj_conta:'+numr);
 
-   var obj_conta = { num1: num1, num2: num2, numr: numr, numq: numq, html: html };
+   var obj_conta = { num1: num1, num2: num2, numr: numr, numq: numq, html: html, tipo: tipo };
    
    //console.log('obj_conta:'+obj_conta);
    
@@ -2270,7 +2296,6 @@ function pontuacao(tipo){
 
    console.log('ponti1:' + ponti);
 
-
    if(JSON.parse(localStorage.getItem("arr_obj_err_divi")) != null){
        arr_obj_err = JSON.parse(localStorage.getItem("arr_obj_err_divi"));
    }
@@ -2285,13 +2310,14 @@ function pontuacao(tipo){
    // console.log('arr_txt_acer secao: ' + arr_obj_acer);
    // console.log('arr_txt_pul secao: ' + arr_obj_pul);
 
-   var obj_conta = get_obj_conta_divi();
+   var obj_conta = get_obj_conta_divi(tipo);
 
    console.log('obj_conta obtida da tabela n1: ' + obj_conta.num1);
    console.log('obj_conta obtida da tabela n2: ' + obj_conta.num2);
    console.log('obj_conta obtida da tabela qu: ' + obj_conta.numq);
    console.log('obj_conta obtida da tabela rs: ' + obj_conta.numr);
    console.log('obj_conta obtida da tabela html: ' + obj_conta.html);
+   console.log('obj_conta obtida da tabela tipo: ' + obj_conta.tipo);
 
    /*TIPO QUE GANHA PONTOS*/
    if(tipo == 'mais'){
@@ -2789,6 +2815,7 @@ function limpar_hist(){
 
 }
 
+/*
 function rumais() {
 
    //desabilita tabuada (e inserção automatica de valores) quando iniciamos a soma
@@ -2843,6 +2870,7 @@ function rumenos() {
    exibir();
 
 }
+
 function rdmais() {
 
    //desabilita tabuada (e inserção automatica de valores) quando iniciamos a soma
@@ -3007,6 +3035,7 @@ function rmmenos() {
    exibir();
 
 }
+*/
 
 function prepara_impr(){
 
@@ -3030,6 +3059,8 @@ function prepara_impr(){
    
    }
     
+   //chave his e valor 1 não imprime os valores
+   //exemplo:../histdivi.html?his=1
    var query = location.search.slice(1);
    var partes = query.split('&');
    var chave = '';
@@ -3086,17 +3117,18 @@ function prepara_impr(){
             if(chave=='his' && valor=='1'){
 
                //html_err = html_err + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
-               //html_err_lin = html_err_lin + "<li>"+objconta.num2+" \u00F7 "+objconta.num1+"</li>";
+               html_err_lin = html_err_lin + "<li>"+objconta.num1+" \u00F7 "+objconta.num2+"</li>";
 
+               //copia completa da tabela da resulução do aluno, para mostrar onde podemos melhorar
                html_err = html_err + objconta.html;
 
             }else{
 
                //html_err = html_err + "<div class=\"conta\"><span>"+objconta.num2+"</span>&nbsp;&nbsp;<span>"+objconta.num1+"</span><span class=\"sinal\">|_</span><hr><span>"+objconta.numq+"</span></div>";
-               //html_err_lin = html_err_lin + "<li>"+objconta.num2+" \u00F7 "+objconta.num1+" = "+objconta.numr+"</li>";
+               html_err_lin = html_err_lin + "<li>"+objconta.num1+" \u00F7 "+objconta.num2+" = "+objconta.numq+" + r("+objconta.numr+")"+"</li>";
             
                html_err = html_err + objconta.html;
-
+               
             }
             console.log('Erro: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq +'(resto: '+ objconta.numq+')' );
 
@@ -3105,7 +3137,7 @@ function prepara_impr(){
       }
 
       erros.innerHTML = html_err;
-      erros_lin.innerHTML = '<ol>'+html_err_lin+'</ol>';
+      erros_lin.innerHTML = '<ol class="paren">'+html_err_lin+'</ol>';
 
    }
 
@@ -3124,14 +3156,15 @@ function prepara_impr(){
             if(chave=='his' && valor=='1'){
 
                //html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
-               //html_ace_lin = html_ace_lin + "<li>"+objconta.num2+" x "+objconta.num1+"</li>";
+               html_ace_lin = html_ace_lin + "<li>"+objconta.num1+" \u00F7 "+objconta.num2+"</li>";
                
+               //mostramos o que o aluno fez para podermos conferir os seus passos
                html_ace = html_ace + objconta.html;
 
             }else{
 
                //html_ace = html_ace + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span>"+objconta.numr+"</span></div>";
-               //html_ace_lin = html_ace_lin + "<li>"+objconta.num2+" x "+objconta.num1+" = "+objconta.numr+"</li>";
+               html_ace_lin = html_ace_lin + "<li>"+objconta.num1+" \u00F7 "+objconta.num2+" = "+objconta.numq+" + r("+objconta.numr+")"+"</li>";
                
                html_ace = html_ace + objconta.html;
                
@@ -3143,7 +3176,7 @@ function prepara_impr(){
       }
 
       acertos.innerHTML = html_ace;
-      acertos_lin.innerHTML = '<ol>'+html_ace_lin+'</ol>';
+      acertos_lin.innerHTML = '<ol class="paren">'+html_ace_lin+'</ol>';
 
    }
 
@@ -3162,16 +3195,23 @@ function prepara_impr(){
             if(chave=='his' && valor=='1'){
 
                //html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span></span></div>";
-               //html_pul_lin = html_pul_lin + "<li>"+objconta.num2+" x "+objconta.num1+"</li>";
+               html_pul_lin = html_pul_lin + "<li>"+objconta.num1+" \u00F7 "+objconta.num2+"</li>";
                
-               html_pul = html_pul + objconta.html;
-
+               //não há necessidade de mostrar uma tabela vazia
+               //html_pul = html_pul + objconta.html;
+               
+               html_pul = html_pul + "<div class=\"contai\"><table><tr><td id=\"dd\">"+objconta.num1+"</td><td id=\"ds\">"+objconta.num2+"</td></tr><tr><td id=\"r\"></td><td id=\"q\">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></div>";
+               
             }else{
             
                //html_pul = html_pul + "<div class=\"conta\"><span>"+objconta.num1+"</span><br><span>"+objconta.num2+"</span><span class=\"sinal\">x</span><hr><span>"+objconta.numr+"</span></div>";
-               //html_pul_lin = html_pul_lin + "<li>"+objconta.num2+" x "+objconta.num1+" = "+objconta.numr+"</li>";
+               html_pul_lin = html_pul_lin + "<li>"+objconta.num1+" \u00F7 "+objconta.num2+" = "+objconta.numq+" + r("+objconta.numr+")"+"</li>";
 
-               html_pul = html_pul + objconta.html;
+               //não há necessidade de mostrar uma tabela vazia
+               //html_pul = html_pul + objconta.html;
+
+               html_pul = html_pul + "<div class=\"contai\"><table><tr><td id=\"dd\">"+objconta.num1+"</td><td id=\"ds\">"+objconta.num2+"</td></tr><tr><td id=\"r\">"+objconta.numr+"</td><td id=\"q\">"+objconta.numq+"</td></tr></table></div>";
+               
 
             }
             console.log('Pulo: ' + objconta.num1 + ' \u00F7 ' + objconta.num2 + ' = ' + objconta.numq +'(resto: '+ objconta.numq+')' );
@@ -3181,7 +3221,50 @@ function prepara_impr(){
       } 
 
       pulos.innerHTML = html_pul;
-      pulos_lin.innerHTML = '<ol>'+html_pul_lin+'</ol>';
+      pulos_lin.innerHTML = '<ol class="paren">'+html_pul_lin+'</ol>';
 
    }
+
+   console.log('removeu linhas iniciais');
+   $('.rem').remove();
+   console.log('limpou algumas celulas');
+   $('.lim').html('');
+
+   //remove as linhas vazias das colunas dos restos
+   //rem_lin_vaz_r();
+
+   
 }
+
+/*
+//remove as linhas vazias das colunas dos restos
+function rem_lin_vaz_r(){
+   
+   console.log('vai remover linhas finais vazias');
+
+   //linha com o ultimo resto 
+   var lin_vaz_ini = get_rs_cls();
+
+   console.log('linha do ultimo resto:'+lin_vaz_ini);
+
+   if(lin_vaz_ini != ''){
+
+      var lin = parseInt(lin_vaz_ini, 10);
+      
+      var linr = '';
+
+      for (var i = lin+1; i < 10; i++) {
+         
+         linr = 'l '+i;
+         
+         console.log('vai remover a linha:'+linr);
+
+         linr.remove();
+      }
+   
+   }else{
+      console.log('vai remover todas as linhas');      
+   }
+
+}
+*/

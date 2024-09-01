@@ -1581,3 +1581,7 @@ table tr td.ds3{
 	min-width: 100%;
 	min-height: 70px;
 }
+
+table .tb_divisao{
+	float: left;
+}

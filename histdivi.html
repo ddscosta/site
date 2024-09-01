@@ -66,7 +66,8 @@
 		}
 
 		.bloco .contas{
-			position: relative;
+			/*position: relative;*/
+			display: flex;
 		}
 
 		.bloco .contas .conta{
@@ -120,6 +121,25 @@
 			text-align: end;
 			padding: 5px;
 			margin: 5px;
+		}
+
+		table.tb_divisao{
+			position: relative;
+			float: left;
+		}
+
+		ol.paren {
+			counter-reset: list;
+		}
+		ol.paren > li {
+			list-style: none;
+			position: relative;
+		}
+		ol.paren > li:before {
+			counter-increment: list;
+			content: counter(list, lower-alpha) ") ";
+			position: absolute;
+			left: -1.4em;
 		}
 
 	</style>
