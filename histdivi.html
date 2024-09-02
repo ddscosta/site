@@ -128,19 +128,156 @@
 			float: left;
 		}
 
-		ol.paren {
-			counter-reset: list;
+		ol {
+		  counter-reset: list;
 		}
-		ol.paren > li {
-			list-style: none;
-			position: relative;
+		ol > li {
+		  list-style: none;
 		}
-		ol.paren > li:before {
-			counter-increment: list;
-			content: counter(list, lower-alpha) ") ";
+		ol > li:before {
+		  content: counter(list, lower-alpha) ") ";
+		  counter-increment: list;
+		}
+
+	/*copia de divisao1.css*/
+		#principal{
+			width: 950px;
+			margin: auto;
+			border:solid black;
+		}
+
+		#principal h1{
+			text-align: center;
+		}
+
+		.nav-button{
+			display: block;
 			position: absolute;
-			left: -1.4em;
+			box-sizing: content-box;
+			border: 0;
+			border-radius: 4px;
+			padding: 8px;
+			background-color: rgba(74,79,247,.4);
+			margin: 8px;
+			cursor: pointer;
+			width: 44px;
 		}
+
+		.nav-button i{
+			color: blue;
+		}
+
+		#relg{
+			display: block;
+			float: right;
+			font-size: 35px;
+			color: blue;
+			padding: 5px;
+		}
+
+		
+
+		.um{
+			color: black;
+			background-color: rgba(0, 0, 0, .4);
+		}
+
+		.ump{
+			border: solid;
+			width: 50px;
+			height: 50px;
+		}
+
+		#imgm, #imgc, #imgd,  #imgu{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			display: none;
+		}
+
+		.c{
+			color: blue;
+			background-color: rgba(0, 0, 0, .3);	
+		}
+
+		.cp{
+			border: solid;
+		}
+
+		.d{
+			color: green;
+			background-color: rgba(0, 0, 0, .2);
+		}
+
+		.dp{
+			border: solid;
+		}
+
+		.u{
+			color: red;
+			background-color: rgba(0, 0, 0, .1);
+		}
+
+		.up{
+			border: solid;
+		}
+
+		table tr#qvl{
+			color: red;	
+		}
+
+		table tr td#qvlum{
+			font-size: 7px;	
+		}
+
+		table tr#sol td{
+			background-color: white;
+			height: 20px;
+			/*border-top-style:solid;*/
+		}
+
+		table{
+			
+			
+			font-size: 20px;
+		}
+
+		table tr td{
+			width: 20px;
+			text-align: center;
+		}
+
+		table tr td.ds1{
+			border-left: solid black;
+			border-bottom: solid black;
+			border-top: solid black;
+			
+		}
+
+		table tr td.ds2{
+			border-bottom: solid black;
+			border-top: solid black;
+			
+		}
+
+		table tr td.ds3{
+			border-right: solid black;
+			border-bottom: solid black;
+			border-top: solid black;
+			
+		}
+
+		#btn_limp{
+			min-width: 100%;
+			min-height: 70px;
+		}
+
+		table .tb_divisao{
+			float: left;
+		}
+
+
+	/**/
 
 	</style>
 
@@ -172,7 +309,7 @@
 
 	<div class="principal_impr">
 
-		<div>
+		<!--div>
 			<table>
 				<tr>
 					<td id="dd">12345</td>
@@ -183,7 +320,7 @@
 					<td id="q">4599</td>
 				</tr>
 			</table>
-		</div>
+		</div-->
 
 		<div class="bloco">
 		
