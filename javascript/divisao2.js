@@ -2536,11 +2536,13 @@ function novo(){
       var dei = parseInt(de.value, 10);
 
       console.log('de:'+de.value);
+      console.log('dei:'+dei);
 
       var de2 = document.getElementById('de2');
       var de2i = parseInt(de2.value, 10);
 
       console.log('de2:'+de2.value);
+      console.log('de2i:'+de2i);
      
       var ate = document.getElementById('ate');
       var atei = parseInt(ate.value, 10);
@@ -2551,17 +2553,18 @@ function novo(){
       var ate2i = parseInt(ate2.value, 10);
 
       console.log('ate2:'+ate2.value);
+      console.log('ate2i:'+ate2i);
 
       /*/não permitimos apenas 1 digito no multiplicador
       if(de2i < 10){
          var de2i = 10;
          var de2s = de2i;
-      }*/
+      }
 
       if(ate2i < 10){
          var ate2i = 10;
          var ate2s = ate2i;
-      }
+      }*/
 
       //ordenando os numeros corretamente (caso digitem de <maior> até <menor>!!! )
       if(dei > atei){
@@ -2619,8 +2622,10 @@ function novo(){
 
       console.log('numero 1:'+num1);
 
-      num2 = getRandomInt(de2s, ate2s);
+      /*random(2,3) não atinge 3. logo devemos somar mais 1 para atingir o extremos direito do intervalo*/
+      num2 = getRandomInt(de2s, (ate2s+1) );
 
+      console.log('numero 2 de >> ate: '+de2s+' >> '+ate2s);
       console.log('numero 2:'+num2);
 
    //false: não completa os digitos vazios com zero
